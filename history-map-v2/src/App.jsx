@@ -263,36 +263,46 @@ export default function BrusilovOffensiveMap() {
             <Rivers rivers={brusilovData.rivers} />
           </MapContainer>
           
-          <div className="absolute bottom-4 left-4 bg-white p-4 rounded-lg shadow-lg z-[1000]">
-            <h3 className="font-bold mb-2">Легенда</h3>
-            <div className="space-y-2 text-sm">
-              <div className="flex items-center gap-2">
-                <div className="w-6 h-6 rounded-full bg-red-700"></div>
-                <span>Крупные сражения</span>
+          <div style={{
+            position: 'absolute',
+            bottom: '16px',
+            left: '16px',
+            backgroundColor: 'white',
+            padding: '16px',
+            borderRadius: '8px',
+            boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+            zIndex: 1000,
+            maxWidth: '250px'
+          }}>
+            <h3 style={{ fontWeight: 'bold', marginBottom: '8px', margin: '0 0 8px 0', color: 'black' }}>Легенда</h3>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '14px', color: 'black' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <div style={{ width: '24px', height: '24px', borderRadius: '50%', backgroundColor: '#b91c1c' }}></div>
+                <span style={{ color: 'black' }}>Крупные сражения</span>
               </div>
-              <div className="flex items-center gap-2">
-                <div className="w-6 h-1 bg-blue-500"></div>
-                <span>Направления наступления</span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <div style={{ width: '24px', height: '4px', backgroundColor: '#3b82f6' }}></div>
+                <span style={{ color: 'black' }}>Направления наступления</span>
               </div>
-              <div className="flex items-center gap-2">
-                <div className="w-6 h-1 bg-red-600" style={{borderTop: '3px dashed'}}></div>
-                <span>Начальная линия фронта</span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <div style={{ width: '24px', height: '4px', backgroundColor: '#dc2626', borderTop: '3px dashed #dc2626' }}></div>
+                <span style={{ color: 'black' }}>Начальная линия фронта</span>
               </div>
-              <div className="flex items-center gap-2">
-                <div className="w-6 h-1 bg-green-600"></div>
-                <span>Конечная линия фронта</span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <div style={{ width: '24px', height: '4px', backgroundColor: '#16a34a' }}></div>
+                <span style={{ color: 'black' }}>Конечная линия фронта</span>
               </div>
-              <div className="flex items-center gap-2">
-                <div className="w-3 h-3 rounded-full bg-black border border-white"></div>
-                <span>Крупные города</span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <div style={{ width: '12px', height: '12px', borderRadius: '50%', backgroundColor: 'black', border: '1px solid white' }}></div>
+                <span style={{ color: 'black' }}>Крупные города</span>
               </div>
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-gray-600 border border-white"></div>
-                <span>Города</span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <div style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#6b7280', border: '1px solid white' }}></div>
+                <span style={{ color: 'black' }}>Города</span>
               </div>
-              <div className="flex items-center gap-2">
-                <div className="w-6 h-1 bg-blue-400"></div>
-                <span>Реки</span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <div style={{ width: '24px', height: '4px', backgroundColor: '#60a5fa' }}></div>
+                <span style={{ color: 'black' }}>Реки</span>
               </div>
             </div>
           </div>
