@@ -4,6 +4,7 @@ import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import './App.css';
 import brusilovData from './brusilovData.json';
+import NewVideo from './assets/NewVideo.mp4';
 
 // Фикс для иконок Leaflet в React
 delete L.Icon.Default.prototype._getIconUrl;
@@ -178,7 +179,64 @@ const CityMarkers = ({ cities }) => {
   ));
 };
 
+// Компонент вступления
+const IntroComponent = ({ onComplete }) => {
+  const [showVideo, setShowVideo] = useState(false);
+  const [showText, setShowText] = useState(false);
+  const [fadeOut, setFadeOut] = useState(false);
 
+  useEffect(() => {
+    // Показать видео с задержкой
+    const videoTimer = setTimeout(() => {
+      setShowVideo(true);
+    }, 500);
+
+    // Показать текст через 3 секунды
+    const textTimer = setTimeout(() => {
+      setShowText(true);
+    }, 3500);
+
+    return () => {
+      clearTimeout(videoTimer);
+      clearTimeout(textTimer);
+    };
+  }, []);
+
+  const handleStartClick = () => {
+    setFadeOut(true);
+    setTimeout(() => {
+      onComplete();
+    }, 1000);
+  };
+
+  return (
+    <div className={`intro-container ${fadeOut ? 'fade-out' : ''}`}>
+      <video
+        autoPlay
+        muted
+        loop
+        className={`intro-video ${showVideo ? 'show' : ''}`}
+      >
+        <source src={NewVideo} type="video/mp4" />
+        Ваш браузер не поддерживает видео.
+      </video>
+      <div className="intro-overlay">
+        <div className={`intro-text ${showText ? 'show' : ''}`}>
+          <h1 className="intro-title">БРУСИЛОВСКИЙ ПРОРЫВ</h1>
+          <p className="intro-subtitle">Июнь 1916 г.</p>
+          <div className={`intro-button-container ${showText ? 'show' : ''}`}>
+            <button 
+              className="intro-start-button"
+              onClick={handleStartClick}
+            >
+              СТАРТ
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 // Основной компонент приложения
 export default function BrusilovOffensiveMap() {
@@ -188,6 +246,7 @@ export default function BrusilovOffensiveMap() {
   const [showInitialFront, setShowInitialFront] = useState(true);
   const [showFinalFront, setShowFinalFront] = useState(true);
   const [mapLayer, setMapLayer] = useState('modern');
+  const [showIntro, setShowIntro] = useState(true);
   
   // Состояния для анимаций модальных окон
   const [isBattleModalClosing, setIsBattleModalClosing] = useState(false);
@@ -259,14 +318,16 @@ export default function BrusilovOffensiveMap() {
 
   return (
     <div style={{ width: '100vw', height: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: '#111827', margin: 0, padding: 0, overflow: 'hidden' }}>
-      <header style={{ backgroundColor: '#111827', color: 'white', padding: '16px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}>
-        <h1 style={{ fontSize: '30px', fontWeight: 'bold', textAlign: 'center', margin: 0 }}>Брусиловский прорыв 1916 года</h1>
-        <p style={{ textAlign: 'center', marginTop: '8px', color: '#d1d5db', margin: '8px 0 0 0' }}>Интерактивная карта крупнейшей операции Первой мировой войны</p>
-      </header>
+      {showIntro ? (
+        <IntroComponent onComplete={() => setShowIntro(false)} />
+      ) : (
+        <>
+          <header style={{ backgroundColor: '#111827', color: 'white', padding: '16px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}>
+            <h1 style={{ fontSize: '30px', fontWeight: 'bold', textAlign: 'center', margin: 0 }}>Брусиловский прорыв 1916 года</h1>
+            <p style={{ textAlign: 'center', marginTop: '8px', color: '#d1d5db', margin: '8px 0 0 0' }}>Интерактивная карта крупнейшей операции Первой мировой войны</p>
+          </header>
 
-
-
-      <div style={{ flex: 1, width: '100%', height: '100%', padding: '20px', boxSizing: 'border-box' }}>
+          <div style={{ flex: 1, width: '100%', height: '100%', padding: '20px', boxSizing: 'border-box' }}>
         <div style={{ width: '100%', height: '100%', position: 'relative', borderRadius: '16px', overflow: 'hidden', boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)' }}>
           <MapContainer
             center={mapCenter}
@@ -495,6 +556,9 @@ export default function BrusilovOffensiveMap() {
           </div>
         </div>
       </div>
+
+          </>
+        )}
 
       {selectedBattle && (
         <div 
