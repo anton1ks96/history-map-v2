@@ -100,7 +100,7 @@
   animation: modalFadeOut 0.3s ease-out forwards;
 }
 
-/* Стили для вступления */
+/* Стили для вступления - Элегантный темный */
 .intro-container {
   position: fixed;
   top: 0;
@@ -111,8 +111,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #000;
-  transition: all 1.5s cubic-bezier(0.4, 0.0, 0.2, 1);
+  background: 
+    linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f0f23 100%);
+  transition: all 1.5s ease-out;
   transform: scale(1);
 }
 
@@ -173,49 +174,42 @@
 /* Плавное исчезновение текста при fade-out */
 .intro-container.fade-out .intro-text {
   opacity: 0;
-  transform: translateY(-30px) scale(0.95);
-  transition: all 1.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+  transform: translateY(-20px) scale(0.98);
+  transition: all 1s cubic-bezier(0.4, 0.0, 0.2, 1);
 }
 
 /* Плавное размытие видео при исчезновении */
 .intro-container.fade-out .intro-video {
-  filter: blur(10px);
-  transition: all 1.5s cubic-bezier(0.4, 0.0, 0.2, 1);
+  filter: blur(5px);
+  transition: all 1.2s cubic-bezier(0.4, 0.0, 0.2, 1);
 }
 
 /* Плавное исчезновение кнопки при fade-out */
 .intro-container.fade-out .intro-start-button {
   opacity: 0;
-  transform: translateY(20px) scale(0.9);
-  transition: all 1s cubic-bezier(0.4, 0.0, 0.2, 1);
+  transform: translateY(10px) scale(0.95);
+  transition: all 0.8s cubic-bezier(0.4, 0.0, 0.2, 1);
 }
 
 .intro-title {
-  font-size: 5rem;
+  font-size: 5.5rem;
   font-weight: 700;
-  margin: 0 0 0.2rem 0;
-  text-shadow: 
-    2px 2px 4px rgba(0, 0, 0, 1),
-    4px 4px 8px rgba(0, 0, 0, 0.8),
-    6px 6px 12px rgba(0, 0, 0, 0.6),
-    0 0 20px rgba(0, 0, 0, 0.5);
-  letter-spacing: 2px;
+  margin: 0 0 0.5rem 0;
+  letter-spacing: -2px;
   color: #ffffff;
-  font-family: 'Arial', 'Helvetica', sans-serif;
+  font-family: 'SF Pro Display', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  filter: drop-shadow(0 2px 8px rgba(255, 255, 255, 0.1));
 }
 
 .intro-subtitle {
-  font-size: 2.2rem;
+  font-size: 1.3rem;
   font-weight: 400;
-  margin: 0 0 2.5rem 0;
-  text-shadow: 
-    1px 1px 2px rgba(0, 0, 0, 1),
-    2px 2px 4px rgba(0, 0, 0, 0.8),
-    3px 3px 6px rgba(0, 0, 0, 0.6),
-    0 0 15px rgba(0, 0, 0, 0.4);
-  letter-spacing: 1.5px;
-  color: #f0f0f0;
-  font-family: 'Arial', 'Helvetica', sans-serif;
+  margin: 0 0 3rem 0;
+  letter-spacing: 0.5px;
+  color: rgba(255, 255, 255, 0.8);
+  font-family: 'SF Pro Text', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.6;
 }
 
 .intro-button-container {
@@ -230,22 +224,19 @@
 }
 
 .intro-start-button {
-  background: rgba(0, 0, 0, 0.85);
-  border: 2px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   color: #ffffff;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   font-weight: 500;
-  padding: 16px 48px;
-  border-radius: 50px;
+  padding: 16px 32px;
+  border-radius: 12px;
   cursor: pointer;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  font-family: 'Arial', 'Helvetica', sans-serif;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  backdrop-filter: blur(20px);
-  box-shadow: 
-    0 8px 32px rgba(0, 0, 0, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  letter-spacing: 0.5px;
+  font-family: 'SF Pro Text', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
   position: relative;
   overflow: hidden;
 }
@@ -263,16 +254,14 @@
     rgba(255, 255, 255, 0.2),
     transparent
   );
-  transition: left 0.5s ease;
+  transition: left 0.6s ease;
 }
 
 .intro-start-button:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.6);
-  transform: translateY(-3px);
-  box-shadow: 
-    0 15px 45px rgba(0, 0, 0, 0.6),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
 }
 
 .intro-start-button:hover::before {
@@ -280,58 +269,55 @@
 }
 
 .intro-start-button:active {
-  transform: translateY(-1px) scale(0.98);
+  transform: translateY(0) scale(0.98);
   transition: all 0.1s ease;
-  opacity: 0.9;
 }
 
-/* Адаптивные стили для мобильных устройств */
+/* Адаптивные стили для мобильных устройств - Темная тема */
 @media (max-width: 768px) {
   .intro-title {
-    font-size: 3.5rem;
-    letter-spacing: 1.5px;
+    font-size: 4rem;
+    letter-spacing: -1.5px;
   }
   
   .intro-subtitle {
-    font-size: 1.6rem;
-    letter-spacing: 1px;
+    font-size: 1.2rem;
+    margin: 0 0 2.5rem 0;
   }
   
   .intro-start-button {
-    font-size: 1.1rem;
-    padding: 14px 36px;
-    letter-spacing: 2px;
+    font-size: 1rem;
+    padding: 14px 28px;
   }
 }
 
 @media (max-width: 480px) {
   .intro-title {
-    font-size: 2.8rem;
-    letter-spacing: 1px;
+    font-size: 3.2rem;
+    letter-spacing: -1px;
   }
   
   .intro-subtitle {
-    font-size: 1.3rem;
-    letter-spacing: 0.5px;
+    font-size: 1.1rem;
+    margin: 0 0 2rem 0;
   }
   
   .intro-start-button {
-    font-size: 1rem;
-    padding: 12px 30px;
-    letter-spacing: 1.5px;
+    font-size: 0.95rem;
+    padding: 12px 24px;
   }
 }
 
-/* Стили для плавного появления основного контента */
+/* Стили для плавного появления основного контента - Темная тема */
 .main-content {
   opacity: 0;
-  transform: translateY(50px) scale(0.95);
-  transition: all 2s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(30px) scale(0.98);
+  transition: all 1.5s cubic-bezier(0.16, 1, 0.3, 1);
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
-  filter: blur(8px);
+  filter: blur(4px);
 }
 
 .main-content.show {
@@ -343,8 +329,8 @@
 /* Поэтапные анимации для элементов контента */
 .main-content header {
   opacity: 0;
-  transform: translateY(-20px);
-  transition: all 1.5s cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
+  transform: translateY(-15px);
+  transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.2s;
 }
 
 .main-content.show header {
@@ -354,11 +340,235 @@
 
 .main-content > div {
   opacity: 0;
-  transform: translateY(30px);
-  transition: all 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.6s;
+  transform: translateY(20px);
+  transition: all 1.3s cubic-bezier(0.16, 1, 0.3, 1) 0.4s;
 }
 
 .main-content.show > div {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Эффект подсветки при наведении на элементы управления */
+label:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-color: rgba(255, 255, 255, 0.3) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Эффект подсветки при наведении на селектор */
+select:hover {
+  background: rgba(255, 255, 255, 0.15) !important;
+  border-color: rgba(255, 255, 255, 0.3) !important;
+  transform: translateY(-1px);
+}
+
+/* Финальные современные эффекты */
+
+/* Современная стеклянная карта */
+.main-content > div > div {
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 
+    0 25px 50px -12px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+/* Плавные переходы для всех интерактивных элементов */
+select:hover {
+  background: rgba(255, 255, 255, 0.15) !important;
+  border-color: rgba(255, 255, 255, 0.3) !important;
+  transform: translateY(-1px);
+}
+
+/* Дополнительные glassmorphism эффекты */
+.intro-overlay {
+  background: rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Современные скругления и запрет выделения */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Разрешаем выделение только для инпутов */
+input, textarea, [contenteditable="true"] {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+
+/* Простые анимации для темной темы */
+
+/* Простые темные эффекты */
+
+/* Убираем сложные анимации и оставляем простые стили */
+
+/* Анимации для легенды */
+.legend {
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform-origin: left bottom;
+}
+
+.legend.show {
+  opacity: 1;
+  transform: translateX(0) scale(1);
+  visibility: visible;
+  animation: legendSlideIn 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.legend.hide {
+  opacity: 0;
+  transform: translateX(-30px) scale(0.9);
+  visibility: hidden;
+  pointer-events: none;
+  animation: legendSlideOut 0.4s cubic-bezier(0.55, 0.06, 0.68, 0.19) forwards;
+}
+
+/* Ключевые кадры для анимации легенды */
+@keyframes legendSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-30px) scale(0.9);
+    visibility: hidden;
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    visibility: visible;
+  }
+}
+
+@keyframes legendSlideOut {
+  0% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    visibility: visible;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-30px) scale(0.9);
+    visibility: hidden;
+  }
+}
+
+/* Анимация для кнопки легенды */
+button.legend-button {
+  transition: all 0.3s ease;
+  animation: legendButtonPulse 2s ease-in-out 3s;
+  outline: none;
+}
+
+button.legend-button:focus {
+  outline: none;
+}
+
+@keyframes legendButtonPulse {
+  0%, 100% {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  }
+  50% {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2), 0 0 0 6px rgba(255, 255, 255, 0.05);
+  }
+}
+
+/* Эффекты кнопки легенды - точно как у других кнопок */
+button.legend-button:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+button.legend-button:active {
+  transform: translateY(0) scale(0.98);
+  transition: all 0.1s ease;
+}
+
+/* Анимация иконки в кнопке */
+button.legend-button svg {
+  transition: all 0.3s ease;
+}
+
+button.legend-button:hover svg {
+  transform: none;
+}
+
+/* Адаптивные стили для легенды */
+@media (max-width: 768px) {
+  .legend {
+    max-width: calc(100vw - 120px) !important;
+    font-size: 12px;
+  }
+  
+  .legend h3 {
+    font-size: 14px !important;
+    margin-bottom: 12px !important;
+  }
+  
+  .legend div {
+    gap: 8px !important;
+    font-size: 12px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .legend {
+    left: 24px !important;
+    right: 24px !important;
+    max-width: none !important;
+    width: calc(100vw - 120px) !important;
+    bottom: 80px !important;
+  }
+  
+  .legend.show {
+    animation: legendSlideInMobile 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  }
+  
+  .legend.hide {
+    animation: legendSlideOutMobile 0.4s cubic-bezier(0.55, 0.06, 0.68, 0.19) forwards;
+  }
+}
+
+/* Мобильные анимации для легенды */
+@keyframes legendSlideInMobile {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+    visibility: hidden;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    visibility: visible;
+  }
+}
+
+@keyframes legendSlideOutMobile {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    visibility: visible;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+    visibility: hidden;
+  }
+}
+
+/* Убираем outline для всех интерактивных элементов */
+button, select, input[type="checkbox"] {
+  outline: none;
+}
+
+button:focus, select:focus, input:focus {
+  outline: none;
 }

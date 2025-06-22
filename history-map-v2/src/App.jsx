@@ -261,15 +261,15 @@ const IntroComponent = ({ onComplete }) => {
       </video>
       <div className="intro-overlay">
         <div className={`intro-text ${showText ? 'show' : ''}`}>
-          <h1 className="intro-title">БРУСИЛОВСКИЙ ПРОРЫВ</h1>
-          <p className="intro-subtitle">Июнь 1916 г.</p>
+          <h1 className="intro-title">Брусиловский прорыв</h1>
+          <p className="intro-subtitle">Интерактивная карта крупнейшей операции Первой мировой войны</p>
           <div className={`intro-button-container ${showText ? 'show' : ''}`}>
-            <button 
-              className="intro-start-button"
-              onClick={handleStartClick}
-            >
-              СТАРТ
-            </button>
+                          <button 
+                className="intro-start-button"
+                onClick={handleStartClick}
+              >
+                Начать исследование
+              </button>
           </div>
         </div>
       </div>
@@ -285,6 +285,7 @@ export default function BrusilovOffensiveMap() {
   const [showInitialFront, setShowInitialFront] = useState(true);
   const [showFinalFront, setShowFinalFront] = useState(true);
   const [mapLayer, setMapLayer] = useState('modern');
+  const [showLegend, setShowLegend] = useState(true);
   const [showIntro, setShowIntro] = useState(true);
   const [showMainContent, setShowMainContent] = useState(false);
   
@@ -357,7 +358,18 @@ export default function BrusilovOffensiveMap() {
   };
 
   return (
-    <div style={{ width: '100vw', height: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: '#111827', margin: 0, padding: 0, overflow: 'hidden' }}>
+    <div style={{ 
+      width: '100vw', 
+      height: '100vh', 
+      display: 'flex', 
+      flexDirection: 'column', 
+      background: `
+        linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f0f23 100%)
+      `,
+      margin: 0, 
+      padding: 0, 
+      overflow: 'hidden' 
+    }}>
       {showIntro ? (
         <IntroComponent onComplete={() => {
           setShowIntro(false);
@@ -367,9 +379,40 @@ export default function BrusilovOffensiveMap() {
         }} />
       ) : (
         <div className={`main-content ${showMainContent ? 'show' : ''}`}>
-          <header style={{ backgroundColor: '#111827', color: 'white', padding: '16px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}>
-            <h1 style={{ fontSize: '30px', fontWeight: 'bold', textAlign: 'center', margin: 0 }}>Брусиловский прорыв 1916 года</h1>
-            <p style={{ textAlign: 'center', marginTop: '8px', color: '#d1d5db', margin: '8px 0 0 0' }}>Интерактивная карта крупнейшей операции Первой мировой войны</p>
+          <header style={{ 
+            background: 'rgba(26, 26, 46, 0.9)',
+            backdropFilter: 'blur(20px)',
+            color: '#ffffff', 
+            padding: '24px 32px', 
+            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
+            borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+            position: 'relative'
+          }}>
+            <h1 style={{ 
+              fontSize: '36px', 
+              fontWeight: '700', 
+              textAlign: 'center', 
+              margin: 0,
+              fontFamily: 'SF Pro Display, Inter, -apple-system, BlinkMacSystemFont, sans-serif',
+              letterSpacing: '-1px',
+              color: '#ffffff',
+              lineHeight: 1.2,
+              textShadow: '0 2px 8px rgba(0, 0, 0, 0.3)'
+            }}>
+              Брусиловский прорыв 1916
+            </h1>
+            <p style={{ 
+              textAlign: 'center', 
+              margin: '8px 0 0 0', 
+              color: 'rgba(255, 255, 255, 0.7)',
+              fontSize: '16px',
+              fontWeight: '400',
+              letterSpacing: '0.5px',
+              fontFamily: 'SF Pro Text, Inter, -apple-system, BlinkMacSystemFont, sans-serif',
+              lineHeight: 1.5
+            }}>
+              Интерактивная карта крупнейшей операции Первой мировой войны
+            </p>
           </header>
 
           <div style={{ flex: 1, width: '100%', height: '100%', padding: '20px', boxSizing: 'border-box' }}>
@@ -405,21 +448,88 @@ export default function BrusilovOffensiveMap() {
             <Rivers rivers={brusilovData.rivers} onRiverClick={setSelectedRiver} />
           </MapContainer>
 
+          {/* Кнопка управления легендой */}
+          <button
+            className="legend-button"
+            onClick={() => setShowLegend(!showLegend)}
+            style={{
+              position: 'absolute',
+              bottom: '24px',
+              left: '24px',
+              background: 'rgba(26, 26, 46, 0.9)',
+              border: '1px solid rgba(255, 255, 255, 0.2)',
+              borderRadius: '12px',
+              padding: '12px',
+              cursor: 'pointer',
+              zIndex: 1001,
+              backdropFilter: 'blur(20px)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: '48px',
+              height: '48px',
+              boxShadow: '0 8px 25px rgba(0, 0, 0, 0.2)'
+            }}
+            title={showLegend ? "Скрыть легенду" : "Показать легенду"}
+          >
+            <svg 
+              width="20" 
+              height="20" 
+              viewBox="0 0 24 24" 
+              fill="none" 
+              stroke="#ffffff" 
+              strokeWidth="2" 
+              strokeLinecap="round" 
+              strokeLinejoin="round"
+              style={{
+                transition: 'transform 0.3s ease',
+                transform: showLegend ? 'rotate(0deg)' : 'rotate(180deg)'
+              }}
+            >
+              {showLegend ? (
+                <>
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                  <line x1="9" y1="12" x2="15" y2="12"/>
+                </>
+              ) : (
+                <>
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                  <line x1="9" y1="12" x2="15" y2="12"/>
+                  <line x1="12" y1="9" x2="12" y2="15"/>
+                </>
+              )}
+            </svg>
+          </button>
+
           {/* Легенда */}
-          <div style={{
-            position: 'absolute',
-            bottom: '20px',
-            left: '20px',
-            backgroundColor: 'rgba(0, 0, 0, 0.8)',
-            padding: '16px 20px',
-            borderRadius: '16px',
-            boxShadow: '0 10px 25px rgba(0, 0, 0, 0.3)',
-            zIndex: 1000,
-            backdropFilter: 'blur(10px)',
-            maxWidth: '320px'
-          }}>
-            <h3 style={{ fontWeight: 'bold', marginBottom: '12px', margin: '0 0 12px 0', color: 'white', fontSize: '16px' }}>Легенда</h3>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', fontSize: '14px', color: 'white' }}>
+          <div 
+            className={`legend ${showLegend ? 'show' : 'hide'}`}
+            style={{
+              position: 'absolute',
+              bottom: '24px',
+              left: '80px',
+              background: 'rgba(26, 26, 46, 0.9)',
+              padding: '24px',
+              borderRadius: '16px',
+              boxShadow: '0 16px 40px rgba(0, 0, 0, 0.3)',
+              border: '1px solid rgba(255, 255, 255, 0.1)',
+              zIndex: 1000,
+              backdropFilter: 'blur(20px)',
+              maxWidth: '320px'
+            }}
+          >
+            <h3 style={{ 
+              fontWeight: '600', 
+              marginBottom: '16px', 
+              margin: '0 0 16px 0', 
+              color: '#ffffff', 
+              fontSize: '16px',
+              letterSpacing: '0.5px',
+              fontFamily: 'SF Pro Text, Inter, -apple-system, BlinkMacSystemFont, sans-serif'
+            }}>
+              Легенда
+            </h3>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', fontSize: '14px', color: 'rgba(255, 255, 255, 0.8)', fontWeight: '400' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minHeight: '24px' }}>
                 <div style={{
                   width: '30px',
@@ -434,7 +544,7 @@ export default function BrusilovOffensiveMap() {
                     <circle cx="12" cy="12" r="4" fill="white" />
                   </svg>
                 </div>
-                <span style={{ color: 'white', lineHeight: '1.2' }}>Крупные сражения</span>
+                <span style={{ color: 'rgba(255, 255, 255, 0.9)', lineHeight: '1.2' }}>Крупные сражения</span>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minHeight: '24px' }}>
                 <div style={{ 
@@ -447,7 +557,7 @@ export default function BrusilovOffensiveMap() {
                 }}>
                   <div style={{ width: '26px', height: '4px', backgroundColor: '#3b82f6', borderRadius: '2px' }}></div>
                 </div>
-                <span style={{ color: 'white', lineHeight: '1.2' }}>Направления наступления</span>
+                <span style={{ color: 'rgba(255, 255, 255, 0.9)', lineHeight: '1.2' }}>Направления наступления</span>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minHeight: '24px' }}>
                 <div style={{ 
@@ -466,7 +576,7 @@ export default function BrusilovOffensiveMap() {
                     background: 'repeating-linear-gradient(90deg, #dc2626 0, #dc2626 8px, transparent 8px, transparent 12px)'
                   }}></div>
                 </div>
-                <span style={{ color: 'white', lineHeight: '1.2' }}>Начальная линия фронта</span>
+                <span style={{ color: 'rgba(255, 255, 255, 0.9)', lineHeight: '1.2' }}>Начальная линия фронта</span>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minHeight: '24px' }}>
                 <div style={{ 
@@ -479,7 +589,7 @@ export default function BrusilovOffensiveMap() {
                 }}>
                   <div style={{ width: '26px', height: '4px', backgroundColor: '#16a34a', borderRadius: '2px' }}></div>
                 </div>
-                <span style={{ color: 'white', lineHeight: '1.2' }}>Конечная линия фронта</span>
+                <span style={{ color: 'rgba(255, 255, 255, 0.9)', lineHeight: '1.2' }}>Конечная линия фронта</span>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minHeight: '24px' }}>
                 <div style={{ 
@@ -490,9 +600,9 @@ export default function BrusilovOffensiveMap() {
                   justifyContent: 'center',
                   flexShrink: 0
                 }}>
-                  <div style={{ width: '18px', height: '18px', borderRadius: '50%', backgroundColor: 'black', border: '2px solid white' }}></div>
+                  <div style={{ width: '18px', height: '18px', borderRadius: '50%', backgroundColor: 'black', border: '2px solid rgba(255, 255, 255, 0.6)' }}></div>
                 </div>
-                <span style={{ color: 'white', lineHeight: '1.2' }}>Крупные города</span>
+                <span style={{ color: 'rgba(255, 255, 255, 0.9)', lineHeight: '1.2' }}>Крупные города</span>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minHeight: '24px' }}>
                 <div style={{ 
@@ -503,9 +613,9 @@ export default function BrusilovOffensiveMap() {
                   justifyContent: 'center',
                   flexShrink: 0
                 }}>
-                  <div style={{ width: '14px', height: '14px', borderRadius: '50%', backgroundColor: '#333333', border: '2px solid white' }}></div>
+                  <div style={{ width: '14px', height: '14px', borderRadius: '50%', backgroundColor: '#333333', border: '2px solid rgba(255, 255, 255, 0.4)' }}></div>
                 </div>
-                <span style={{ color: 'white', lineHeight: '1.2' }}>Важные города</span>
+                <span style={{ color: 'rgba(255, 255, 255, 0.9)', lineHeight: '1.2' }}>Важные города</span>
               </div>
                              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minHeight: '24px' }}>
                  <div style={{ 
@@ -516,9 +626,9 @@ export default function BrusilovOffensiveMap() {
                    justifyContent: 'center',
                    flexShrink: 0
                  }}>
-                   <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#6b7280', border: '1px solid white' }}></div>
+                   <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#6b7280', border: '1px solid rgba(255, 255, 255, 0.3)' }}></div>
                  </div>
-                 <span style={{ color: 'white', lineHeight: '1.2' }}>Города</span>
+                 <span style={{ color: 'rgba(255, 255, 255, 0.9)', lineHeight: '1.2' }}>Города</span>
                </div>
                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minHeight: '24px' }}>
                  <div style={{ 
@@ -529,25 +639,26 @@ export default function BrusilovOffensiveMap() {
                    justifyContent: 'center',
                    flexShrink: 0
                  }}>
-                   <div style={{ width: '14px', height: '14px', borderRadius: '50%', backgroundColor: '#4A90E2', border: '2px solid white' }}></div>
+                   <div style={{ width: '14px', height: '14px', borderRadius: '50%', backgroundColor: '#4A90E2', border: '2px solid rgba(255, 255, 255, 0.4)' }}></div>
                  </div>
-                 <span style={{ color: 'white', lineHeight: '1.2' }}>Устья рек</span>
+                 <span style={{ color: 'rgba(255, 255, 255, 0.9)', lineHeight: '1.2' }}>Устья рек</span>
                </div>
             </div>
           </div>
 
-          {/* Пилюля с элементами управления */}
+          {/* Панель управления */}
           <div style={{
             position: 'absolute',
-            bottom: '20px',
+            bottom: '24px',
             left: '50%',
             transform: 'translateX(-50%)',
-            backgroundColor: 'rgba(0, 0, 0, 0.8)',
-            padding: '12px 24px',
-            borderRadius: '50px',
-            boxShadow: '0 10px 25px rgba(0, 0, 0, 0.3)',
+            background: 'rgba(26, 26, 46, 0.9)',
+            padding: '16px 24px',
+            borderRadius: '24px',
+            boxShadow: '0 16px 40px rgba(0, 0, 0, 0.3)',
+            border: '1px solid rgba(255, 255, 255, 0.1)',
             zIndex: 1000,
-            backdropFilter: 'blur(10px)',
+            backdropFilter: 'blur(20px)',
             display: 'flex',
             alignItems: 'center',
             gap: '20px',
@@ -559,43 +670,86 @@ export default function BrusilovOffensiveMap() {
                 value={mapLayer}
                 onChange={(e) => setMapLayer(e.target.value)}
                 style={{
-                  backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                  background: 'rgba(255, 255, 255, 0.1)',
                   border: '1px solid rgba(255, 255, 255, 0.2)',
-                  borderRadius: '20px',
-                  padding: '6px 12px',
-                  color: 'white',
+                  borderRadius: '12px',
+                  padding: '10px 16px',
+                  color: '#ffffff',
                   fontSize: '14px',
-                  outline: 'none'
+                  fontWeight: '500',
+                  outline: 'none',
+                  letterSpacing: '0.5px',
+                  fontFamily: 'SF Pro Text, Inter, -apple-system, BlinkMacSystemFont, sans-serif',
+                  cursor: 'pointer',
+                  backdropFilter: 'blur(10px)'
                 }}
               >
-                <option value="modern" style={{ backgroundColor: '#333', color: 'white' }}>Современная карта</option>
-                <option value="historical" style={{ backgroundColor: '#333', color: 'white' }}>Историческая карта</option>
+                <option value="modern" style={{ backgroundColor: '#1a1a2e', color: '#ffffff' }}>Современная карта</option>
+                <option value="historical" style={{ backgroundColor: '#1a1a2e', color: '#ffffff' }}>Историческая карта</option>
               </select>
             </div>
 
             {/* Разделитель */}
-            <div style={{ width: '1px', height: '20px', backgroundColor: 'rgba(255, 255, 255, 0.3)' }}></div>
+            <div style={{ width: '1px', height: '20px', background: 'rgba(255, 255, 255, 0.2)' }}></div>
 
             {/* Линии фронта */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-              <label style={{ display: 'flex', alignItems: 'center', gap: '6px', cursor: 'pointer' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+              <label style={{ 
+                display: 'flex', 
+                alignItems: 'center', 
+                gap: '8px', 
+                cursor: 'pointer',
+                padding: '8px 12px',
+                borderRadius: '12px',
+                border: '1px solid rgba(255, 255, 255, 0.1)',
+                background: 'rgba(255, 255, 255, 0.05)',
+                transition: 'all 0.2s ease',
+                backdropFilter: 'blur(10px)'
+              }}>
                 <input
                   type="checkbox"
                   checked={showInitialFront}
                   onChange={(e) => setShowInitialFront(e.target.checked)}
                   style={{ accentColor: '#dc2626' }}
                 />
-                <span style={{ color: '#dc2626', fontSize: '14px', fontWeight: '500' }}>4 июня</span>
+                <span style={{ 
+                  color: '#ffffff', 
+                  fontSize: '14px', 
+                  fontWeight: '500',
+                  letterSpacing: '0.5px',
+                  fontFamily: 'SF Pro Text, Inter, -apple-system, BlinkMacSystemFont, sans-serif'
+                }}>
+                  4 июня
+                </span>
               </label>
 
-              <label style={{ display: 'flex', alignItems: 'center', gap: '6px', cursor: 'pointer' }}>
+              <label style={{ 
+                display: 'flex', 
+                alignItems: 'center', 
+                gap: '8px', 
+                cursor: 'pointer',
+                padding: '8px 12px',
+                borderRadius: '12px',
+                border: '1px solid rgba(255, 255, 255, 0.1)',
+                background: 'rgba(255, 255, 255, 0.05)',
+                transition: 'all 0.2s ease',
+                backdropFilter: 'blur(10px)'
+              }}>
                 <input
                   type="checkbox"
                   checked={showFinalFront}
                   onChange={(e) => setShowFinalFront(e.target.checked)}
                   style={{ accentColor: '#16a34a' }}
                 />
-                <span style={{ color: '#16a34a', fontSize: '14px', fontWeight: '500' }}>20 сентября</span>
+                <span style={{ 
+                  color: '#ffffff', 
+                  fontSize: '14px', 
+                  fontWeight: '500',
+                  letterSpacing: '0.5px',
+                  fontFamily: 'SF Pro Text, Inter, -apple-system, BlinkMacSystemFont, sans-serif'
+                }}>
+                  20 сентября
+                </span>
               </label>
             </div>
           </div>
