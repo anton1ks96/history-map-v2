@@ -188,6 +188,61 @@ export default function BrusilovOffensiveMap() {
   const [showInitialFront, setShowInitialFront] = useState(true);
   const [showFinalFront, setShowFinalFront] = useState(true);
   const [mapLayer, setMapLayer] = useState('modern');
+  
+  // Состояния для анимаций модальных окон
+  const [isBattleModalClosing, setIsBattleModalClosing] = useState(false);
+  const [isRiverModalClosing, setIsRiverModalClosing] = useState(false);
+
+  // Функции для плавного закрытия модальных окон
+  const closeBattleModal = () => {
+    setIsBattleModalClosing(true);
+    setTimeout(() => {
+      setSelectedBattle(null);
+      setIsBattleModalClosing(false);
+    }, 300); // Время анимации
+  };
+
+  const closeRiverModal = () => {
+    setIsRiverModalClosing(true);
+    setTimeout(() => {
+      setSelectedRiver(null);
+      setIsRiverModalClosing(false);
+    }, 300); // Время анимации
+  };
+
+  // Обработчики для закрытия модальных окон кликом по overlay
+  const handleBattleOverlayClick = (e) => {
+    if (e.target === e.currentTarget) {
+      closeBattleModal();
+    }
+  };
+
+  const handleRiverOverlayClick = (e) => {
+    if (e.target === e.currentTarget) {
+      closeRiverModal();
+    }
+  };
+
+  // Обработчик для закрытия модальных окон клавишей Escape
+  useEffect(() => {
+    const handleEscapeKey = (event) => {
+      if (event.key === 'Escape') {
+        if (selectedBattle && !isBattleModalClosing) {
+          closeBattleModal();
+        } else if (selectedRiver && !isRiverModalClosing) {
+          closeRiverModal();
+        }
+      }
+    };
+
+    if (selectedBattle || selectedRiver) {
+      document.addEventListener('keydown', handleEscapeKey);
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleEscapeKey);
+    };
+  }, [selectedBattle, selectedRiver, isBattleModalClosing, isRiverModalClosing]);
 
   const mapCenter = [49.8, 25.2];
   const mapZoom = 7;
@@ -442,33 +497,40 @@ export default function BrusilovOffensiveMap() {
       </div>
 
       {selectedBattle && (
-        <div style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          width: '100vw',
-          height: '100vh',
-          backgroundColor: 'rgba(0,0,0,0.5)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          zIndex: 99999
-        }}>
-          <div style={{
-            backgroundColor: 'rgba(0, 0, 0, 0.8)',
-            padding: '24px',
-            borderRadius: '16px',
-            maxWidth: '600px',
-            width: '90%',
-            maxHeight: '80vh',
-            overflow: 'auto',
-            boxShadow: '0 10px 25px rgba(0, 0, 0, 0.3)',
-            backdropFilter: 'blur(10px)'
-          }}>
+        <div 
+          className={`modal-overlay ${isBattleModalClosing ? 'closing' : ''}`}
+          onClick={handleBattleOverlayClick}
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '100vw',
+            height: '100vh',
+            backgroundColor: 'rgba(0,0,0,0.5)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 99999
+          }}
+        >
+          <div 
+            className={`modal-content ${isBattleModalClosing ? 'closing' : ''}`}
+            style={{
+              backgroundColor: 'rgba(0, 0, 0, 0.8)',
+              padding: '24px',
+              borderRadius: '16px',
+              maxWidth: '600px',
+              width: '90%',
+              maxHeight: '80vh',
+              overflow: 'auto',
+              boxShadow: '0 10px 25px rgba(0, 0, 0, 0.3)',
+              backdropFilter: 'blur(10px)'
+            }}
+          >
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
               <h2 style={{ margin: 0, fontSize: '24px', color: 'white' }}>{selectedBattle?.name || 'Неизвестное сражение'}</h2>
               <button
-                onClick={() => setSelectedBattle(null)}
+                onClick={closeBattleModal}
                 style={{
                   background: 'none',
                   border: 'none',
@@ -554,7 +616,7 @@ export default function BrusilovOffensiveMap() {
 
             <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '12px' }}>
               <button
-                onClick={() => setSelectedBattle(null)}
+                onClick={closeBattleModal}
                 style={{
                   backgroundColor: '#3b82f6',
                   color: 'white',
@@ -577,33 +639,40 @@ export default function BrusilovOffensiveMap() {
       )}
 
       {selectedRiver && (
-        <div style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          width: '100vw',
-          height: '100vh',
-          backgroundColor: 'rgba(0,0,0,0.5)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          zIndex: 99999
-        }}>
-          <div style={{
-            backgroundColor: 'rgba(0, 0, 0, 0.8)',
-            padding: '24px',
-            borderRadius: '16px',
-            maxWidth: '500px',
-            width: '90%',
-            maxHeight: '70vh',
-            overflow: 'auto',
-            boxShadow: '0 10px 25px rgba(0, 0, 0, 0.3)',
-            backdropFilter: 'blur(10px)'
-          }}>
+        <div 
+          className={`modal-overlay ${isRiverModalClosing ? 'closing' : ''}`}
+          onClick={handleRiverOverlayClick}
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '100vw',
+            height: '100vh',
+            backgroundColor: 'rgba(0,0,0,0.5)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 99999
+          }}
+        >
+          <div 
+            className={`modal-content ${isRiverModalClosing ? 'closing' : ''}`}
+            style={{
+              backgroundColor: 'rgba(0, 0, 0, 0.8)',
+              padding: '24px',
+              borderRadius: '16px',
+              maxWidth: '500px',
+              width: '90%',
+              maxHeight: '70vh',
+              overflow: 'auto',
+              boxShadow: '0 10px 25px rgba(0, 0, 0, 0.3)',
+              backdropFilter: 'blur(10px)'
+            }}
+          >
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
               <h2 style={{ margin: 0, fontSize: '24px', color: 'white' }}>{selectedRiver?.name || 'Неизвестная река'}</h2>
               <button
-                onClick={() => setSelectedRiver(null)}
+                onClick={closeRiverModal}
                 style={{
                   background: 'none',
                   border: 'none',
@@ -649,7 +718,7 @@ export default function BrusilovOffensiveMap() {
 
             <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '12px' }}>
               <button
-                onClick={() => setSelectedRiver(null)}
+                onClick={closeRiverModal}
                 style={{
                   backgroundColor: '#4A90E2',
                   color: 'white',
