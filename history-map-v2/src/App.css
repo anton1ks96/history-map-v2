@@ -318,25 +318,17 @@
   display: flex;
   flex-direction: column;
   filter: blur(4px);
+  overflow: hidden; /* Скрываем заголовок за границами */
 }
 
 .main-content.show {
   opacity: 1;
   transform: translateY(0) scale(1);
   filter: blur(0px);
+  overflow: hidden; /* Сохраняем overflow для скрытия заголовка */
 }
 
-/* Поэтапные анимации для элементов контента */
-.main-content header {
-  opacity: 0;
-  transform: translateY(-15px);
-  transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.2s;
-}
-
-.main-content.show header {
-  opacity: 1;
-  transform: translateY(0);
-}
+/* Убираем ВСЕ правила для header - управляем только inline стилями */
 
 .main-content > div {
   opacity: 0;
@@ -349,20 +341,19 @@
   transform: translateY(0);
 }
 
-/* Эффект подсветки при наведении на элементы управления */
-label:hover {
+/* Эффект подсветки при наведении на элементы управления - удаляем старые стили */
+/* label:hover {
   background: rgba(255, 255, 255, 0.1) !important;
   border-color: rgba(255, 255, 255, 0.3) !important;
   transform: translateY(-1px);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
-/* Эффект подсветки при наведении на селектор */
 select:hover {
   background: rgba(255, 255, 255, 0.15) !important;
   border-color: rgba(255, 255, 255, 0.3) !important;
   transform: translateY(-1px);
-}
+} */
 
 /* Финальные современные эффекты */
 
@@ -375,12 +366,12 @@ select:hover {
   backdrop-filter: blur(10px) !important;
 }
 
-/* Плавные переходы для всех интерактивных элементов */
-select:hover {
+/* Плавные переходы для всех интерактивных элементов - закомментировано */
+/* select:hover {
   background: rgba(255, 255, 255, 0.15) !important;
   border-color: rgba(255, 255, 255, 0.3) !important;
   transform: translateY(-1px);
-}
+} */
 
 /* Дополнительные glassmorphism эффекты */
 .intro-overlay {
@@ -501,6 +492,30 @@ button.legend-button:hover svg {
   transform: none;
 }
 
+/* Убираем все CSS правила для app-header, используем только inline стили */
+
+/* Синхронная анимация карты с заголовком */
+.map-container {
+  transition: margin-top 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.map-container.with-header {
+  margin-top: 0;
+}
+
+.map-container.full-screen {
+  margin-top: -150px; /* Карта поднимается на ту же высоту что и заголовок */
+}
+
+/* Дополнительная анимация для плавного перехода */
+.main-content {
+  transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Убираем ВСЕ правила для header - только inline стили */
+
+/* Убираем отдельную анимацию для текста - он движется вместе с header */
+
 /* Адаптивные стили для легенды */
 @media (max-width: 768px) {
   .legend {
@@ -571,4 +586,34 @@ button, select, input[type="checkbox"] {
 
 button:focus, select:focus, input:focus {
   outline: none;
+}
+
+/* Стили для элементов управления в панели - как кнопка легенды */
+.control-element:hover {
+  background: rgba(40, 40, 60, 0.9) !important;
+  border-color: rgba(255, 255, 255, 0.3) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+}
+
+.control-element:active {
+  transform: translateY(0) scale(0.98);
+  transition: all 0.1s ease;
+}
+
+/* Мобильные стили для анимации заголовка и карты */
+@media (max-width: 768px) {
+  .map-container.full-screen {
+    margin-top: -120px; /* Меньше на планшетах */
+  }
+}
+
+@media (max-width: 480px) {
+  .map-container.full-screen {
+    margin-top: -100px; /* Еще меньше на телефонах */
+  }
+  
+  .map-container {
+    padding: 10px;
+  }
 }
