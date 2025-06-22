@@ -129,6 +129,9 @@
   z-index: 1;
   opacity: 0;
   transition: opacity 2s ease-in-out;
+  will-change: opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .intro-video.show {
@@ -164,9 +167,9 @@
 .intro-title {
   font-size: 5rem;
   font-weight: 700;
-  margin: 0 0 1.5rem 0;
+  margin: 0 0 0.2rem 0;
   text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.9);
-  letter-spacing: 4px;
+  letter-spacing: 2px;
   color: #ffffff;
   font-family: 'Arial', 'Helvetica', sans-serif;
 }
@@ -174,9 +177,9 @@
 .intro-subtitle {
   font-size: 2.2rem;
   font-weight: 400;
-  margin: 0 0 2rem 0;
+  margin: 0 0 2.5rem 0;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
-  letter-spacing: 3px;
+  letter-spacing: 1.5px;
   color: #f0f0f0;
   font-family: 'Arial', 'Helvetica', sans-serif;
 }
@@ -193,65 +196,93 @@
 }
 
 .intro-start-button {
-  background: linear-gradient(135deg, #c41e3a, #8b1538);
-  border: 3px solid #ffffff;
+  background: rgba(0, 0, 0, 0.85);
+  border: 2px solid rgba(255, 255, 255, 0.3);
   color: #ffffff;
-  font-size: 1.4rem;
-  font-weight: 600;
-  padding: 15px 40px;
+  font-size: 1.3rem;
+  font-weight: 500;
+  padding: 16px 48px;
   border-radius: 50px;
   cursor: pointer;
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
   font-family: 'Arial', 'Helvetica', sans-serif;
-  transition: all 0.3s ease;
-  box-shadow: 0 8px 25px rgba(196, 30, 58, 0.4);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  backdrop-filter: blur(20px);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.intro-start-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.5s ease;
 }
 
 .intro-start-button:hover {
-  background: linear-gradient(135deg, #d4243e, #9c1a3f);
-  transform: translateY(-2px);
-  box-shadow: 0 12px 35px rgba(196, 30, 58, 0.6);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.6);
+  transform: translateY(-3px);
+  box-shadow: 
+    0 15px 45px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.intro-start-button:hover::before {
+  left: 100%;
 }
 
 .intro-start-button:active {
-  transform: translateY(0);
-  box-shadow: 0 6px 20px rgba(196, 30, 58, 0.5);
+  transform: translateY(-1px);
+  transition: all 0.1s ease;
 }
 
 /* Адаптивные стили для мобильных устройств */
 @media (max-width: 768px) {
   .intro-title {
     font-size: 3.5rem;
-    letter-spacing: 3px;
+    letter-spacing: 1.5px;
   }
   
   .intro-subtitle {
     font-size: 1.6rem;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
   }
   
   .intro-start-button {
-    font-size: 1.2rem;
-    padding: 12px 30px;
-    letter-spacing: 1.5px;
+    font-size: 1.1rem;
+    padding: 14px 36px;
+    letter-spacing: 2px;
   }
 }
 
 @media (max-width: 480px) {
   .intro-title {
     font-size: 2.8rem;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
   }
   
   .intro-subtitle {
     font-size: 1.3rem;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
   }
   
   .intro-start-button {
     font-size: 1rem;
-    padding: 10px 25px;
-    letter-spacing: 1px;
+    padding: 12px 30px;
+    letter-spacing: 1.5px;
   }
 }

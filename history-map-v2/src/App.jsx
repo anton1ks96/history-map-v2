@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, Polyline, Polygon, Tooltip } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -184,6 +184,7 @@ const IntroComponent = ({ onComplete }) => {
   const [showVideo, setShowVideo] = useState(false);
   const [showText, setShowText] = useState(false);
   const [fadeOut, setFadeOut] = useState(false);
+  const videoRef = useRef(null);
 
   useEffect(() => {
     // Показать видео с задержкой
@@ -202,6 +203,14 @@ const IntroComponent = ({ onComplete }) => {
     };
   }, []);
 
+  // Обработчик для плавного зацикливания видео
+  const handleVideoTimeUpdate = () => {
+    const video = videoRef.current;
+    if (video && video.duration - video.currentTime < 0.1) {
+      video.currentTime = 0;
+    }
+  };
+
   const handleStartClick = () => {
     setFadeOut(true);
     setTimeout(() => {
@@ -212,10 +221,18 @@ const IntroComponent = ({ onComplete }) => {
   return (
     <div className={`intro-container ${fadeOut ? 'fade-out' : ''}`}>
       <video
+        ref={videoRef}
         autoPlay
         muted
         loop
+        preload="auto"
         className={`intro-video ${showVideo ? 'show' : ''}`}
+        onTimeUpdate={handleVideoTimeUpdate}
+        onLoadedData={() => {
+          if (videoRef.current) {
+            videoRef.current.playbackRate = 1.0;
+          }
+        }}
       >
         <source src={NewVideo} type="video/mp4" />
         Ваш браузер не поддерживает видео.
