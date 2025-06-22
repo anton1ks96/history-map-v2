@@ -412,6 +412,168 @@
         "name": "Тернополь",
         "coordinates": [49.553, 25.595],
         "importance": "regional"
+      },
+      {
+        "id": "dubno",
+        "name": "Дубно",
+        "coordinates": [50.417, 25.756],
+        "importance": "regional"
+      },
+      {
+        "id": "manevychi",
+        "name": "Маневичи",
+        "coordinates": [51.302, 25.508],
+        "importance": "small"
+      },
+      {
+        "id": "galuzia",
+        "name": "Галузия",
+        "coordinates": [50.850, 25.200],
+        "importance": "small"
+      },
+      {
+        "id": "gorodok",
+        "name": "Городок",
+        "coordinates": [49.990, 24.443],
+        "importance": "small"
+      },
+      {
+        "id": "korytnytsya",
+        "name": "Корытница",
+        "coordinates": [50.600, 25.100],
+        "importance": "small"
+      },
+      {
+        "id": "shelvov",
+        "name": "Шельвов",
+        "coordinates": [50.500, 25.300],
+        "importance": "small"
+      },
+      {
+        "id": "bubnov",
+        "name": "Бубнов",
+        "coordinates": [50.650, 25.450],
+        "importance": "small"
+      },
+      {
+        "id": "svinyukhy",
+        "name": "Свинюхи",
+        "coordinates": [50.700, 25.600],
+        "importance": "small"
+      },
+      {
+        "id": "vladimir_volynsky",
+        "name": "Владимир-Волынский",
+        "coordinates": [50.847, 24.323],
+        "importance": "regional"
+      },
+      {
+        "id": "kuty",
+        "name": "Куты",
+        "coordinates": [48.156, 25.168],
+        "importance": "small"
+      },
+      {
+        "id": "kympulung",
+        "name": "Кымпулунг",
+        "coordinates": [47.520, 25.563],
+        "importance": "small"
+      },
+      {
+        "id": "kolomyia",
+        "name": "Коломыя",
+        "coordinates": [48.522, 25.038],
+        "importance": "regional"
+      },
+      {
+        "id": "stanislav",
+        "name": "Станислав",
+        "coordinates": [48.923, 24.709],
+        "importance": "strategic"
+      },
+      {
+        "id": "dorna_vatra",
+        "name": "Дорна-Ватра",
+        "coordinates": [47.371, 25.362],
+        "importance": "small"
+      },
+      {
+        "id": "galich",
+        "name": "Галич",
+        "coordinates": [49.125, 24.730],
+        "importance": "regional"
+      },
+      {
+        "id": "monastyryska",
+        "name": "Монастыриска",
+        "coordinates": [49.798, 25.137],
+        "importance": "small"
+      },
+      {
+        "id": "berezhany",
+        "name": "Бережаны",
+        "coordinates": [49.443, 24.934],
+        "importance": "small"
+      },
+      {
+        "id": "brody",
+        "name": "Броды",
+        "coordinates": [50.086, 25.145],
+        "importance": "regional"
+      },
+      {
+        "id": "zborov",
+        "name": "Зборов",
+        "coordinates": [49.664, 25.142],
+        "importance": "small"
+      },
+      {
+        "id": "torchin",
+        "name": "Торчин",
+        "coordinates": [50.733, 25.083],
+        "importance": "small"
+      },
+      {
+        "id": "koshev",
+        "name": "Кошев",
+        "coordinates": [48.312, 24.890],
+        "importance": "small"
+      },
+      {
+        "id": "trystin",
+        "name": "Трыстень",
+        "coordinates": [50.650, 24.950],
+        "importance": "small"
+      },
+      {
+        "id": "selets",
+        "name": "Селец",
+        "coordinates": [50.800, 24.800],
+        "importance": "small"
+      },
+      {
+        "id": "naraevka",
+        "name": "Нараевка",
+        "coordinates": [50.550, 24.750],
+        "importance": "small"
+      },
+      {
+        "id": "gnilaya_lipa",
+        "name": "Гнилая Липа",
+        "coordinates": [49.900, 24.600],
+        "importance": "small"
+      },
+      {
+        "id": "kapul",
+        "name": "Капул",
+        "coordinates": [47.800, 25.900],
+        "importance": "small"
+      },
+      {
+        "id": "kukul",
+        "name": "Кукуль",
+        "coordinates": [47.750, 25.850],
+        "importance": "small"
       }
     ],
     "rivers": [

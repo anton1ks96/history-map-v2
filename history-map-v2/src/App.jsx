@@ -124,7 +124,7 @@ const FrontLines = ({ frontLines, showInitial, showFinal }) => {
 // Компонент для отображения городов
 const CityMarkers = ({ cities }) => {
   const getCityIcon = (importance) => {
-    const size = importance === 'major' ? [12, 12] : importance === 'strategic' ? [8, 8] : [6, 6];
+    const size = importance === 'major' ? [18, 18] : importance === 'strategic' ? [14, 14] : importance === 'regional' ? [12, 12] : [10, 10];
     const color = importance === 'major' ? '#000000' : importance === 'strategic' ? '#333333' : '#666666';
 
     return L.divIcon({
@@ -255,11 +255,15 @@ export default function BrusilovOffensiveMap() {
                 <span style={{ color: 'white' }}>Конечная линия фронта</span>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                <div style={{ width: '12px', height: '12px', borderRadius: '50%', backgroundColor: 'black', border: '2px solid white' }}></div>
+                <div style={{ width: '18px', height: '18px', borderRadius: '50%', backgroundColor: 'black', border: '2px solid white' }}></div>
                 <span style={{ color: 'white' }}>Крупные города</span>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                <div style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#6b7280', border: '1px solid white' }}></div>
+                <div style={{ width: '14px', height: '14px', borderRadius: '50%', backgroundColor: '#333333', border: '2px solid white' }}></div>
+                <span style={{ color: 'white' }}>Важные города</span>
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#6b7280', border: '1px solid white' }}></div>
                 <span style={{ color: 'white' }}>Города</span>
               </div>
             </div>
