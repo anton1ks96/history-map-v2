@@ -428,37 +428,31 @@
       {
         "id": "galuzia",
         "name": "Галузия",
-        "coordinates": [50.850, 25.200],
-        "importance": "small"
-      },
-      {
-        "id": "gorodok",
-        "name": "Городок",
-        "coordinates": [49.990, 24.443],
+        "coordinates": [51.395, 25.597],
         "importance": "small"
       },
       {
         "id": "korytnytsya",
         "name": "Корытница",
-        "coordinates": [50.600, 25.100],
+        "coordinates": [50.622, 24.792],
         "importance": "small"
       },
       {
         "id": "shelvov",
         "name": "Шельвов",
-        "coordinates": [50.500, 25.300],
+        "coordinates": [50.717, 24.783],
         "importance": "small"
       },
       {
         "id": "bubnov",
         "name": "Бубнов",
-        "coordinates": [50.650, 25.450],
+        "coordinates": [50.733, 24.367],
         "importance": "small"
       },
       {
         "id": "svinyukhy",
         "name": "Свинюхи",
-        "coordinates": [50.700, 25.600],
+        "coordinates": [50.633, 24.750],
         "importance": "small"
       },
       {
@@ -506,7 +500,7 @@
       {
         "id": "monastyryska",
         "name": "Монастыриска",
-        "coordinates": [49.798, 25.137],
+        "coordinates": [49.083, 25.067],
         "importance": "small"
       },
       {
@@ -536,43 +530,25 @@
       {
         "id": "koshev",
         "name": "Кошев",
-        "coordinates": [48.312, 24.890],
+        "coordinates": [50.700, 24.880],
         "importance": "small"
       },
       {
         "id": "trystin",
         "name": "Трыстень",
-        "coordinates": [50.650, 24.950],
+        "coordinates": [50.933, 24.933],
         "importance": "small"
       },
       {
         "id": "selets",
         "name": "Селец",
-        "coordinates": [50.800, 24.800],
+        "coordinates": [50.297, 24.204],
         "importance": "small"
       },
       {
         "id": "naraevka",
         "name": "Нараевка",
-        "coordinates": [50.550, 24.750],
-        "importance": "small"
-      },
-      {
-        "id": "gnilaya_lipa",
-        "name": "Гнилая Липа",
-        "coordinates": [49.900, 24.600],
-        "importance": "small"
-      },
-      {
-        "id": "kapul",
-        "name": "Капул",
-        "coordinates": [47.800, 25.900],
-        "importance": "small"
-      },
-      {
-        "id": "kukul",
-        "name": "Кукуль",
-        "coordinates": [47.750, 25.850],
+        "coordinates": [49.227, 24.777],
         "importance": "small"
       }
     ],
@@ -622,6 +598,15 @@
           [47.400, 27.200]
         ],
         "type": "major"
+      },
+      {
+        "id": "gnilaya_lipa",
+        "name": "Гнилая Липа",
+        "coordinates": [49.900, 24.600],
+        "type": "estuary",
+        "description": "Устье реки Гнилая Липа - небольшой приток Западного Буга",
+        "river_type": "Приток Западного Буга",
+        "strategic_importance": "Переправа и водный рубеж"
       }
     ]
   }

@@ -121,6 +121,36 @@ const FrontLines = ({ frontLines, showInitial, showFinal }) => {
   });
 };
 
+// Компонент для отображения рек
+const Rivers = ({ rivers, onRiverClick }) => {
+  return rivers.map((river) => {
+    if (river.type === 'estuary') {
+      // Для устья реки показываем точку
+      return (
+        <Marker
+          key={river.id}
+          position={river.coordinates}
+          icon={L.divIcon({
+            html: `<div style="background: #4A90E2; width: 14px; height: 14px; border-radius: 50%; border: 2px solid white;"></div>`,
+            className: 'river-estuary-marker',
+            iconSize: [14, 14],
+            iconAnchor: [7, 7]
+          })}
+          eventHandlers={{
+            click: () => onRiverClick(river)
+          }}
+        >
+          <Tooltip permanent={true} direction="top" offset={[0, -10]} className="river-tooltip">
+            <div className="text-xs font-semibold">{river.name}</div>
+          </Tooltip>
+        </Marker>
+      );
+    }
+    // Обычные реки (линии) больше не отображаются
+    return null;
+  }).filter(Boolean);
+};
+
 // Компонент для отображения городов
 const CityMarkers = ({ cities }) => {
   const getCityIcon = (importance) => {
@@ -154,6 +184,7 @@ const CityMarkers = ({ cities }) => {
 export default function BrusilovOffensiveMap() {
   const [selectedBattle, setSelectedBattle] = useState(null);
   const [selectedMovement, setSelectedMovement] = useState(null);
+  const [selectedRiver, setSelectedRiver] = useState(null);
   const [showInitialFront, setShowInitialFront] = useState(true);
   const [showFinalFront, setShowFinalFront] = useState(true);
   const [mapLayer, setMapLayer] = useState('modern');
@@ -210,6 +241,7 @@ export default function BrusilovOffensiveMap() {
               onBattleClick={setSelectedBattle}
             />
             <CityMarkers cities={brusilovData.cities} />
+            <Rivers rivers={brusilovData.rivers} onRiverClick={setSelectedRiver} />
           </MapContainer>
 
           {/* Легенда */}
@@ -226,46 +258,120 @@ export default function BrusilovOffensiveMap() {
             maxWidth: '320px'
           }}>
             <h3 style={{ fontWeight: 'bold', marginBottom: '12px', margin: '0 0 12px 0', color: 'white', fontSize: '16px' }}>Легенда</h3>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '14px', color: 'white' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', fontSize: '14px', color: 'white' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minHeight: '24px' }}>
                 <div style={{
-                  width: '20px',
-                  height: '20px',
+                  width: '30px',
+                  height: '24px',
                   display: 'flex',
                   alignItems: 'center',
-                  justifyContent: 'center'
+                  justifyContent: 'center',
+                  flexShrink: 0
                 }}>
-                  <svg width="20" height="26" viewBox="0 0 24 32" xmlns="http://www.w3.org/2000/svg">
+                  <svg width="18" height="22" viewBox="0 0 24 32" xmlns="http://www.w3.org/2000/svg">
                     <path d="M12 0C5.373 0 0 5.373 0 12c0 9 12 20 12 20s12-11 12-20c0-6.627-5.373-12-12-12z" fill="#c41e3a" />
                     <circle cx="12" cy="12" r="4" fill="white" />
                   </svg>
                 </div>
-                <span style={{ color: 'white' }}>Крупные сражения</span>
+                <span style={{ color: 'white', lineHeight: '1.2' }}>Крупные сражения</span>
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                <div style={{ width: '24px', height: '4px', backgroundColor: '#3b82f6' }}></div>
-                <span style={{ color: 'white' }}>Направления наступления</span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minHeight: '24px' }}>
+                <div style={{ 
+                  width: '30px', 
+                  height: '24px', 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  justifyContent: 'center',
+                  flexShrink: 0
+                }}>
+                  <div style={{ width: '26px', height: '4px', backgroundColor: '#3b82f6', borderRadius: '2px' }}></div>
+                </div>
+                <span style={{ color: 'white', lineHeight: '1.2' }}>Направления наступления</span>
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                <div style={{ width: '24px', height: '4px', backgroundColor: '#dc2626', borderTop: '3px dashed #dc2626' }}></div>
-                <span style={{ color: 'white' }}>Начальная линия фронта</span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minHeight: '24px' }}>
+                <div style={{ 
+                  width: '30px', 
+                  height: '24px', 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  justifyContent: 'center',
+                  flexShrink: 0
+                }}>
+                  <div style={{ 
+                    width: '26px', 
+                    height: '4px', 
+                    backgroundColor: '#dc2626', 
+                    borderRadius: '2px',
+                    background: 'repeating-linear-gradient(90deg, #dc2626 0, #dc2626 8px, transparent 8px, transparent 12px)'
+                  }}></div>
+                </div>
+                <span style={{ color: 'white', lineHeight: '1.2' }}>Начальная линия фронта</span>
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                <div style={{ width: '24px', height: '4px', backgroundColor: '#16a34a' }}></div>
-                <span style={{ color: 'white' }}>Конечная линия фронта</span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minHeight: '24px' }}>
+                <div style={{ 
+                  width: '30px', 
+                  height: '24px', 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  justifyContent: 'center',
+                  flexShrink: 0
+                }}>
+                  <div style={{ width: '26px', height: '4px', backgroundColor: '#16a34a', borderRadius: '2px' }}></div>
+                </div>
+                <span style={{ color: 'white', lineHeight: '1.2' }}>Конечная линия фронта</span>
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                <div style={{ width: '18px', height: '18px', borderRadius: '50%', backgroundColor: 'black', border: '2px solid white' }}></div>
-                <span style={{ color: 'white' }}>Крупные города</span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minHeight: '24px' }}>
+                <div style={{ 
+                  width: '30px', 
+                  height: '24px', 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  justifyContent: 'center',
+                  flexShrink: 0
+                }}>
+                  <div style={{ width: '18px', height: '18px', borderRadius: '50%', backgroundColor: 'black', border: '2px solid white' }}></div>
+                </div>
+                <span style={{ color: 'white', lineHeight: '1.2' }}>Крупные города</span>
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                <div style={{ width: '14px', height: '14px', borderRadius: '50%', backgroundColor: '#333333', border: '2px solid white' }}></div>
-                <span style={{ color: 'white' }}>Важные города</span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minHeight: '24px' }}>
+                <div style={{ 
+                  width: '30px', 
+                  height: '24px', 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  justifyContent: 'center',
+                  flexShrink: 0
+                }}>
+                  <div style={{ width: '14px', height: '14px', borderRadius: '50%', backgroundColor: '#333333', border: '2px solid white' }}></div>
+                </div>
+                <span style={{ color: 'white', lineHeight: '1.2' }}>Важные города</span>
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#6b7280', border: '1px solid white' }}></div>
-                <span style={{ color: 'white' }}>Города</span>
-              </div>
+                             <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minHeight: '24px' }}>
+                 <div style={{ 
+                   width: '30px', 
+                   height: '24px', 
+                   display: 'flex', 
+                   alignItems: 'center', 
+                   justifyContent: 'center',
+                   flexShrink: 0
+                 }}>
+                   <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#6b7280', border: '1px solid white' }}></div>
+                 </div>
+                 <span style={{ color: 'white', lineHeight: '1.2' }}>Города</span>
+               </div>
+               <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minHeight: '24px' }}>
+                 <div style={{ 
+                   width: '30px', 
+                   height: '24px', 
+                   display: 'flex', 
+                   alignItems: 'center', 
+                   justifyContent: 'center',
+                   flexShrink: 0
+                 }}>
+                   <div style={{ width: '14px', height: '14px', borderRadius: '50%', backgroundColor: '#4A90E2', border: '2px solid white' }}></div>
+                 </div>
+                 <span style={{ color: 'white', lineHeight: '1.2' }}>Устья рек</span>
+               </div>
             </div>
           </div>
 
@@ -462,6 +568,101 @@ export default function BrusilovOffensiveMap() {
                 }}
                 onMouseOver={(e) => e.target.style.backgroundColor = '#2563eb'}
                 onMouseOut={(e) => e.target.style.backgroundColor = '#3b82f6'}
+              >
+                Закрыть
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {selectedRiver && (
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100vw',
+          height: '100vh',
+          backgroundColor: 'rgba(0,0,0,0.5)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          zIndex: 99999
+        }}>
+          <div style={{
+            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+            padding: '24px',
+            borderRadius: '16px',
+            maxWidth: '500px',
+            width: '90%',
+            maxHeight: '70vh',
+            overflow: 'auto',
+            boxShadow: '0 10px 25px rgba(0, 0, 0, 0.3)',
+            backdropFilter: 'blur(10px)'
+          }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+              <h2 style={{ margin: 0, fontSize: '24px', color: 'white' }}>{selectedRiver?.name || 'Неизвестная река'}</h2>
+              <button
+                onClick={() => setSelectedRiver(null)}
+                style={{
+                  background: 'none',
+                  border: 'none',
+                  fontSize: '28px',
+                  cursor: 'pointer',
+                  padding: '0',
+                  width: '32px',
+                  height: '32px',
+                  color: '#d1d5db'
+                }}
+              >
+                ×
+              </button>
+            </div>
+
+            <div style={{ marginBottom: '16px' }}>
+              <strong style={{ color: 'white' }}>Тип:</strong> <span style={{ color: '#d1d5db' }}>
+                {selectedRiver?.type === 'estuary' ? 'Устье реки' : 'Река'}
+              </span>
+            </div>
+
+            {selectedRiver?.river_type && (
+              <div style={{ marginBottom: '16px' }}>
+                <strong style={{ color: 'white' }}>Водный объект:</strong> <span style={{ color: '#d1d5db' }}>{selectedRiver.river_type}</span>
+              </div>
+            )}
+
+            <div style={{ marginBottom: '16px' }}>
+              <strong style={{ color: 'white' }}>Описание:</strong>
+              <p style={{ margin: '8px 0 0 0', color: '#d1d5db', lineHeight: '1.6' }}>
+                {selectedRiver?.description || 'Водный объект на территории Брусиловского прорыва'}
+              </p>
+            </div>
+
+            {selectedRiver?.strategic_importance && (
+              <div style={{ marginBottom: '20px' }}>
+                <strong style={{ color: 'white' }}>Стратегическое значение:</strong>
+                <p style={{ margin: '8px 0 0 0', color: '#d1d5db', lineHeight: '1.6' }}>
+                  {selectedRiver.strategic_importance}
+                </p>
+              </div>
+            )}
+
+            <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '12px' }}>
+              <button
+                onClick={() => setSelectedRiver(null)}
+                style={{
+                  backgroundColor: '#4A90E2',
+                  color: 'white',
+                  border: 'none',
+                  padding: '12px 24px',
+                  borderRadius: '8px',
+                  cursor: 'pointer',
+                  fontSize: '14px',
+                  fontWeight: '500',
+                  transition: 'background-color 0.2s'
+                }}
+                onMouseOver={(e) => e.target.style.backgroundColor = '#357ABD'}
+                onMouseOut={(e) => e.target.style.backgroundColor = '#4A90E2'}
               >
                 Закрыть
               </button>
