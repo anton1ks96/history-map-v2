@@ -178,7 +178,7 @@ export default function BrusilovOffensiveMap() {
 
   const mapCenter = [49.8, 25.2];
   const mapZoom = 7;
-  
+
   const mapBounds = [
     [46.0, 22.0], // юго-запад
     [54.0, 30.0]  // северо-восток
@@ -190,52 +190,20 @@ export default function BrusilovOffensiveMap() {
   };
 
   return (
-    <div style={{ width: '100vw', height: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: '#f3f4f6', margin: 0, padding: 0 }}>
+    <div style={{ width: '100vw', height: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: '#1f2937', margin: 0, padding: 0, overflow: 'hidden' }}>
       <header style={{ backgroundColor: '#111827', color: 'white', padding: '16px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}>
         <h1 style={{ fontSize: '30px', fontWeight: 'bold', textAlign: 'center', margin: 0 }}>Брусиловский прорыв 1916 года</h1>
         <p style={{ textAlign: 'center', marginTop: '8px', color: '#d1d5db', margin: '8px 0 0 0' }}>Интерактивная карта крупнейшей операции Первой мировой войны</p>
       </header>
 
-      <div style={{ backgroundColor: 'white', padding: '16px', boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1)', display: 'flex', flexWrap: 'wrap', gap: '16px', alignItems: 'center', justifyContent: 'center' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <label style={{ fontWeight: '600' }}>Слой карты:</label>
-          <select 
-            value={mapLayer} 
-            onChange={(e) => setMapLayer(e.target.value)}
-            style={{ border: '1px solid #d1d5db', borderRadius: '4px', padding: '4px 12px' }}
-          >
-            <option value="modern">Современная карта</option>
-            <option value="historical">Историческая карта (требует настройки)</option>
-          </select>
-        </div>
-        
-        <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-          <label style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <input
-              type="checkbox"
-              checked={showInitialFront}
-              onChange={(e) => setShowInitialFront(e.target.checked)}
-            />
-            <span style={{ color: '#dc2626', fontWeight: '600' }}>Линия фронта 4 июня</span>
-          </label>
-          
-          <label style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <input
-              type="checkbox"
-              checked={showFinalFront}
-              onChange={(e) => setShowFinalFront(e.target.checked)}
-            />
-            <span style={{ color: '#16a34a', fontWeight: '600' }}>Линия фронта 20 сентября</span>
-          </label>
-        </div>
-      </div>
 
-      <div style={{ flex: 1, width: '100%', height: '100%' }}>
-        <div style={{ width: '100%', height: '100%', position: 'relative' }}>
+
+      <div style={{ flex: 1, width: '100%', height: '100%', padding: '20px', boxSizing: 'border-box' }}>
+        <div style={{ width: '100%', height: '100%', position: 'relative', borderRadius: '16px', overflow: 'hidden', boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)' }}>
           <MapContainer
             center={mapCenter}
             zoom={mapZoom}
-            style={{ height: '100%', width: '100%' }}
+            style={{ height: '100%', width: '100%', borderRadius: '16px' }}
             scrollWheelZoom={true}
             maxBounds={mapBounds}
             maxBoundsViscosity={1.0}
@@ -263,16 +231,18 @@ export default function BrusilovOffensiveMap() {
             <Rivers rivers={brusilovData.rivers} />
           </MapContainer>
           
+          {/* Легенда */}
           <div style={{
             position: 'absolute',
-            bottom: '16px',
-            left: '16px',
-            backgroundColor: 'white',
-            padding: '16px',
-            borderRadius: '8px',
-            boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+            bottom: '20px',
+            left: '20px',
+            backgroundColor: 'rgba(255, 255, 255, 0.95)',
+            padding: '20px',
+            borderRadius: '12px',
+            boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
             zIndex: 1000,
-            maxWidth: '250px'
+            maxWidth: '280px',
+            backdropFilter: 'blur(10px)'
           }}>
             <h3 style={{ fontWeight: 'bold', marginBottom: '8px', margin: '0 0 8px 0', color: 'black' }}>Легенда</h3>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '14px', color: 'black' }}>
@@ -306,8 +276,72 @@ export default function BrusilovOffensiveMap() {
               </div>
             </div>
           </div>
+
+          {/* Пилюля с элементами управления */}
+          <div style={{
+            position: 'absolute',
+            bottom: '20px',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+            padding: '12px 24px',
+            borderRadius: '50px',
+            boxShadow: '0 10px 25px rgba(0, 0, 0, 0.3)',
+            zIndex: 1000,
+            backdropFilter: 'blur(10px)',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '20px',
+            flexWrap: 'wrap'
+          }}>
+            {/* Выбор карты */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <select 
+                value={mapLayer} 
+                onChange={(e) => setMapLayer(e.target.value)}
+                style={{ 
+                  backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                  border: '1px solid rgba(255, 255, 255, 0.2)',
+                  borderRadius: '20px',
+                  padding: '6px 12px',
+                  color: 'white',
+                  fontSize: '14px',
+                  outline: 'none'
+                }}
+              >
+                <option value="modern" style={{ backgroundColor: '#333', color: 'white' }}>Современная карта</option>
+                <option value="historical" style={{ backgroundColor: '#333', color: 'white' }}>Историческая карта</option>
+              </select>
+            </div>
+            
+            {/* Разделитель */}
+            <div style={{ width: '1px', height: '20px', backgroundColor: 'rgba(255, 255, 255, 0.3)' }}></div>
+            
+            {/* Линии фронта */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+              <label style={{ display: 'flex', alignItems: 'center', gap: '6px', cursor: 'pointer' }}>
+                <input
+                  type="checkbox"
+                  checked={showInitialFront}
+                  onChange={(e) => setShowInitialFront(e.target.checked)}
+                  style={{ accentColor: '#dc2626' }}
+                />
+                <span style={{ color: '#dc2626', fontSize: '14px', fontWeight: '500' }}>4 июня</span>
+              </label>
+              
+              <label style={{ display: 'flex', alignItems: 'center', gap: '6px', cursor: 'pointer' }}>
+                <input
+                  type="checkbox"
+                  checked={showFinalFront}
+                  onChange={(e) => setShowFinalFront(e.target.checked)}
+                  style={{ accentColor: '#16a34a' }}
+                />
+                <span style={{ color: '#16a34a', fontSize: '14px', fontWeight: '500' }}>20 сентября</span>
+              </label>
+            </div>
+          </div>
         </div>
-      </div>
+                  </div>
 
       {selectedBattle && (
         <div style={{
@@ -333,8 +367,8 @@ export default function BrusilovOffensiveMap() {
           }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '15px' }}>
               <h2 style={{ margin: 0, fontSize: '20px' }}>{selectedBattle.name}</h2>
-              <button 
-                onClick={() => setSelectedBattle(null)}
+                <button
+                  onClick={() => setSelectedBattle(null)}
                 style={{ 
                   background: 'none', 
                   border: 'none', 
@@ -346,17 +380,17 @@ export default function BrusilovOffensiveMap() {
                 }}
               >
                 ×
-              </button>
-            </div>
+                </button>
+              </div>
             
             <div style={{ marginBottom: '15px' }}>
               <strong>Дата:</strong> {selectedBattle.date}
-            </div>
+                  </div>
             
             <div style={{ marginBottom: '15px' }}>
               <strong>Описание:</strong><br />
               {selectedBattle.description}
-            </div>
+              </div>
             
             <div style={{ marginBottom: '15px' }}>
               <strong>Результат:</strong><br />
