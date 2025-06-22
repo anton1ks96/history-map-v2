@@ -236,43 +236,54 @@ export default function BrusilovOffensiveMap() {
             position: 'absolute',
             bottom: '20px',
             left: '20px',
-            backgroundColor: 'rgba(255, 255, 255, 0.95)',
-            padding: '20px',
-            borderRadius: '12px',
-            boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+            padding: '16px 20px',
+            borderRadius: '16px',
+            boxShadow: '0 10px 25px rgba(0, 0, 0, 0.3)',
             zIndex: 1000,
-            maxWidth: '280px',
-            backdropFilter: 'blur(10px)'
+            backdropFilter: 'blur(10px)',
+            maxWidth: '320px'
           }}>
-            <h3 style={{ fontWeight: 'bold', marginBottom: '8px', margin: '0 0 8px 0', color: 'black' }}>Легенда</h3>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '14px', color: 'black' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <div style={{ width: '24px', height: '24px', borderRadius: '50%', backgroundColor: '#b91c1c' }}></div>
-                <span style={{ color: 'black' }}>Крупные сражения</span>
+            <h3 style={{ fontWeight: 'bold', marginBottom: '12px', margin: '0 0 12px 0', color: 'white', fontSize: '16px' }}>Легенда</h3>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '14px', color: 'white' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                <div style={{ 
+                  width: '20px', 
+                  height: '20px', 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  justifyContent: 'center'
+                }}>
+                  <svg width="20" height="26" viewBox="0 0 24 32" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 0C5.373 0 0 5.373 0 12c0 9 12 20 12 20s12-11 12-20c0-6.627-5.373-12-12-12z" fill="#c41e3a"/>
+                    <circle cx="12" cy="12" r="4" fill="white"/>
+                  </svg>
+                </div>
+                <span style={{ color: 'white' }}>Крупные сражения</span>
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                 <div style={{ width: '24px', height: '4px', backgroundColor: '#3b82f6' }}></div>
-                <span style={{ color: 'black' }}>Направления наступления</span>
+                <span style={{ color: 'white' }}>Направления наступления</span>
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                 <div style={{ width: '24px', height: '4px', backgroundColor: '#dc2626', borderTop: '3px dashed #dc2626' }}></div>
-                <span style={{ color: 'black' }}>Начальная линия фронта</span>
+                <span style={{ color: 'white' }}>Начальная линия фронта</span>
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                 <div style={{ width: '24px', height: '4px', backgroundColor: '#16a34a' }}></div>
-                <span style={{ color: 'black' }}>Конечная линия фронта</span>
+                <span style={{ color: 'white' }}>Конечная линия фронта</span>
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <div style={{ width: '12px', height: '12px', borderRadius: '50%', backgroundColor: 'black', border: '1px solid white' }}></div>
-                <span style={{ color: 'black' }}>Крупные города</span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                <div style={{ width: '12px', height: '12px', borderRadius: '50%', backgroundColor: 'black', border: '2px solid white' }}></div>
+                <span style={{ color: 'white' }}>Крупные города</span>
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                 <div style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#6b7280', border: '1px solid white' }}></div>
-                <span style={{ color: 'black' }}>Города</span>
+                <span style={{ color: 'white' }}>Города</span>
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                 <div style={{ width: '24px', height: '4px', backgroundColor: '#60a5fa' }}></div>
-                <span style={{ color: 'black' }}>Реки</span>
+                <span style={{ color: 'white' }}>Реки</span>
               </div>
             </div>
           </div>
@@ -357,59 +368,123 @@ export default function BrusilovOffensiveMap() {
           zIndex: 99999
         }}>
           <div style={{
-            backgroundColor: 'white',
-            padding: '20px',
-            borderRadius: '8px',
-            maxWidth: '500px',
+            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+            padding: '24px',
+            borderRadius: '16px',
+            maxWidth: '600px',
             width: '90%',
             maxHeight: '80vh',
-            overflow: 'auto'
+            overflow: 'auto',
+            boxShadow: '0 10px 25px rgba(0, 0, 0, 0.3)',
+            backdropFilter: 'blur(10px)'
           }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '15px' }}>
-              <h2 style={{ margin: 0, fontSize: '20px' }}>{selectedBattle.name}</h2>
-                <button
-                  onClick={() => setSelectedBattle(null)}
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+              <h2 style={{ margin: 0, fontSize: '24px', color: 'white' }}>{selectedBattle?.name || 'Неизвестное сражение'}</h2>
+              <button
+                onClick={() => setSelectedBattle(null)}
                 style={{ 
                   background: 'none', 
                   border: 'none', 
-                  fontSize: '24px', 
+                  fontSize: '28px', 
                   cursor: 'pointer',
                   padding: '0',
-                  width: '30px',
-                  height: '30px'
+                  width: '32px',
+                  height: '32px',
+                  color: '#d1d5db'
                 }}
               >
                 ×
-                </button>
-              </div>
-            
-            <div style={{ marginBottom: '15px' }}>
-              <strong>Дата:</strong> {selectedBattle.date}
-                  </div>
-            
-            <div style={{ marginBottom: '15px' }}>
-              <strong>Описание:</strong><br />
-              {selectedBattle.description}
-              </div>
-            
-            <div style={{ marginBottom: '15px' }}>
-              <strong>Результат:</strong><br />
-              {selectedBattle.result}
+              </button>
             </div>
             
-            <button 
-              onClick={() => setSelectedBattle(null)}
-              style={{
-                backgroundColor: '#3b82f6',
-                color: 'white',
-                border: 'none',
-                padding: '10px 20px',
-                borderRadius: '4px',
-                cursor: 'pointer'
-              }}
-            >
-              Закрыть
-            </button>
+            <div style={{ marginBottom: '16px' }}>
+              <strong style={{ color: 'white' }}>Дата:</strong> <span style={{ color: '#d1d5db' }}>{selectedBattle?.date || 'Неизвестно'}</span>
+            </div>
+            
+            <div style={{ marginBottom: '16px' }}>
+              <strong style={{ color: 'white' }}>Описание:</strong>
+              <p style={{ margin: '8px 0 0 0', color: '#d1d5db', lineHeight: '1.6' }}>
+                {selectedBattle?.description || 'Описание недоступно'}
+              </p>
+            </div>
+            
+            <div style={{ marginBottom: '16px' }}>
+              <strong style={{ color: 'white' }}>Результат:</strong>
+              <p style={{ margin: '8px 0 0 0', color: '#d1d5db', lineHeight: '1.6' }}>
+                {selectedBattle?.result || 'Результат неизвестен'}
+              </p>
+            </div>
+
+            {selectedBattle?.participants && (
+              <div style={{ marginBottom: '16px' }}>
+                <strong style={{ color: 'white' }}>Участники:</strong>
+                <div style={{ 
+                  marginTop: '8px', 
+                  display: 'grid', 
+                  gridTemplateColumns: selectedBattle.participants.enemy ? '1fr 1fr' : '1fr', 
+                  gap: '16px' 
+                }}>
+                  {selectedBattle.participants.russian && (
+                    <div style={{ padding: '12px', backgroundColor: 'rgba(34, 197, 94, 0.15)', borderRadius: '8px', border: '1px solid rgba(34, 197, 94, 0.3)' }}>
+                      <h4 style={{ margin: '0 0 8px 0', color: '#22c55e', fontSize: '16px' }}>Русские войска</h4>
+                      <p style={{ margin: '4px 0', fontSize: '14px', color: '#d1d5db' }}>
+                        <strong>Армия:</strong> {selectedBattle.participants.russian.army}
+                      </p>
+                      <p style={{ margin: '4px 0', fontSize: '14px', color: '#d1d5db' }}>
+                        <strong>Командующий:</strong> {selectedBattle.participants.russian.commander}
+                      </p>
+                      <p style={{ margin: '4px 0', fontSize: '14px', color: '#d1d5db' }}>
+                        <strong>Численность:</strong> {selectedBattle.participants.russian.strength}
+                      </p>
+                    </div>
+                  )}
+                  {selectedBattle.participants.enemy && (
+                    <div style={{ padding: '12px', backgroundColor: 'rgba(239, 68, 68, 0.15)', borderRadius: '8px', border: '1px solid rgba(239, 68, 68, 0.3)' }}>
+                      <h4 style={{ margin: '0 0 8px 0', color: '#ef4444', fontSize: '16px' }}>Противник</h4>
+                      <p style={{ margin: '4px 0', fontSize: '14px', color: '#d1d5db' }}>
+                        <strong>Армия:</strong> {selectedBattle.participants.enemy.army}
+                      </p>
+                      <p style={{ margin: '4px 0', fontSize: '14px', color: '#d1d5db' }}>
+                        <strong>Командующий:</strong> {selectedBattle.participants.enemy.commander}
+                      </p>
+                      <p style={{ margin: '4px 0', fontSize: '14px', color: '#d1d5db' }}>
+                        <strong>Численность:</strong> {selectedBattle.participants.enemy.strength}
+                      </p>
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+
+            {selectedBattle?.significance && (
+              <div style={{ marginBottom: '20px' }}>
+                <strong style={{ color: 'white' }}>Значение:</strong>
+                <p style={{ margin: '8px 0 0 0', color: '#d1d5db', lineHeight: '1.6' }}>
+                  {selectedBattle.significance}
+                </p>
+              </div>
+            )}
+            
+            <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '12px' }}>
+              <button 
+                onClick={() => setSelectedBattle(null)}
+                style={{
+                  backgroundColor: '#3b82f6',
+                  color: 'white',
+                  border: 'none',
+                  padding: '12px 24px',
+                  borderRadius: '8px',
+                  cursor: 'pointer',
+                  fontSize: '14px',
+                  fontWeight: '500',
+                  transition: 'background-color 0.2s'
+                }}
+                onMouseOver={(e) => e.target.style.backgroundColor = '#2563eb'}
+                onMouseOut={(e) => e.target.style.backgroundColor = '#3b82f6'}
+              >
+                Закрыть
+              </button>
+            </div>
           </div>
         </div>
       )}
