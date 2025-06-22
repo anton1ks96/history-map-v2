@@ -235,7 +235,7 @@ const IntroComponent = ({ onComplete }) => {
     setFadeOut(true);
     setTimeout(() => {
       onComplete();
-    }, 1000);
+    }, 1500);
   };
 
   return (
@@ -363,7 +363,7 @@ export default function BrusilovOffensiveMap() {
           setShowIntro(false);
           setTimeout(() => {
             setShowMainContent(true);
-          }, 200);
+          }, 500);
         }} />
       ) : (
         <div className={`main-content ${showMainContent ? 'show' : ''}`}>
