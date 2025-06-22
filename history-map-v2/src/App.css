@@ -132,6 +132,10 @@
   will-change: opacity;
   transform: translateZ(0);
   backface-visibility: hidden;
+  -webkit-transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  perspective: 1000;
+  -webkit-perspective: 1000;
 }
 
 .intro-video.show {
@@ -168,7 +172,11 @@
   font-size: 5rem;
   font-weight: 700;
   margin: 0 0 0.2rem 0;
-  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.9);
+  text-shadow: 
+    2px 2px 4px rgba(0, 0, 0, 1),
+    4px 4px 8px rgba(0, 0, 0, 0.8),
+    6px 6px 12px rgba(0, 0, 0, 0.6),
+    0 0 20px rgba(0, 0, 0, 0.5);
   letter-spacing: 2px;
   color: #ffffff;
   font-family: 'Arial', 'Helvetica', sans-serif;
@@ -178,7 +186,11 @@
   font-size: 2.2rem;
   font-weight: 400;
   margin: 0 0 2.5rem 0;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
+  text-shadow: 
+    1px 1px 2px rgba(0, 0, 0, 1),
+    2px 2px 4px rgba(0, 0, 0, 0.8),
+    3px 3px 6px rgba(0, 0, 0, 0.6),
+    0 0 15px rgba(0, 0, 0, 0.4);
   letter-spacing: 1.5px;
   color: #f0f0f0;
   font-family: 'Arial', 'Helvetica', sans-serif;
@@ -285,4 +297,20 @@
     padding: 12px 30px;
     letter-spacing: 1.5px;
   }
+}
+
+/* Стили для плавного появления основного контента */
+.main-content {
+  opacity: 0;
+  transform: translateY(30px) scale(0.98);
+  transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content.show {
+  opacity: 1;
+  transform: translateY(0) scale(1);
 }

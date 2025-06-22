@@ -197,17 +197,37 @@ const IntroComponent = ({ onComplete }) => {
       setShowText(true);
     }, 3500);
 
+    // Дополнительная проверка для зацикливания видео
+    const videoCheckInterval = setInterval(() => {
+      const video = videoRef.current;
+      if (video && video.paused && !video.ended) {
+        video.play().catch(() => {
+          // Игнорируем ошибки автовоспроизведения
+        });
+      }
+    }, 1000);
+
     return () => {
       clearTimeout(videoTimer);
       clearTimeout(textTimer);
+      clearInterval(videoCheckInterval);
     };
   }, []);
 
   // Обработчик для плавного зацикливания видео
   const handleVideoTimeUpdate = () => {
     const video = videoRef.current;
-    if (video && video.duration - video.currentTime < 0.1) {
+    if (video && video.duration && video.currentTime >= video.duration - 0.05) {
+      video.currentTime = 0.01;
+    }
+  };
+
+  // Обработчик окончания видео для дополнительной гарантии
+  const handleVideoEnded = () => {
+    const video = videoRef.current;
+    if (video) {
       video.currentTime = 0;
+      video.play();
     }
   };
 
@@ -226,8 +246,10 @@ const IntroComponent = ({ onComplete }) => {
         muted
         loop
         preload="auto"
+        playsInline
         className={`intro-video ${showVideo ? 'show' : ''}`}
         onTimeUpdate={handleVideoTimeUpdate}
+        onEnded={handleVideoEnded}
         onLoadedData={() => {
           if (videoRef.current) {
             videoRef.current.playbackRate = 1.0;
@@ -264,6 +286,7 @@ export default function BrusilovOffensiveMap() {
   const [showFinalFront, setShowFinalFront] = useState(true);
   const [mapLayer, setMapLayer] = useState('modern');
   const [showIntro, setShowIntro] = useState(true);
+  const [showMainContent, setShowMainContent] = useState(false);
   
   // Состояния для анимаций модальных окон
   const [isBattleModalClosing, setIsBattleModalClosing] = useState(false);
@@ -336,9 +359,14 @@ export default function BrusilovOffensiveMap() {
   return (
     <div style={{ width: '100vw', height: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: '#111827', margin: 0, padding: 0, overflow: 'hidden' }}>
       {showIntro ? (
-        <IntroComponent onComplete={() => setShowIntro(false)} />
+        <IntroComponent onComplete={() => {
+          setShowIntro(false);
+          setTimeout(() => {
+            setShowMainContent(true);
+          }, 200);
+        }} />
       ) : (
-        <>
+        <div className={`main-content ${showMainContent ? 'show' : ''}`}>
           <header style={{ backgroundColor: '#111827', color: 'white', padding: '16px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}>
             <h1 style={{ fontSize: '30px', fontWeight: 'bold', textAlign: 'center', margin: 0 }}>Брусиловский прорыв 1916 года</h1>
             <p style={{ textAlign: 'center', marginTop: '8px', color: '#d1d5db', margin: '8px 0 0 0' }}>Интерактивная карта крупнейшей операции Первой мировой войны</p>
@@ -573,9 +601,8 @@ export default function BrusilovOffensiveMap() {
           </div>
         </div>
       </div>
-
-          </>
-        )}
+        </div>
+      )}
 
       {selectedBattle && (
         <div 
