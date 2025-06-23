@@ -4,7 +4,6 @@ import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import './App.css';
 import brusilovData from './brusilovData.json';
-import linesData from './linesData.json';
 import citiesData from './citiesData.json';
 import NewVideo from './assets/NewVideo.mp4';
 
@@ -36,19 +35,19 @@ const createCustomIcon = (color, size = [30, 40]) => {
 // Компонент для отображения движения войск
 const TroopMovements = ({ movements, selectedMovement, selectedPhase }) => {
   // Фильтруем движения по выбранной фазе
-  const filteredMovements = selectedPhase ? 
-    movements.filter(movement => movement.operation_phase === selectedPhase) : 
+  const filteredMovements = selectedPhase ?
+    movements.filter(movement => movement.operation_phase === selectedPhase) :
     movements;
 
   return filteredMovements.map((movement) => {
     const isSelected = selectedMovement?.id === movement.id;
     const isEnemyMovement = movement.is_enemy;
-    
+
     // Определяем цвет и стиль стрелки в зависимости от типа
     let color = isEnemyMovement ? '#dc2626' : '#3b82f6';
     let dashArray = null;
     let weight = 4;
-    
+
     if (movement.arrow_type === 'wide') {
       weight = 8;
       color = '#1e40af';
@@ -62,11 +61,11 @@ const TroopMovements = ({ movements, selectedMovement, selectedPhase }) => {
       dashArray = '5, 5';
       color = '#ef4444';
     }
-    
+
     if (isSelected) {
       weight = weight + 2;
     }
-    
+
     return (
       <React.Fragment key={movement.id}>
         <Polyline
@@ -180,7 +179,7 @@ const CityMarkers = ({ cities }) => {
   const getCityIcon = (city) => {
     const { importance, captured } = city;
     const size = importance === 'major' ? [18, 18] : importance === 'strategic' ? [14, 14] : importance === 'regional' ? [12, 12] : [10, 10];
-    
+
     // Цвет зависит от того, захвачен город или нет
     const color = captured ? '#22c55e' : '#dc2626'; // Зеленый для захваченных, красный для незахваченных
     const borderColor = captured ? 'rgba(34, 197, 94, 0.8)' : 'rgba(220, 38, 38, 0.8)';
@@ -208,17 +207,17 @@ const CityMarkers = ({ cities }) => {
     >
       <Popup>
         <div style={{ maxWidth: '300px', padding: '8px' }}>
-          <h3 style={{ 
-            margin: '0 0 8px 0', 
-            fontSize: '16px', 
+          <h3 style={{
+            margin: '0 0 8px 0',
+            fontSize: '16px',
             fontWeight: 'bold',
             color: city.captured ? '#22c55e' : '#dc2626'
           }}>
             {city.name}
           </h3>
-          
+
           <div style={{ marginBottom: '8px' }}>
-            <strong>Статус:</strong> 
+            <strong>Статус:</strong>
             <span style={{ color: city.captured ? '#22c55e' : '#dc2626', fontWeight: 'bold', marginLeft: '4px' }}>
               {city.captured ? 'Захвачен' : 'Не захвачен'}
             </span>
@@ -239,10 +238,10 @@ const CityMarkers = ({ cities }) => {
           </div>
 
           {city.significance && (
-            <div style={{ 
-              marginTop: '8px', 
-              padding: '8px', 
-              backgroundColor: 'rgba(0, 0, 0, 0.05)', 
+            <div style={{
+              marginTop: '8px',
+              padding: '8px',
+              backgroundColor: 'rgba(0, 0, 0, 0.05)',
               borderRadius: '4px',
               fontSize: '13px'
             }}>
@@ -343,12 +342,12 @@ const IntroComponent = ({ onComplete }) => {
           <h1 className="intro-title">Брусиловский прорыв</h1>
           <p className="intro-subtitle">Интерактивная карта крупнейшей операции Первой мировой войны</p>
           <div className={`intro-button-container ${showText ? 'show' : ''}`}>
-                          <button 
-                className="intro-start-button"
-                onClick={handleStartClick}
-              >
-                Начать исследование
-              </button>
+            <button
+              className="intro-start-button"
+              onClick={handleStartClick}
+            >
+              Начать исследование
+            </button>
           </div>
         </div>
       </div>
@@ -366,7 +365,7 @@ export default function BrusilovOffensiveMap() {
   const [showIntro, setShowIntro] = useState(true);
   const [showMainContent, setShowMainContent] = useState(false);
   const [selectedPhase, setSelectedPhase] = useState('');
-  
+
   // Фазы операции для выпадающего списка
   const operationPhases = [
     { value: '', label: 'Все ходы операции' },
@@ -375,7 +374,7 @@ export default function BrusilovOffensiveMap() {
     { value: 'july_august_offensive', label: '3. Июль-августовское наступление (28 июля – 5 сентября)' },
     { value: 'september_battles', label: '4. Заключительные бои сентября (6-20 сентября)' }
   ];
-  
+
   // Состояния для анимаций модальных окон
   const [isRiverModalClosing, setIsRiverModalClosing] = useState(false);
 
@@ -427,17 +426,17 @@ export default function BrusilovOffensiveMap() {
 
 
   return (
-    <div style={{ 
-      width: '100vw', 
-      height: '100vh', 
-      display: 'flex', 
-      flexDirection: 'column', 
+    <div style={{
+      width: '100vw',
+      height: '100vh',
+      display: 'flex',
+      flexDirection: 'column',
       background: `
         linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f0f23 100%)
       `,
-      margin: 0, 
-      padding: 0, 
-      overflow: 'hidden' 
+      margin: 0,
+      padding: 0,
+      overflow: 'hidden'
     }}>
       {showIntro ? (
         <IntroComponent onComplete={() => {
@@ -448,27 +447,27 @@ export default function BrusilovOffensiveMap() {
         }} />
       ) : (
         <div className={`main-content ${showMainContent ? 'show' : ''}`}>
-          <header style={{ 
+          <header style={{
             background: 'rgba(26, 26, 46, 0.9)',
             backdropFilter: 'blur(20px)',
-            color: '#ffffff', 
-            padding: '24px 32px', 
+            color: '#ffffff',
+            padding: '24px 32px',
             boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
             borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
             position: 'relative',
             opacity: showMainContent ? 1 : 0,
-            transition: showMainContent 
-              ? 'transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.2s' 
+            transition: showMainContent
+              ? 'transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.2s'
               : 'opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.2s',
             transform: showHeader ? 'translateY(0px)' : 'translateY(-150px)',
             willChange: 'transform, opacity',
             zIndex: 10,
             pointerEvents: showHeader ? 'auto' : 'none'
           }}>
-            <h1 style={{ 
-              fontSize: '36px', 
-              fontWeight: '700', 
-              textAlign: 'center', 
+            <h1 style={{
+              fontSize: '36px',
+              fontWeight: '700',
+              textAlign: 'center',
               margin: 0,
               fontFamily: 'SF Pro Display, Inter, -apple-system, BlinkMacSystemFont, sans-serif',
               letterSpacing: '-1px',
@@ -478,9 +477,9 @@ export default function BrusilovOffensiveMap() {
             }}>
               Брусиловский прорыв 1916
             </h1>
-            <p style={{ 
-              textAlign: 'center', 
-              margin: '8px 0 0 0', 
+            <p style={{
+              textAlign: 'center',
+              margin: '8px 0 0 0',
               color: 'rgba(255, 255, 255, 0.7)',
               fontSize: '16px',
               fontWeight: '400',
@@ -492,197 +491,244 @@ export default function BrusilovOffensiveMap() {
             </p>
           </header>
 
-          <div style={{ 
-            flex: 1, 
-            width: '100%', 
-            height: '100%', 
-            padding: '20px', 
+          <div style={{
+            flex: 1,
+            width: '100%',
+            height: '100%',
+            padding: '20px',
             paddingTop: '20px',
             boxSizing: 'border-box',
             transition: 'margin-top 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
             marginTop: showHeader ? '0px' : '-130px'
           }}>
-        <div style={{ width: '100%', height: '100%', position: 'relative', borderRadius: '16px', overflow: 'hidden', boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)' }}>
-          <MapContainer
-            center={mapCenter}
-            zoom={mapZoom}
-            style={{ height: '100%', width: '100%', borderRadius: '16px' }}
-            scrollWheelZoom={true}
-            maxBounds={mapBounds}
-            maxBoundsViscosity={1.0}
-            minZoom={6}
-            maxZoom={12}
-          >
-            <TileLayer
-              url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
-            />
+            <div style={{ width: '100%', height: '100%', position: 'relative', borderRadius: '16px', overflow: 'hidden', boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)' }}>
+              <MapContainer
+                center={mapCenter}
+                zoom={mapZoom}
+                style={{ height: '100%', width: '100%', borderRadius: '16px' }}
+                scrollWheelZoom={true}
+                maxBounds={mapBounds}
+                maxBoundsViscosity={1.0}
+                minZoom={6}
+                maxZoom={12}
+              >
+                <TileLayer
+                  url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
+                  attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
+                />
 
-            {/* Отображение линий фронта */}
-            <FrontLines 
-              frontLines={brusilovData.front_lines || []} 
-              showInitial={true}
-              showFinal={false}
-            />
+                {/* Отображение линий фронта */}
+                <FrontLines
+                  frontLines={brusilovData.front_lines || []}
+                  showInitial={true}
+                  showFinal={false}
+                />
 
-            {/* Стрелка 8-й армии к Луцку */}
+                {/* Стрелка 8-й армии к Луцку */}
+                <Polyline
+                  positions={[
+                    [50.58, 25.54],
+                    [50.747, 25.325]
+                  ]}
+                  color="#1e40af"
+                  weight={6}
+                  opacity={0.9}
+                />
+                <Marker
+                  position={[50.747, 25.325]}
+                  icon={L.divIcon({
+                    html: `<div style="transform: rotate(232deg);">
+                  <svg width="30" height="30" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8 5 L19 12 L8 19 L8 15 L1 15 L1 9 L8 9 Z" fill="#1e40af" stroke="#ffffff" stroke-width="0.5"/>
+                  </svg>
+                </div>`,
+                    className: 'army-arrow',
+                    iconSize: [30, 30],
+                    iconAnchor: [15, 15]
+                  })}
+                >
+                  <Popup>
+                    <div style={{ padding: '8px', maxWidth: '250px' }}>
+                      <h3 style={{ margin: '0 0 8px 0', fontSize: '16px', fontWeight: 'bold' }}>
+                        8-я армия
+                      </h3>
+                      <p style={{ margin: '4px 0' }}>
+                        <strong>Командующий:</strong> Генерал А.М. Каледин
+                      </p>
+                      <p style={{ margin: '4px 0' }}>
+                        <strong>Дата:</strong> 4-7 июня 1916
+                      </p>
+                      <p style={{ margin: '4px 0' }}>
+                        <strong>Результат:</strong> Луцк занят 7 июня
+                      </p>
+                      <p style={{ margin: '4px 0' }}>
+                        Главный удар Брусиловского наступления
+                      </p>
+                    </div>
+                  </Popup>
+                </Marker>
+
+                            {/* Стрелка 8-й армии к Дубно */}
             <Polyline
               positions={[
-                [50.58, 25.54],
-                [50.747, 25.325]
+                [50.56, 25.54],
+                [50.4171, 25.7578]
               ]}
               color="#1e40af"
-              weight={6}
+              weight={5}
               opacity={0.9}
             />
             <Marker
-              position={[50.747, 25.325]}
+              position={[50.4171, 25.7578]}
               icon={L.divIcon({
-                html: `<div style="transform: rotate(-35deg);">
-                  <svg width="30" height="30" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 2 L22 12 L12 22 L12 16 L2 16 L2 8 L12 8 Z" fill="#1e40af"/>
+                html: `<div style="transform: rotate(50deg);">
+                  <svg width="28" height="28" viewBox="2 -1 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8 5 L19 12 L8 19 L8 15 L1 15 L1 9 L8 9 Z" fill="#1e40af" stroke="#ffffff" stroke-width="0.5"/>
                   </svg>
                 </div>`,
                 className: 'army-arrow',
-                iconSize: [30, 30],
-                iconAnchor: [15, 15]
+                iconSize: [28, 28],
+                iconAnchor: [14, 14]
               })}
             >
               <Popup>
                 <div style={{ padding: '8px', maxWidth: '250px' }}>
                   <h3 style={{ margin: '0 0 8px 0', fontSize: '16px', fontWeight: 'bold' }}>
-                    8-я армия
+                    8-я армия к Дубно
                   </h3>
+                  <p style={{ margin: '4px 0' }}>
+                    <strong>Корпус:</strong> 32-й корпус
+                  </p>
                   <p style={{ margin: '4px 0' }}>
                     <strong>Командующий:</strong> Генерал А.М. Каледин
                   </p>
                   <p style={{ margin: '4px 0' }}>
-                    <strong>Дата:</strong> 4-7 июня 1916
+                    <strong>Дата:</strong> 4-15 июня 1916
                   </p>
                   <p style={{ margin: '4px 0' }}>
-                    <strong>Результат:</strong> Луцк занят 7 июня
+                    <strong>Результат:</strong> Дубно захвачен
                   </p>
                   <p style={{ margin: '4px 0' }}>
-                    Главный удар Брусиловского наступления
+                    Части 32-го корпуса, действующего южнее Луцка
                   </p>
                 </div>
               </Popup>
             </Marker>
 
-            {/* Отображение городов */}
-            <CityMarkers cities={citiesData.cities || []} />
+                {/* Отображение городов */}
+                <CityMarkers cities={citiesData.cities || []} />
 
-          </MapContainer>
+              </MapContainer>
 
 
 
-          {/* Кнопка управления легендой */}
-          <button
-            className="legend-button"
-            onClick={() => {
-              setShowLegend(!showLegend);
-              setShowHeader(!showHeader);
-            }}
-            style={{
-              position: 'absolute',
-              bottom: '24px',
-              left: '24px',
-              background: 'rgba(26, 26, 46, 0.9)',
-              border: '1px solid rgba(255, 255, 255, 0.2)',
-              borderRadius: '12px',
-              padding: '12px',
-              cursor: 'pointer',
-              zIndex: 1001,
-              backdropFilter: 'blur(20px)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              width: '48px',
-              height: '48px',
-              boxShadow: '0 8px 25px rgba(0, 0, 0, 0.2)'
-            }}
-            title={showLegend ? "Скрыть легенду и заголовок" : "Показать легенду и заголовок"}
-          >
-            <svg 
-              width="20" 
-              height="20" 
-              viewBox="0 0 24 24" 
-              fill="none" 
-              stroke="#ffffff" 
-              strokeWidth="2" 
-              strokeLinecap="round" 
-              strokeLinejoin="round"
-              style={{
-                transition: 'transform 0.3s ease',
-                transform: showLegend ? 'rotate(0deg)' : 'rotate(180deg)'
-              }}
-            >
-              {showLegend ? (
-                <>
-                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-                  <line x1="9" y1="12" x2="15" y2="12"/>
-                </>
-              ) : (
-                <>
-                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-                  <line x1="9" y1="12" x2="15" y2="12"/>
-                  <line x1="12" y1="9" x2="12" y2="15"/>
-                </>
-              )}
-            </svg>
-          </button>
-
-          {/* Легенда */}
-          <div 
-            className={`legend ${showLegend ? 'show' : 'hide'}`}
-            style={{
-              position: 'absolute',
-              bottom: '24px',
-              left: '80px',
-              background: 'rgba(26, 26, 46, 0.9)',
-              padding: '24px',
-              borderRadius: '16px',
-              boxShadow: '0 16px 40px rgba(0, 0, 0, 0.3)',
-              border: '1px solid rgba(255, 255, 255, 0.1)',
-              zIndex: 1000,
-              backdropFilter: 'blur(20px)',
-              maxWidth: '320px'
-            }}
-          >
-            <h3 style={{ 
-              fontWeight: '600', 
-              marginBottom: '16px', 
-              margin: '0 0 16px 0', 
-              color: '#ffffff', 
-              fontSize: '16px',
-              letterSpacing: '0.5px',
-              fontFamily: 'SF Pro Text, Inter, -apple-system, BlinkMacSystemFont, sans-serif'
-            }}>
-              Легенда
-            </h3>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', fontSize: '14px', color: 'rgba(255, 255, 255, 0.8)', fontWeight: '400' }}>
-
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minHeight: '24px' }}>
-                <div style={{ 
-                  width: '30px', 
-                  height: '24px', 
-                  display: 'flex', 
-                  alignItems: 'center', 
+              {/* Кнопка управления легендой */}
+              <button
+                className="legend-button"
+                onClick={() => {
+                  setShowLegend(!showLegend);
+                  setShowHeader(!showHeader);
+                }}
+                style={{
+                  position: 'absolute',
+                  bottom: '24px',
+                  left: '24px',
+                  background: 'rgba(26, 26, 46, 0.9)',
+                  border: '1px solid rgba(255, 255, 255, 0.2)',
+                  borderRadius: '12px',
+                  padding: '12px',
+                  cursor: 'pointer',
+                  zIndex: 1001,
+                  backdropFilter: 'blur(20px)',
+                  display: 'flex',
+                  alignItems: 'center',
                   justifyContent: 'center',
-                  flexShrink: 0
-                }}>
-                  <div style={{ 
-                    width: '26px', 
-                    height: '4px', 
-                    backgroundColor: '#dc2626', 
-                    borderRadius: '2px',
-                    background: 'repeating-linear-gradient(90deg, #dc2626 0, #dc2626 8px, transparent 8px, transparent 12px)'
-                  }}></div>
-                </div>
-                <span style={{ color: 'rgba(255, 255, 255, 0.9)', lineHeight: '1.2' }}>Линия фронта на 4 июня</span>
-              </div>
+                  width: '48px',
+                  height: '48px',
+                  boxShadow: '0 8px 25px rgba(0, 0, 0, 0.2)'
+                }}
+                title={showLegend ? "Скрыть легенду и заголовок" : "Показать легенду и заголовок"}
+              >
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#ffffff"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  style={{
+                    transition: 'transform 0.3s ease',
+                    transform: showLegend ? 'rotate(0deg)' : 'rotate(180deg)'
+                  }}
+                >
+                  {showLegend ? (
+                    <>
+                      <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                      <line x1="9" y1="12" x2="15" y2="12" />
+                    </>
+                  ) : (
+                    <>
+                      <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                      <line x1="9" y1="12" x2="15" y2="12" />
+                      <line x1="12" y1="9" x2="12" y2="15" />
+                    </>
+                  )}
+                </svg>
+              </button>
 
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minHeight: '24px' }}>
+              {/* Легенда */}
+              <div
+                className={`legend ${showLegend ? 'show' : 'hide'}`}
+                style={{
+                  position: 'absolute',
+                  bottom: '24px',
+                  left: '80px',
+                  background: 'rgba(26, 26, 46, 0.9)',
+                  padding: '24px',
+                  borderRadius: '16px',
+                  boxShadow: '0 16px 40px rgba(0, 0, 0, 0.3)',
+                  border: '1px solid rgba(255, 255, 255, 0.1)',
+                  zIndex: 1000,
+                  backdropFilter: 'blur(20px)',
+                  maxWidth: '320px'
+                }}
+              >
+                <h3 style={{
+                  fontWeight: '600',
+                  marginBottom: '16px',
+                  margin: '0 0 16px 0',
+                  color: '#ffffff',
+                  fontSize: '16px',
+                  letterSpacing: '0.5px',
+                  fontFamily: 'SF Pro Text, Inter, -apple-system, BlinkMacSystemFont, sans-serif'
+                }}>
+                  Легенда
+                </h3>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', fontSize: '14px', color: 'rgba(255, 255, 255, 0.8)', fontWeight: '400' }}>
+
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minHeight: '24px' }}>
+                    <div style={{
+                      width: '30px',
+                      height: '24px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      flexShrink: 0
+                    }}>
+                      <div style={{
+                        width: '26px',
+                        height: '4px',
+                        backgroundColor: '#dc2626',
+                        borderRadius: '2px',
+                        background: 'repeating-linear-gradient(90deg, #dc2626 0, #dc2626 8px, transparent 8px, transparent 12px)'
+                      }}></div>
+                    </div>
+                    <span style={{ color: 'rgba(255, 255, 255, 0.9)', lineHeight: '1.2' }}>Линия фронта на 4 июня</span>
+                  </div>
+
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minHeight: '24px' }}>
                 <div style={{ 
                   width: '30px', 
                   height: '24px', 
@@ -710,120 +756,120 @@ export default function BrusilovOffensiveMap() {
                     }}></div>
                   </div>
                 </div>
-                <span style={{ color: 'rgba(255, 255, 255, 0.9)', lineHeight: '1.2' }}>8-я армия к Луцку</span>
+                <span style={{ color: 'rgba(255, 255, 255, 0.9)', lineHeight: '1.2' }}>8 армия</span>
               </div>
 
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minHeight: '24px' }}>
-                <div style={{ 
-                  width: '30px', 
-                  height: '24px', 
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  justifyContent: 'center',
-                  flexShrink: 0
-                }}>
-                  <div style={{ 
-                    width: '18px', 
-                    height: '18px', 
-                    borderRadius: '50%', 
-                    backgroundColor: '#22c55e', 
-                    border: '2px solid rgba(34, 197, 94, 0.8)',
-                    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.3)'
-                  }}></div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minHeight: '24px' }}>
+                    <div style={{
+                      width: '30px',
+                      height: '24px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      flexShrink: 0
+                    }}>
+                      <div style={{
+                        width: '18px',
+                        height: '18px',
+                        borderRadius: '50%',
+                        backgroundColor: '#22c55e',
+                        border: '2px solid rgba(34, 197, 94, 0.8)',
+                        boxShadow: '0 2px 8px rgba(0, 0, 0, 0.3)'
+                      }}></div>
+                    </div>
+                    <span style={{ color: 'rgba(255, 255, 255, 0.9)', lineHeight: '1.2' }}>Захваченные города</span>
+                  </div>
+
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minHeight: '24px' }}>
+                    <div style={{
+                      width: '30px',
+                      height: '24px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      flexShrink: 0
+                    }}>
+                      <div style={{
+                        width: '18px',
+                        height: '18px',
+                        borderRadius: '50%',
+                        backgroundColor: '#dc2626',
+                        border: '2px solid rgba(220, 38, 38, 0.8)',
+                        boxShadow: '0 2px 8px rgba(0, 0, 0, 0.3)'
+                      }}></div>
+                    </div>
+                    <span style={{ color: 'rgba(255, 255, 255, 0.9)', lineHeight: '1.2' }}>Незахваченные города</span>
+                  </div>
+
                 </div>
-                <span style={{ color: 'rgba(255, 255, 255, 0.9)', lineHeight: '1.2' }}>Захваченные города</span>
               </div>
 
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minHeight: '24px' }}>
-                <div style={{ 
-                  width: '30px', 
-                  height: '24px', 
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  justifyContent: 'center',
-                  flexShrink: 0
-                }}>
-                  <div style={{ 
-                    width: '18px', 
-                    height: '18px', 
-                    borderRadius: '50%', 
-                    backgroundColor: '#dc2626', 
-                    border: '2px solid rgba(220, 38, 38, 0.8)',
-                    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.3)'
-                  }}></div>
+              {/* Панель управления */}
+              <div style={{
+                position: 'absolute',
+                bottom: '24px',
+                left: '50%',
+                transform: 'translateX(-50%)',
+                background: 'rgba(26, 26, 46, 0.9)',
+                padding: '16px 24px',
+                borderRadius: '24px',
+                boxShadow: '0 16px 40px rgba(0, 0, 0, 0.3)',
+                border: '1px solid rgba(255, 255, 255, 0.1)',
+                zIndex: 1000,
+                backdropFilter: 'blur(20px)',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '20px',
+                flexWrap: 'wrap'
+              }}>
+                {/* Выбор хода операции */}
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <select
+                    value={selectedPhase}
+                    onChange={(e) => setSelectedPhase(e.target.value)}
+                    className="control-element"
+                    style={{
+                      background: 'rgba(26, 26, 46, 0.9)',
+                      border: '1px solid rgba(255, 255, 255, 0.2)',
+                      borderRadius: '12px',
+                      padding: '10px 16px',
+                      color: '#ffffff',
+                      fontSize: '14px',
+                      fontWeight: '500',
+                      outline: 'none',
+                      letterSpacing: '0.5px',
+                      fontFamily: 'SF Pro Text, Inter, -apple-system, BlinkMacSystemFont, sans-serif',
+                      cursor: 'pointer',
+                      backdropFilter: 'blur(20px)',
+                      boxShadow: '0 8px 25px rgba(0, 0, 0, 0.2)',
+                      transition: 'all 0.3s ease',
+                      appearance: 'none',
+                      WebkitAppearance: 'none',
+                      MozAppearance: 'none',
+                      minWidth: '280px'
+                    }}
+                  >
+                    {operationPhases.map(phase => (
+                      <option key={phase.value} value={phase.value} style={{ backgroundColor: '#1a1a2e', color: '#ffffff' }}>
+                        {phase.label}
+                      </option>
+                    ))}
+                  </select>
                 </div>
-                <span style={{ color: 'rgba(255, 255, 255, 0.9)', lineHeight: '1.2' }}>Незахваченные города</span>
-              </div>
 
+
+
+
+              </div>
             </div>
           </div>
-
-          {/* Панель управления */}
-          <div style={{
-            position: 'absolute',
-            bottom: '24px',
-            left: '50%',
-            transform: 'translateX(-50%)',
-            background: 'rgba(26, 26, 46, 0.9)',
-            padding: '16px 24px',
-            borderRadius: '24px',
-            boxShadow: '0 16px 40px rgba(0, 0, 0, 0.3)',
-            border: '1px solid rgba(255, 255, 255, 0.1)',
-            zIndex: 1000,
-            backdropFilter: 'blur(20px)',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '20px',
-            flexWrap: 'wrap'
-          }}>
-            {/* Выбор хода операции */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <select
-                value={selectedPhase}
-                onChange={(e) => setSelectedPhase(e.target.value)}
-                className="control-element"
-                style={{
-                  background: 'rgba(26, 26, 46, 0.9)',
-                  border: '1px solid rgba(255, 255, 255, 0.2)',
-                  borderRadius: '12px',
-                  padding: '10px 16px',
-                  color: '#ffffff',
-                  fontSize: '14px',
-                  fontWeight: '500',
-                  outline: 'none',
-                  letterSpacing: '0.5px',
-                  fontFamily: 'SF Pro Text, Inter, -apple-system, BlinkMacSystemFont, sans-serif',
-                  cursor: 'pointer',
-                  backdropFilter: 'blur(20px)',
-                  boxShadow: '0 8px 25px rgba(0, 0, 0, 0.2)',
-                  transition: 'all 0.3s ease',
-                  appearance: 'none',
-                  WebkitAppearance: 'none',
-                  MozAppearance: 'none',
-                  minWidth: '280px'
-                }}
-              >
-                {operationPhases.map(phase => (
-                  <option key={phase.value} value={phase.value} style={{ backgroundColor: '#1a1a2e', color: '#ffffff' }}>
-                    {phase.label}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-
-
-
-          </div>
-        </div>
-      </div>
         </div>
       )}
 
 
 
       {selectedRiver && (
-        <div 
+        <div
           className={`modal-overlay ${isRiverModalClosing ? 'closing' : ''}`}
           onClick={handleRiverOverlayClick}
           style={{
@@ -839,7 +885,7 @@ export default function BrusilovOffensiveMap() {
             zIndex: 99999
           }}
         >
-          <div 
+          <div
             className={`modal-content ${isRiverModalClosing ? 'closing' : ''}`}
             style={{
               backgroundColor: 'rgba(0, 0, 0, 0.8)',
