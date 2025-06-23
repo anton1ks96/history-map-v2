@@ -4,7 +4,10 @@ import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import './App.css';
 import brusilovData from './brusilovData.json';
+import linesData from './linesData.json';
+import citiesData from './citiesData.json';
 import NewVideo from './assets/NewVideo.mp4';
+
 
 // Фикс для иконок Leaflet в React
 delete L.Icon.Default.prototype._getIconUrl;
@@ -28,24 +31,7 @@ const createCustomIcon = (color, size = [30, 40]) => {
   });
 };
 
-// Компонент для отображения сражений
-const BattleMarkers = ({ battles, onBattleClick }) => {
-  return battles.map((battle) => (
-    <Marker
-      key={battle.id}
-      position={battle.coordinates}
-      icon={createCustomIcon('#c41e3a', [35, 45])}
-      eventHandlers={{
-        click: () => onBattleClick(battle)
-      }}
-    >
-      <Tooltip permanent={false} direction="top" offset={[0, -20]}>
-        <div className="font-bold">{battle.name}</div>
-        <div className="text-sm">{battle.date}</div>
-      </Tooltip>
-    </Marker>
-  ));
-};
+
 
 // Компонент для отображения движения войск
 const TroopMovements = ({ movements, selectedMovement, selectedPhase }) => {
@@ -191,12 +177,23 @@ const Rivers = ({ rivers, onRiverClick }) => {
 
 // Компонент для отображения городов
 const CityMarkers = ({ cities }) => {
-  const getCityIcon = (importance) => {
+  const getCityIcon = (city) => {
+    const { importance, captured } = city;
     const size = importance === 'major' ? [18, 18] : importance === 'strategic' ? [14, 14] : importance === 'regional' ? [12, 12] : [10, 10];
-    const color = importance === 'major' ? '#000000' : importance === 'strategic' ? '#333333' : '#666666';
+    
+    // Цвет зависит от того, захвачен город или нет
+    const color = captured ? '#22c55e' : '#dc2626'; // Зеленый для захваченных, красный для незахваченных
+    const borderColor = captured ? 'rgba(34, 197, 94, 0.8)' : 'rgba(220, 38, 38, 0.8)';
 
     return L.divIcon({
-      html: `<div style="background: ${color}; width: ${size[0]}px; height: ${size[1]}px; border-radius: 50%; border: 2px solid white;"></div>`,
+      html: `<div style="
+        background: ${color}; 
+        width: ${size[0]}px; 
+        height: ${size[1]}px; 
+        border-radius: 50%; 
+        border: 2px solid ${borderColor};
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      "></div>`,
       className: 'city-marker',
       iconSize: size,
       iconAnchor: [size[0] / 2, size[1] / 2]
@@ -207,8 +204,53 @@ const CityMarkers = ({ cities }) => {
     <Marker
       key={city.id}
       position={city.coordinates}
-      icon={getCityIcon(city.importance)}
+      icon={getCityIcon(city)}
     >
+      <Popup>
+        <div style={{ maxWidth: '300px', padding: '8px' }}>
+          <h3 style={{ 
+            margin: '0 0 8px 0', 
+            fontSize: '16px', 
+            fontWeight: 'bold',
+            color: city.captured ? '#22c55e' : '#dc2626'
+          }}>
+            {city.name}
+          </h3>
+          
+          <div style={{ marginBottom: '8px' }}>
+            <strong>Статус:</strong> 
+            <span style={{ color: city.captured ? '#22c55e' : '#dc2626', fontWeight: 'bold', marginLeft: '4px' }}>
+              {city.captured ? 'Захвачен' : 'Не захвачен'}
+            </span>
+          </div>
+
+          {city.captureDate && (
+            <div style={{ marginBottom: '8px' }}>
+              <strong>Дата захвата:</strong> {city.captureDate}
+            </div>
+          )}
+
+          <div style={{ marginBottom: '8px' }}>
+            <strong>Население:</strong> {city.population?.toLocaleString() || 'Неизвестно'}
+          </div>
+
+          <div style={{ marginBottom: '8px' }}>
+            <strong>Описание:</strong> {city.description}
+          </div>
+
+          {city.significance && (
+            <div style={{ 
+              marginTop: '8px', 
+              padding: '8px', 
+              backgroundColor: 'rgba(0, 0, 0, 0.05)', 
+              borderRadius: '4px',
+              fontSize: '13px'
+            }}>
+              <strong>Значение:</strong> {city.significance}
+            </div>
+          )}
+        </div>
+      </Popup>
       <Tooltip permanent={true} direction="top" offset={[0, -10]} className="city-tooltip">
         <div className="text-xs font-semibold">{city.name}</div>
       </Tooltip>
@@ -316,10 +358,8 @@ const IntroComponent = ({ onComplete }) => {
 
 // Основной компонент приложения
 export default function BrusilovOffensiveMap() {
-  const [selectedBattle, setSelectedBattle] = useState(null);
   const [selectedMovement, setSelectedMovement] = useState(null);
   const [selectedRiver, setSelectedRiver] = useState(null);
-
 
   const [showLegend, setShowLegend] = useState(true);
   const [showHeader, setShowHeader] = useState(true);
@@ -337,18 +377,9 @@ export default function BrusilovOffensiveMap() {
   ];
   
   // Состояния для анимаций модальных окон
-  const [isBattleModalClosing, setIsBattleModalClosing] = useState(false);
   const [isRiverModalClosing, setIsRiverModalClosing] = useState(false);
 
   // Функции для плавного закрытия модальных окон
-  const closeBattleModal = () => {
-    setIsBattleModalClosing(true);
-    setTimeout(() => {
-      setSelectedBattle(null);
-      setIsBattleModalClosing(false);
-    }, 300); // Время анимации
-  };
-
   const closeRiverModal = () => {
     setIsRiverModalClosing(true);
     setTimeout(() => {
@@ -358,12 +389,6 @@ export default function BrusilovOffensiveMap() {
   };
 
   // Обработчики для закрытия модальных окон кликом по overlay
-  const handleBattleOverlayClick = (e) => {
-    if (e.target === e.currentTarget) {
-      closeBattleModal();
-    }
-  };
-
   const handleRiverOverlayClick = (e) => {
     if (e.target === e.currentTarget) {
       closeRiverModal();
@@ -374,22 +399,22 @@ export default function BrusilovOffensiveMap() {
   useEffect(() => {
     const handleEscapeKey = (event) => {
       if (event.key === 'Escape') {
-        if (selectedBattle && !isBattleModalClosing) {
-          closeBattleModal();
-        } else if (selectedRiver && !isRiverModalClosing) {
+        if (selectedRiver && !isRiverModalClosing) {
           closeRiverModal();
         }
       }
     };
 
-    if (selectedBattle || selectedRiver) {
+    if (selectedRiver) {
       document.addEventListener('keydown', handleEscapeKey);
     }
 
     return () => {
       document.removeEventListener('keydown', handleEscapeKey);
     };
-  }, [selectedBattle, selectedRiver, isBattleModalClosing, isRiverModalClosing]);
+  }, [selectedRiver, isRiverModalClosing]);
+
+
 
   const mapCenter = [49.8, 25.2];
   const mapZoom = 7;
@@ -492,7 +517,13 @@ export default function BrusilovOffensiveMap() {
               url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
             />
+
+            {/* Отображение городов */}
+            <CityMarkers cities={citiesData.cities || []} />
+
           </MapContainer>
+
+
 
           {/* Кнопка управления легендой */}
           <button
@@ -579,48 +610,7 @@ export default function BrusilovOffensiveMap() {
               Легенда
             </h3>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', fontSize: '14px', color: 'rgba(255, 255, 255, 0.8)', fontWeight: '400' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minHeight: '24px' }}>
-                <div style={{
-                  width: '30px',
-                  height: '24px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  flexShrink: 0
-                }}>
-                  <svg width="18" height="22" viewBox="0 0 24 32" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 0C5.373 0 0 5.373 0 12c0 9 12 20 12 20s12-11 12-20c0-6.627-5.373-12-12-12z" fill="#c41e3a" />
-                    <circle cx="12" cy="12" r="4" fill="white" />
-                  </svg>
-                </div>
-                <span style={{ color: 'rgba(255, 255, 255, 0.9)', lineHeight: '1.2' }}>Крупные сражения</span>
-              </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minHeight: '24px' }}>
-                <div style={{ 
-                  width: '30px', 
-                  height: '24px', 
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  justifyContent: 'center',
-                  flexShrink: 0
-                }}>
-                  <div style={{ width: '26px', height: '6px', backgroundColor: '#1e40af', borderRadius: '2px' }}></div>
-                </div>
-                <span style={{ color: 'rgba(255, 255, 255, 0.9)', lineHeight: '1.2' }}>Главные удары</span>
-              </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minHeight: '24px' }}>
-                <div style={{ 
-                  width: '30px', 
-                  height: '24px', 
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  justifyContent: 'center',
-                  flexShrink: 0
-                }}>
-                  <div style={{ width: '26px', height: '4px', backgroundColor: '#3b82f6', borderRadius: '2px' }}></div>
-                </div>
-                <span style={{ color: 'rgba(255, 255, 255, 0.9)', lineHeight: '1.2' }}>Успешные наступления</span>
-              </div>
+
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minHeight: '24px' }}>
                 <div style={{ 
                   width: '30px', 
@@ -631,15 +621,17 @@ export default function BrusilovOffensiveMap() {
                   flexShrink: 0
                 }}>
                   <div style={{ 
-                    width: '26px', 
-                    height: '4px', 
-                    backgroundColor: '#f59e0b', 
-                    borderRadius: '2px',
-                    background: 'repeating-linear-gradient(90deg, #f59e0b 0, #f59e0b 6px, transparent 6px, transparent 10px)'
+                    width: '18px', 
+                    height: '18px', 
+                    borderRadius: '50%', 
+                    backgroundColor: '#22c55e', 
+                    border: '2px solid rgba(34, 197, 94, 0.8)',
+                    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.3)'
                   }}></div>
                 </div>
-                <span style={{ color: 'rgba(255, 255, 255, 0.9)', lineHeight: '1.2' }}>Остановленные атаки</span>
+                <span style={{ color: 'rgba(255, 255, 255, 0.9)', lineHeight: '1.2' }}>Захваченные города</span>
               </div>
+
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minHeight: '24px' }}>
                 <div style={{ 
                   width: '30px', 
@@ -650,99 +642,17 @@ export default function BrusilovOffensiveMap() {
                   flexShrink: 0
                 }}>
                   <div style={{ 
-                    width: '26px', 
-                    height: '4px', 
+                    width: '18px', 
+                    height: '18px', 
+                    borderRadius: '50%', 
                     backgroundColor: '#dc2626', 
-                    borderRadius: '2px',
-                    background: 'repeating-linear-gradient(90deg, #dc2626 0, #dc2626 4px, transparent 4px, transparent 8px)'
+                    border: '2px solid rgba(220, 38, 38, 0.8)',
+                    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.3)'
                   }}></div>
                 </div>
-                <span style={{ color: 'rgba(255, 255, 255, 0.9)', lineHeight: '1.2' }}>Контрудары противника</span>
+                <span style={{ color: 'rgba(255, 255, 255, 0.9)', lineHeight: '1.2' }}>Незахваченные города</span>
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minHeight: '24px' }}>
-                <div style={{ 
-                  width: '30px', 
-                  height: '24px', 
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  justifyContent: 'center',
-                  flexShrink: 0
-                }}>
-                  <div style={{ 
-                    width: '26px', 
-                    height: '4px', 
-                    backgroundColor: '#dc2626', 
-                    borderRadius: '2px',
-                    background: 'repeating-linear-gradient(90deg, #dc2626 0, #dc2626 8px, transparent 8px, transparent 12px)'
-                  }}></div>
-                </div>
-                <span style={{ color: 'rgba(255, 255, 255, 0.9)', lineHeight: '1.2' }}>Начальная линия фронта</span>
-              </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minHeight: '24px' }}>
-                <div style={{ 
-                  width: '30px', 
-                  height: '24px', 
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  justifyContent: 'center',
-                  flexShrink: 0
-                }}>
-                  <div style={{ width: '26px', height: '4px', backgroundColor: '#16a34a', borderRadius: '2px' }}></div>
-                </div>
-                <span style={{ color: 'rgba(255, 255, 255, 0.9)', lineHeight: '1.2' }}>Конечная линия фронта</span>
-              </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minHeight: '24px' }}>
-                <div style={{ 
-                  width: '30px', 
-                  height: '24px', 
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  justifyContent: 'center',
-                  flexShrink: 0
-                }}>
-                  <div style={{ width: '18px', height: '18px', borderRadius: '50%', backgroundColor: 'black', border: '2px solid rgba(255, 255, 255, 0.6)' }}></div>
-                </div>
-                <span style={{ color: 'rgba(255, 255, 255, 0.9)', lineHeight: '1.2' }}>Крупные города</span>
-              </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minHeight: '24px' }}>
-                <div style={{ 
-                  width: '30px', 
-                  height: '24px', 
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  justifyContent: 'center',
-                  flexShrink: 0
-                }}>
-                  <div style={{ width: '14px', height: '14px', borderRadius: '50%', backgroundColor: '#333333', border: '2px solid rgba(255, 255, 255, 0.4)' }}></div>
-                </div>
-                <span style={{ color: 'rgba(255, 255, 255, 0.9)', lineHeight: '1.2' }}>Важные города</span>
-              </div>
-                             <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minHeight: '24px' }}>
-                 <div style={{ 
-                   width: '30px', 
-                   height: '24px', 
-                   display: 'flex', 
-                   alignItems: 'center', 
-                   justifyContent: 'center',
-                   flexShrink: 0
-                 }}>
-                   <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#6b7280', border: '1px solid rgba(255, 255, 255, 0.3)' }}></div>
-                 </div>
-                 <span style={{ color: 'rgba(255, 255, 255, 0.9)', lineHeight: '1.2' }}>Города</span>
-               </div>
-               <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minHeight: '24px' }}>
-                 <div style={{ 
-                   width: '30px', 
-                   height: '24px', 
-                   display: 'flex', 
-                   alignItems: 'center', 
-                   justifyContent: 'center',
-                   flexShrink: 0
-                 }}>
-                   <div style={{ width: '14px', height: '14px', borderRadius: '50%', backgroundColor: '#4A90E2', border: '2px solid rgba(255, 255, 255, 0.4)' }}></div>
-                 </div>
-                 <span style={{ color: 'rgba(255, 255, 255, 0.9)', lineHeight: '1.2' }}>Устья рек</span>
-               </div>
+
             </div>
           </div>
 
@@ -808,126 +718,7 @@ export default function BrusilovOffensiveMap() {
         </div>
       )}
 
-      {selectedBattle && (
-        <div 
-          className={`modal-overlay ${isBattleModalClosing ? 'closing' : ''}`}
-          onClick={handleBattleOverlayClick}
-          style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            width: '100vw',
-            height: '100vh',
-            backgroundColor: 'rgba(0,0,0,0.5)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            zIndex: 99999
-          }}
-        >
-          <div 
-            className={`modal-content ${isBattleModalClosing ? 'closing' : ''}`}
-            style={{
-              backgroundColor: 'rgba(0, 0, 0, 0.8)',
-              padding: '24px',
-              borderRadius: '16px',
-              maxWidth: '600px',
-              width: '90%',
-              maxHeight: '80vh',
-              overflow: 'auto',
-              boxShadow: '0 10px 25px rgba(0, 0, 0, 0.3)',
-              backdropFilter: 'blur(10px)'
-            }}
-          >
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-              <h2 style={{ margin: 0, fontSize: '24px', color: 'white' }}>{selectedBattle?.name || 'Неизвестное сражение'}</h2>
-              <button
-                onClick={closeBattleModal}
-                style={{
-                  background: 'none',
-                  border: 'none',
-                  fontSize: '28px',
-                  cursor: 'pointer',
-                  padding: '0',
-                  width: '32px',
-                  height: '32px',
-                  color: '#d1d5db'
-                }}
-              >
-                ×
-              </button>
-            </div>
 
-            <div style={{ marginBottom: '16px' }}>
-              <strong style={{ color: 'white' }}>Дата:</strong> <span style={{ color: '#d1d5db' }}>{selectedBattle?.date || 'Неизвестно'}</span>
-            </div>
-
-            <div style={{ marginBottom: '16px' }}>
-              <strong style={{ color: 'white' }}>Описание:</strong>
-              <p style={{ margin: '8px 0 0 0', color: '#d1d5db', lineHeight: '1.6' }}>
-                {selectedBattle?.description || 'Описание недоступно'}
-              </p>
-            </div>
-
-            <div style={{ marginBottom: '16px' }}>
-              <strong style={{ color: 'white' }}>Результат:</strong>
-              <p style={{ margin: '8px 0 0 0', color: '#d1d5db', lineHeight: '1.6' }}>
-                {selectedBattle?.result || 'Результат неизвестен'}
-              </p>
-            </div>
-
-            {selectedBattle?.participants && (
-              <div style={{ marginBottom: '16px' }}>
-                <strong style={{ color: 'white' }}>Участники:</strong>
-                <div style={{
-                  marginTop: '8px',
-                  display: 'grid',
-                  gridTemplateColumns: selectedBattle.participants.enemy ? '1fr 1fr' : '1fr',
-                  gap: '16px'
-                }}>
-                  {selectedBattle.participants.russian && (
-                    <div style={{ padding: '12px', backgroundColor: 'rgba(34, 197, 94, 0.15)', borderRadius: '8px', border: '1px solid rgba(34, 197, 94, 0.3)' }}>
-                      <h4 style={{ margin: '0 0 8px 0', color: '#22c55e', fontSize: '16px' }}>Русские войска</h4>
-                      <p style={{ margin: '4px 0', fontSize: '14px', color: '#d1d5db' }}>
-                        <strong>Армия:</strong> {selectedBattle.participants.russian.army}
-                      </p>
-                      <p style={{ margin: '4px 0', fontSize: '14px', color: '#d1d5db' }}>
-                        <strong>Командующий:</strong> {selectedBattle.participants.russian.commander}
-                      </p>
-                      <p style={{ margin: '4px 0', fontSize: '14px', color: '#d1d5db' }}>
-                        <strong>Численность:</strong> {selectedBattle.participants.russian.strength}
-                      </p>
-                    </div>
-                  )}
-                  {selectedBattle.participants.enemy && (
-                    <div style={{ padding: '12px', backgroundColor: 'rgba(239, 68, 68, 0.15)', borderRadius: '8px', border: '1px solid rgba(239, 68, 68, 0.3)' }}>
-                      <h4 style={{ margin: '0 0 8px 0', color: '#ef4444', fontSize: '16px' }}>Противник</h4>
-                      <p style={{ margin: '4px 0', fontSize: '14px', color: '#d1d5db' }}>
-                        <strong>Армия:</strong> {selectedBattle.participants.enemy.army}
-                      </p>
-                      <p style={{ margin: '4px 0', fontSize: '14px', color: '#d1d5db' }}>
-                        <strong>Командующий:</strong> {selectedBattle.participants.enemy.commander}
-                      </p>
-                      <p style={{ margin: '4px 0', fontSize: '14px', color: '#d1d5db' }}>
-                        <strong>Численность:</strong> {selectedBattle.participants.enemy.strength}
-                      </p>
-                    </div>
-                  )}
-                </div>
-              </div>
-            )}
-
-            {selectedBattle?.significance && (
-              <div style={{ marginBottom: '20px' }}>
-                <strong style={{ color: 'white' }}>Значение:</strong>
-                <p style={{ margin: '8px 0 0 0', color: '#d1d5db', lineHeight: '1.6' }}>
-                  {selectedBattle.significance}
-                </p>
-              </div>
-            )}
-          </div>
-        </div>
-      )}
 
       {selectedRiver && (
         <div 
@@ -1009,6 +800,8 @@ export default function BrusilovOffensiveMap() {
           </div>
         </div>
       )}
+
+
     </div>
   );
 }

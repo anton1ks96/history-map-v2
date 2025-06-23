@@ -1,0 +1,88 @@
+{
+  "cities": [
+    {
+      "id": "lutsk",
+      "name": "Луцк",
+      "coordinates": [50.747233, 25.325383],
+      "importance": "major",
+      "description": "Центральная цель главного удара 8-й армии",
+      "population": 25000,
+      "captured": true,
+      "captureDate": "7 июня 1916",
+      "significance": "Операция также известна как Луцкий прорыв"
+    },
+    {
+      "id": "kovel",
+      "name": "Ковель", 
+      "coordinates": [51.215759, 24.708572],
+      "importance": "strategic",
+      "description": "Ключевая стратегическая цель наступления после Луцка",
+      "population": 18000,
+      "captured": false,
+      "significance": "Город так и не был взят"
+    },
+    {
+      "id": "chernivtsi",
+      "name": "Черновцы",
+      "coordinates": [48.291899, 25.935892],
+      "importance": "major",
+      "description": "Захвачены 9-й армией",
+      "population": 87000,
+      "captured": true,
+      "captureDate": "18 июня 1916",
+      "significance": "Столица Буковины"
+    },
+    {
+      "id": "halych",
+      "name": "Галич",
+      "coordinates": [49.124844, 24.729692],
+      "importance": "regional",
+      "description": "Цель 7-й армии",
+      "population": 12000,
+      "captured": true,
+      "significance": "Древний русский город был захвачен"
+    },
+    {
+      "id": "kolomyya",
+      "name": "Коломыя",
+      "coordinates": [48.5208, 25.0375],
+      "importance": "regional",
+      "description": "Цель 9-й армии",
+      "population": 34000,
+      "captured": true,
+      "captureDate": "30 июня 1916",
+      "significance": "Важный город в Восточной Галиции"
+    },
+    {
+      "id": "dubno",
+      "name": "Дубно",
+      "coordinates": [50.4171, 25.7578],
+      "importance": "regional",
+      "description": "Захвачен частями 32-го корпуса 8-й армии",
+      "population": 9000,
+      "captured": true,
+      "significance": "Древняя крепость на Волыни"
+    },
+    {
+      "id": "stanislau",
+      "name": "Станислав",
+      "coordinates": [48.922633, 24.709383],
+      "importance": "strategic",
+      "description": "Цель 9-й армии (современный Ивано-Франковск)",
+      "population": 41000,
+      "captured": true,
+      "captureDate": "11 августа 1916",
+      "significance": "Важный город Галиции"
+    },
+    {
+      "id": "lviv",
+      "name": "Львов",
+      "coordinates": [49.8397, 24.0297],
+      "importance": "major",
+      "description": "Одна из целей 11-й армии",
+      "population": 206000,
+      "captured": false,
+      "significance": "Русские войска вышли только на подступы к городу"
+    }
+  ]
+} 
