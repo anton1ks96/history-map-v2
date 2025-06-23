@@ -176,135 +176,302 @@
     ],
     "troop_movements": [
       {
-        "id": "8th_army_advance",
-        "name": "Наступление 8-й армии",
-        "name_en": "8th Army Advance",
+        "id": "lutsk_breakthrough_8th_army",
+        "name": "8-я армия: прорыв Ровно → Луцк → Дубно", 
+        "name_en": "8th Army: Breakthrough Rivne → Lutsk → Dubno",
         "path": [
           [50.620, 26.252],
-          [50.747, 25.325]
-        ],
-        "waypoints": [
-          {
-            "name": "Исходные позиции",
-            "date": "4 июня 1916"
-          },
-          {
-            "name": "Луцк",
-            "date": "7 июня 1916"
-          },
-          {
-            "name": "Подступы к Ковелю",
-            "date": "Июль 1916"
-          }
+          [50.747, 25.325],
+          [50.417, 25.756]
         ],
         "army": "8-я армия",
         "commander": "Генерал А.М. Каледин",
         "strength": "~150,000 человек",
-        "artillery": "300 легких и 50 тяжелых орудий",
-        "period": "4 июня - август 1916",
-        "advance_depth": "75 км"
+        "period": "4-15 июня 1916",
+        "advance_depth": "65 км",
+        "operation_phase": "lutsk_breakthrough",
+        "description": "Широкая стрелка (~80 км по фронту, 65 км вглубь). Главный удар операции.",
+        "arrow_type": "wide"
       },
       {
-        "id": "9th_army_advance",
-        "name": "Наступление 9-й армии",
-        "name_en": "9th Army Advance",
-        "path": [
-          [48.156696, 26.868189],
-          [48.291899, 25.935892],
-          [48.572506, 25.040862]
-        ],
-        "waypoints": [
-          {
-            "name": "Исходные позиции на Днестре",
-            "date": "4 июня 1916"
-          },
-          {
-            "name": "Черновцы",
-            "date": "17 июня 1916"
-          },
-          {
-            "name": "Продвижение в Карпаты",
-            "date": "Июль 1916"
-          }
-        ],
-        "army": "9-я армия",
-        "commander": "Генерал П.А. Лечицкий",
-        "strength": "~120,000 человек",
-        "artillery": "250 орудий",
-        "period": "4 июня - июль 1916",
-        "advance_depth": "120 км"
-      },
-      {
-        "id": "11th_army_advance",
-        "name": "Наступление 11-й армии",
-        "name_en": "11th Army Advance",
+        "id": "lutsk_breakthrough_11th_army",
+        "name": "11-я армия: ограниченный прорыв у Тернополя",
+        "name_en": "11th Army: Limited breakthrough near Ternopil",
         "path": [
           [49.553, 25.595],
-          [49.806, 24.892]
-        ],
-        "waypoints": [
-          {
-            "name": "Исходные позиции",
-            "date": "4 июня 1916"
-          },
-          {
-            "name": "Станислав",
-            "date": "11 августа 1916"
-          },
-          {
-            "name": "Дальнейшее продвижение",
-            "date": "Август 1916"
-          }
+          [49.400, 25.200]
         ],
         "army": "11-я армия",
         "commander": "Генерал В.В. Сахаров",
         "strength": "~130,000 человек",
-        "artillery": "280 орудий",
-        "period": "4 июня - август 1916",
-        "advance_depth": "60 км"
+        "period": "4-15 июня 1916",
+        "advance_depth": "~25 км",
+        "operation_phase": "lutsk_breakthrough",
+        "description": "Короткая стрела из полосы Тернополь на запад (прорыв ограничен)",
+        "arrow_type": "short"
       },
       {
-        "id": "7th_army_advance",
-        "name": "Наступление 7-й армии",
-        "name_en": "7th Army Advance",
+        "id": "lutsk_breakthrough_7th_army",
+        "name": "7-я армия: прорыв у Язловца",
+        "name_en": "7th Army: Breakthrough near Yazlovets",
         "path": [
-          [49.400, 25.200],
-          [48.800, 24.800],
-          [48.526, 25.038]
-        ],
-        "waypoints": [
-          {
-            "name": "Исходные позиции",
-            "date": "4 июня 1916"
-          },
-          {
-            "name": "Галич",
-            "date": "12 июля 1916"
-          },
-          {
-            "name": "Продвижение на запад",
-            "date": "Август 1916"
-          }
+          [49.350, 25.800],
+          [49.200, 25.600]
         ],
         "army": "7-я армия",
         "commander": "Генерал Д.Г. Щербачёв",
         "strength": "~140,000 человек",
-        "artillery": "320 орудий",
-        "period": "4 июня - сентябрь 1916",
-        "advance_depth": "80 км"
+        "period": "4-15 июня 1916",
+        "advance_depth": "~25 км",
+        "operation_phase": "lutsk_breakthrough",
+        "description": "Короткая стрела из полосы Язловец на запад (прорыв ограничен)",
+        "arrow_type": "short"
       },
       {
-        "id": "3rd_army_advance",
-        "name": "Наступление 3-й армии",
+        "id": "lutsk_breakthrough_9th_army",
+        "name": "9-я армия: Черновцы → Коломыя → предгорья Карпат",
+        "name_en": "9th Army: Chernivtsi → Kolomyia → Carpathian foothills",
         "path": [
-          [51.339, 26.603],
+          [48.700, 26.500],
+          [48.292, 25.936],
+          [48.522, 25.038],
+          [48.156, 25.168]
+        ],
+        "army": "9-я армия",
+        "commander": "Генерал П.А. Лечицкий",
+        "strength": "~120,000 человек",
+        "period": "4-15 июня 1916",
+        "advance_depth": "120 км",
+        "operation_phase": "lutsk_breakthrough",
+        "description": "Длинная южная стрела. Разгром австрийцев в Буковине.",
+        "arrow_type": "long"
+      },
+      {
+        "id": "kovel_offensive_8th_army",
+        "name": "8-я армия: наступление на Ковель до р. Стоход",
+        "name_en": "8th Army: Advance on Kovel to Stokhod River",
+        "path": [
+          [50.747, 25.325],
+          [51.000, 25.000],
+          [51.216, 24.709]
+        ],
+        "army": "8-я армия",
+        "commander": "Генерал А.М. Каледин",
+        "strength": "~150,000 человек",
+        "period": "5-14 июля 1916",
+        "advance_depth": "~50 км",
+        "operation_phase": "kovel_offensive",
+        "description": "Стрела упирается в Стоход, пометка «остановлено»",
+        "arrow_type": "stopped",
+        "note": "остановлено на р. Стоход"
+      },
+      {
+        "id": "kovel_offensive_3rd_army",
+        "name": "3-я армия: наступление параллельно 8-й армии",
+        "name_en": "3rd Army: Advance parallel to 8th Army",
+        "path": [
+          [51.100, 25.800],
           [51.216, 24.709]
         ],
         "army": "3-я армия",
         "commander": "Генерал Л.В. Леш",
         "strength": "~100,000 человек",
-        "period": "4 июня - август 1916",
-        "advance_depth": "50 км"
+        "period": "5-14 июля 1916",
+        "advance_depth": "~45 км",
+        "operation_phase": "kovel_offensive",
+        "description": "Параллельная стрела севернее 8-й армии",
+        "arrow_type": "parallel"
+      },
+      {
+        "id": "enemy_counterattack_kovel",
+        "name": "Контрудар противника из Ковеля",
+        "name_en": "Enemy counterattack from Kovel",
+        "path": [
+          [51.216, 24.709],
+          [50.900, 25.100],
+          [50.747, 25.325]
+        ],
+        "army": "Германо-австрийские войска",
+        "commander": "Генерал фон Линзинген",
+        "strength": "~80,000 человек",
+        "period": "16 июня 1916",
+        "operation_phase": "kovel_offensive",
+        "description": "Пунктир - контрудар противника из Ковеля обратно на Луцк",
+        "arrow_type": "counterattack",
+        "is_enemy": true
+      },
+      {
+        "id": "july_august_8th_army",
+        "name": "8-я армия: повторные атаки на Ковель",
+        "name_en": "8th Army: Repeated attacks on Kovel",
+        "path": [
+          [51.000, 25.000],
+          [51.180, 24.730],
+          [51.216, 24.709]
+        ],
+        "army": "8-я армия", 
+        "commander": "Генерал А.М. Каледин",
+        "strength": "~150,000 человек",
+        "period": "28 июля – 5 сентября 1916",
+        "advance_depth": "~10 км",
+        "operation_phase": "july_august_offensive",
+        "description": "Несколько параллельных стрел, каждая обрывается ≈10 км до города",
+        "arrow_type": "multiple_stopped"
+      },
+      {
+        "id": "july_august_3rd_army",
+        "name": "3-я армия: штурм ковельского узла",
+        "name_en": "3rd Army: Assault on Kovel junction",
+        "path": [
+          [51.100, 25.200],
+          [51.190, 24.720]
+        ],
+        "army": "3-я армия",
+        "commander": "Генерал Л.В. Леш", 
+        "strength": "~100,000 человек",
+        "period": "28 июля – 5 сентября 1916",
+        "operation_phase": "july_august_offensive",
+        "description": "Параллельная стрела, обрывается у Ковеля",
+        "arrow_type": "stopped"
+      },
+      {
+        "id": "july_august_special_army",
+        "name": "Особая армия: участие в ковельских сражениях",
+        "name_en": "Special Army: Participation in Kovel battles",
+        "path": [
+          [51.200, 25.400],
+          [51.200, 24.730]
+        ],
+        "army": "Особая армия",
+        "commander": "Генерал В.М. Безобразов",
+        "strength": "~80,000 человек",
+        "period": "28 июля – 5 сентября 1916",
+        "operation_phase": "july_august_offensive",
+        "description": "Участие в 2-м и 3-м ковельских сражениях",
+        "arrow_type": "stopped"
+      },
+      {
+        "id": "july_august_11th_army",
+        "name": "11-я армия: взятие Бродов",
+        "name_en": "11th Army: Capture of Brody",
+        "path": [
+          [49.553, 25.595],
+          [50.086, 25.145],
+          [49.900, 24.800]
+        ],
+        "army": "11-я армия",
+        "commander": "Генерал В.В. Сахаров",
+        "strength": "~130,000 человек",
+        "period": "28 июля – 5 сентября 1916",
+        "advance_depth": "35 км", 
+        "operation_phase": "july_august_offensive",
+        "description": "Стрела длиной ≈35 км к подступам Львова",
+        "arrow_type": "medium"
+      },
+      {
+        "id": "july_august_7th_army",
+        "name": "7-я армия: дважды взятие Галича",
+        "name_en": "7th Army: Twice capture of Halych",
+        "path": [
+          [49.400, 25.200],
+          [49.125, 24.730],
+          [49.000, 24.600]
+        ],
+        "army": "7-я армия",
+        "commander": "Генерал Д.Г. Щербачёв",
+        "strength": "~140,000 человек",
+        "period": "28 июля – 5 сентября 1916",
+        "operation_phase": "july_august_offensive",
+        "description": "Стрела от Галича к западу к Гнилой Липе",
+        "arrow_type": "westward"
+      },
+      {
+        "id": "july_august_9th_army",
+        "name": "9-я армия: штурм Станислава",
+        "name_en": "9th Army: Assault on Stanisław",
+        "path": [
+          [48.292, 25.936],
+          [48.923, 24.709],
+          [48.800, 24.500]
+        ],
+        "army": "9-я армия",
+        "commander": "Генерал П.А. Лечицкий",
+        "strength": "~120,000 человек",
+        "period": "28 июля – 5 сентября 1916",
+        "operation_phase": "july_august_offensive",
+        "description": "Черновцы → Станислав → линии Карпат. 11 августа штурмом взят Станислав",
+        "arrow_type": "to_carpathians"
+      },
+      {
+        "id": "september_7th_army",
+        "name": "7-я армия: прорыв на Гнилой Липе",
+        "name_en": "7th Army: Breakthrough at Gnila Lipa",
+        "path": [
+          [49.125, 24.730],
+          [49.000, 24.600],
+          [49.050, 24.550]
+        ],
+        "army": "7-я армия",
+        "commander": "Генерал Д.Г. Щербачёв",
+        "strength": "~140,000 человек",
+        "period": "6-20 сентября 1916",
+        "operation_phase": "september_battles",
+        "description": "Стрела с ответной кривой контратаки. Прорыв 23 авг./5 сен., затем откат",
+        "arrow_type": "with_counterattack"
+      },
+      {
+        "id": "september_11th_army",
+        "name": "11-я армия: атаки у Зборова",
+        "name_en": "11th Army: Attacks near Zborov",
+        "path": [
+          [50.086, 25.145],
+          [49.664, 25.142]
+        ],
+        "army": "11-я армия",
+        "commander": "Генерал В.В. Сахаров",
+        "strength": "~130,000 человек",
+        "period": "6-20 сентября 1916",
+        "operation_phase": "september_battles",
+        "description": "Короткая стрела Броды → Зборов, безуспешные атаки",
+        "arrow_type": "short_unsuccessful"
+      },
+      {
+        "id": "september_9th_army",
+        "name": "9-я армия: бои в Лесистых Карпатах",
+        "name_en": "9th Army: Battles in Wooded Carpathians",
+        "path": [
+          [48.800, 24.500],
+          [48.600, 24.300],
+          [48.400, 24.200],
+          [47.800, 24.800],
+          [47.371, 25.362]
+        ],
+        "army": "9-я армия",
+        "commander": "Генерал П.А. Лечицкий",
+        "strength": "~120,000 человек",
+        "period": "6-20 сентября 1916",
+        "operation_phase": "september_battles",
+        "description": "Стрелы-«зигзаги» в Карпатах (Кукуль → Капул → Дорна-Ватра)",
+        "arrow_type": "zigzag_mountains"
+      },
+      {
+        "id": "september_8th_army",
+        "name": "8-я армия: 4-е ковельское сражение",
+        "name_en": "8th Army: 4th Kovel battle",
+        "path": [
+          [51.000, 25.000],
+          [50.717, 24.783],
+          [50.733, 24.367],
+          [50.622, 24.792],
+          [50.633, 24.750]
+        ],
+        "army": "8-я армия",
+        "commander": "Генерал А.М. Каледин",
+        "strength": "~150,000 человек", 
+        "period": "6-20 сентября 1916",
+        "operation_phase": "september_battles",
+        "description": "Серия мелких стрел от Стохода к Шельвову, Бубнову, Корытнице (пунктир = вклинения)",
+        "arrow_type": "multiple_small"
       }
     ],
     "front_lines": [

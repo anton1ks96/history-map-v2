@@ -48,24 +48,61 @@ const BattleMarkers = ({ battles, onBattleClick }) => {
 };
 
 // Компонент для отображения движения войск
-const TroopMovements = ({ movements, selectedMovement }) => {
-  return movements.map((movement) => {
+const TroopMovements = ({ movements, selectedMovement, selectedPhase }) => {
+  // Фильтруем движения по выбранной фазе
+  const filteredMovements = selectedPhase ? 
+    movements.filter(movement => movement.operation_phase === selectedPhase) : 
+    movements;
+
+  return filteredMovements.map((movement) => {
     const isSelected = selectedMovement?.id === movement.id;
+    const isEnemyMovement = movement.is_enemy;
+    
+    // Определяем цвет и стиль стрелки в зависимости от типа
+    let color = isEnemyMovement ? '#dc2626' : '#3b82f6';
+    let dashArray = null;
+    let weight = 4;
+    
+    if (movement.arrow_type === 'wide') {
+      weight = 8;
+      color = '#1e40af';
+    } else if (movement.arrow_type === 'counterattack') {
+      dashArray = '10, 5';
+      color = '#dc2626';
+    } else if (movement.arrow_type === 'stopped' || movement.arrow_type === 'multiple_stopped') {
+      dashArray = '15, 10';
+      color = '#f59e0b';
+    } else if (movement.arrow_type === 'short_unsuccessful') {
+      dashArray = '5, 5';
+      color = '#ef4444';
+    }
+    
+    if (isSelected) {
+      weight = weight + 2;
+    }
+    
     return (
       <React.Fragment key={movement.id}>
         <Polyline
           positions={movement.path}
-          color={isSelected ? '#1e40af' : '#3b82f6'}
-          weight={isSelected ? 6 : 4}
-          opacity={isSelected ? 1 : 0.7}
-          dashArray={isSelected ? null : '10, 10'}
+          color={color}
+          weight={weight}
+          opacity={isSelected ? 1 : 0.8}
+          dashArray={dashArray}
         >
           <Popup>
             <div className="p-2">
               <h3 className="font-bold text-lg mb-2">{movement.name}</h3>
               <p><strong>Армия:</strong> {movement.army}</p>
+              <p><strong>Командующий:</strong> {movement.commander}</p>
               <p><strong>Численность:</strong> {movement.strength}</p>
               <p><strong>Период:</strong> {movement.period}</p>
+              {movement.description && (
+                <p><strong>Описание:</strong> {movement.description}</p>
+              )}
+              {movement.note && (
+                <p><strong>Примечание:</strong> {movement.note}</p>
+              )}
             </div>
           </Popup>
         </Polyline>
@@ -75,7 +112,7 @@ const TroopMovements = ({ movements, selectedMovement }) => {
           icon={L.divIcon({
             html: `<div style="transform: rotate(${getArrowRotation(movement.path)}deg);">
               <svg width="30" height="30" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 2 L22 12 L12 22 L12 16 L2 16 L2 8 L12 8 Z" fill="${isSelected ? '#1e40af' : '#3b82f6'}"/>
+                <path d="M12 2 L22 12 L12 22 L12 16 L2 16 L2 8 L12 8 Z" fill="${color}"/>
               </svg>
             </div>`,
             className: 'arrow-icon',
@@ -282,13 +319,22 @@ export default function BrusilovOffensiveMap() {
   const [selectedBattle, setSelectedBattle] = useState(null);
   const [selectedMovement, setSelectedMovement] = useState(null);
   const [selectedRiver, setSelectedRiver] = useState(null);
-  const [showInitialFront, setShowInitialFront] = useState(true);
-  const [showFinalFront, setShowFinalFront] = useState(true);
-  const [mapLayer, setMapLayer] = useState('modern');
+
+
   const [showLegend, setShowLegend] = useState(true);
   const [showHeader, setShowHeader] = useState(true);
   const [showIntro, setShowIntro] = useState(true);
   const [showMainContent, setShowMainContent] = useState(false);
+  const [selectedPhase, setSelectedPhase] = useState('');
+  
+  // Фазы операции для выпадающего списка
+  const operationPhases = [
+    { value: '', label: 'Все ходы операции' },
+    { value: 'lutsk_breakthrough', label: '1. «Луцкий» прорыв (4-15 июня)' },
+    { value: 'kovel_offensive', label: '2. Наступление на Ковель (5-14 июля)' },
+    { value: 'july_august_offensive', label: '3. Июль-августовское наступление (28 июля – 5 сентября)' },
+    { value: 'september_battles', label: '4. Заключительные бои сентября (6-20 сентября)' }
+  ];
   
   // Состояния для анимаций модальных окон
   const [isBattleModalClosing, setIsBattleModalClosing] = useState(false);
@@ -353,10 +399,7 @@ export default function BrusilovOffensiveMap() {
     [54.0, 30.0]  // северо-восток
   ];
 
-  const tileLayers = {
-    modern: 'https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png',
-    historical: brusilovData.map_config.historical_map_url
-  };
+
 
   return (
     <div style={{ 
@@ -451,12 +494,13 @@ export default function BrusilovOffensiveMap() {
             />
             <FrontLines
               frontLines={brusilovData.front_lines}
-              showInitial={showInitialFront}
-              showFinal={showFinalFront}
+              showInitial={true}
+              showFinal={true}
             />
             <TroopMovements
               movements={brusilovData.troop_movements}
               selectedMovement={selectedMovement}
+              selectedPhase={selectedPhase}
             />
             <BattleMarkers
               battles={brusilovData.battles}
@@ -576,9 +620,60 @@ export default function BrusilovOffensiveMap() {
                   justifyContent: 'center',
                   flexShrink: 0
                 }}>
+                  <div style={{ width: '26px', height: '6px', backgroundColor: '#1e40af', borderRadius: '2px' }}></div>
+                </div>
+                <span style={{ color: 'rgba(255, 255, 255, 0.9)', lineHeight: '1.2' }}>Главные удары</span>
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minHeight: '24px' }}>
+                <div style={{ 
+                  width: '30px', 
+                  height: '24px', 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  justifyContent: 'center',
+                  flexShrink: 0
+                }}>
                   <div style={{ width: '26px', height: '4px', backgroundColor: '#3b82f6', borderRadius: '2px' }}></div>
                 </div>
-                <span style={{ color: 'rgba(255, 255, 255, 0.9)', lineHeight: '1.2' }}>Направления наступления</span>
+                <span style={{ color: 'rgba(255, 255, 255, 0.9)', lineHeight: '1.2' }}>Успешные наступления</span>
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minHeight: '24px' }}>
+                <div style={{ 
+                  width: '30px', 
+                  height: '24px', 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  justifyContent: 'center',
+                  flexShrink: 0
+                }}>
+                  <div style={{ 
+                    width: '26px', 
+                    height: '4px', 
+                    backgroundColor: '#f59e0b', 
+                    borderRadius: '2px',
+                    background: 'repeating-linear-gradient(90deg, #f59e0b 0, #f59e0b 6px, transparent 6px, transparent 10px)'
+                  }}></div>
+                </div>
+                <span style={{ color: 'rgba(255, 255, 255, 0.9)', lineHeight: '1.2' }}>Остановленные атаки</span>
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minHeight: '24px' }}>
+                <div style={{ 
+                  width: '30px', 
+                  height: '24px', 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  justifyContent: 'center',
+                  flexShrink: 0
+                }}>
+                  <div style={{ 
+                    width: '26px', 
+                    height: '4px', 
+                    backgroundColor: '#dc2626', 
+                    borderRadius: '2px',
+                    background: 'repeating-linear-gradient(90deg, #dc2626 0, #dc2626 4px, transparent 4px, transparent 8px)'
+                  }}></div>
+                </div>
+                <span style={{ color: 'rgba(255, 255, 255, 0.9)', lineHeight: '1.2' }}>Контрудары противника</span>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minHeight: '24px' }}>
                 <div style={{ 
@@ -685,11 +780,11 @@ export default function BrusilovOffensiveMap() {
             gap: '20px',
             flexWrap: 'wrap'
           }}>
-            {/* Выбор карты */}
+            {/* Выбор хода операции */}
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
               <select
-                value={mapLayer}
-                onChange={(e) => setMapLayer(e.target.value)}
+                value={selectedPhase}
+                onChange={(e) => setSelectedPhase(e.target.value)}
                 className="control-element"
                 style={{
                   background: 'rgba(26, 26, 46, 0.9)',
@@ -708,79 +803,21 @@ export default function BrusilovOffensiveMap() {
                   transition: 'all 0.3s ease',
                   appearance: 'none',
                   WebkitAppearance: 'none',
-                  MozAppearance: 'none'
+                  MozAppearance: 'none',
+                  minWidth: '280px'
                 }}
               >
-                <option value="modern" style={{ backgroundColor: '#1a1a2e', color: '#ffffff' }}>Современная карта</option>
-                <option value="historical" style={{ backgroundColor: '#1a1a2e', color: '#ffffff' }}>Историческая карта</option>
+                {operationPhases.map(phase => (
+                  <option key={phase.value} value={phase.value} style={{ backgroundColor: '#1a1a2e', color: '#ffffff' }}>
+                    {phase.label}
+                  </option>
+                ))}
               </select>
             </div>
 
-            {/* Разделитель */}
-            <div style={{ width: '1px', height: '20px', background: 'rgba(255, 255, 255, 0.2)' }}></div>
 
-            {/* Линии фронта */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-              <label className="control-element" style={{ 
-                display: 'flex', 
-                alignItems: 'center', 
-                gap: '8px', 
-                cursor: 'pointer',
-                padding: '8px 12px',
-                borderRadius: '12px',
-                border: '1px solid rgba(255, 255, 255, 0.2)',
-                background: 'rgba(26, 26, 46, 0.9)',
-                transition: 'all 0.3s ease',
-                backdropFilter: 'blur(20px)',
-                boxShadow: '0 8px 25px rgba(0, 0, 0, 0.2)'
-              }}>
-                <input
-                  type="checkbox"
-                  checked={showInitialFront}
-                  onChange={(e) => setShowInitialFront(e.target.checked)}
-                  style={{ accentColor: '#dc2626' }}
-                />
-                <span style={{ 
-                  color: '#ffffff', 
-                  fontSize: '14px', 
-                  fontWeight: '500',
-                  letterSpacing: '0.5px',
-                  fontFamily: 'SF Pro Text, Inter, -apple-system, BlinkMacSystemFont, sans-serif'
-                }}>
-                  4 июня
-                </span>
-              </label>
 
-              <label className="control-element" style={{ 
-                display: 'flex', 
-                alignItems: 'center', 
-                gap: '8px', 
-                cursor: 'pointer',
-                padding: '8px 12px',
-                borderRadius: '12px',
-                border: '1px solid rgba(255, 255, 255, 0.2)',
-                background: 'rgba(26, 26, 46, 0.9)',
-                transition: 'all 0.3s ease',
-                backdropFilter: 'blur(20px)',
-                boxShadow: '0 8px 25px rgba(0, 0, 0, 0.2)'
-              }}>
-                <input
-                  type="checkbox"
-                  checked={showFinalFront}
-                  onChange={(e) => setShowFinalFront(e.target.checked)}
-                  style={{ accentColor: '#16a34a' }}
-                />
-                <span style={{ 
-                  color: '#ffffff', 
-                  fontSize: '14px', 
-                  fontWeight: '500',
-                  letterSpacing: '0.5px',
-                  fontFamily: 'SF Pro Text, Inter, -apple-system, BlinkMacSystemFont, sans-serif'
-                }}>
-                  20 сентября
-                </span>
-              </label>
-            </div>
+
           </div>
         </div>
       </div>
