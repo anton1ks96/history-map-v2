@@ -286,6 +286,7 @@ export default function BrusilovOffensiveMap() {
   const [showFinalFront, setShowFinalFront] = useState(true);
   const [mapLayer, setMapLayer] = useState('modern');
   const [showLegend, setShowLegend] = useState(true);
+  const [showHeader, setShowHeader] = useState(true);
   const [showIntro, setShowIntro] = useState(true);
   const [showMainContent, setShowMainContent] = useState(false);
   
@@ -386,7 +387,15 @@ export default function BrusilovOffensiveMap() {
             padding: '24px 32px', 
             boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
             borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
-            position: 'relative'
+            position: 'relative',
+            opacity: showMainContent ? 1 : 0,
+            transition: showMainContent 
+              ? 'transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.2s' 
+              : 'opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.2s',
+            transform: showHeader ? 'translateY(0px)' : 'translateY(-150px)',
+            willChange: 'transform, opacity',
+            zIndex: 10,
+            pointerEvents: showHeader ? 'auto' : 'none'
           }}>
             <h1 style={{ 
               fontSize: '36px', 
@@ -415,7 +424,16 @@ export default function BrusilovOffensiveMap() {
             </p>
           </header>
 
-          <div style={{ flex: 1, width: '100%', height: '100%', padding: '20px', boxSizing: 'border-box' }}>
+          <div style={{ 
+            flex: 1, 
+            width: '100%', 
+            height: '100%', 
+            padding: '20px', 
+            paddingTop: '20px',
+            boxSizing: 'border-box',
+            transition: 'margin-top 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+            marginTop: showHeader ? '0px' : '-130px'
+          }}>
         <div style={{ width: '100%', height: '100%', position: 'relative', borderRadius: '16px', overflow: 'hidden', boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)' }}>
           <MapContainer
             center={mapCenter}
@@ -451,7 +469,10 @@ export default function BrusilovOffensiveMap() {
           {/* Кнопка управления легендой */}
           <button
             className="legend-button"
-            onClick={() => setShowLegend(!showLegend)}
+            onClick={() => {
+              setShowLegend(!showLegend);
+              setShowHeader(!showHeader);
+            }}
             style={{
               position: 'absolute',
               bottom: '24px',
@@ -470,7 +491,7 @@ export default function BrusilovOffensiveMap() {
               height: '48px',
               boxShadow: '0 8px 25px rgba(0, 0, 0, 0.2)'
             }}
-            title={showLegend ? "Скрыть легенду" : "Показать легенду"}
+            title={showLegend ? "Скрыть легенду и заголовок" : "Показать легенду и заголовок"}
           >
             <svg 
               width="20" 
@@ -669,8 +690,9 @@ export default function BrusilovOffensiveMap() {
               <select
                 value={mapLayer}
                 onChange={(e) => setMapLayer(e.target.value)}
+                className="control-element"
                 style={{
-                  background: 'rgba(255, 255, 255, 0.1)',
+                  background: 'rgba(26, 26, 46, 0.9)',
                   border: '1px solid rgba(255, 255, 255, 0.2)',
                   borderRadius: '12px',
                   padding: '10px 16px',
@@ -681,7 +703,12 @@ export default function BrusilovOffensiveMap() {
                   letterSpacing: '0.5px',
                   fontFamily: 'SF Pro Text, Inter, -apple-system, BlinkMacSystemFont, sans-serif',
                   cursor: 'pointer',
-                  backdropFilter: 'blur(10px)'
+                  backdropFilter: 'blur(20px)',
+                  boxShadow: '0 8px 25px rgba(0, 0, 0, 0.2)',
+                  transition: 'all 0.3s ease',
+                  appearance: 'none',
+                  WebkitAppearance: 'none',
+                  MozAppearance: 'none'
                 }}
               >
                 <option value="modern" style={{ backgroundColor: '#1a1a2e', color: '#ffffff' }}>Современная карта</option>
@@ -694,17 +721,18 @@ export default function BrusilovOffensiveMap() {
 
             {/* Линии фронта */}
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-              <label style={{ 
+              <label className="control-element" style={{ 
                 display: 'flex', 
                 alignItems: 'center', 
                 gap: '8px', 
                 cursor: 'pointer',
                 padding: '8px 12px',
                 borderRadius: '12px',
-                border: '1px solid rgba(255, 255, 255, 0.1)',
-                background: 'rgba(255, 255, 255, 0.05)',
-                transition: 'all 0.2s ease',
-                backdropFilter: 'blur(10px)'
+                border: '1px solid rgba(255, 255, 255, 0.2)',
+                background: 'rgba(26, 26, 46, 0.9)',
+                transition: 'all 0.3s ease',
+                backdropFilter: 'blur(20px)',
+                boxShadow: '0 8px 25px rgba(0, 0, 0, 0.2)'
               }}>
                 <input
                   type="checkbox"
@@ -723,17 +751,18 @@ export default function BrusilovOffensiveMap() {
                 </span>
               </label>
 
-              <label style={{ 
+              <label className="control-element" style={{ 
                 display: 'flex', 
                 alignItems: 'center', 
                 gap: '8px', 
                 cursor: 'pointer',
                 padding: '8px 12px',
                 borderRadius: '12px',
-                border: '1px solid rgba(255, 255, 255, 0.1)',
-                background: 'rgba(255, 255, 255, 0.05)',
-                transition: 'all 0.2s ease',
-                backdropFilter: 'blur(10px)'
+                border: '1px solid rgba(255, 255, 255, 0.2)',
+                background: 'rgba(26, 26, 46, 0.9)',
+                transition: 'all 0.3s ease',
+                backdropFilter: 'blur(20px)',
+                boxShadow: '0 8px 25px rgba(0, 0, 0, 0.2)'
               }}>
                 <input
                   type="checkbox"
@@ -875,27 +904,6 @@ export default function BrusilovOffensiveMap() {
                 </p>
               </div>
             )}
-
-            <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '12px' }}>
-              <button
-                onClick={closeBattleModal}
-                style={{
-                  backgroundColor: '#3b82f6',
-                  color: 'white',
-                  border: 'none',
-                  padding: '12px 24px',
-                  borderRadius: '8px',
-                  cursor: 'pointer',
-                  fontSize: '14px',
-                  fontWeight: '500',
-                  transition: 'background-color 0.2s'
-                }}
-                onMouseOver={(e) => e.target.style.backgroundColor = '#2563eb'}
-                onMouseOut={(e) => e.target.style.backgroundColor = '#3b82f6'}
-              >
-                Закрыть
-              </button>
-            </div>
           </div>
         </div>
       )}
@@ -977,27 +985,6 @@ export default function BrusilovOffensiveMap() {
                 </p>
               </div>
             )}
-
-            <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '12px' }}>
-              <button
-                onClick={closeRiverModal}
-                style={{
-                  backgroundColor: '#4A90E2',
-                  color: 'white',
-                  border: 'none',
-                  padding: '12px 24px',
-                  borderRadius: '8px',
-                  cursor: 'pointer',
-                  fontSize: '14px',
-                  fontWeight: '500',
-                  transition: 'background-color 0.2s'
-                }}
-                onMouseOver={(e) => e.target.style.backgroundColor = '#357ABD'}
-                onMouseOut={(e) => e.target.style.backgroundColor = '#4A90E2'}
-              >
-                Закрыть
-              </button>
-            </div>
           </div>
         </div>
       )}
