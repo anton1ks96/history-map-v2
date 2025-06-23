@@ -518,6 +518,57 @@ export default function BrusilovOffensiveMap() {
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
             />
 
+            {/* Отображение линий фронта */}
+            <FrontLines 
+              frontLines={brusilovData.front_lines || []} 
+              showInitial={true}
+              showFinal={false}
+            />
+
+            {/* Стрелка 8-й армии к Луцку */}
+            <Polyline
+              positions={[
+                [50.58, 25.54],
+                [50.747, 25.325]
+              ]}
+              color="#1e40af"
+              weight={6}
+              opacity={0.9}
+            />
+            <Marker
+              position={[50.747, 25.325]}
+              icon={L.divIcon({
+                html: `<div style="transform: rotate(-35deg);">
+                  <svg width="30" height="30" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2 L22 12 L12 22 L12 16 L2 16 L2 8 L12 8 Z" fill="#1e40af"/>
+                  </svg>
+                </div>`,
+                className: 'army-arrow',
+                iconSize: [30, 30],
+                iconAnchor: [15, 15]
+              })}
+            >
+              <Popup>
+                <div style={{ padding: '8px', maxWidth: '250px' }}>
+                  <h3 style={{ margin: '0 0 8px 0', fontSize: '16px', fontWeight: 'bold' }}>
+                    8-я армия
+                  </h3>
+                  <p style={{ margin: '4px 0' }}>
+                    <strong>Командующий:</strong> Генерал А.М. Каледин
+                  </p>
+                  <p style={{ margin: '4px 0' }}>
+                    <strong>Дата:</strong> 4-7 июня 1916
+                  </p>
+                  <p style={{ margin: '4px 0' }}>
+                    <strong>Результат:</strong> Луцк занят 7 июня
+                  </p>
+                  <p style={{ margin: '4px 0' }}>
+                    Главный удар Брусиловского наступления
+                  </p>
+                </div>
+              </Popup>
+            </Marker>
+
             {/* Отображение городов */}
             <CityMarkers cities={citiesData.cities || []} />
 
@@ -610,6 +661,57 @@ export default function BrusilovOffensiveMap() {
               Легенда
             </h3>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', fontSize: '14px', color: 'rgba(255, 255, 255, 0.8)', fontWeight: '400' }}>
+
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minHeight: '24px' }}>
+                <div style={{ 
+                  width: '30px', 
+                  height: '24px', 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  justifyContent: 'center',
+                  flexShrink: 0
+                }}>
+                  <div style={{ 
+                    width: '26px', 
+                    height: '4px', 
+                    backgroundColor: '#dc2626', 
+                    borderRadius: '2px',
+                    background: 'repeating-linear-gradient(90deg, #dc2626 0, #dc2626 8px, transparent 8px, transparent 12px)'
+                  }}></div>
+                </div>
+                <span style={{ color: 'rgba(255, 255, 255, 0.9)', lineHeight: '1.2' }}>Линия фронта на 4 июня</span>
+              </div>
+
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minHeight: '24px' }}>
+                <div style={{ 
+                  width: '30px', 
+                  height: '24px', 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  justifyContent: 'center',
+                  flexShrink: 0
+                }}>
+                  <div style={{ 
+                    width: '20px', 
+                    height: '4px', 
+                    backgroundColor: '#1e40af', 
+                    borderRadius: '2px',
+                    position: 'relative'
+                  }}>
+                    <div style={{
+                      width: '0',
+                      height: '0',
+                      borderLeft: '4px solid #1e40af',
+                      borderTop: '3px solid transparent',
+                      borderBottom: '3px solid transparent',
+                      position: 'absolute',
+                      right: '-4px',
+                      top: '-1px'
+                    }}></div>
+                  </div>
+                </div>
+                <span style={{ color: 'rgba(255, 255, 255, 0.9)', lineHeight: '1.2' }}>8-я армия к Луцку</span>
+              </div>
 
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minHeight: '24px' }}>
                 <div style={{ 
