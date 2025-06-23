@@ -705,7 +705,10 @@ export default function BrusilovOffensiveMap() {
                   cursor: 'pointer',
                   backdropFilter: 'blur(20px)',
                   boxShadow: '0 8px 25px rgba(0, 0, 0, 0.2)',
-                  transition: 'all 0.3s ease'
+                  transition: 'all 0.3s ease',
+                  appearance: 'none',
+                  WebkitAppearance: 'none',
+                  MozAppearance: 'none'
                 }}
               >
                 <option value="modern" style={{ backgroundColor: '#1a1a2e', color: '#ffffff' }}>Современная карта</option>
@@ -901,27 +904,6 @@ export default function BrusilovOffensiveMap() {
                 </p>
               </div>
             )}
-
-            <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '12px' }}>
-              <button
-                onClick={closeBattleModal}
-                style={{
-                  backgroundColor: '#3b82f6',
-                  color: 'white',
-                  border: 'none',
-                  padding: '12px 24px',
-                  borderRadius: '8px',
-                  cursor: 'pointer',
-                  fontSize: '14px',
-                  fontWeight: '500',
-                  transition: 'background-color 0.2s'
-                }}
-                onMouseOver={(e) => e.target.style.backgroundColor = '#2563eb'}
-                onMouseOut={(e) => e.target.style.backgroundColor = '#3b82f6'}
-              >
-                Закрыть
-              </button>
-            </div>
           </div>
         </div>
       )}
@@ -1003,27 +985,6 @@ export default function BrusilovOffensiveMap() {
                 </p>
               </div>
             )}
-
-            <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '12px' }}>
-              <button
-                onClick={closeRiverModal}
-                style={{
-                  backgroundColor: '#4A90E2',
-                  color: 'white',
-                  border: 'none',
-                  padding: '12px 24px',
-                  borderRadius: '8px',
-                  cursor: 'pointer',
-                  fontSize: '14px',
-                  fontWeight: '500',
-                  transition: 'background-color 0.2s'
-                }}
-                onMouseOver={(e) => e.target.style.backgroundColor = '#357ABD'}
-                onMouseOut={(e) => e.target.style.backgroundColor = '#4A90E2'}
-              >
-                Закрыть
-              </button>
-            </div>
           </div>
         </div>
       )}
