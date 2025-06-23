@@ -524,49 +524,49 @@ export default function BrusilovOffensiveMap() {
                   showFinal={false}
                 />
 
-                {/* Стрелка 8-й армии к Луцку */}
-                <Polyline
-                  positions={[
-                    [50.58, 25.54],
-                    [50.747, 25.325]
-                  ]}
-                  color="#1e40af"
-                  weight={6}
-                  opacity={0.9}
-                />
-                <Marker
-                  position={[50.747, 25.325]}
-                  icon={L.divIcon({
-                    html: `<div style="transform: rotate(232deg);">
+                            {/* Стрелка 8-й армии к Луцку */}
+            <Polyline
+              positions={[
+                [50.58, 25.54],
+                [50.747, 25.325]
+              ]}
+              color="#1e40af"
+              weight={6}
+              opacity={0.9}
+            >
+              <Popup>
+                <div style={{ padding: '8px', maxWidth: '250px' }}>
+                  <h3 style={{ margin: '0 0 8px 0', fontSize: '16px', fontWeight: 'bold' }}>
+                    8-я армия к Луцку
+                  </h3>
+                  <p style={{ margin: '4px 0' }}>
+                    <strong>Командующий:</strong> Генерал А.М. Каледин
+                  </p>
+                  <p style={{ margin: '4px 0' }}>
+                    <strong>Дата:</strong> 4-7 июня 1916
+                  </p>
+                  <p style={{ margin: '4px 0' }}>
+                    <strong>Результат:</strong> Луцк занят 7 июня
+                  </p>
+                  <p style={{ margin: '4px 0' }}>
+                    Главный удар Брусиловского наступления
+                  </p>
+                </div>
+              </Popup>
+            </Polyline>
+            <Marker
+              position={[50.747, 25.325]}
+              icon={L.divIcon({
+                html: `<div style="transform: rotate(232deg);">
                   <svg width="30" height="30" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path d="M8 5 L19 12 L8 19 L8 15 L1 15 L1 9 L8 9 Z" fill="#1e40af" stroke="#ffffff" stroke-width="0.5"/>
                   </svg>
                 </div>`,
-                    className: 'army-arrow',
-                    iconSize: [30, 30],
-                    iconAnchor: [15, 15]
-                  })}
-                >
-                  <Popup>
-                    <div style={{ padding: '8px', maxWidth: '250px' }}>
-                      <h3 style={{ margin: '0 0 8px 0', fontSize: '16px', fontWeight: 'bold' }}>
-                        8-я армия
-                      </h3>
-                      <p style={{ margin: '4px 0' }}>
-                        <strong>Командующий:</strong> Генерал А.М. Каледин
-                      </p>
-                      <p style={{ margin: '4px 0' }}>
-                        <strong>Дата:</strong> 4-7 июня 1916
-                      </p>
-                      <p style={{ margin: '4px 0' }}>
-                        <strong>Результат:</strong> Луцк занят 7 июня
-                      </p>
-                      <p style={{ margin: '4px 0' }}>
-                        Главный удар Брусиловского наступления
-                      </p>
-                    </div>
-                  </Popup>
-                </Marker>
+                className: 'army-arrow',
+                iconSize: [30, 30],
+                iconAnchor: [15, 15]
+              })}
+            />
 
                             {/* Стрелка 8-й армии к Дубно */}
             <Polyline
@@ -577,19 +577,6 @@ export default function BrusilovOffensiveMap() {
               color="#1e40af"
               weight={5}
               opacity={0.9}
-            />
-            <Marker
-              position={[50.4171, 25.7578]}
-              icon={L.divIcon({
-                html: `<div style="transform: rotate(50deg);">
-                  <svg width="28" height="28" viewBox="2 -1 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M8 5 L19 12 L8 19 L8 15 L1 15 L1 9 L8 9 Z" fill="#1e40af" stroke="#ffffff" stroke-width="0.5"/>
-                  </svg>
-                </div>`,
-                className: 'army-arrow',
-                iconSize: [28, 28],
-                iconAnchor: [14, 14]
-              })}
             >
               <Popup>
                 <div style={{ padding: '8px', maxWidth: '250px' }}>
@@ -613,7 +600,20 @@ export default function BrusilovOffensiveMap() {
                   </p>
                 </div>
               </Popup>
-            </Marker>
+            </Polyline>
+            <Marker
+              position={[50.4171, 25.7578]}
+              icon={L.divIcon({
+                html: `<div style="transform: rotate(50deg);">
+                  <svg width="28" height="28" viewBox="2 -1 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8 5 L19 12 L8 19 L8 15 L1 15 L1 9 L8 9 Z" fill="#1e40af" stroke="#ffffff" stroke-width="0.5"/>
+                  </svg>
+                </div>`,
+                className: 'army-arrow',
+                iconSize: [28, 28],
+                iconAnchor: [14, 14]
+              })}
+            />
 
                 {/* Отображение городов */}
                 <CityMarkers cities={citiesData.cities || []} />
