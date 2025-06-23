@@ -489,25 +489,9 @@ export default function BrusilovOffensiveMap() {
             maxZoom={12}
           >
             <TileLayer
-              url="https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png"
+              url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
             />
-            <FrontLines
-              frontLines={brusilovData.front_lines}
-              showInitial={true}
-              showFinal={true}
-            />
-            <TroopMovements
-              movements={brusilovData.troop_movements}
-              selectedMovement={selectedMovement}
-              selectedPhase={selectedPhase}
-            />
-            <BattleMarkers
-              battles={brusilovData.battles}
-              onBattleClick={setSelectedBattle}
-            />
-            <CityMarkers cities={brusilovData.cities} />
-            <Rivers rivers={brusilovData.rivers} onRiverClick={setSelectedRiver} />
           </MapContainer>
 
           {/* Кнопка управления легендой */}
