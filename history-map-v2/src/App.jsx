@@ -615,6 +615,96 @@ export default function BrusilovOffensiveMap() {
               })}
             />
 
+                {/* Контрудар австро-германских войск - северное направление */}
+                <Polyline
+                  positions={[
+                    [50.77, 25.07], // 55.75399400, 37.62209300
+                    [50.754, 25.262]
+                  ]}
+                  color="#dc2626"
+                  weight={5}
+                  opacity={0.9}
+                  dashArray="8, 4"
+                >
+                  <Popup>
+                    <div style={{ padding: '8px', maxWidth: '280px' }}>
+                      <h3 style={{ margin: '0 0 8px 0', fontSize: '16px', fontWeight: 'bold' }}>
+                        Контрудар австро-германских войск (ген. Линзинген)
+                      </h3>
+                      <p style={{ margin: '4px 0' }}>
+                        <strong>Командующий:</strong> Генерал А. фон Линзинген
+                      </p>
+                      <p style={{ margin: '4px 0' }}>
+                        <strong>Дата:</strong> 3 (16) июня 1916 г.
+                      </p>
+                      <p style={{ margin: '4px 0' }}>
+                        <strong>Направление:</strong> Северное направление к Луцку
+                      </p>
+                      <p style={{ margin: '4px 0' }}>
+                        Попытка отбить захваченный русскими Луцк
+                      </p>
+                    </div>
+                  </Popup>
+                </Polyline>
+                <Marker
+                  position={[50.754, 25.262]}
+                  icon={L.divIcon({
+                    html: `<div style="transform: rotate(9deg);">
+                      <svg width="28" height="28" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8 5 L19 12 L8 19 L8 15 L1 15 L1 9 L8 9 Z" fill="#dc2626" stroke="#ffffff" stroke-width="0.5"/>
+                      </svg>
+                    </div>`,
+                    className: 'counterattack-arrow',
+                    iconSize: [28, 28],
+                    iconAnchor: [14, 14]
+                  })}
+                />
+
+                {/* Контрудар австро-германских войск - южное направление */}
+                <Polyline
+                  positions={[
+                    [50.849, 25.133], 
+                    [50.802, 25.248] 
+                  ]}
+                  color="#dc2626"
+                  weight={5}
+                  opacity={0.9}
+                  dashArray="8, 4"
+                >
+                  <Popup>
+                    <div style={{ padding: '8px', maxWidth: '280px' }}>
+                      <h3 style={{ margin: '0 0 8px 0', fontSize: '16px', fontWeight: 'bold' }}>
+                        Контрудар австро-германских войск (ген. Линзинген)
+                      </h3>
+                      <p style={{ margin: '4px 0' }}>
+                        <strong>Командующий:</strong> Генерал А. фон Линзинген
+                      </p>
+                      <p style={{ margin: '4px 0' }}>
+                        <strong>Дата:</strong> 3 (16) июня 1916 г.
+                      </p>
+                      <p style={{ margin: '4px 0' }}>
+                        <strong>Направление:</strong> Южное направление к Луцку
+                      </p>
+                      <p style={{ margin: '4px 0' }}>
+                        Попытка отбить захваченный русскими Луцк
+                      </p>
+                    </div>
+                  </Popup>
+                </Polyline>
+                <Marker
+                  position={[50.802, 25.248]}
+                  icon={L.divIcon({
+                    html: `<div style="transform: rotate(36deg);">
+                      <svg width="28" height="28" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8 5 L19 12 L8 19 L8 15 L1 15 L1 9 L8 9 Z" fill="#dc2626" stroke="#ffffff" stroke-width="0.5"/>
+                      </svg>
+                    </div>`,
+                    className: 'counterattack-arrow',
+                    iconSize: [28, 28],
+                    iconAnchor: [14, 14]
+                  })}
+                />
+
                 {/* Отображение городов */}
                 <CityMarkers cities={citiesData.cities || []} />
 
@@ -799,6 +889,38 @@ export default function BrusilovOffensiveMap() {
                       }}></div>
                     </div>
                     <span style={{ color: 'rgba(255, 255, 255, 0.9)', lineHeight: '1.2' }}>Незахваченные города</span>
+                  </div>
+
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minHeight: '24px' }}>
+                    <div style={{ 
+                      width: '30px', 
+                      height: '24px', 
+                      display: 'flex', 
+                      alignItems: 'center', 
+                      justifyContent: 'center',
+                      flexShrink: 0
+                    }}>
+                      <div style={{ 
+                        width: '20px', 
+                        height: '4px', 
+                        backgroundColor: '#dc2626', 
+                        borderRadius: '2px',
+                        position: 'relative',
+                        background: 'repeating-linear-gradient(90deg, #dc2626 0, #dc2626 4px, transparent 4px, transparent 6px)'
+                      }}>
+                        <div style={{
+                          width: '0',
+                          height: '0',
+                          borderLeft: '4px solid #dc2626',
+                          borderTop: '3px solid transparent',
+                          borderBottom: '3px solid transparent',
+                          position: 'absolute',
+                          right: '-4px',
+                          top: '-1px'
+                        }}></div>
+                      </div>
+                    </div>
+                    <span style={{ color: 'rgba(255, 255, 255, 0.9)', lineHeight: '1.2' }}>Контрудар врага</span>
                   </div>
 
                 </div>
