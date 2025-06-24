@@ -101,8 +101,10 @@ const TroopMovements = ({ movements, selectedMovement, selectedPhase }) => {
                 movement.id === 'first_kovel_battle_koshevo' || movement.id === 'first_kovel_battle_torchin' ||
                 movement.id === 'first_kovel_battle_brody' || movement.id === 'first_kovel_battle_halych' ||
                 movement.id === 'first_kovel_battle_monastyryska' || movement.id === 'first_kovel_battle_stanislau' ||
-                movement.id === 'second_kovel_battle_bolshoy_porsk' ? 90 : 0) +
-                (movement.id === 'second_kovel_battle_velitsk_guard' ? -90 : 0)}deg);">
+                movement.id === 'second_kovel_battle_bolshoy_porsk' || movement.id === 'third_kovel_battle_shelvo' ||
+                movement.id === 'third_kovel_battle_bubnov' || movement.id === 'third_kovel_battle_korytnica' ? 90 : 0) +
+                (movement.id === 'second_kovel_battle_velitsk_guard' ? -90 : 0) +
+                (movement.id === 'third_kovel_battle_assault_corps' ? 180 : 0)}deg);">
               <svg width="30" height="30" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12 2 L22 12 L12 22 L12 16 L2 16 L2 8 L12 8 Z" fill="${color}"/>
               </svg>
@@ -790,6 +792,70 @@ export default function BrusilovOffensiveMap() {
       path: [
         [51.094347846815346, 25.19051930151366],
         [51.118555150911845, 25.19807240209961]
+      ],
+      operation_phase: 'kovel_battles',
+      is_enemy: false,
+      arrow_type: 'normal'
+    },
+    {
+      id: 'third_kovel_battle_assault_corps',
+      name: '3-е Ковельское сражение: ударные корпуса 8-й армии',
+      army: '8-я армия (ударные корпуса)',
+      commander: 'Западный фронт (А. Е. Эверт)',
+      strength: 'Ударные корпуса 8-й армии',
+      period: 'август 1916',
+      description: 'Целью по-прежнему был Ковель, но Западный фронт под командованием Эверта не выполнил поставленную задачу.',
+      path: [
+        [51.20814078179218, 24.728063552001945],
+        [51.132166158927895, 24.833806960205074]
+      ],
+      operation_phase: 'kovel_battles',
+      is_enemy: false,
+      arrow_type: 'normal'
+    },
+    {
+      id: 'third_kovel_battle_shelvo',
+      name: '3-е Ковельское сражение: наступление на Шельвов',
+      army: 'Ударные корпуса 8-й армии',
+      commander: 'Западный фронт (А. Е. Эверт)',
+      strength: 'Ударные корпуса 8-й армии',
+      period: 'август 1916',
+      description: 'Ударные корпуса 8-й армии пытались занять деревню Шельвов и 1-2 линии неприятельских окопов.',
+      path: [
+        [50.71505579033239, 24.7930984180907],
+        [50.67580438931161, 24.907081572387593]
+      ],
+      operation_phase: 'kovel_battles',
+      is_enemy: false,
+      arrow_type: 'normal'
+    },
+    {
+      id: 'third_kovel_battle_bubnov',
+      name: '3-е Ковельское сражение: наступление на Бубнов',
+      army: 'Ударные корпуса 8-й армии',
+      commander: 'Западный фронт (А. Е. Эверт)',
+      strength: 'Ударные корпуса 8-й армии',
+      period: 'август 1916',
+      description: 'Ударные корпуса 8-й армии пытались занять деревню Бубнов и 1-2 линии неприятельских окопов.',
+      path: [
+        [50.658330481147786, 24.84848233248863],
+        [50.65352902648121, 24.956972322723008]
+      ],
+      operation_phase: 'kovel_battles',
+      is_enemy: false,
+      arrow_type: 'normal'
+    },
+    {
+      id: 'third_kovel_battle_korytnica',
+      name: '3-е Ковельское сражение: наступление на Корытницу',
+      army: 'Ударные корпуса 8-й армии',
+      commander: 'Западный фронт (А. Е. Эверт)',
+      strength: 'Ударные корпуса 8-й армии',
+      period: 'август 1916',
+      description: 'Ударные корпуса 8-й армии пытались занять деревню Корытница и 1-2 линии неприятельских окопов.',
+      path: [
+        [50.62499874950922, 24.818009195922826],
+        [50.60621323096069, 24.96357804357907]
       ],
       operation_phase: 'kovel_battles',
       is_enemy: false,

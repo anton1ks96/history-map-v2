@@ -224,6 +224,30 @@
       "importance": "local",
       "population": 1800,
       "captured": false
+    },
+    {
+      "id": "shelvo",
+      "name": "Шельвов",
+      "coordinates": [50.712521801525085,24.779622999999894],
+      "importance": "local",
+      "population": 1600,
+      "captured": false
+    },
+    {
+      "id": "bubnov",
+      "name": "Бубнов",
+      "coordinates": [50.656881494191396,24.842859999999916],
+      "importance": "local",
+      "population": 1400,
+      "captured": false
+    },
+    {
+      "id": "korytnica",
+      "name": "Корытница",
+      "coordinates": [50.62641827861774,24.797323999999964],
+      "importance": "local",
+      "population": 1300,
+      "captured": false
     }
   ]
 } 
