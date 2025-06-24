@@ -95,7 +95,7 @@ const TroopMovements = ({ movements, selectedMovement, selectedPhase }) => {
         <Marker
           position={movement.path[0]}
           icon={L.divIcon({
-            html: `<div style="transform: rotate(${getArrowRotation(movement.path)}deg);">
+            html: `<div style="transform: rotate(${getArrowRotation(movement.path) + (movement.id === '8th_army_lutsk_kovel' ? 180 : 0)}deg);">
               <svg width="30" height="30" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12 2 L22 12 L12 22 L12 16 L2 16 L2 8 L12 8 Z" fill="${color}"/>
               </svg>
@@ -144,7 +144,10 @@ const FrontLines = ({ frontLines, selectedPhase }) => {
     let color = '#dc2626'; // красный для начальной
     let dashArray = null;
 
-    if (frontLine.type === 'initial') {
+    if (frontLine.id === 'july_14_front') {
+      color = '#f97316'; // оранжевый для линии 14 июля
+      dashArray = null;
+    } else if (frontLine.type === 'initial') {
       color = '#dc2626';
       dashArray = '15, 10';
     } else if (frontLine.type === 'advance') {
@@ -521,6 +524,39 @@ export default function BrusilovOffensiveMap() {
       operation_phase: 'kovel_strike',
       is_enemy: false,
       arrow_type: 'normal'
+    },
+    {
+      id: '3rd_special_army_kovel',
+      name: 'Наступление 3-й и Особой армий на Ковель',
+      army: '3-я армия и Особая армия',
+      commander: '3-я армия (с Западного фронта) и Особая армия',
+      strength: '3-я армия и Особая армия (из стратегического резерва)',
+      period: 'июль 1916',
+      description: 'От позиций 3-й русской армии (переданной с Западного фронта) и Особой армии (созданной в июле из стратегического резерва) — на Ковель.',
+      path: [
+        [51.24228636424136, 24.76597116918847],
+        [51.4280975853997, 25.397685036375982],
+        [51.47700490305248, 25.881083473875982]
+      ],
+      operation_phase: 'kovel_strike',
+      is_enemy: false,
+      arrow_type: 'normal'
+    },
+    {
+      id: '8th_army_lutsk_kovel',
+      name: 'Главный удар 8-й армии от Луцка на Ковель',
+      army: '8-я армия',
+      commander: 'Генерал А.М. Каледин',
+      strength: '8-я армия',
+      period: 'после 7 июня 1916',
+      description: 'От района Луцка (который был взят 8-й русской армией А.М. Каледина 7 июня) — на северо-запад, прямо на Ковель. Главный удар 8-й армии.',
+      path: [
+        [51.166875755001044, 24.747325772528892],
+        [50.842823056652165, 25.227977627997646]
+      ],
+      operation_phase: 'kovel_strike',
+      is_enemy: false,
+      arrow_type: 'wide'
     }
   ];
 
