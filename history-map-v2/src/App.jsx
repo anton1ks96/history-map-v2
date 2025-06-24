@@ -1228,7 +1228,210 @@ export default function BrusilovOffensiveMap() {
     '': {
       title: 'Брусиловский прорыв',
       subtitle: 'Общая информация об операции',
-      content: 'Здесь будет общая информация об операции, которую вы предоставите позже.'
+      content: `<div style="max-width: 1200px; margin: 0 auto;">
+        <div style="background: rgba(255, 255, 255, 0.03); padding: 32px; border-radius: 16px; margin-bottom: 32px; border-left: 4px solid #3b82f6;">
+          <p style="font-size: 20px; line-height: 1.6; margin: 0; color: rgba(255, 255, 255, 0.95); font-weight: 400;">
+            Брусиловский прорыв — это <strong style="color: #60a5fa;">крупномасштабная наступательная операция</strong> русской армии на Юго-Западном фронте под командованием генерала <strong style="color: #fbbf24;">Алексея Брусилова</strong> во время Первой мировой войны. Современники часто называли её <em style="color: #a78bfa;">«Луцким прорывом»</em>.
+          </p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 40px;">
+          <div style="background: rgba(59, 130, 246, 0.1); padding: 24px; border-radius: 12px; border: 1px solid rgba(59, 130, 246, 0.2);">
+            <h3 style="color: #60a5fa; margin: 0 0 16px 0; font-size: 18px; font-weight: 600; display: flex; align-items: center;">
+              <span style="margin-right: 12px;">📅</span> Временные рамки
+            </h3>
+            <p style="color: rgba(255, 255, 255, 0.9); margin: 0; line-height: 1.6;">
+              <strong>Начало:</strong> 4 июня (22 мая по старому стилю) 1916 года<br>
+              <strong>Окончание:</strong> 7 (20) сентября 1916 года по одним данным<br>
+              <strong>Альтернативно:</strong> бои завершились в ноябре 1916 года
+            </p>
+          </div>
+          
+          <div style="background: rgba(34, 197, 94, 0.1); padding: 24px; border-radius: 12px; border: 1px solid rgba(34, 197, 94, 0.2);">
+            <h3 style="color: #4ade80; margin: 0 0 16px 0; font-size: 18px; font-weight: 600; display: flex; align-items: center;">
+              <span style="margin-right: 12px;">🎯</span> Основная цель
+            </h3>
+            <p style="color: rgba(255, 255, 255, 0.9); margin: 0; line-height: 1.6;">
+              Прорвать позиционную оборону противника и разгромить австро-венгерские и германские войска на Юго-Западном фронте. Развить тактический успех в стратегический прорыв.
+            </p>
+          </div>
+        </div>
+
+        <h2 style="color: #fbbf24; font-size: 28px; font-weight: 700; margin: 40px 0 24px 0; text-align: center; border-bottom: 2px solid rgba(251, 191, 36, 0.3); padding-bottom: 16px;">
+          ⚡ Значимость операции
+        </h2>
+
+        <div style="display: grid; gap: 24px; margin-bottom: 40px;">
+          <div style="background: rgba(139, 69, 19, 0.1); padding: 24px; border-radius: 12px; border-left: 4px solid #a16207;">
+            <h3 style="color: #fbbf24; margin: 0 0 16px 0; font-size: 20px; font-weight: 600;">
+              🔥 Новаторская тактика
+            </h3>
+            <p style="color: rgba(255, 255, 255, 0.9); margin: 0; line-height: 1.7;">
+              Брусилов применил новую форму прорыва позиционного фронта, заключавшуюся в <strong style="color: #60a5fa;">одновременном наступлении всех армий</strong> Юго-Западного фронта (7-й, 8-й, 9-й и 11-й). Это было отличие от традиционной тактики сосредоточения сил на одном участке и позволяло противнику не определить направление главного удара.
+            </p>
+          </div>
+
+          <div style="background: rgba(168, 85, 247, 0.1); padding: 24px; border-radius: 12px; border-left: 4px solid #a855f7;">
+            <h3 style="color: #c084fc; margin: 0 0 16px 0; font-size: 20px; font-weight: 600;">
+              💥 «Артиллерийское наступление»
+            </h3>
+            <p style="color: rgba(255, 255, 255, 0.9); margin: 0 0 12px 0; line-height: 1.7;">
+              При подготовке операции было разработано и впервые применено так называемое <em style="color: #a78bfa;">«артиллерийское наступление»</em> (сам термин родился в ходе этой операции).
+            </p>
+            <div style="background: rgba(168, 85, 247, 0.05); padding: 16px; border-radius: 8px; margin-top: 12px;">
+              <ul style="margin: 0; padding-left: 20px; color: rgba(255, 255, 255, 0.85);">
+                <li>Тщательная разведка с аэрофотосъемкой (почти <strong>15 000 аэрофотоснимков</strong>)</li>
+                <li>Точная пристрелка каждой цели</li>
+                <li>Многофазный артиллерийский огонь с паузами</li>
+                <li>Использование газа для контрбатарейной борьбы</li>
+              </ul>
+            </div>
+          </div>
+
+          <div style="background: rgba(34, 197, 94, 0.1); padding: 24px; border-radius: 12px; border-left: 4px solid #22c55e;">
+            <h3 style="color: #4ade80; margin: 0 0 16px 0; font-size: 20px; font-weight: 600;">
+              🗺️ Прорыв и территориальные успехи
+            </h3>
+            <p style="color: rgba(255, 255, 255, 0.9); margin: 0 0 12px 0; line-height: 1.7;">
+              Русским войскам удалось прорвать позиционную оборону австро-венгерской армии сразу на <strong style="color: #4ade80;">13 участках</strong>.
+            </p>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px;">
+              <div style="background: rgba(34, 197, 94, 0.05); padding: 12px; border-radius: 6px;">
+                <strong style="color: #4ade80;">8-я армия (ген. Каледин)</strong><br>
+                <span style="color: rgba(255, 255, 255, 0.8);">7 июня заняла Луцк</span>
+              </div>
+              <div style="background: rgba(34, 197, 94, 0.05); padding: 12px; border-radius: 6px;">
+                <strong style="color: #4ade80;">9-я армия</strong><br>
+                <span style="color: rgba(255, 255, 255, 0.8);">18 июня взяла Черновцы</span>
+              </div>
+            </div>
+            <p style="color: rgba(255, 255, 255, 0.85); margin: 16px 0 0 0; font-style: italic;">
+              Продвижение: 50-120 км • Заняты: почти вся Волынь, почти вся Буковина и часть Галиции
+            </p>
+          </div>
+        </div>
+
+        <h2 style="color: #ef4444; font-size: 28px; font-weight: 700; margin: 40px 0 24px 0; text-align: center; border-bottom: 2px solid rgba(239, 68, 68, 0.3); padding-bottom: 16px;">
+          ⚔️ Влияние на ход войны
+        </h2>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 40px;">
+          <div style="background: rgba(220, 38, 38, 0.1); padding: 24px; border-radius: 12px; border: 1px solid rgba(220, 38, 38, 0.2);">
+            <h3 style="color: #f87171; margin: 0 0 16px 0; font-size: 18px; font-weight: 600;">
+              💀 Потери противника
+            </h3>
+            <div style="text-align: center; margin-bottom: 16px;">
+              <div style="font-size: 32px; font-weight: 700; color: #ef4444;">~1.5 млн</div>
+              <div style="color: rgba(255, 255, 255, 0.7); font-size: 14px;">убитыми, ранеными и пленными</div>
+            </div>
+            <p style="color: rgba(255, 255, 255, 0.9); margin: 0; line-height: 1.6; font-size: 14px;">
+              Переброшено с других фронтов: 31 пехотная и 3 кавалерийские дивизии (более 400 тыс. штыков и сабель)
+            </p>
+          </div>
+
+          <div style="background: rgba(34, 197, 94, 0.1); padding: 24px; border-radius: 12px; border: 1px solid rgba(34, 197, 94, 0.2);">
+            <h3 style="color: #4ade80; margin: 0 0 16px 0; font-size: 18px; font-weight: 600;">
+              🌍 Стратегические результаты
+            </h3>
+            <ul style="margin: 0; padding-left: 20px; color: rgba(255, 255, 255, 0.9); line-height: 1.6;">
+              <li>Облегчено положение союзников под Верденом</li>
+              <li>Спасена итальянская армия от разгрома</li>
+              <li>Румыния выступила на стороне Антанты</li>
+              <li><strong style="color: #4ade80;">Переход стратегической инициативы к Антанте</strong></li>
+            </ul>
+          </div>
+        </div>
+
+        <div style="background: rgba(239, 68, 68, 0.1); padding: 24px; border-radius: 12px; border-left: 4px solid #ef4444; margin-bottom: 40px;">
+          <h3 style="color: #f87171; margin: 0 0 16px 0; font-size: 20px; font-weight: 600;">
+            💔 Русские потери
+          </h3>
+          <p style="color: rgba(255, 255, 255, 0.9); margin: 0; line-height: 1.7;">
+            Русские войска Юго-Западного фронта также понесли огромные потери. По различным оценкам: от <strong style="color: #fbbf24;">500 тысяч</strong> до <strong style="color: #ef4444;">1.65 миллиона человек</strong> к середине октября 1916 года. Отмечается, что русская армия <em style="color: #f87171;">"захлебнулась собственной кровью"</em>, что истощило мобилизационные резервы и подорвало боевой дух.
+          </p>
+        </div>
+
+        <h2 style="color: #8b5cf6; font-size: 28px; font-weight: 700; margin: 40px 0 24px 0; text-align: center; border-bottom: 2px solid rgba(139, 92, 246, 0.3); padding-bottom: 16px;">
+          👥 Ключевые участники
+        </h2>
+
+        <div style="display: grid; gap: 20px; margin-bottom: 40px;">
+          <div style="background: rgba(251, 191, 36, 0.1); padding: 20px; border-radius: 12px; border-left: 4px solid #fbbf24;">
+            <h4 style="color: #fbbf24; margin: 0 0 8px 0; font-size: 18px; font-weight: 600;">
+              🎖️ Генерал Алексей Алексеевич Брусилов
+            </h4>
+            <p style="color: rgba(255, 255, 255, 0.9); margin: 0; line-height: 1.6;">
+              Командующий армиями Юго-Западного фронта, инициатор и главный разработчик новой стратегии наступления.
+            </p>
+          </div>
+
+          <div style="background: rgba(59, 130, 246, 0.1); padding: 20px; border-radius: 12px; border-left: 4px solid #3b82f6;">
+            <h4 style="color: #60a5fa; margin: 0 0 8px 0; font-size: 18px; font-weight: 600;">
+              ⚔️ Генерал А.М. Каледин
+            </h4>
+            <p style="color: rgba(255, 255, 255, 0.9); margin: 0; line-height: 1.6;">
+              Командующий 8-й армией, которая нанесла главный удар в направлении Луцка.
+            </p>
+          </div>
+
+          <div style="background: rgba(107, 114, 128, 0.1); padding: 20px; border-radius: 12px; border-left: 4px solid #6b7280;">
+            <h4 style="color: #9ca3af; margin: 0 0 8px 0; font-size: 18px; font-weight: 600;">
+              🤝 Генералы А.Е. Эверт и А.Н. Куропаткин
+            </h4>
+            <p style="color: rgba(255, 255, 255, 0.9); margin: 0; line-height: 1.6;">
+              Командующие Западным и Северным фронтами соответственно. Изначально не верили в успех наступления Брусилова и не оказали должной поддержки.
+            </p>
+          </div>
+
+          <div style="background: rgba(34, 197, 94, 0.1); padding: 20px; border-radius: 12px; border-left: 4px solid #22c55e;">
+            <h4 style="color: #4ade80; margin: 0 0 8px 0; font-size: 18px; font-weight: 600;">
+              📋 Генерал М.В. Алексеев
+            </h4>
+            <p style="color: rgba(255, 255, 255, 0.9); margin: 0; line-height: 1.6;">
+              Начальник штаба Верховного главнокомандующего, который в итоге согласился на начало операции Брусилова.
+            </p>
+          </div>
+
+          <div style="background: rgba(168, 85, 247, 0.1); padding: 20px; border-radius: 12px; border-left: 4px solid #a855f7;">
+            <h4 style="color: #c084fc; margin: 0 0 8px 0; font-size: 18px; font-weight: 600;">
+              👑 Император Николай II
+            </h4>
+            <p style="color: rgba(255, 255, 255, 0.9); margin: 0; line-height: 1.6;">
+              Верховный главнокомандующий, который согласился на начало операции, но позже не утвердил представления о награждении А. А. Брусилова орденом Святого Георгия 2-й степени.
+            </p>
+          </div>
+        </div>
+
+        <h2 style="color: #22c55e; font-size: 28px; font-weight: 700; margin: 40px 0 24px 0; text-align: center; border-bottom: 2px solid rgba(34, 197, 94, 0.3); padding-bottom: 16px;">
+          📊 Итоговые результаты
+        </h2>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+          <div>
+            <h3 style="color: #4ade80; margin: 0 0 16px 0; font-size: 20px; font-weight: 600;">✅ Достижения</h3>
+            <ul style="margin: 0; padding-left: 20px; color: rgba(255, 255, 255, 0.9); line-height: 1.8;">
+              <li>Отброшен противник на <strong style="color: #4ade80;">80—120 км</strong></li>
+              <li>Заняты почти вся Волынь, Буковина и часть Галиции</li>
+              <li>Потери противника: <strong style="color: #f87171;">более 1.5 млн человек</strong></li>
+              <li>Переброска крупных резервов с других фронтов</li>
+              <li>Облегчение положения союзников</li>
+              <li>Выступление Румынии на стороне Антанты</li>
+              <li><strong style="color: #fbbf24;">Переход стратегической инициативы к Антанте</strong></li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 style="color: #f59e0b; margin: 0 0 16px 0; font-size: 20px; font-weight: 600;">⚠️ Нерешенные задачи</h3>
+            <ul style="margin: 0; padding-left: 20px; color: rgba(255, 255, 255, 0.9); line-height: 1.8;">
+              <li>Стратегический прорыв не был достигнут</li>
+              <li>Конечная цель не достигнута: <strong style="color: #f59e0b;">Ковель и Львов не взяты</strong></li>
+              <li>Огромные потери русских войск</li>
+              <li>Истощение мобилизационных резервов</li>
+              <li>Подрыв боевого духа армии</li>
+            </ul>
+          </div>
+        </div>
+      </div>`
     },
     'lutsk_breakthrough': {
       title: '«Луцкий» прорыв',
@@ -1452,31 +1655,41 @@ export default function BrusilovOffensiveMap() {
             zIndex: 10,
             pointerEvents: showHeader ? 'auto' : 'none'
           }}>
-            <h1 style={{
-              fontSize: '36px',
-              fontWeight: '700',
-              textAlign: 'center',
-              margin: 0,
-              fontFamily: 'SF Pro Display, Inter, -apple-system, BlinkMacSystemFont, sans-serif',
-              letterSpacing: '-1px',
-              color: '#ffffff',
-              lineHeight: 1.2,
-              textShadow: '0 2px 8px rgba(0, 0, 0, 0.3)'
-            }}>
-              Брусиловский прорыв 1916
-            </h1>
-            <p style={{
-              textAlign: 'center',
-              margin: '8px 0 0 0',
-              color: 'rgba(255, 255, 255, 0.7)',
-              fontSize: '16px',
-              fontWeight: '400',
-              letterSpacing: '0.5px',
+            <div style={{ display: 'inline-block' }}>
+              <h1 style={{
+                fontSize: '48px',
+                fontWeight: '700',
+                textAlign: 'left',
+                margin: 0,
+                fontFamily: 'SF Pro Display, Inter, -apple-system, BlinkMacSystemFont, sans-serif',
+                letterSpacing: '2px',
+                color: '#ffffff',
+                lineHeight: 1.2,
+                textShadow: '0 2px 8px rgba(0, 0, 0, 0.3)',
+                textTransform: 'uppercase'
+              }}>
+                Брусиловский прорыв
+              </h1>
+              <div style={{
+                width: '100%',
+                height: '2px',
+                backgroundColor: 'rgba(255, 255, 255, 0.3)',
+                margin: '8px 0 8px 0'
+              }}></div>
+            </div>
+            <div style={{
+              textAlign: 'left',
+              margin: '0',
               fontFamily: 'SF Pro Text, Inter, -apple-system, BlinkMacSystemFont, sans-serif',
-              lineHeight: 1.5
+              fontSize: '20px',
+              color: '#ffffff',
+              letterSpacing: '1px'
             }}>
-              Интерактивная карта крупнейшей операции Первой мировой войны
-            </p>
+              <span style={{ fontWeight: '700' }}>4</span>
+              <span style={{ fontWeight: '400', margin: '0 4px' }}>июня</span>
+              <span style={{ fontWeight: '700' }}>1916</span>
+              <span style={{ fontWeight: '400', marginLeft: '4px' }}>г.</span>
+            </div>
           </header>
 
           <div style={{
@@ -2486,12 +2699,14 @@ export default function BrusilovOffensiveMap() {
                 fontFamily: 'SF Pro Text, Inter, -apple-system, BlinkMacSystemFont, sans-serif',
                 textAlign: 'justify'
               }}>
-                <div style={{ 
-                  whiteSpace: 'pre-line',
+                <div 
+                  style={{ 
                   letterSpacing: '0.3px'
-                }}>
-                  {operationInfo[selectedPhase]?.content || 'Информация временно недоступна.'}
-                </div>
+                  }}
+                  dangerouslySetInnerHTML={{
+                    __html: operationInfo[selectedPhase]?.content || 'Информация временно недоступна.'
+                  }}
+                />
               </div>
             </div>
           </div>
