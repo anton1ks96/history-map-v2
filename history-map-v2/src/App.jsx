@@ -100,7 +100,9 @@ const TroopMovements = ({ movements, selectedMovement, selectedPhase }) => {
                              (movement.id === 'first_kovel_battle_selec' || movement.id === 'first_kovel_battle_tristen' || 
                 movement.id === 'first_kovel_battle_koshevo' || movement.id === 'first_kovel_battle_torchin' ||
                 movement.id === 'first_kovel_battle_brody' || movement.id === 'first_kovel_battle_halych' ||
-                movement.id === 'first_kovel_battle_monastyryska' || movement.id === 'first_kovel_battle_stanislau' ? 90 : 0)}deg);">
+                movement.id === 'first_kovel_battle_monastyryska' || movement.id === 'first_kovel_battle_stanislau' ||
+                movement.id === 'second_kovel_battle_bolshoy_porsk' ? 90 : 0) +
+                (movement.id === 'second_kovel_battle_velitsk_guard' ? -90 : 0)}deg);">
               <svg width="30" height="30" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12 2 L22 12 L12 22 L12 16 L2 16 L2 8 L12 8 Z" fill="${color}"/>
               </svg>
@@ -756,6 +758,38 @@ export default function BrusilovOffensiveMap() {
       path: [
         [48.92556971762826, 24.783117184584377],
         [48.89931978848843, 25.25552929395937]
+      ],
+      operation_phase: 'kovel_battles',
+      is_enemy: false,
+      arrow_type: 'normal'
+    },
+    {
+      id: 'second_kovel_battle_bolshoy_porsk',
+      name: '2-е Ковельское сражение: наступление на Большой Порск',
+      army: '1-й армейский корпус',
+      commander: 'Генерал А. А. Брусилов',
+      strength: '1-й армейский корпус',
+      period: '26 июля (8 августа) 1916',
+      description: '1-й армейский корпус наступал на Большой Порск, но был отброшен.',
+      path: [
+        [51.076843803277114, 25.168553770019503],
+        [51.06191835335807, 25.420552671386687]
+      ],
+      operation_phase: 'kovel_battles',
+      is_enemy: false,
+      arrow_type: 'normal'
+    },
+    {
+      id: 'second_kovel_battle_velitsk_guard',
+      name: '2-е Ковельское сражение: атака гвардии от Велицка',
+      army: 'Гвардия',
+      commander: 'Генерал А. А. Брусилов',
+      strength: 'Гвардейские части',
+      period: '26 июля (8 августа) 1916',
+      description: 'Гвардия атаковала от Велицка в направлении к юго-западу от Кухарского леса, но была отброшена после неудачи 1-го армейского корпуса.',
+      path: [
+        [51.094347846815346, 25.19051930151366],
+        [51.118555150911845, 25.19807240209961]
       ],
       operation_phase: 'kovel_battles',
       is_enemy: false,

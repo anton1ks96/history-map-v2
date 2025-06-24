@@ -192,6 +192,38 @@
       "importance": "regional",
       "population": 8500,
       "captured": false
+    },
+    {
+      "id": "bolshoy_porsk",
+      "name": "Большой Порск",
+      "coordinates": [51.0770330442177,25.142203748657177],
+      "importance": "local",
+      "population": 2500,
+      "captured": false
+    },
+    {
+      "id": "vitonezh",
+      "name": "Витонеж",
+      "coordinates": [50.98533309464366,24.874061270433486],
+      "importance": "local",
+      "population": 1500,
+      "captured": false
+    },
+    {
+      "id": "kiselin",
+      "name": "Киселин",
+      "coordinates": [50.853062851563315,24.803102465606703],
+      "importance": "local",
+      "population": 1200,
+      "captured": false
+    },
+    {
+      "id": "velitsk",
+      "name": "Велицк",
+      "coordinates": [51.1209859837792,25.20416638098144],
+      "importance": "local",
+      "population": 1800,
+      "captured": false
     }
   ]
 } 
