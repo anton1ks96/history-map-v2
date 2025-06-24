@@ -368,6 +368,8 @@ export default function BrusilovOffensiveMap() {
   const [showIntro, setShowIntro] = useState(true);
   const [showMainContent, setShowMainContent] = useState(false);
   const [selectedPhase, setSelectedPhase] = useState('');
+  const [showOperationInfo, setShowOperationInfo] = useState(false);
+  const [isOperationInfoClosing, setIsOperationInfoClosing] = useState(false);
 
   // Фазы операции для выпадающего списка
   const operationPhases = [
@@ -377,6 +379,45 @@ export default function BrusilovOffensiveMap() {
     { value: 'july_august_offensive', label: '3. Июль-августовское наступление (28 июля – 5 сентября)' },
     { value: 'september_battles', label: '4. Заключительные бои сентября (6-20 сентября)' }
   ];
+
+  // Данные об операциях
+  const operationInfo = {
+    '': {
+      title: 'Брусиловский прорыв',
+      subtitle: 'Общая информация об операции',
+      content: 'Здесь будет общая информация об операции, которую вы предоставите позже.'
+    },
+    'lutsk_breakthrough': {
+      title: '«Луцкий» прорыв',
+      subtitle: '4-15 июня 1916 года',
+      content: `Первая и наиболее успешная фаза Брусиловского наступления. Главный удар наносила 8-я армия генерала А.М. Каледина в направлении Луцка.
+
+      Основные события:
+      • 4 июня - начало артиллерийской подготовки
+      • 7 июня - захват Луцка русскими войсками
+      • 15 июня - стабилизация фронта после первых успехов
+      
+      Результаты:
+      • Прорыв австро-венгерской обороны на глубину 60-80 км
+      • Захват ключевых городов: Луцк, Дубно
+      • Начало отступления 4-й австро-венгерской армии`
+    },
+    'kovel_offensive': {
+      title: 'Наступление на Ковель',
+      subtitle: '5-14 июля 1916 года',
+      content: 'Попытка развития успеха первой фазы наступления в направлении важного железнодорожного узла Ковель.'
+    },
+    'july_august_offensive': {
+      title: 'Июль-августовское наступление',
+      subtitle: '28 июля – 5 сентября 1916 года',
+      content: 'Продолжение наступательных операций с целью окончательного разгрома австро-венгерских войск.'
+    },
+    'september_battles': {
+      title: 'Заключительные бои сентября',
+      subtitle: '6-20 сентября 1916 года',
+      content: 'Завершающий этап Брусиловского наступления перед переходом к позиционной войне.'
+    }
+  };
 
   // Состояния для анимаций модальных окон
   const [isRiverModalClosing, setIsRiverModalClosing] = useState(false);
@@ -390,6 +431,14 @@ export default function BrusilovOffensiveMap() {
     }, 300); // Время анимации
   };
 
+  const closeOperationInfoModal = () => {
+    setIsOperationInfoClosing(true);
+    setTimeout(() => {
+      setShowOperationInfo(false);
+      setIsOperationInfoClosing(false);
+    }, 300); // Время анимации
+  };
+
   // Обработчики для закрытия модальных окон кликом по overlay
   const handleRiverOverlayClick = (e) => {
     if (e.target === e.currentTarget) {
@@ -397,24 +446,32 @@ export default function BrusilovOffensiveMap() {
     }
   };
 
+  const handleOperationInfoOverlayClick = (e) => {
+    if (e.target === e.currentTarget) {
+      closeOperationInfoModal();
+    }
+  };
+
   // Обработчик для закрытия модальных окон клавишей Escape
   useEffect(() => {
     const handleEscapeKey = (event) => {
       if (event.key === 'Escape') {
-        if (selectedRiver && !isRiverModalClosing) {
+        if (showOperationInfo && !isOperationInfoClosing) {
+          closeOperationInfoModal();
+        } else if (selectedRiver && !isRiverModalClosing) {
           closeRiverModal();
         }
       }
     };
 
-    if (selectedRiver) {
+    if (selectedRiver || showOperationInfo) {
       document.addEventListener('keydown', handleEscapeKey);
     }
 
     return () => {
       document.removeEventListener('keydown', handleEscapeKey);
     };
-  }, [selectedRiver, isRiverModalClosing]);
+  }, [selectedRiver, isRiverModalClosing, showOperationInfo, isOperationInfoClosing]);
 
 
 
@@ -988,13 +1045,81 @@ export default function BrusilovOffensiveMap() {
                 </svg>
               </button>
 
+              {/* Кнопка информации об операции */}
+              <button
+                className="operation-info-button"
+                onClick={() => setShowOperationInfo(true)}
+                style={{
+                  position: 'absolute',
+                  bottom: '24px',
+                  left: '80px',
+                  background: 'rgba(26, 26, 46, 0.9)',
+                  border: '1px solid rgba(255, 255, 255, 0.2)',
+                  borderRadius: '12px',
+                  padding: '12px',
+                  cursor: 'pointer',
+                  zIndex: 1001,
+                  backdropFilter: 'blur(20px)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  width: '48px',
+                  height: '48px',
+                  boxShadow: '0 8px 25px rgba(0, 0, 0, 0.2)',
+                  transition: 'all 0.3s ease',
+                  outline: 'none'
+                }}
+                title="Информация об операции"
+                onMouseEnter={(e) => {
+                  if (!e.target.matches(':active')) {
+                    e.target.style.background = 'rgba(255, 255, 255, 0.1)';
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.background = 'rgba(26, 26, 46, 0.9)';
+                }}
+                onMouseDown={(e) => {
+                  e.target.style.background = 'rgba(255, 255, 255, 0.15)';
+                  e.target.style.transform = 'scale(0.95)';
+                }}
+                onMouseUp={(e) => {
+                  e.target.style.background = 'rgba(255, 255, 255, 0.1)';
+                  e.target.style.transform = 'scale(1)';
+                }}
+                onFocus={(e) => {
+                  e.target.style.boxShadow = '0 8px 25px rgba(0, 0, 0, 0.2), 0 0 0 2px rgba(255, 255, 255, 0.3)';
+                }}
+                onBlur={(e) => {
+                  e.target.style.boxShadow = '0 8px 25px rgba(0, 0, 0, 0.2)';
+                  e.target.style.background = 'rgba(26, 26, 46, 0.9)';
+                  e.target.style.transform = 'scale(1)';
+                }}
+              >
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#ffffff"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14,2 14,8 20,8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                  <polyline points="10,9 9,9 8,9"></polyline>
+                </svg>
+              </button>
+
               {/* Легенда */}
               <div
                 className={`legend ${showLegend ? 'show' : 'hide'}`}
                 style={{
                   position: 'absolute',
                   bottom: '24px',
-                  left: '80px',
+                  left: '136px',
                   background: 'rgba(26, 26, 46, 0.9)',
                   padding: '24px',
                   borderRadius: '16px',
@@ -1305,6 +1430,102 @@ export default function BrusilovOffensiveMap() {
                 </p>
               </div>
             )}
+          </div>
+        </div>
+      )}
+
+      {/* Модальное окно с информацией об операции */}
+      {showOperationInfo && (
+        <div
+          className={`modal-overlay ${isOperationInfoClosing ? 'closing' : ''}`}
+          onClick={handleOperationInfoOverlayClick}
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '100vw',
+            height: '100vh',
+            backgroundColor: 'rgba(0,0,0,0.5)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 99999
+          }}
+        >
+          <div
+            className={`modal-content ${isOperationInfoClosing ? 'closing' : ''}`}
+            style={{
+              backgroundColor: 'rgba(26, 26, 46, 0.95)',
+              padding: '32px',
+              borderRadius: '20px',
+              maxWidth: '700px',
+              width: '90%',
+              maxHeight: '80vh',
+              overflow: 'auto',
+              boxShadow: '0 25px 50px rgba(0, 0, 0, 0.4)',
+              backdropFilter: 'blur(20px)',
+              border: '1px solid rgba(255, 255, 255, 0.1)'
+            }}
+          >
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '24px' }}>
+              <div>
+                <h2 style={{ 
+                  margin: '0 0 8px 0', 
+                  fontSize: '28px', 
+                  color: '#ffffff',
+                  fontWeight: '700',
+                  letterSpacing: '-0.5px'
+                }}>
+                  {operationInfo[selectedPhase]?.title || 'Информация об операции'}
+                </h2>
+                <p style={{ 
+                  margin: 0, 
+                  fontSize: '16px', 
+                  color: 'rgba(255, 255, 255, 0.7)',
+                  fontWeight: '500'
+                }}>
+                  {operationInfo[selectedPhase]?.subtitle}
+                </p>
+              </div>
+              <button
+                onClick={closeOperationInfoModal}
+                style={{
+                  background: 'rgba(255, 255, 255, 0.1)',
+                  border: 'none',
+                  borderRadius: '10px',
+                  fontSize: '24px',
+                  cursor: 'pointer',
+                  padding: '8px',
+                  width: '40px',
+                  height: '40px',
+                  color: '#ffffff',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  transition: 'all 0.3s ease'
+                }}
+                onMouseEnter={(e) => {
+                  e.target.style.background = 'rgba(255, 255, 255, 0.2)';
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.background = 'rgba(255, 255, 255, 0.1)';
+                }}
+                title="Закрыть"
+              >
+                ×
+              </button>
+            </div>
+
+            <div style={{ 
+              fontSize: '16px', 
+              color: 'rgba(255, 255, 255, 0.9)', 
+              lineHeight: '1.6',
+              fontFamily: 'SF Pro Text, Inter, -apple-system, BlinkMacSystemFont, sans-serif'
+            }}>
+              <div style={{ whiteSpace: 'pre-line' }}>
+                {operationInfo[selectedPhase]?.content || 'Информация временно недоступна.'}
+              </div>
+            </div>
           </div>
         </div>
       )}
