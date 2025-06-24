@@ -180,9 +180,10 @@ const CityMarkers = ({ cities }) => {
     const { importance, captured } = city;
     const size = importance === 'major' ? [18, 18] : importance === 'strategic' ? [14, 14] : importance === 'regional' ? [12, 12] : [10, 10];
 
-    // Цвет зависит от того, захвачен город или нет
-    const color = captured ? '#22c55e' : '#dc2626'; // Зеленый для захваченных, красный для незахваченных
-    const borderColor = captured ? 'rgba(34, 197, 94, 0.8)' : 'rgba(220, 38, 38, 0.8)';
+    // Цвет зависит от того, захвачен город или нет (приводим к булеву типу)
+    const isCaptured = Boolean(captured);
+    const color = isCaptured ? '#22c55e' : '#dc2626'; // Зеленый для захваченных, красный для незахваченных
+    const borderColor = isCaptured ? 'rgba(34, 197, 94, 0.8)' : 'rgba(220, 38, 38, 0.8)';
 
     return L.divIcon({
       html: `<div style="
@@ -211,15 +212,15 @@ const CityMarkers = ({ cities }) => {
             margin: '0 0 8px 0',
             fontSize: '16px',
             fontWeight: 'bold',
-            color: city.captured ? '#22c55e' : '#dc2626'
+            color: Boolean(city.captured) ? '#22c55e' : '#dc2626'
           }}>
             {city.name}
           </h3>
 
           <div style={{ marginBottom: '8px' }}>
             <strong>Статус:</strong>
-            <span style={{ color: city.captured ? '#22c55e' : '#dc2626', fontWeight: 'bold', marginLeft: '4px' }}>
-              {city.captured ? 'Захвачен' : 'Не захвачен'}
+            <span style={{ color: Boolean(city.captured) ? '#22c55e' : '#dc2626', fontWeight: 'bold', marginLeft: '4px' }}>
+              {Boolean(city.captured) ? 'Захвачен' : 'Не захвачен'}
             </span>
           </div>
 
@@ -233,9 +234,11 @@ const CityMarkers = ({ cities }) => {
             <strong>Население:</strong> {city.population?.toLocaleString() || 'Неизвестно'}
           </div>
 
-          <div style={{ marginBottom: '8px' }}>
-            <strong>Описание:</strong> {city.description}
-          </div>
+          {city.description && (
+            <div style={{ marginBottom: '8px' }}>
+              <strong>Описание:</strong> {city.description}
+            </div>
+          )}
 
           {city.significance && (
             <div style={{
