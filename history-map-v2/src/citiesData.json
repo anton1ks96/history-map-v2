@@ -35,7 +35,7 @@
     {
       "id": "halych",
       "name": "Галич",
-      "coordinates": [49.124844, 24.729692],
+      "coordinates": [49.12684666844231,24.731693000000018],
       "importance": "regional",
       "description": "Цель 7-й армии",
       "population": 12000,
@@ -248,6 +248,33 @@
       "importance": "local",
       "population": 1300,
       "captured": false
+    },
+    {
+      "id": "vladimir_volynsky",
+      "name": "Владимир-Волынский",
+      "coordinates": [50.84521405627265,24.315699583411416],
+      "importance": "strategic",
+      "population": 15000,
+      "captured": false,
+      "significance": "Важный город Волыни, цель 8-й армии в наступлении на Галич"
+    },
+    {
+      "id": "berezhany",
+      "name": "Бережаны",
+      "coordinates": [49.448322222772546,24.939362609677953],
+      "importance": "regional",
+      "population": 12000,
+      "captured": false,
+      "significance": "Цель 11-й армии в наступлении на Галич"
+    },
+    {
+      "id": "marmaros_siget",
+      "name": "Мармарош-Сигет",
+      "coordinates": [47.98464110531735,23.870654301794776],
+      "importance": "regional",
+      "population": 18000,
+      "captured": false,
+      "significance": "Цель 9-й армии в наступлении на Галич и Мармарош-Сигет"
     }
   ]
 } 

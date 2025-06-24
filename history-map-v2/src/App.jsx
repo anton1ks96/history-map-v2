@@ -104,7 +104,8 @@ const TroopMovements = ({ movements, selectedMovement, selectedPhase }) => {
                 movement.id === 'second_kovel_battle_bolshoy_porsk' || movement.id === 'third_kovel_battle_shelvo' ||
                 movement.id === 'third_kovel_battle_bubnov' || movement.id === 'third_kovel_battle_korytnica' ? 90 : 0) +
                 (movement.id === 'second_kovel_battle_velitsk_guard' ? -90 : 0) +
-                (movement.id === 'third_kovel_battle_assault_corps' ? 180 : 0)}deg);">
+                (movement.id === 'third_kovel_battle_assault_corps' ? 180 : 0) +
+                (movement.operation_phase === 'halych_offensive' ? 90 : 0)}deg);">
               <svg width="30" height="30" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12 2 L22 12 L12 22 L12 16 L2 16 L2 8 L12 8 Z" fill="${color}"/>
               </svg>
@@ -144,6 +145,9 @@ const FrontLines = ({ frontLines, selectedPhase }) => {
       shouldShow = frontLine.type === 'initial' || frontLine.type === 'advance' || frontLine.type === 'final';
     } else if (selectedPhase === 'kovel_battles') {
       // Показываем все линии фронта для Ковельских сражений
+      shouldShow = true;
+    } else if (selectedPhase === 'halych_offensive') {
+      // Показываем все линии фронта для наступления на Галич
       shouldShow = true;
     } else {
       // Для остальных фаз показываем все
@@ -250,7 +254,7 @@ const CityMarkers = ({ cities, selectedPhase }) => {
     }
 
     // Специальная логика для городов, захваченных в Ковельских сражениях
-    const kovelBattlesCities = ['selec', 'tristen', 'koshevo', 'torchin', 'halych', 'monastyryska', 'stanislau'];
+    const kovelBattlesCities = ['selec', 'tristen', 'koshevo', 'torchin', 'monastyryska', 'stanislau'];
     if (kovelBattlesCities.includes(id)) {
       if (selectedPhase === 'kovel_battles' || selectedPhase === '') {
         isCaptured = true; // Показываем как захваченные в фазе "Ковельские сражения" и "Все ходы"
@@ -258,6 +262,8 @@ const CityMarkers = ({ cities, selectedPhase }) => {
         isCaptured = false; // В остальных фазах показываем как незахваченные
       }
     }
+
+
 
     const color = isCaptured ? '#22c55e' : '#dc2626'; // Зеленый для захваченных, красный для незахваченных
     const borderColor = isCaptured ? 'rgba(34, 197, 94, 0.8)' : 'rgba(220, 38, 38, 0.8)';
@@ -325,7 +331,7 @@ const CityMarkers = ({ cities, selectedPhase }) => {
     }
 
     // Специальная логика для городов, захваченных 7-й армией в Ковельских сражениях
-    const kovelBattles7thArmy = ['halych', 'monastyryska'];
+    const kovelBattles7thArmy = ['monastyryska'];
     if (kovelBattles7thArmy.includes(city.id)) {
       if (selectedPhase === 'kovel_battles' || selectedPhase === '') {
         isCaptured = true;
@@ -351,6 +357,8 @@ const CityMarkers = ({ cities, selectedPhase }) => {
         captureArmy = '';
       }
     }
+
+
 
     return (
       <Marker
@@ -535,7 +543,8 @@ export default function BrusilovOffensiveMap() {
     { value: '', label: 'Все ходы операции' },
     { value: 'lutsk_breakthrough', label: '«Луцкий» прорыв' },
     { value: 'kovel_strike', label: 'Удар на Ковель' },
-    { value: 'kovel_battles', label: '1-3 Ковельские сражения' }
+    { value: 'kovel_battles', label: '1-3 Ковельские сражения' },
+    { value: 'halych_offensive', label: 'Наступление на Галич' }
   ];
 
   // Данные о движениях войск
@@ -860,6 +869,74 @@ export default function BrusilovOffensiveMap() {
       operation_phase: 'kovel_battles',
       is_enemy: false,
       arrow_type: 'normal'
+    },
+    {
+      id: 'halych_offensive_8th_army_vladimir',
+      name: 'Наступление на Владимир-Волынский',
+      army: '8-я армия',
+      commander: 'Генерал А.М. Каледин',
+      strength: '8-я армия',
+      period: '18 (31) августа 1916',
+      description: '8-й армии надлежало атаковать на Владимир-Волынский в рамках общего наступления Юго-Западного фронта.',
+      path: [
+        [50.84521405627265, 24.315699583411416],
+        [50.843800278090406, 24.346593801757788],
+        [50.83119115656848, 24.560140554687482]
+      ],
+      operation_phase: 'halych_offensive',
+      is_enemy: false,
+      arrow_type: 'normal'
+    },
+    {
+      id: 'halych_offensive_11th_army_berezhany',
+      name: 'Наступление на Бережаны',
+      army: '11-я армия',
+      commander: '11-я армия',
+      strength: '11-я армия',
+      period: '18 (31) августа 1916',
+      description: '11-й армии — наступать на Бережаны в рамках общего наступления Юго-Западного фронта.',
+      path: [
+        [49.448322222772546, 24.939362609677953],
+        [49.449538168422826, 24.96271624649289],
+        [49.47057420320909, 25.15909686172727]
+      ],
+      operation_phase: 'halych_offensive',
+      is_enemy: false,
+      arrow_type: 'normal'
+    },
+    {
+      id: 'halych_offensive_7th_army_halych',
+      name: 'Наступление на Галич',
+      army: '7-я армия',
+      commander: 'Генерал Щербачёв',
+      strength: '7-я армия (усиленная 33-м и 41-м корпусами)',
+      period: '18 (31) августа 1916',
+      description: '7-й армии (усиленной 33-м и 41-м корпусами) — наступать на Галич. Непосредственно на Галич наступала 7-я армия под командованием генерала Щербачёва.',
+      path: [
+        [49.12684666844231, 24.731693000000018],
+        [49.12763526179011, 24.74705669323731],
+        [49.102619443113724, 25.315255850952155]
+      ],
+      operation_phase: 'halych_offensive',
+      is_enemy: false,
+      arrow_type: 'normal'
+    },
+    {
+      id: 'halych_offensive_9th_army_marmaros',
+      name: 'Наступление на Мармарош-Сигет',
+      army: '9-я армия',
+      commander: 'Генерал П. А. Лечицкий',
+      strength: '9-я армия',
+      period: '18 (31) августа 1916',
+      description: '9-й армии — наступать по двум расходящимся направлениям: на Галич (позже передано 7-й армии) и на Мармарош—Сигет.',
+      path: [
+        [47.98464110531735, 23.870654301794776],
+        [47.93890654581989, 23.896744793579096],
+        [48.19728021654308, 25.074754871854857]
+      ],
+      operation_phase: 'halych_offensive',
+      is_enemy: false,
+      arrow_type: 'normal'
     }
   ];
 
@@ -917,6 +994,27 @@ export default function BrusilovOffensiveMap() {
         • Ковель так и не был захвачен русскими войсками
         • Значительные потери с обеих сторон
         • Стабилизация фронта в районе Ковеля`
+    },
+
+    'halych_offensive': {
+      title: 'Наступление на Галич',
+      subtitle: '18 (31) августа 1916 года',
+      content: `Общее наступление Юго-Западного фронта под командованием генерала А. А. Брусилова.
+
+        Дата атаки:
+        • Планировалось на 16 (29) августа 1916 года
+        • По просьбе штаба 7-й армии отложено на два дня
+        • Фактически началось 18 (31) августа 1916 года
+        
+        Руководство:
+        • Командующий Юго-Западным фронтом: генерал А. А. Брусилов
+        • На Галич наступала 7-я армия под командованием генерала Щербачёва
+        
+        Участвующие армии и направления:
+        • 8-я армия — на Владимир-Волынский
+        • 11-я армия — на Бережаны
+        • 7-я армия (усиленная 33-м и 41-м корпусами) — на Галич
+        • 9-я армия — на Галич и Мармарош-Сигет`
     },
 
 
