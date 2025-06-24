@@ -586,25 +586,53 @@ export default function BrusilovOffensiveMap() {
 
                 {/* Фронт на 16 июня - отображается в фазе Луцкий прорыв и Все ходы */}
                 {(selectedPhase === '' || selectedPhase === 'lutsk_breakthrough') && (
-                  <Polyline
-                    positions={[
-                      [51.16475098, 25.60661923],
-                      [50.95011542, 25.11223447],
-                      [50.40212190, 25.30998837],
-                      [50.06033295, 25.33196103],
-                      [49.97826396, 25.71305102]
-                    ]}
-                    color="#22c55e"
-                    weight={3}
-                    opacity={0.8}
-                  >
-                    <Popup>
-                      <div className="p-2">
-                        <h3 className="font-bold">Фронт на 16 июня 1916</h3>
-                        <p>Положение линии фронта после первых успехов Брусиловского прорыва</p>
-                      </div>
-                    </Popup>
-                  </Polyline>
+                  <>
+                    <Polyline
+                      positions={[
+                        [51.16475098, 25.60661923],
+                        [50.95011542, 25.11223447],
+                        [50.40212190, 25.30998837],
+                        [50.06033295, 25.33196103],
+                        [49.97826396, 25.71305102]
+                      ]}
+                      color="#22c55e"
+                      weight={3}
+                      opacity={0.8}
+                    >
+                      <Popup>
+                        <div className="p-2">
+                          <h3 className="font-bold">Фронт на 16 июня 1916</h3>
+                          <p>Положение линии фронта после первых успехов Брусиловского прорыва</p>
+                        </div>
+                      </Popup>
+                    </Polyline>
+
+                    {/* Линия фронта по окончанию боев */}
+                    <Polyline
+                      positions={[
+                        [52.083, 26.066],
+                        [51.097, 24.979],
+                        [50.900, 24.091],
+                        [50.733, 24.033],
+                        [50.087, 25.112],
+                        [49.633, 25.383],
+                        [48.485, 24.789],
+                        [47.933, 25.466],
+                        [47.896, 26.101]
+                      ]}
+                      color="#16a34a"
+                      weight={3}
+                      opacity={0.8}
+                      dashArray="10, 5"
+                    >
+                      <Popup>
+                        <div className="p-2">
+                          <h3 className="font-bold">Линия фронта по окончанию боев</h3>
+                          <p>Положение линии фронта после завершения Луцкого прорыва (15 июня 1916)</p>
+                        </div>
+                      </Popup>
+                    </Polyline>
+                  </>
                 )}
 
                 {/* Стрелки 8-й армии - отображаются в фазе Луцкий прорыв и Все ходы */}
@@ -1180,6 +1208,26 @@ export default function BrusilovOffensiveMap() {
                       }}></div>
                     </div>
                     <span style={{ color: 'rgba(255, 255, 255, 0.9)', lineHeight: '1.2' }}>Фронт на 16 июня</span>
+                  </div>
+
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minHeight: '24px' }}>
+                    <div style={{
+                      width: '30px',
+                      height: '24px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      flexShrink: 0
+                    }}>
+                      <div style={{
+                        width: '26px',
+                        height: '4px',
+                        backgroundColor: '#16a34a',
+                        borderRadius: '2px',
+                        background: 'repeating-linear-gradient(90deg, #16a34a 0, #16a34a 5px, transparent 5px, transparent 8px)'
+                      }}></div>
+                    </div>
+                    <span style={{ color: 'rgba(255, 255, 255, 0.9)', lineHeight: '1.2' }}>Фронт по окончанию боев</span>
                   </div>
 
                                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minHeight: '24px' }}>
