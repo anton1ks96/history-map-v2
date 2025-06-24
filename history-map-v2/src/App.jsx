@@ -1378,11 +1378,7 @@ export default function BrusilovOffensiveMap() {
     }
   };
 
-  const handleOperationInfoOverlayClick = (e) => {
-    if (e.target === e.currentTarget) {
-      closeOperationInfoModal();
-    }
-  };
+  // Полноэкранное окно не закрывается по клику, только по ESC или кнопке закрытия
 
   // Обработчик для закрытия модальных окон клавишей Escape
   useEffect(() => {
@@ -2390,98 +2386,134 @@ export default function BrusilovOffensiveMap() {
         </div>
       )}
 
-      {/* Модальное окно с информацией об операции */}
+      {/* Полноэкранное окно с информацией об операции */}
       {showOperationInfo && (
         <div
-          className={`modal-overlay ${isOperationInfoClosing ? 'closing' : ''}`}
-          onClick={handleOperationInfoOverlayClick}
+          className={`fullscreen-modal ${isOperationInfoClosing ? 'closing' : ''}`}
           style={{
             position: 'fixed',
             top: 0,
             left: 0,
             width: '100vw',
             height: '100vh',
-            backgroundColor: 'rgba(0,0,0,0.5)',
+            backgroundColor: 'rgba(26, 26, 46, 0.98)',
+            backdropFilter: 'blur(20px)',
+            zIndex: 99999,
             display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            zIndex: 99999
+            flexDirection: 'column',
+            overflow: 'hidden'
           }}
         >
-          <div
-            className={`modal-content ${isOperationInfoClosing ? 'closing' : ''}`}
-            style={{
-              backgroundColor: 'rgba(26, 26, 46, 0.95)',
-              padding: '32px',
-              borderRadius: '20px',
-              maxWidth: '700px',
-              width: '90%',
-              maxHeight: '80vh',
-              overflow: 'auto',
-              boxShadow: '0 25px 50px rgba(0, 0, 0, 0.4)',
-              backdropFilter: 'blur(20px)',
-              border: '1px solid rgba(255, 255, 255, 0.1)'
-            }}
-          >
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '24px' }}>
-              <div>
-                <h2 style={{
-                  margin: '0 0 8px 0',
-                  fontSize: '28px',
-                  color: '#ffffff',
-                  fontWeight: '700',
-                  letterSpacing: '-0.5px'
-                }}>
-                  {operationInfo[selectedPhase]?.title || 'Информация об операции'}
-                </h2>
-                <p style={{
-                  margin: 0,
-                  fontSize: '16px',
-                  color: 'rgba(255, 255, 255, 0.7)',
-                  fontWeight: '500'
-                }}>
-                  {operationInfo[selectedPhase]?.subtitle}
-                </p>
-              </div>
-              <button
-                onClick={closeOperationInfoModal}
-                style={{
-                  background: 'rgba(255, 255, 255, 0.1)',
-                  border: 'none',
-                  borderRadius: '10px',
-                  fontSize: '24px',
-                  cursor: 'pointer',
-                  padding: '8px',
-                  width: '40px',
-                  height: '40px',
-                  color: '#ffffff',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  transition: 'all 0.3s ease'
-                }}
-                onMouseEnter={(e) => {
-                  e.target.style.background = 'rgba(255, 255, 255, 0.2)';
-                }}
-                onMouseLeave={(e) => {
-                  e.target.style.background = 'rgba(255, 255, 255, 0.1)';
-                }}
-                title="Закрыть"
-              >
-                ×
-              </button>
+          {/* Заголовок с кнопкой закрытия */}
+          <div style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            padding: '32px 48px',
+            borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+            background: 'rgba(26, 26, 46, 0.95)',
+            backdropFilter: 'blur(20px)'
+          }}>
+            <div>
+              <h1 style={{
+                margin: '0 0 8px 0',
+                fontSize: '36px',
+                color: '#ffffff',
+                fontWeight: '700',
+                letterSpacing: '-1px',
+                fontFamily: 'SF Pro Display, Inter, -apple-system, BlinkMacSystemFont, sans-serif'
+              }}>
+                {operationInfo[selectedPhase]?.title || 'Информация об операции'}
+              </h1>
+              <p style={{
+                margin: 0,
+                fontSize: '18px',
+                color: 'rgba(255, 255, 255, 0.7)',
+                fontWeight: '500',
+                fontFamily: 'SF Pro Text, Inter, -apple-system, BlinkMacSystemFont, sans-serif'
+              }}>
+                {operationInfo[selectedPhase]?.subtitle}
+              </p>
             </div>
+            <button
+              onClick={closeOperationInfoModal}
+              style={{
+                background: 'rgba(255, 255, 255, 0.1)',
+                border: 'none',
+                borderRadius: '12px',
+                fontSize: '28px',
+                cursor: 'pointer',
+                padding: '12px',
+                width: '48px',
+                height: '48px',
+                color: '#ffffff',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                transition: 'all 0.3s ease',
+                flexShrink: 0
+              }}
+              onMouseEnter={(e) => {
+                e.target.style.background = 'rgba(255, 255, 255, 0.2)';
+                e.target.style.transform = 'scale(1.05)';
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.background = 'rgba(255, 255, 255, 0.1)';
+                e.target.style.transform = 'scale(1)';
+              }}
+              title="Закрыть (ESC)"
+            >
+              ×
+            </button>
+          </div>
 
+          {/* Содержимое */}
+          <div style={{
+            flex: 1,
+            padding: '48px',
+            overflow: 'auto',
+            display: 'flex',
+            justifyContent: 'center'
+          }}>
             <div style={{
-              fontSize: '16px',
-              color: 'rgba(255, 255, 255, 0.9)',
-              lineHeight: '1.6',
+              maxWidth: '1200px',
+              width: '100%'
+            }}>
+              <div style={{
+                fontSize: '18px',
+                color: 'rgba(255, 255, 255, 0.9)',
+                lineHeight: '1.8',
+                fontFamily: 'SF Pro Text, Inter, -apple-system, BlinkMacSystemFont, sans-serif',
+                textAlign: 'justify'
+              }}>
+                <div style={{ 
+                  whiteSpace: 'pre-line',
+                  letterSpacing: '0.3px'
+                }}>
+                  {operationInfo[selectedPhase]?.content || 'Информация временно недоступна.'}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Нижняя панель с дополнительными элементами управления */}
+          <div style={{
+            padding: '24px 48px',
+            borderTop: '1px solid rgba(255, 255, 255, 0.1)',
+            background: 'rgba(26, 26, 46, 0.95)',
+            backdropFilter: 'blur(20px)',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center'
+          }}>
+            <p style={{
+              margin: 0,
+              fontSize: '14px',
+              color: 'rgba(255, 255, 255, 0.5)',
               fontFamily: 'SF Pro Text, Inter, -apple-system, BlinkMacSystemFont, sans-serif'
             }}>
-              <div style={{ whiteSpace: 'pre-line' }}>
-                {operationInfo[selectedPhase]?.content || 'Информация временно недоступна.'}
-              </div>
-            </div>
+              Нажмите ESC или кнопку × для закрытия
+            </p>
           </div>
         </div>
       )}

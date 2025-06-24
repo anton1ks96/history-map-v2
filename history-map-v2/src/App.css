@@ -84,6 +84,29 @@
   }
 }
 
+/* Анимации для полноэкранного модального окна */
+@keyframes fullscreenFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fullscreenFadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+}
+
 .modal-overlay {
   animation: overlayFadeIn 0.3s ease-out forwards;
 }
@@ -98,6 +121,15 @@
 
 .modal-content.closing {
   animation: modalFadeOut 0.3s ease-out forwards;
+}
+
+/* Стили для полноэкранного модального окна */
+.fullscreen-modal {
+  animation: fullscreenFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.fullscreen-modal.closing {
+  animation: fullscreenFadeOut 0.3s ease-out forwards;
 }
 
 /* Стили для вступления - Элегантный темный */
