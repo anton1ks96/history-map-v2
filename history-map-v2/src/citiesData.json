@@ -152,6 +152,38 @@
       "importance": "regional",
       "population": 5000,
       "captured": false
+    },
+    {
+      "id": "selec",
+      "name": "Селец",
+      "coordinates": [51.11264310924913,24.57768716137693],
+      "importance": "local",
+      "population": 1500,
+      "captured": false
+    },
+    {
+      "id": "tristen",
+      "name": "Трыстень",
+      "coordinates": [50.927164110407176,24.92742266180418],
+      "importance": "local",
+      "population": 1200,
+      "captured": false
+    },
+    {
+      "id": "koshevo",
+      "name": "Кошево",
+      "coordinates": [50.699519162075156,24.880144000000016],
+      "importance": "local",
+      "population": 1800,
+      "captured": false
+    },
+    {
+      "id": "torchin",
+      "name": "Торчин",
+      "coordinates": [50.76509416378133,24.998627169311497],
+      "importance": "local",
+      "population": 2200,
+      "captured": false
     }
   ]
 } 

@@ -95,7 +95,10 @@ const TroopMovements = ({ movements, selectedMovement, selectedPhase }) => {
         <Marker
           position={movement.path[0]}
           icon={L.divIcon({
-            html: `<div style="transform: rotate(${getArrowRotation(movement.path) + (movement.id === '8th_army_lutsk_kovel' ? 180 : 0)}deg);">
+            html: `<div style="transform: rotate(${getArrowRotation(movement.path) + 
+              (movement.id === '8th_army_lutsk_kovel' ? 180 : 0) + 
+              (movement.id === 'first_kovel_battle_selec' || movement.id === 'first_kovel_battle_tristen' || 
+               movement.id === 'first_kovel_battle_koshevo' || movement.id === 'first_kovel_battle_torchin' ? 90 : 0)}deg);">
               <svg width="30" height="30" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12 2 L22 12 L12 22 L12 16 L2 16 L2 8 L12 8 Z" fill="${color}"/>
               </svg>
@@ -240,6 +243,16 @@ const CityMarkers = ({ cities, selectedPhase }) => {
       }
     }
 
+    // Специальная логика для городов, захваченных в Ковельских сражениях
+    const kovelBattlesCities = ['selec', 'tristen', 'koshevo', 'torchin'];
+    if (kovelBattlesCities.includes(id)) {
+      if (selectedPhase === 'kovel_battles' || selectedPhase === '') {
+        isCaptured = true; // Показываем как захваченные в фазе "Ковельские сражения" и "Все ходы"
+      } else {
+        isCaptured = false; // В остальных фазах показываем как незахваченные
+      }
+    }
+
     const color = isCaptured ? '#22c55e' : '#dc2626'; // Зеленый для захваченных, красный для незахваченных
     const borderColor = isCaptured ? 'rgba(34, 197, 94, 0.8)' : 'rgba(220, 38, 38, 0.8)';
 
@@ -270,6 +283,34 @@ const CityMarkers = ({ cities, selectedPhase }) => {
         isCaptured = true;
         captureDate = '22 июня (5 июля) 1916';
         captureArmy = '8-я и 3-я армии';
+      } else {
+        isCaptured = false;
+        captureDate = null;
+        captureArmy = '';
+      }
+    }
+
+    // Специальная логика для городов, захваченных Особой армией в Ковельских сражениях
+    const kovelBattlesSpecialArmy = ['selec', 'tristen'];
+    if (kovelBattlesSpecialArmy.includes(city.id)) {
+      if (selectedPhase === 'kovel_battles' || selectedPhase === '') {
+        isCaptured = true;
+        captureDate = '15 (28) июля 1916';
+        captureArmy = 'Особая армия';
+      } else {
+        isCaptured = false;
+        captureDate = null;
+        captureArmy = '';
+      }
+    }
+
+    // Специальная логика для городов, захваченных 8-й армией в Ковельских сражениях
+    const kovelBattles8thArmy = ['koshevo', 'torchin'];
+    if (kovelBattles8thArmy.includes(city.id)) {
+      if (selectedPhase === 'kovel_battles' || selectedPhase === '') {
+        isCaptured = true;
+        captureDate = '15 (28) июля 1916';
+        captureArmy = '8-я армия';
       } else {
         isCaptured = false;
         captureDate = null;
@@ -561,6 +602,70 @@ export default function BrusilovOffensiveMap() {
       operation_phase: 'kovel_strike',
       is_enemy: false,
       arrow_type: 'wide'
+    },
+    {
+      id: 'first_kovel_battle_selec',
+      name: '1-е Ковельское сражение: направление на Селец',
+      army: 'Особая армия',
+      commander: 'Юго-Западный фронт (А. А. Брусилов)',
+      strength: 'Особая армия',
+      period: '15 (28) июля 1916',
+      description: 'Особая армия одержала победу у местечка Селец в ходе Первого Ковельского сражения.',
+      path: [
+        [51.11510126681912,24.61571015637205],
+        [51.10818567507992,24.926073925903303]
+      ],
+      operation_phase: 'kovel_battles',
+      is_enemy: false,
+      arrow_type: 'normal'
+    },
+    {
+      id: 'first_kovel_battle_tristen',
+      name: '1-е Ковельское сражение: направление на Трыстень',
+      army: 'Особая армия',
+      commander: 'Юго-Западный фронт (А. А. Брусилов)',
+      strength: 'Особая армия',
+      period: '15 (28) июля 1916',
+      description: 'Особая армия одержала победу у местечка Трыстень в ходе Первого Ковельского сражения.',
+      path: [
+        [50.92941491924978, 24.946316968749084],
+        [50.92116940551891, 25.218228589842848]
+      ],
+      operation_phase: 'kovel_battles',
+      is_enemy: false,
+      arrow_type: 'normal'
+    },
+    {
+      id: 'first_kovel_battle_koshevo',
+      name: '1-е Ковельское сражение: атака на Кошево',
+      army: '8-я армия',
+      commander: 'Генерал А.М. Каледин',
+      strength: '8-я армия',
+      period: '15 (28) июля 1916',
+      description: '8-я армия одолела врага у Кошева в ходе Первого Ковельского сражения.',
+      path: [
+        [50.704829662583684, 24.906260866055774],
+        [50.683458865184384, 25.201518434415153]
+      ],
+      operation_phase: 'kovel_battles',
+      is_enemy: false,
+      arrow_type: 'normal'
+    },
+    {
+      id: 'first_kovel_battle_torchin',
+      name: '1-е Ковельское сражение: атака на Торчин',
+      army: '8-я армия',
+      commander: 'Генерал А.М. Каледин',
+      strength: '8-я армия',
+      period: '15 (28) июля 1916',
+      description: '8-я армия взяла Торчин в ходе Первого Ковельского сражения.',
+      path: [
+        [50.7646866060992, 25.01389247077463],
+        [50.7612026440575, 25.196883498606677]
+      ],
+      operation_phase: 'kovel_battles',
+      is_enemy: false,
+      arrow_type: 'normal'
     }
   ];
 
@@ -1162,14 +1267,12 @@ export default function BrusilovOffensiveMap() {
                   </>
                 )}
 
-                {/* Движения войск - не показываются в фазе Ковельских сражений */}
-                {selectedPhase !== 'kovel_battles' && (
-                  <TroopMovements
-                    movements={movements}
-                    selectedMovement={selectedMovement}
-                    selectedPhase={selectedPhase}
-                  />
-                )}
+                {/* Движения войск */}
+                <TroopMovements
+                  movements={movements}
+                  selectedMovement={selectedMovement}
+                  selectedPhase={selectedPhase}
+                />
 
                 {/* Отображение городов */}
                 <CityMarkers cities={citiesData.cities || []} selectedPhase={selectedPhase} />
