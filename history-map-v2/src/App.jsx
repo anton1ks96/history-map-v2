@@ -509,10 +509,10 @@ const IntroComponent = ({ onComplete }) => {
       setShowVideo(true);
     }, 500);
 
-    // Показать текст через 3 секунды
+    // Показать текст через 1.5 секунды
     const textTimer = setTimeout(() => {
       setShowText(true);
-    }, 3500);
+    }, 1500);
 
     // Дополнительная проверка для зацикливания видео
     const videoCheckInterval = setInterval(() => {
