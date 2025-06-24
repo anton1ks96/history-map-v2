@@ -91,11 +91,11 @@ const TroopMovements = ({ movements, selectedMovement, selectedPhase }) => {
             </div>
           </Popup>
         </Polyline>
-        {/* Стрелка в начале линии */}
+        {/* Стрелка в начале или конце линии */}
         <Marker
-          position={movement.path[0]}
+          position={movement.id === 'fourth_kovel_battle_bypass_south' ? movement.path[movement.path.length - 1] : movement.path[0]}
           icon={L.divIcon({
-            html: `<div style="transform: rotate(${getArrowRotation(movement.path) + 
+            html: `<div style="transform: rotate(${movement.id === 'fourth_kovel_battle_bypass_south' ? getArrowRotationEnd(movement.path) : getArrowRotation(movement.path)} + 
               (movement.id === '8th_army_lutsk_kovel' ? 180 : 0) + 
                              (movement.id === 'first_kovel_battle_selec' || movement.id === 'first_kovel_battle_tristen' || 
                 movement.id === 'first_kovel_battle_koshevo' || movement.id === 'first_kovel_battle_torchin' ||
@@ -106,7 +106,9 @@ const TroopMovements = ({ movements, selectedMovement, selectedPhase }) => {
                 (movement.id === 'second_kovel_battle_velitsk_guard' ? -90 : 0) +
                 (movement.id === 'third_kovel_battle_assault_corps' ? 180 : 0) +
                 (movement.operation_phase === 'halych_offensive' ? 90 : 0) +
-                (movement.id === 'halych_offensive_german_counterattack_3' ? -90 : 0)}deg);">
+                (movement.id === 'halych_offensive_german_counterattack_3' ? -90 : 0) +
+                (movement.id === 'fourth_kovel_battle_korytnica_success' || movement.id === 'fourth_kovel_battle_svinyukhy_success' ? 90 : 0) +
+                (movement.arrow_type === 'counterattack' ? 90 : 0)}deg);">
               <svg width="30" height="30" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12 2 L22 12 L12 22 L12 16 L2 16 L2 8 L12 8 Z" fill="${color}"/>
               </svg>
@@ -126,6 +128,14 @@ const getArrowRotation = (path) => {
   const firstTwo = path.slice(0, 2);
   const dx = firstTwo[1][1] - firstTwo[0][1];
   const dy = firstTwo[1][0] - firstTwo[0][0];
+  return Math.atan2(dx, -dy) * (180 / Math.PI);
+};
+
+// Функция для расчета угла поворота стрелки в конце линии
+const getArrowRotationEnd = (path) => {
+  const lastTwo = path.slice(-2);
+  const dx = lastTwo[1][1] - lastTwo[0][1];
+  const dy = lastTwo[1][0] - lastTwo[0][0];
   return Math.atan2(dx, -dy) * (180 / Math.PI);
 };
 
