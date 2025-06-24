@@ -91,9 +91,9 @@ const TroopMovements = ({ movements, selectedMovement, selectedPhase }) => {
             </div>
           </Popup>
         </Polyline>
-        {/* Стрелка в конце линии */}
+        {/* Стрелка в начале линии */}
         <Marker
-          position={movement.path[movement.path.length - 1]}
+          position={movement.path[0]}
           icon={L.divIcon({
             html: `<div style="transform: rotate(${getArrowRotation(movement.path)}deg);">
               <svg width="30" height="30" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -112,9 +112,9 @@ const TroopMovements = ({ movements, selectedMovement, selectedPhase }) => {
 
 // Функция для расчета угла поворота стрелки
 const getArrowRotation = (path) => {
-  const lastTwo = path.slice(-2);
-  const dx = lastTwo[1][1] - lastTwo[0][1];
-  const dy = lastTwo[1][0] - lastTwo[0][0];
+  const firstTwo = path.slice(0, 2);
+  const dx = firstTwo[1][1] - firstTwo[0][1];
+  const dy = firstTwo[1][0] - firstTwo[0][0];
   return Math.atan2(dx, -dy) * (180 / Math.PI);
 };
 
@@ -123,7 +123,7 @@ const FrontLines = ({ frontLines, selectedPhase }) => {
   return frontLines.map((frontLine) => {
     // Определяем, показывать ли эту линию фронта в зависимости от выбранной фазы
     let shouldShow = false;
-    
+
     if (selectedPhase === '') {
       // Показываем все линии фронта
       shouldShow = true;
@@ -143,7 +143,7 @@ const FrontLines = ({ frontLines, selectedPhase }) => {
     // Определяем цвет и стиль линии
     let color = '#dc2626'; // красный для начальной
     let dashArray = null;
-    
+
     if (frontLine.type === 'initial') {
       color = '#dc2626';
       dashArray = '15, 10';
@@ -223,9 +223,9 @@ const CityMarkers = ({ cities, selectedPhase }) => {
 
     // Определяем статус захвата в зависимости от фазы операции
     let isCaptured = Boolean(captured);
-    
+
     // Специальная логика для городов, захваченных в фазе "Удар на Ковель"
-    const kovelStrikeCities = ['manevychi', 'gorodok', 'galuzia'];
+    const kovelStrikeCities = ['manevychi', 'gorodok', 'galuzia', 'baranovichi', 'lyubeshov'];
     if (kovelStrikeCities.includes(id)) {
       if (selectedPhase === 'kovel_strike' || selectedPhase === '') {
         isCaptured = true; // Показываем как захваченные в фазе "Удар на Ковель" и "Все ходы"
@@ -257,8 +257,8 @@ const CityMarkers = ({ cities, selectedPhase }) => {
     let isCaptured = Boolean(city.captured);
     let captureDate = city.captureDate;
     let captureArmy = '';
-    
-    const kovelStrikeCities = ['manevychi', 'gorodok', 'galuzia'];
+
+    const kovelStrikeCities = ['manevychi', 'gorodok', 'galuzia', 'baranovichi', 'lyubeshov'];
     if (kovelStrikeCities.includes(city.id)) {
       if (selectedPhase === 'kovel_strike' || selectedPhase === '') {
         isCaptured = true;
@@ -467,8 +467,8 @@ export default function BrusilovOffensiveMap() {
       period: '22 июня (5 июля) 1916',
       description: 'Возобновление наступления Юго-Западного фронта. Главный удар силами 8-й и 3-й армий на Ковель.',
       path: [
-        [51.451, 25.75], // Начальная позиция с востока от Маневичей
-        [51.292329951327766, 25.53192294204842] // Маневичи
+        [51.292, 25.531], // Маневичи
+        [51.406, 25.9108] // Начальная позиция с востока от Маневичей
       ],
       operation_phase: 'kovel_strike',
       is_enemy: false,
@@ -483,8 +483,8 @@ export default function BrusilovOffensiveMap() {
       period: '22 июня (5 июля) 1916',
       description: 'Возобновление наступления Юго-Западного фронта. Главный удар силами 8-й и 3-й армий на Ковель.',
       path: [
-        [51.370134518234714 - 0.3, 25.478750830537187 - 0.3], // Начальная позиция с востока от Городка
-        [51.370134518234714, 25.478750830537187] // Городок
+        [51.370, 25.478], // Городок
+        [51.590, 25.671] // Начальная позиция с востока от Городка
       ],
       operation_phase: 'kovel_strike',
       is_enemy: false,
@@ -499,8 +499,24 @@ export default function BrusilovOffensiveMap() {
       period: '22 июня (5 июля) 1916',
       description: 'Возобновление наступления Юго-Западного фронта. Главный удар силами 8-й и 3-й армий на Ковель.',
       path: [
-        [51.40224997054743 - 0.3, 25.59724009597908 - 0.3], // Начальная позиция с востока от Галузии
-        [51.40224997054743, 25.59724009597908] // Галузия
+        [51.402, 25.597], // Галузия
+        [51.551, 25.801] // Начальная позиция с востока от Галузии
+      ],
+      operation_phase: 'kovel_strike',
+      is_enemy: false,
+      arrow_type: 'normal'
+    },
+    {
+      id: 'western_front_baranovichi',
+      name: 'Наступление на Барановичи',
+      army: 'Западный фронт',
+      commander: 'А. Е. Эверта',
+      strength: 'Ударная группировка',
+      period: '3 июля 1916',
+      description: 'Западный фронт попытался перейти ударной группировкой в наступление на Барановичи.',
+      path: [
+        [53.13674031131521, 26.043097704371075], // Барановичи
+        [53.308171320764124, 27.240607469996053] // Начальная позиция
       ],
       operation_phase: 'kovel_strike',
       is_enemy: false,
@@ -531,10 +547,10 @@ export default function BrusilovOffensiveMap() {
       • Начало отступления 4-й австро-венгерской армии`
     },
 
-          'kovel_strike': {
-        title: 'Удар на Ковель',
-        subtitle: '22 июня (5 июля) 1916 года',
-        content: `Возобновление наступления Юго-Западного фронта. Наступление велось всеми армиями, кроме 11-й. Главный удар наносился силами 8-й и 3-й армий на Ковель.
+    'kovel_strike': {
+      title: 'Удар на Ковель',
+      subtitle: '22 июня (5 июля) 1916 года',
+      content: `Возобновление наступления Юго-Западного фронта. Наступление велось всеми армиями, кроме 11-й. Главный удар наносился силами 8-й и 3-й армий на Ковель.
 
         Основные события:
         • Прорыв германского фронта за три дня боев
@@ -545,7 +561,7 @@ export default function BrusilovOffensiveMap() {
         • Успешное развитие наступления на Ковельском направлении
         • Расширение прорыва в немецкой обороне
         • Улучшение тактического положения русских войск`
-      },
+    },
 
 
   };
@@ -606,12 +622,12 @@ export default function BrusilovOffensiveMap() {
 
 
 
-  const mapCenter = [49.8, 25.2];
-  const mapZoom = 7;
+  const mapCenter = [50.5, 25.2];
+  const mapZoom = 6;
 
   const mapBounds = [
     [46.0, 22.0], // юго-запад
-    [54.0, 30.0]  // северо-восток
+    [54.5, 30.0]  // северо-восток
   ];
 
 
@@ -861,8 +877,8 @@ export default function BrusilovOffensiveMap() {
                     {/* Контрудар австро-германских войск - южное направление */}
                     <Polyline
                       positions={[
-                        [50.849, 25.133], 
-                        [50.802, 25.248] 
+                        [50.849, 25.133],
+                        [50.802, 25.248]
                       ]}
                       color="#dc2626"
                       weight={5}
@@ -1090,10 +1106,10 @@ export default function BrusilovOffensiveMap() {
                 )}
 
                 {/* Движения войск */}
-                <TroopMovements 
-                  movements={movements} 
-                  selectedMovement={selectedMovement} 
-                  selectedPhase={selectedPhase} 
+                <TroopMovements
+                  movements={movements}
+                  selectedMovement={selectedMovement}
+                  selectedPhase={selectedPhase}
                 />
 
                 {/* Отображение городов */}
@@ -1318,36 +1334,36 @@ export default function BrusilovOffensiveMap() {
                     <span style={{ color: 'rgba(255, 255, 255, 0.9)', lineHeight: '1.2' }}>Финальная линия фронта</span>
                   </div>
 
-                                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minHeight: '24px' }}>
-                <div style={{ 
-                  width: '30px', 
-                  height: '24px', 
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  justifyContent: 'center',
-                  flexShrink: 0
-                }}>
-                  <div style={{ 
-                    width: '20px', 
-                    height: '4px', 
-                    backgroundColor: '#1e40af', 
-                    borderRadius: '2px',
-                    position: 'relative'
-                  }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minHeight: '24px' }}>
                     <div style={{
-                      width: '0',
-                      height: '0',
-                      borderLeft: '4px solid #1e40af',
-                      borderTop: '3px solid transparent',
-                      borderBottom: '3px solid transparent',
-                      position: 'absolute',
-                      right: '-4px',
-                      top: '-1px'
-                    }}></div>
+                      width: '30px',
+                      height: '24px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      flexShrink: 0
+                    }}>
+                      <div style={{
+                        width: '20px',
+                        height: '4px',
+                        backgroundColor: '#1e40af',
+                        borderRadius: '2px',
+                        position: 'relative'
+                      }}>
+                        <div style={{
+                          width: '0',
+                          height: '0',
+                          borderLeft: '4px solid #1e40af',
+                          borderTop: '3px solid transparent',
+                          borderBottom: '3px solid transparent',
+                          position: 'absolute',
+                          right: '-4px',
+                          top: '-1px'
+                        }}></div>
+                      </div>
+                    </div>
+                    <span style={{ color: 'rgba(255, 255, 255, 0.9)', lineHeight: '1.2' }}>Русские войска</span>
                   </div>
-                </div>
-                <span style={{ color: 'rgba(255, 255, 255, 0.9)', lineHeight: '1.2' }}>Русские войска</span>
-              </div>
 
                   <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minHeight: '24px' }}>
                     <div style={{
@@ -1391,18 +1407,18 @@ export default function BrusilovOffensiveMap() {
                   </div>
 
                   <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minHeight: '24px' }}>
-                    <div style={{ 
-                      width: '30px', 
-                      height: '24px', 
-                      display: 'flex', 
-                      alignItems: 'center', 
+                    <div style={{
+                      width: '30px',
+                      height: '24px',
+                      display: 'flex',
+                      alignItems: 'center',
                       justifyContent: 'center',
                       flexShrink: 0
                     }}>
-                      <div style={{ 
-                        width: '20px', 
-                        height: '4px', 
-                        backgroundColor: '#dc2626', 
+                      <div style={{
+                        width: '20px',
+                        height: '4px',
+                        backgroundColor: '#dc2626',
                         borderRadius: '2px',
                         position: 'relative',
                         background: 'repeating-linear-gradient(90deg, #dc2626 0, #dc2626 4px, transparent 4px, transparent 6px)'
@@ -1605,18 +1621,18 @@ export default function BrusilovOffensiveMap() {
           >
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '24px' }}>
               <div>
-                <h2 style={{ 
-                  margin: '0 0 8px 0', 
-                  fontSize: '28px', 
+                <h2 style={{
+                  margin: '0 0 8px 0',
+                  fontSize: '28px',
                   color: '#ffffff',
                   fontWeight: '700',
                   letterSpacing: '-0.5px'
                 }}>
                   {operationInfo[selectedPhase]?.title || 'Информация об операции'}
                 </h2>
-                <p style={{ 
-                  margin: 0, 
-                  fontSize: '16px', 
+                <p style={{
+                  margin: 0,
+                  fontSize: '16px',
                   color: 'rgba(255, 255, 255, 0.7)',
                   fontWeight: '500'
                 }}>
@@ -1652,9 +1668,9 @@ export default function BrusilovOffensiveMap() {
               </button>
             </div>
 
-            <div style={{ 
-              fontSize: '16px', 
-              color: 'rgba(255, 255, 255, 0.9)', 
+            <div style={{
+              fontSize: '16px',
+              color: 'rgba(255, 255, 255, 0.9)',
               lineHeight: '1.6',
               fontFamily: 'SF Pro Text, Inter, -apple-system, BlinkMacSystemFont, sans-serif'
             }}>

@@ -136,6 +136,22 @@
       "importance": "local",
       "population": 2500,
       "captured": false
+    },
+    {
+      "id": "baranovichi",
+      "name": "Барановичи",
+      "coordinates": [53.15299932079434,26.009472841308554],
+      "importance": "strategic",
+      "population": 12000,
+      "captured": false
+    },
+    {
+      "id": "lyubeshov",
+      "name": "Любешов",
+      "coordinates": [51.76414453594151,25.4983139201785],
+      "importance": "regional",
+      "population": 5000,
+      "captured": false
     }
   ]
 } 
