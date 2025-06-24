@@ -1661,7 +1661,7 @@ export default function BrusilovOffensiveMap() {
                 fontWeight: '700',
                 textAlign: 'left',
                 margin: 0,
-                fontFamily: 'SF Pro Display, Inter, -apple-system, BlinkMacSystemFont, sans-serif',
+                fontFamily: 'Rubik, sans-serif',
                 letterSpacing: '2px',
                 color: '#ffffff',
                 lineHeight: 1.2,
@@ -1680,7 +1680,7 @@ export default function BrusilovOffensiveMap() {
             <div style={{
               textAlign: 'left',
               margin: '0',
-              fontFamily: 'SF Pro Text, Inter, -apple-system, BlinkMacSystemFont, sans-serif',
+              fontFamily: 'Rubik, sans-serif',
               fontSize: '20px',
               color: '#ffffff',
               letterSpacing: '1px'
@@ -2261,7 +2261,7 @@ export default function BrusilovOffensiveMap() {
                   color: '#ffffff',
                   fontSize: '16px',
                   letterSpacing: '0.5px',
-                  fontFamily: 'SF Pro Text, Inter, -apple-system, BlinkMacSystemFont, sans-serif'
+                  fontFamily: 'Rubik, sans-serif'
                 }}>
                   Легенда
                 </h3>
@@ -2488,7 +2488,7 @@ export default function BrusilovOffensiveMap() {
                       fontWeight: '500',
                       outline: 'none',
                       letterSpacing: '0.5px',
-                      fontFamily: 'SF Pro Text, Inter, -apple-system, BlinkMacSystemFont, sans-serif',
+                      fontFamily: 'Rubik, sans-serif',
                       cursor: 'pointer',
                       backdropFilter: 'blur(20px)',
                       boxShadow: '0 8px 25px rgba(0, 0, 0, 0.2)',
@@ -2634,7 +2634,7 @@ export default function BrusilovOffensiveMap() {
                 color: '#ffffff',
                 fontWeight: '700',
                 letterSpacing: '-1px',
-                fontFamily: 'SF Pro Display, Inter, -apple-system, BlinkMacSystemFont, sans-serif'
+                fontFamily: 'Rubik, sans-serif'
               }}>
                 {operationInfo[selectedPhase]?.title || 'Информация об операции'}
               </h1>
@@ -2643,7 +2643,7 @@ export default function BrusilovOffensiveMap() {
                 fontSize: '18px',
                 color: 'rgba(255, 255, 255, 0.7)',
                 fontWeight: '500',
-                fontFamily: 'SF Pro Text, Inter, -apple-system, BlinkMacSystemFont, sans-serif'
+                fontFamily: 'Rubik, sans-serif'
               }}>
                 {operationInfo[selectedPhase]?.subtitle}
               </p>
@@ -2696,7 +2696,7 @@ export default function BrusilovOffensiveMap() {
                 fontSize: '18px',
                 color: 'rgba(255, 255, 255, 0.9)',
                 lineHeight: '1.8',
-                fontFamily: 'SF Pro Text, Inter, -apple-system, BlinkMacSystemFont, sans-serif',
+                fontFamily: 'Rubik, sans-serif',
                 textAlign: 'justify'
               }}>
                 <div 
@@ -2725,7 +2725,7 @@ export default function BrusilovOffensiveMap() {
               margin: 0,
               fontSize: '14px',
               color: 'rgba(255, 255, 255, 0.5)',
-              fontFamily: 'SF Pro Text, Inter, -apple-system, BlinkMacSystemFont, sans-serif'
+              fontFamily: 'Rubik, sans-serif'
             }}>
               Нажмите ESC или кнопку × для закрытия
             </p>

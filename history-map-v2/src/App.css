@@ -229,7 +229,7 @@
   margin: 0 0 0.5rem 0;
   letter-spacing: -2px;
   color: #ffffff;
-  font-family: 'SF Pro Display', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Rubik', sans-serif;
   text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
   filter: drop-shadow(0 2px 8px rgba(255, 255, 255, 0.1));
   text-transform: uppercase;
@@ -241,7 +241,7 @@
   margin: 0 0 3rem 0;
   letter-spacing: 0.5px;
   color: rgba(255, 255, 255, 0.8);
-  font-family: 'SF Pro Text', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Rubik', sans-serif;
   line-height: 1.6;
 }
 
@@ -266,7 +266,7 @@
   border-radius: 12px;
   cursor: pointer;
   letter-spacing: 0.5px;
-  font-family: 'SF Pro Text', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Rubik', sans-serif;
   transition: all 0.3s ease;
   backdrop-filter: blur(10px);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
