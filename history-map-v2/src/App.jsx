@@ -524,366 +524,403 @@ export default function BrusilovOffensiveMap() {
                   showFinal={false}
                 />
 
-                            {/* Стрелка 8-й армии к Луцку */}
-            <Polyline
-              positions={[
-                [50.58, 25.54],
-                [50.747, 25.325]
-              ]}
-              color="#1e40af"
-              weight={6}
-              opacity={0.9}
-            >
-              <Popup>
-                <div style={{ padding: '8px', maxWidth: '250px' }}>
-                  <h3 style={{ margin: '0 0 8px 0', fontSize: '16px', fontWeight: 'bold' }}>
-                    8-я армия к Луцку
-                  </h3>
-                  <p style={{ margin: '4px 0' }}>
-                    <strong>Командующий:</strong> Генерал А.М. Каледин
-                  </p>
-                  <p style={{ margin: '4px 0' }}>
-                    <strong>Дата:</strong> 4-7 июня 1916
-                  </p>
-                  <p style={{ margin: '4px 0' }}>
-                    <strong>Результат:</strong> Луцк занят 7 июня
-                  </p>
-                  <p style={{ margin: '4px 0' }}>
-                    Главный удар Брусиловского наступления
-                  </p>
-                </div>
-              </Popup>
-            </Polyline>
-            <Marker
-              position={[50.747, 25.325]}
-              icon={L.divIcon({
-                html: `<div style="transform: rotate(232deg);">
-                  <svg width="30" height="30" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M8 5 L19 12 L8 19 L8 15 L1 15 L1 9 L8 9 Z" fill="#1e40af" stroke="#ffffff" stroke-width="0.5"/>
-                  </svg>
-                </div>`,
-                className: 'army-arrow',
-                iconSize: [30, 30],
-                iconAnchor: [15, 15]
-              })}
-            />
+                {/* Фронт на 16 июня - отображается в фазе Луцкий прорыв и Все ходы */}
+                {(selectedPhase === '' || selectedPhase === 'lutsk_breakthrough') && (
+                  <Polyline
+                    positions={[
+                      [51.16475098, 25.60661923],
+                      [50.95011542, 25.11223447],
+                      [50.40212190, 25.30998837],
+                      [50.06033295, 25.33196103],
+                      [49.97826396, 25.71305102]
+                    ]}
+                    color="#22c55e"
+                    weight={3}
+                    opacity={0.8}
+                  >
+                    <Popup>
+                      <div className="p-2">
+                        <h3 className="font-bold">Фронт на 16 июня 1916</h3>
+                        <p>Положение линии фронта после первых успехов Брусиловского прорыва</p>
+                      </div>
+                    </Popup>
+                  </Polyline>
+                )}
 
-                            {/* Стрелка 8-й армии к Дубно */}
-            <Polyline
-              positions={[
-                [50.56, 25.54],
-                [50.4171, 25.7578]
-              ]}
-              color="#1e40af"
-              weight={5}
-              opacity={0.9}
-            >
-              <Popup>
-                <div style={{ padding: '8px', maxWidth: '250px' }}>
-                  <h3 style={{ margin: '0 0 8px 0', fontSize: '16px', fontWeight: 'bold' }}>
-                    8-я армия к Дубно
-                  </h3>
-                  <p style={{ margin: '4px 0' }}>
-                    <strong>Корпус:</strong> 32-й корпус
-                  </p>
-                  <p style={{ margin: '4px 0' }}>
-                    <strong>Командующий:</strong> Генерал А.М. Каледин
-                  </p>
-                  <p style={{ margin: '4px 0' }}>
-                    <strong>Дата:</strong> 4-15 июня 1916
-                  </p>
-                  <p style={{ margin: '4px 0' }}>
-                    <strong>Результат:</strong> Дубно захвачен
-                  </p>
-                  <p style={{ margin: '4px 0' }}>
-                    Части 32-го корпуса, действующего южнее Луцка
-                  </p>
-                </div>
-              </Popup>
-            </Polyline>
-            <Marker
-              position={[50.4171, 25.7578]}
-              icon={L.divIcon({
-                html: `<div style="transform: rotate(50deg);">
-                  <svg width="28" height="28" viewBox="2 -1 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M8 5 L19 12 L8 19 L8 15 L1 15 L1 9 L8 9 Z" fill="#1e40af" stroke="#ffffff" stroke-width="0.5"/>
-                  </svg>
-                </div>`,
-                className: 'army-arrow',
-                iconSize: [28, 28],
-                iconAnchor: [14, 14]
-              })}
-            />
+                {/* Стрелки 8-й армии - отображаются в фазе Луцкий прорыв и Все ходы */}
+                {(selectedPhase === '' || selectedPhase === 'lutsk_breakthrough') && (
+                  <>
+                    {/* Стрелка 8-й армии к Луцку */}
+                    <Polyline
+                      positions={[
+                        [50.58, 25.54],
+                        [50.747, 25.325]
+                      ]}
+                      color="#1e40af"
+                      weight={6}
+                      opacity={0.9}
+                    >
+                      <Popup>
+                        <div style={{ padding: '8px', maxWidth: '250px' }}>
+                          <h3 style={{ margin: '0 0 8px 0', fontSize: '16px', fontWeight: 'bold' }}>
+                            8-я армия к Луцку
+                          </h3>
+                          <p style={{ margin: '4px 0' }}>
+                            <strong>Командующий:</strong> Генерал А.М. Каледин
+                          </p>
+                          <p style={{ margin: '4px 0' }}>
+                            <strong>Дата:</strong> 4-7 июня 1916
+                          </p>
+                          <p style={{ margin: '4px 0' }}>
+                            <strong>Результат:</strong> Луцк занят 7 июня
+                          </p>
+                          <p style={{ margin: '4px 0' }}>
+                            Главный удар Брусиловского наступления
+                          </p>
+                        </div>
+                      </Popup>
+                    </Polyline>
+                    <Marker
+                      position={[50.747, 25.325]}
+                      icon={L.divIcon({
+                        html: `<div style="transform: rotate(232deg);">
+                          <svg width="30" height="30" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 5 L19 12 L8 19 L8 15 L1 15 L1 9 L8 9 Z" fill="#1e40af" stroke="#ffffff" stroke-width="0.5"/>
+                          </svg>
+                        </div>`,
+                        className: 'army-arrow',
+                        iconSize: [30, 30],
+                        iconAnchor: [15, 15]
+                      })}
+                    />
 
-                {/* Контрудар австро-германских войск - северное направление */}
-                <Polyline
-                  positions={[
-                    [50.77, 25.07], // 55.75399400, 37.62209300
-                    [50.754, 25.262]
-                  ]}
-                  color="#dc2626"
-                  weight={5}
-                  opacity={0.9}
-                  dashArray="8, 4"
-                >
-                  <Popup>
-                    <div style={{ padding: '8px', maxWidth: '280px' }}>
-                      <h3 style={{ margin: '0 0 8px 0', fontSize: '16px', fontWeight: 'bold' }}>
-                        Контрудар австро-германских войск (ген. Линзинген)
-                      </h3>
-                      <p style={{ margin: '4px 0' }}>
-                        <strong>Командующий:</strong> Генерал А. фон Линзинген
-                      </p>
-                      <p style={{ margin: '4px 0' }}>
-                        <strong>Дата:</strong> 3 (16) июня 1916 г.
-                      </p>
-                      <p style={{ margin: '4px 0' }}>
-                        <strong>Направление:</strong> Северное направление к Луцку
-                      </p>
-                      <p style={{ margin: '4px 0' }}>
-                        Попытка отбить захваченный русскими Луцк
-                      </p>
-                    </div>
-                  </Popup>
-                </Polyline>
-                <Marker
-                  position={[50.754, 25.262]}
-                  icon={L.divIcon({
-                    html: `<div style="transform: rotate(9deg);">
-                      <svg width="28" height="28" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M8 5 L19 12 L8 19 L8 15 L1 15 L1 9 L8 9 Z" fill="#dc2626" stroke="#ffffff" stroke-width="0.5"/>
-                      </svg>
-                    </div>`,
-                    className: 'counterattack-arrow',
-                    iconSize: [28, 28],
-                    iconAnchor: [14, 14]
-                  })}
-                />
+                    {/* Стрелка 8-й армии к Дубно */}
+                    <Polyline
+                      positions={[
+                        [50.56, 25.54],
+                        [50.4171, 25.7578]
+                      ]}
+                      color="#1e40af"
+                      weight={5}
+                      opacity={0.9}
+                    >
+                      <Popup>
+                        <div style={{ padding: '8px', maxWidth: '250px' }}>
+                          <h3 style={{ margin: '0 0 8px 0', fontSize: '16px', fontWeight: 'bold' }}>
+                            8-я армия к Дубно
+                          </h3>
+                          <p style={{ margin: '4px 0' }}>
+                            <strong>Корпус:</strong> 32-й корпус
+                          </p>
+                          <p style={{ margin: '4px 0' }}>
+                            <strong>Командующий:</strong> Генерал А.М. Каледин
+                          </p>
+                          <p style={{ margin: '4px 0' }}>
+                            <strong>Дата:</strong> 4-15 июня 1916
+                          </p>
+                          <p style={{ margin: '4px 0' }}>
+                            <strong>Результат:</strong> Дубно захвачен
+                          </p>
+                          <p style={{ margin: '4px 0' }}>
+                            Части 32-го корпуса, действующего южнее Луцка
+                          </p>
+                        </div>
+                      </Popup>
+                    </Polyline>
+                    <Marker
+                      position={[50.4171, 25.7578]}
+                      icon={L.divIcon({
+                        html: `<div style="transform: rotate(50deg);">
+                          <svg width="28" height="28" viewBox="2 -1 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 5 L19 12 L8 19 L8 15 L1 15 L1 9 L8 9 Z" fill="#1e40af" stroke="#ffffff" stroke-width="0.5"/>
+                          </svg>
+                        </div>`,
+                        className: 'army-arrow',
+                        iconSize: [28, 28],
+                        iconAnchor: [14, 14]
+                      })}
+                    />
+                  </>
+                )}
 
-                {/* Контрудар австро-германских войск - южное направление */}
-                <Polyline
-                  positions={[
-                    [50.849, 25.133], 
-                    [50.802, 25.248] 
-                  ]}
-                  color="#dc2626"
-                  weight={5}
-                  opacity={0.9}
-                  dashArray="8, 4"
-                >
-                  <Popup>
-                    <div style={{ padding: '8px', maxWidth: '280px' }}>
-                      <h3 style={{ margin: '0 0 8px 0', fontSize: '16px', fontWeight: 'bold' }}>
-                        Контрудар австро-германских войск (ген. Линзинген)
-                      </h3>
-                      <p style={{ margin: '4px 0' }}>
-                        <strong>Командующий:</strong> Генерал А. фон Линзинген
-                      </p>
-                      <p style={{ margin: '4px 0' }}>
-                        <strong>Дата:</strong> 3 (16) июня 1916 г.
-                      </p>
-                      <p style={{ margin: '4px 0' }}>
-                        <strong>Направление:</strong> Южное направление к Луцку
-                      </p>
-                      <p style={{ margin: '4px 0' }}>
-                        Попытка отбить захваченный русскими Луцк
-                      </p>
-                    </div>
-                  </Popup>
-                </Polyline>
-                <Marker
-                  position={[50.802, 25.248]}
-                  icon={L.divIcon({
-                    html: `<div style="transform: rotate(36deg);">
-                      <svg width="28" height="28" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M8 5 L19 12 L8 19 L8 15 L1 15 L1 9 L8 9 Z" fill="#dc2626" stroke="#ffffff" stroke-width="0.5"/>
-                      </svg>
-                    </div>`,
-                    className: 'counterattack-arrow',
-                    iconSize: [28, 28],
-                    iconAnchor: [14, 14]
-                  })}
-                                 />
+                {/* Контрудары австро-германских войск - отображаются в фазе Луцкий прорыв и Все ходы */}
+                {(selectedPhase === '' || selectedPhase === 'lutsk_breakthrough') && (
+                  <>
+                    {/* Контрудар австро-германских войск - северное направление */}
+                    <Polyline
+                      positions={[
+                        [50.77, 25.07], // 55.75399400, 37.62209300
+                        [50.754, 25.262]
+                      ]}
+                      color="#dc2626"
+                      weight={5}
+                      opacity={0.9}
+                      dashArray="8, 4"
+                    >
+                      <Popup>
+                        <div style={{ padding: '8px', maxWidth: '280px' }}>
+                          <h3 style={{ margin: '0 0 8px 0', fontSize: '16px', fontWeight: 'bold' }}>
+                            Контрудар австро-германских войск (ген. Линзинген)
+                          </h3>
+                          <p style={{ margin: '4px 0' }}>
+                            <strong>Командующий:</strong> Генерал А. фон Линзинген
+                          </p>
+                          <p style={{ margin: '4px 0' }}>
+                            <strong>Дата:</strong> 3 (16) июня 1916 г.
+                          </p>
+                          <p style={{ margin: '4px 0' }}>
+                            <strong>Направление:</strong> Северное направление к Луцку
+                          </p>
+                          <p style={{ margin: '4px 0' }}>
+                            Попытка отбить захваченный русскими Луцк
+                          </p>
+                        </div>
+                      </Popup>
+                    </Polyline>
+                    <Marker
+                      position={[50.754, 25.262]}
+                      icon={L.divIcon({
+                        html: `<div style="transform: rotate(9deg);">
+                          <svg width="28" height="28" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 5 L19 12 L8 19 L8 15 L1 15 L1 9 L8 9 Z" fill="#dc2626" stroke="#ffffff" stroke-width="0.5"/>
+                          </svg>
+                        </div>`,
+                        className: 'counterattack-arrow',
+                        iconSize: [28, 28],
+                        iconAnchor: [14, 14]
+                      })}
+                    />
 
-                {/* 9-я армия (ген. Лечицкий) - наступление на Черновцы */}
-                <Polyline
-                  positions={[
-                    [48.9, 25.9],
-                    [48.6, 25.93],
-                    [48.291899, 25.935892]
-                  ]}
-                  color="#1e40af"
-                  weight={6}
-                  opacity={0.9}
-                >
-                  <Popup>
-                    <div style={{ padding: '8px', maxWidth: '280px' }}>
-                      <h3 style={{ margin: '0 0 8px 0', fontSize: '16px', fontWeight: 'bold' }}>
-                        Наступление на Черновцы
-                      </h3>
-                      <p style={{ margin: '4px 0' }}>
-                        <strong>Армия:</strong> 9-я армия
-                      </p>
-                      <p style={{ margin: '4px 0' }}>
-                        <strong>Командующий:</strong> Генерал П. А. Лечицкий
-                      </p>
-                      <p style={{ margin: '4px 0' }}>
-                        <strong>Результат:</strong> Черновцы взяты 18 июня 1916 г.
-                      </p>
-                      <p style={{ margin: '4px 0' }}>
-                        Главный удар левофланговой армии
-                      </p>
-                    </div>
-                  </Popup>
-                </Polyline>
-                <Marker
-                  position={[48.291899, 25.935892]}
-                  icon={L.divIcon({
-                    html: `<div style="transform: rotate(95deg);">
-                      <svg width="30" height="30" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M8 5 L19 12 L8 19 L8 15 L1 15 L1 9 L8 9 Z" fill="#1e40af" stroke="#ffffff" stroke-width="0.5"/>
-                      </svg>
-                    </div>`,
-                    className: 'army-arrow',
-                    iconSize: [30, 30],
-                    iconAnchor: [15, 15]
-                  })}
-                />
+                    {/* Контрудар австро-германских войск - южное направление */}
+                    <Polyline
+                      positions={[
+                        [50.849, 25.133], 
+                        [50.802, 25.248] 
+                      ]}
+                      color="#dc2626"
+                      weight={5}
+                      opacity={0.9}
+                      dashArray="8, 4"
+                    >
+                      <Popup>
+                        <div style={{ padding: '8px', maxWidth: '280px' }}>
+                          <h3 style={{ margin: '0 0 8px 0', fontSize: '16px', fontWeight: 'bold' }}>
+                            Контрудар австро-германских войск (ген. Линзинген)
+                          </h3>
+                          <p style={{ margin: '4px 0' }}>
+                            <strong>Командующий:</strong> Генерал А. фон Линзинген
+                          </p>
+                          <p style={{ margin: '4px 0' }}>
+                            <strong>Дата:</strong> 3 (16) июня 1916 г.
+                          </p>
+                          <p style={{ margin: '4px 0' }}>
+                            <strong>Направление:</strong> Южное направление к Луцку
+                          </p>
+                          <p style={{ margin: '4px 0' }}>
+                            Попытка отбить захваченный русскими Луцк
+                          </p>
+                        </div>
+                      </Popup>
+                    </Polyline>
+                    <Marker
+                      position={[50.802, 25.248]}
+                      icon={L.divIcon({
+                        html: `<div style="transform: rotate(36deg);">
+                          <svg width="28" height="28" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 5 L19 12 L8 19 L8 15 L1 15 L1 9 L8 9 Z" fill="#dc2626" stroke="#ffffff" stroke-width="0.5"/>
+                          </svg>
+                        </div>`,
+                        className: 'counterattack-arrow',
+                        iconSize: [28, 28],
+                        iconAnchor: [14, 14]
+                      })}
+                    />
+                  </>
+                )}
 
-                {/* 9-я армия - 12-й корпус к Кутам */}
-                <Polyline
-                  positions={[
-                    [48.7, 25.5],
-                    [48.45, 25.35],
-                    [48.263, 25.179]
-                  ]}
-                  color="#1e40af"
-                  weight={5}
-                  opacity={0.9}
-                >
-                  <Popup>
-                    <div style={{ padding: '8px', maxWidth: '280px' }}>
-                      <h3 style={{ margin: '0 0 8px 0', fontSize: '16px', fontWeight: 'bold' }}>
-                        12-й корпус: захват Куты
-                      </h3>
-                      <p style={{ margin: '4px 0' }}>
-                        <strong>Армия:</strong> 9-я армия
-                      </p>
-                      <p style={{ margin: '4px 0' }}>
-                        <strong>Командующий:</strong> Генерал П. А. Лечицкий
-                      </p>
-                      <p style={{ margin: '4px 0' }}>
-                        <strong>Корпус:</strong> 12-й корпус
-                      </p>
-                      <p style={{ margin: '4px 0' }}>
-                        Движение к румынской границе
-                      </p>
-                    </div>
-                  </Popup>
-                </Polyline>
-                <Marker
-                  position={[48.263, 25.179]}
-                  icon={L.divIcon({
-                    html: `<div style="transform: rotate(132deg);">
-                      <svg width="28" height="28" viewBox="0 -4 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M8 5 L19 12 L8 19 L8 15 L1 15 L1 9 L8 9 Z" fill="#1e40af" stroke="#ffffff" stroke-width="0.5"/>
-                      </svg>
-                    </div>`,
-                    className: 'army-arrow',
-                    iconSize: [28, 28],
-                    iconAnchor: [14, 14]
-                  })}
-                />
+                {/* Стрелки 9-й армии генерала Лечицкого - отображаются в фазе Луцкий прорыв и Все ходы */}
+                {(selectedPhase === '' || selectedPhase === 'lutsk_breakthrough') && (
+                  <>
+                    {/* 9-я армия (ген. Лечицкий) - наступление на Черновцы */}
+                    <Polyline
+                      positions={[
+                        [48.9, 25.9],
+                        [48.6, 25.93],
+                        [48.291899, 25.935892]
+                      ]}
+                      color="#1e40af"
+                      weight={6}
+                      opacity={0.9}
+                    >
+                      <Popup>
+                        <div style={{ padding: '8px', maxWidth: '280px' }}>
+                          <h3 style={{ margin: '0 0 8px 0', fontSize: '16px', fontWeight: 'bold' }}>
+                            Наступление на Черновцы
+                          </h3>
+                          <p style={{ margin: '4px 0' }}>
+                            <strong>Армия:</strong> 9-я армия
+                          </p>
+                          <p style={{ margin: '4px 0' }}>
+                            <strong>Командующий:</strong> Генерал П. А. Лечицкий
+                          </p>
+                          <p style={{ margin: '4px 0' }}>
+                            <strong>Результат:</strong> Черновцы взяты 18 июня 1916 г.
+                          </p>
+                          <p style={{ margin: '4px 0' }}>
+                            Главный удар левофланговой армии
+                          </p>
+                        </div>
+                      </Popup>
+                    </Polyline>
+                    <Marker
+                      position={[48.291899, 25.935892]}
+                      icon={L.divIcon({
+                        html: `<div style="transform: rotate(95deg);">
+                          <svg width="30" height="30" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 5 L19 12 L8 19 L8 15 L1 15 L1 9 L8 9 Z" fill="#1e40af" stroke="#ffffff" stroke-width="0.5"/>
+                          </svg>
+                        </div>`,
+                        className: 'army-arrow',
+                        iconSize: [30, 30],
+                        iconAnchor: [15, 15]
+                      })}
+                    />
 
-                {/* 9-я армия - 3-й кавалерийский корпус в Кымпулунг */}
-                <Polyline
-                  positions={[
-                    [48.283, 25.754],
-                    [47.527, 25.575]
-                  ]}
-                  color="#1e40af"
-                  weight={4}
-                  opacity={0.9}
-                  dashArray="5, 3"
-                >
-                  <Popup>
-                    <div style={{ padding: '8px', maxWidth: '280px' }}>
-                      <h3 style={{ margin: '0 0 8px 0', fontSize: '16px', fontWeight: 'bold' }}>
-                        3-й кавалерийский корпус: рейд в Кымпулунг
-                      </h3>
-                      <p style={{ margin: '4px 0' }}>
-                        <strong>Армия:</strong> 9-я армия
-                      </p>
-                      <p style={{ margin: '4px 0' }}>
-                        <strong>Командующий:</strong> Генерал П. А. Лечицкий
-                      </p>
-                      <p style={{ margin: '4px 0' }}>
-                        <strong>Корпус:</strong> 3-й кавалерийский корпус
-                      </p>
-                      <p style={{ margin: '4px 0' }}>
-                        Кавалерийский прорыв в Румынию
-                      </p>
-                    </div>
-                  </Popup>
-                </Polyline>
-                <Marker
-                  position={[47.527, 25.575]}
-                  icon={L.divIcon({
-                    html: `<div style="transform: rotate(100deg);">
-                      <svg width="26" height="26" viewBox="0 -3 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M8 5 L19 12 L8 19 L8 15 L1 15 L1 9 L8 9 Z" fill="#1e40af" stroke="#ffffff" stroke-width="0.5"/>
-                      </svg>
-                    </div>`,
-                    className: 'cavalry-arrow',
-                    iconSize: [26, 26],
-                    iconAnchor: [13, 13]
-                  })}
-                />
+                    {/* 9-я армия - 12-й корпус к Кутам */}
+                    <Polyline
+                      positions={[
+                        [48.7, 25.5],
+                        [48.45, 25.35],
+                        [48.263, 25.179]
+                      ]}
+                      color="#1e40af"
+                      weight={5}
+                      opacity={0.9}
+                    >
+                      <Popup>
+                        <div style={{ padding: '8px', maxWidth: '280px' }}>
+                          <h3 style={{ margin: '0 0 8px 0', fontSize: '16px', fontWeight: 'bold' }}>
+                            12-й корпус: захват Куты
+                          </h3>
+                          <p style={{ margin: '4px 0' }}>
+                            <strong>Армия:</strong> 9-я армия
+                          </p>
+                          <p style={{ margin: '4px 0' }}>
+                            <strong>Командующий:</strong> Генерал П. А. Лечицкий
+                          </p>
+                          <p style={{ margin: '4px 0' }}>
+                            <strong>Корпус:</strong> 12-й корпус
+                          </p>
+                          <p style={{ margin: '4px 0' }}>
+                            Движение к румынской границе
+                          </p>
+                        </div>
+                      </Popup>
+                    </Polyline>
+                    <Marker
+                      position={[48.263, 25.179]}
+                      icon={L.divIcon({
+                        html: `<div style="transform: rotate(132deg);">
+                          <svg width="28" height="28" viewBox="0 -4 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 5 L19 12 L8 19 L8 15 L1 15 L1 9 L8 9 Z" fill="#1e40af" stroke="#ffffff" stroke-width="0.5"/>
+                          </svg>
+                        </div>`,
+                        className: 'army-arrow',
+                        iconSize: [28, 28],
+                        iconAnchor: [14, 14]
+                      })}
+                    />
 
-                {/* 9-я армия - 41-й корпус к Коломые */}
-                <Polyline
-                  positions={[
-                    [48.8, 25.3],
-                    [48.67, 25.18],
-                    [48.5208, 25.0375]
-                  ]}
-                  color="#1e40af"
-                  weight={5}
-                  opacity={0.9}
-                >
-                  <Popup>
-                    <div style={{ padding: '8px', maxWidth: '280px' }}>
-                      <h3 style={{ margin: '0 0 8px 0', fontSize: '16px', fontWeight: 'bold' }}>
-                        41-й корпус: занятие Коломыи, 30 июня
-                      </h3>
-                      <p style={{ margin: '4px 0' }}>
-                        <strong>Армия:</strong> 9-я армия
-                      </p>
-                      <p style={{ margin: '4px 0' }}>
-                        <strong>Командующий:</strong> Генерал П. А. Лечицкий
-                      </p>
-                      <p style={{ margin: '4px 0' }}>
-                        <strong>Корпус:</strong> 41-й корпус
-                      </p>
-                      <p style={{ margin: '4px 0' }}>
-                        Продвижение к Карпатам
-                      </p>
-                    </div>
-                  </Popup>
-                </Polyline>
-                <Marker
-                  position={[48.5208, 25.0375]}
-                  icon={L.divIcon({
-                    html: `<div style="transform: rotate(132deg);">
-                      <svg width="28" height="28" viewBox="0 -4 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M8 5 L19 12 L8 19 L8 15 L1 15 L1 9 L8 9 Z" fill="#1e40af" stroke="#ffffff" stroke-width="0.5"/>
-                      </svg>
-                    </div>`,
-                    className: 'army-arrow',
-                    iconSize: [28, 28],
-                    iconAnchor: [14, 14]
-                  })}
-                />
+                    {/* 9-я армия - 3-й кавалерийский корпус в Кымпулунг */}
+                    <Polyline
+                      positions={[
+                        [48.283, 25.754],
+                        [47.527, 25.575]
+                      ]}
+                      color="#1e40af"
+                      weight={4}
+                      opacity={0.9}
+                    >
+                      <Popup>
+                        <div style={{ padding: '8px', maxWidth: '280px' }}>
+                          <h3 style={{ margin: '0 0 8px 0', fontSize: '16px', fontWeight: 'bold' }}>
+                            3-й кавалерийский корпус: рейд в Кымпулунг
+                          </h3>
+                          <p style={{ margin: '4px 0' }}>
+                            <strong>Армия:</strong> 9-я армия
+                          </p>
+                          <p style={{ margin: '4px 0' }}>
+                            <strong>Командующий:</strong> Генерал П. А. Лечицкий
+                          </p>
+                          <p style={{ margin: '4px 0' }}>
+                            <strong>Корпус:</strong> 3-й кавалерийский корпус
+                          </p>
+                          <p style={{ margin: '4px 0' }}>
+                            Кавалерийский прорыв в Румынию
+                          </p>
+                        </div>
+                      </Popup>
+                    </Polyline>
+                    <Marker
+                      position={[47.527, 25.575]}
+                      icon={L.divIcon({
+                        html: `<div style="transform: rotate(100deg);">
+                          <svg width="26" height="26" viewBox="0 -3 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 5 L19 12 L8 19 L8 15 L1 15 L1 9 L8 9 Z" fill="#1e40af" stroke="#ffffff" stroke-width="0.5"/>
+                          </svg>
+                        </div>`,
+                        className: 'cavalry-arrow',
+                        iconSize: [26, 26],
+                        iconAnchor: [13, 13]
+                      })}
+                    />
+
+                    {/* 9-я армия - 41-й корпус к Коломые */}
+                    <Polyline
+                      positions={[
+                        [48.8, 25.3],
+                        [48.67, 25.18],
+                        [48.5208, 25.0375]
+                      ]}
+                      color="#1e40af"
+                      weight={5}
+                      opacity={0.9}
+                    >
+                      <Popup>
+                        <div style={{ padding: '8px', maxWidth: '280px' }}>
+                          <h3 style={{ margin: '0 0 8px 0', fontSize: '16px', fontWeight: 'bold' }}>
+                            41-й корпус: занятие Коломыи, 30 июня
+                          </h3>
+                          <p style={{ margin: '4px 0' }}>
+                            <strong>Армия:</strong> 9-я армия
+                          </p>
+                          <p style={{ margin: '4px 0' }}>
+                            <strong>Командующий:</strong> Генерал П. А. Лечицкий
+                          </p>
+                          <p style={{ margin: '4px 0' }}>
+                            <strong>Корпус:</strong> 41-й корпус
+                          </p>
+                          <p style={{ margin: '4px 0' }}>
+                            Продвижение к Карпатам
+                          </p>
+                        </div>
+                      </Popup>
+                    </Polyline>
+                    <Marker
+                      position={[48.5208, 25.0375]}
+                      icon={L.divIcon({
+                        html: `<div style="transform: rotate(132deg);">
+                          <svg width="28" height="28" viewBox="0 -4 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 5 L19 12 L8 19 L8 15 L1 15 L1 9 L8 9 Z" fill="#1e40af" stroke="#ffffff" stroke-width="0.5"/>
+                          </svg>
+                        </div>`,
+                        className: 'army-arrow',
+                        iconSize: [28, 28],
+                        iconAnchor: [14, 14]
+                      })}
+                    />
+                  </>
+                )}
 
                 {/* Отображение городов */}
                 <CityMarkers cities={citiesData.cities || []} />
@@ -998,6 +1035,25 @@ export default function BrusilovOffensiveMap() {
                     <span style={{ color: 'rgba(255, 255, 255, 0.9)', lineHeight: '1.2' }}>Линия фронта на 4 июня</span>
                   </div>
 
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minHeight: '24px' }}>
+                    <div style={{
+                      width: '30px',
+                      height: '24px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      flexShrink: 0
+                    }}>
+                      <div style={{
+                        width: '26px',
+                        height: '4px',
+                        backgroundColor: '#22c55e',
+                        borderRadius: '2px'
+                      }}></div>
+                    </div>
+                    <span style={{ color: 'rgba(255, 255, 255, 0.9)', lineHeight: '1.2' }}>Фронт на 16 июня</span>
+                  </div>
+
                                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minHeight: '24px' }}>
                 <div style={{ 
                   width: '30px', 
@@ -1026,70 +1082,7 @@ export default function BrusilovOffensiveMap() {
                     }}></div>
                   </div>
                 </div>
-                <span style={{ color: 'rgba(255, 255, 255, 0.9)', lineHeight: '1.2' }}>8 армия</span>
-              </div>
-
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minHeight: '24px' }}>
-                <div style={{ 
-                  width: '30px', 
-                  height: '24px', 
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  justifyContent: 'center',
-                  flexShrink: 0
-                }}>
-                  <div style={{ 
-                    width: '20px', 
-                    height: '4px', 
-                    backgroundColor: '#1e40af', 
-                    borderRadius: '2px',
-                    position: 'relative'
-                  }}>
-                    <div style={{
-                      width: '0',
-                      height: '0',
-                      borderLeft: '4px solid #1e40af',
-                      borderTop: '3px solid transparent',
-                      borderBottom: '3px solid transparent',
-                      position: 'absolute',
-                      right: '-4px',
-                      top: '-1px'
-                    }}></div>
-                  </div>
-                </div>
-                <span style={{ color: 'rgba(255, 255, 255, 0.9)', lineHeight: '1.2' }}>9 армия (ген. Лечицкий)</span>
-              </div>
-
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minHeight: '24px' }}>
-                <div style={{ 
-                  width: '30px', 
-                  height: '24px', 
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  justifyContent: 'center',
-                  flexShrink: 0
-                }}>
-                  <div style={{ 
-                    width: '20px', 
-                    height: '4px', 
-                    backgroundColor: '#1e40af', 
-                    borderRadius: '2px',
-                    position: 'relative',
-                    background: 'repeating-linear-gradient(90deg, #1e40af 0, #1e40af 3px, transparent 3px, transparent 5px)'
-                  }}>
-                    <div style={{
-                      width: '0',
-                      height: '0',
-                      borderLeft: '4px solid #1e40af',
-                      borderTop: '3px solid transparent',
-                      borderBottom: '3px solid transparent',
-                      position: 'absolute',
-                      right: '-4px',
-                      top: '-1px'
-                    }}></div>
-                  </div>
-                </div>
-                <span style={{ color: 'rgba(255, 255, 255, 0.9)', lineHeight: '1.2' }}>Кавалерийские рейды</span>
+                <span style={{ color: 'rgba(255, 255, 255, 0.9)', lineHeight: '1.2' }}>Русские войска</span>
               </div>
 
                   <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minHeight: '24px' }}>
@@ -1127,7 +1120,6 @@ export default function BrusilovOffensiveMap() {
                         height: '18px',
                         borderRadius: '50%',
                         backgroundColor: '#dc2626',
-                        border: '2px solid rgba(220, 38, 38, 0.8)',
                         boxShadow: '0 2px 8px rgba(0, 0, 0, 0.3)'
                       }}></div>
                     </div>

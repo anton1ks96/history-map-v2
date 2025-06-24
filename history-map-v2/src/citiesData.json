@@ -105,6 +105,14 @@
       "captured": true,
       "captureDate": "июнь 1916",
       "significance": "Город в Румынии, захваченный русской кавалерией"
+    },
+    {
+      "id": "brody",
+      "name": "Броды",
+      "coordinates": [50.0875, 25.1447],
+      "importance": "regional",
+      "population": 15000,
+      "captured": false
     }
   ]
 } 
