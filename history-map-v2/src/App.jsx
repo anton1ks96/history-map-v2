@@ -110,7 +110,8 @@ const TroopMovements = ({ movements, selectedMovement, selectedPhase }) => {
               (movement.operation_phase === 'halych_offensive' ? 90 : 0) +
               (movement.id === 'halych_offensive_german_counterattack_3' ? -90 : 0) +
               (movement.id === 'fourth_kovel_battle_korytnica_success' || movement.id === 'fourth_kovel_battle_svinyukhy_success' ? 90 : 0) +
-              (movement.arrow_type === 'counterattack' ? 90 : 0)
+              (movement.arrow_type === 'counterattack' ? 90 : 0) +
+              (movement.id === 'army_offensive_8th_grubeshov' || movement.id === 'army_offensive_11th_lviv' ? 180 : 0)
             }deg);">
               <svg width="30" height="30" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12 2 L22 12 L12 22 L12 16 L2 16 L2 8 L12 8 Z" fill="${color}"/>
