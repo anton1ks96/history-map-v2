@@ -284,6 +284,24 @@
       "population": 800,
       "captured": false,
       "significance": "Деревня, захваченная 1-м гвардейским корпусом в Четвертом Ковельском сражении"
+    },
+    {
+      "id": "grubeshov",
+      "name": "Грубешов",
+      "coordinates": [50.805833743296034,23.89183879101561],
+      "importance": "regional",
+      "population": 12000,
+      "captured": false,
+      "significance": "Город в Австро-Венгрии, не захваченный в ходе Брусиловского наступления"
+    },
+    {
+      "id": "dorna_vatra",
+      "name": "Дорна-Ватра",
+      "coordinates": [47.34177487460502,25.36304810852049],
+      "importance": "regional",
+      "population": 8000,
+      "captured": false,
+      "significance": "Цель наступления 9-й армии в Румынии"
     }
   ]
 } 
