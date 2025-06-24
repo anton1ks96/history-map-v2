@@ -703,6 +703,186 @@ export default function BrusilovOffensiveMap() {
                     iconSize: [28, 28],
                     iconAnchor: [14, 14]
                   })}
+                                 />
+
+                {/* 9-я армия (ген. Лечицкий) - наступление на Черновцы */}
+                <Polyline
+                  positions={[
+                    [48.9, 25.9],
+                    [48.6, 25.93],
+                    [48.291899, 25.935892]
+                  ]}
+                  color="#1e40af"
+                  weight={6}
+                  opacity={0.9}
+                >
+                  <Popup>
+                    <div style={{ padding: '8px', maxWidth: '280px' }}>
+                      <h3 style={{ margin: '0 0 8px 0', fontSize: '16px', fontWeight: 'bold' }}>
+                        Наступление на Черновцы
+                      </h3>
+                      <p style={{ margin: '4px 0' }}>
+                        <strong>Армия:</strong> 9-я армия
+                      </p>
+                      <p style={{ margin: '4px 0' }}>
+                        <strong>Командующий:</strong> Генерал П. А. Лечицкий
+                      </p>
+                      <p style={{ margin: '4px 0' }}>
+                        <strong>Результат:</strong> Черновцы взяты 18 июня 1916 г.
+                      </p>
+                      <p style={{ margin: '4px 0' }}>
+                        Главный удар левофланговой армии
+                      </p>
+                    </div>
+                  </Popup>
+                </Polyline>
+                <Marker
+                  position={[48.291899, 25.935892]}
+                  icon={L.divIcon({
+                    html: `<div style="transform: rotate(95deg);">
+                      <svg width="30" height="30" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8 5 L19 12 L8 19 L8 15 L1 15 L1 9 L8 9 Z" fill="#1e40af" stroke="#ffffff" stroke-width="0.5"/>
+                      </svg>
+                    </div>`,
+                    className: 'army-arrow',
+                    iconSize: [30, 30],
+                    iconAnchor: [15, 15]
+                  })}
+                />
+
+                {/* 9-я армия - 12-й корпус к Кутам */}
+                <Polyline
+                  positions={[
+                    [48.7, 25.5],
+                    [48.45, 25.35],
+                    [48.263, 25.179]
+                  ]}
+                  color="#1e40af"
+                  weight={5}
+                  opacity={0.9}
+                >
+                  <Popup>
+                    <div style={{ padding: '8px', maxWidth: '280px' }}>
+                      <h3 style={{ margin: '0 0 8px 0', fontSize: '16px', fontWeight: 'bold' }}>
+                        12-й корпус: захват Куты
+                      </h3>
+                      <p style={{ margin: '4px 0' }}>
+                        <strong>Армия:</strong> 9-я армия
+                      </p>
+                      <p style={{ margin: '4px 0' }}>
+                        <strong>Командующий:</strong> Генерал П. А. Лечицкий
+                      </p>
+                      <p style={{ margin: '4px 0' }}>
+                        <strong>Корпус:</strong> 12-й корпус
+                      </p>
+                      <p style={{ margin: '4px 0' }}>
+                        Движение к румынской границе
+                      </p>
+                    </div>
+                  </Popup>
+                </Polyline>
+                <Marker
+                  position={[48.263, 25.179]}
+                  icon={L.divIcon({
+                    html: `<div style="transform: rotate(132deg);">
+                      <svg width="28" height="28" viewBox="0 -4 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8 5 L19 12 L8 19 L8 15 L1 15 L1 9 L8 9 Z" fill="#1e40af" stroke="#ffffff" stroke-width="0.5"/>
+                      </svg>
+                    </div>`,
+                    className: 'army-arrow',
+                    iconSize: [28, 28],
+                    iconAnchor: [14, 14]
+                  })}
+                />
+
+                {/* 9-я армия - 3-й кавалерийский корпус в Кымпулунг */}
+                <Polyline
+                  positions={[
+                    [48.283, 25.754],
+                    [47.527, 25.575]
+                  ]}
+                  color="#1e40af"
+                  weight={4}
+                  opacity={0.9}
+                  dashArray="5, 3"
+                >
+                  <Popup>
+                    <div style={{ padding: '8px', maxWidth: '280px' }}>
+                      <h3 style={{ margin: '0 0 8px 0', fontSize: '16px', fontWeight: 'bold' }}>
+                        3-й кавалерийский корпус: рейд в Кымпулунг
+                      </h3>
+                      <p style={{ margin: '4px 0' }}>
+                        <strong>Армия:</strong> 9-я армия
+                      </p>
+                      <p style={{ margin: '4px 0' }}>
+                        <strong>Командующий:</strong> Генерал П. А. Лечицкий
+                      </p>
+                      <p style={{ margin: '4px 0' }}>
+                        <strong>Корпус:</strong> 3-й кавалерийский корпус
+                      </p>
+                      <p style={{ margin: '4px 0' }}>
+                        Кавалерийский прорыв в Румынию
+                      </p>
+                    </div>
+                  </Popup>
+                </Polyline>
+                <Marker
+                  position={[47.527, 25.575]}
+                  icon={L.divIcon({
+                    html: `<div style="transform: rotate(100deg);">
+                      <svg width="26" height="26" viewBox="0 -3 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8 5 L19 12 L8 19 L8 15 L1 15 L1 9 L8 9 Z" fill="#1e40af" stroke="#ffffff" stroke-width="0.5"/>
+                      </svg>
+                    </div>`,
+                    className: 'cavalry-arrow',
+                    iconSize: [26, 26],
+                    iconAnchor: [13, 13]
+                  })}
+                />
+
+                {/* 9-я армия - 41-й корпус к Коломые */}
+                <Polyline
+                  positions={[
+                    [48.8, 25.3],
+                    [48.67, 25.18],
+                    [48.5208, 25.0375]
+                  ]}
+                  color="#1e40af"
+                  weight={5}
+                  opacity={0.9}
+                >
+                  <Popup>
+                    <div style={{ padding: '8px', maxWidth: '280px' }}>
+                      <h3 style={{ margin: '0 0 8px 0', fontSize: '16px', fontWeight: 'bold' }}>
+                        41-й корпус: занятие Коломыи, 30 июня
+                      </h3>
+                      <p style={{ margin: '4px 0' }}>
+                        <strong>Армия:</strong> 9-я армия
+                      </p>
+                      <p style={{ margin: '4px 0' }}>
+                        <strong>Командующий:</strong> Генерал П. А. Лечицкий
+                      </p>
+                      <p style={{ margin: '4px 0' }}>
+                        <strong>Корпус:</strong> 41-й корпус
+                      </p>
+                      <p style={{ margin: '4px 0' }}>
+                        Продвижение к Карпатам
+                      </p>
+                    </div>
+                  </Popup>
+                </Polyline>
+                <Marker
+                  position={[48.5208, 25.0375]}
+                  icon={L.divIcon({
+                    html: `<div style="transform: rotate(132deg);">
+                      <svg width="28" height="28" viewBox="0 -4 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8 5 L19 12 L8 19 L8 15 L1 15 L1 9 L8 9 Z" fill="#1e40af" stroke="#ffffff" stroke-width="0.5"/>
+                      </svg>
+                    </div>`,
+                    className: 'army-arrow',
+                    iconSize: [28, 28],
+                    iconAnchor: [14, 14]
+                  })}
                 />
 
                 {/* Отображение городов */}
@@ -847,6 +1027,69 @@ export default function BrusilovOffensiveMap() {
                   </div>
                 </div>
                 <span style={{ color: 'rgba(255, 255, 255, 0.9)', lineHeight: '1.2' }}>8 армия</span>
+              </div>
+
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minHeight: '24px' }}>
+                <div style={{ 
+                  width: '30px', 
+                  height: '24px', 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  justifyContent: 'center',
+                  flexShrink: 0
+                }}>
+                  <div style={{ 
+                    width: '20px', 
+                    height: '4px', 
+                    backgroundColor: '#1e40af', 
+                    borderRadius: '2px',
+                    position: 'relative'
+                  }}>
+                    <div style={{
+                      width: '0',
+                      height: '0',
+                      borderLeft: '4px solid #1e40af',
+                      borderTop: '3px solid transparent',
+                      borderBottom: '3px solid transparent',
+                      position: 'absolute',
+                      right: '-4px',
+                      top: '-1px'
+                    }}></div>
+                  </div>
+                </div>
+                <span style={{ color: 'rgba(255, 255, 255, 0.9)', lineHeight: '1.2' }}>9 армия (ген. Лечицкий)</span>
+              </div>
+
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minHeight: '24px' }}>
+                <div style={{ 
+                  width: '30px', 
+                  height: '24px', 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  justifyContent: 'center',
+                  flexShrink: 0
+                }}>
+                  <div style={{ 
+                    width: '20px', 
+                    height: '4px', 
+                    backgroundColor: '#1e40af', 
+                    borderRadius: '2px',
+                    position: 'relative',
+                    background: 'repeating-linear-gradient(90deg, #1e40af 0, #1e40af 3px, transparent 3px, transparent 5px)'
+                  }}>
+                    <div style={{
+                      width: '0',
+                      height: '0',
+                      borderLeft: '4px solid #1e40af',
+                      borderTop: '3px solid transparent',
+                      borderBottom: '3px solid transparent',
+                      position: 'absolute',
+                      right: '-4px',
+                      top: '-1px'
+                    }}></div>
+                  </div>
+                </div>
+                <span style={{ color: 'rgba(255, 255, 255, 0.9)', lineHeight: '1.2' }}>Кавалерийские рейды</span>
               </div>
 
                   <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minHeight: '24px' }}>

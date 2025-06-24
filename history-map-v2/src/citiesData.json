@@ -83,6 +83,28 @@
       "population": 206000,
       "captured": false,
       "significance": "Русские войска вышли только на подступы к городу"
+    },
+    {
+      "id": "kuty",
+      "name": "Куты",
+      "coordinates": [48.263, 25.179],
+      "importance": "regional",
+      "description": "Захвачены 12-м корпусом 9-й армии",
+      "population": 8000,
+      "captured": true,
+      "captureDate": "июнь 1916",
+      "significance": "Город на границе с Румынией"
+    },
+    {
+      "id": "campulung",
+      "name": "Кымпулунг",
+      "coordinates": [47.527, 25.575],
+      "importance": "regional",
+      "description": "Захвачен в ходе кавалерийского рейда 3-го кавалерийского корпуса",
+      "population": 12000,
+      "captured": true,
+      "captureDate": "июнь 1916",
+      "significance": "Город в Румынии, захваченный русской кавалерией"
     }
   ]
 } 
