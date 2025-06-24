@@ -39,8 +39,8 @@
       "importance": "regional",
       "description": "Цель 7-й армии",
       "population": 12000,
-      "captured": true,
-      "significance": "Древний русский город был захвачен"
+      "captured": false,
+      "significance": "Древний русский город"
     },
     {
       "id": "kolomyya",
@@ -70,8 +70,7 @@
       "importance": "strategic",
       "description": "Цель 9-й армии (современный Ивано-Франковск)",
       "population": 41000,
-      "captured": true,
-      "captureDate": "11 августа 1916",
+      "captured": false,
       "significance": "Важный город Галиции"
     },
     {
@@ -112,6 +111,30 @@
       "coordinates": [50.0875, 25.1447],
       "importance": "regional",
       "population": 15000,
+      "captured": false
+    },
+    {
+      "id": "manevychi",
+      "name": "Маневичи",
+      "coordinates": [51.292329951327766,25.53192294204842],
+      "importance": "local",
+      "population": 3000,
+      "captured": false
+    },
+    {
+      "id": "galuzia",
+      "name": "Галузия",
+      "coordinates": [51.40224997054743,25.59724009597908],
+      "importance": "local", 
+      "population": 2000,
+      "captured": false
+    },
+    {
+      "id": "gorodok",
+      "name": "Городок",
+      "coordinates": [51.370134518234714,25.478750830537187],
+      "importance": "local",
+      "population": 2500,
       "captured": false
     }
   ]

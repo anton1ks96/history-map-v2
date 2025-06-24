@@ -119,24 +119,65 @@ const getArrowRotation = (path) => {
 };
 
 // Компонент для отображения линий фронта
-const FrontLines = ({ frontLines, showInitial, showFinal }) => {
+const FrontLines = ({ frontLines, selectedPhase }) => {
   return frontLines.map((frontLine) => {
-    if (frontLine.type === 'initial' && !showInitial) return null;
-    if (frontLine.type === 'final' && !showFinal) return null;
+    // Определяем, показывать ли эту линию фронта в зависимости от выбранной фазы
+    let shouldShow = false;
+    
+    if (selectedPhase === '') {
+      // Показываем все линии фронта
+      shouldShow = true;
+    } else if (selectedPhase === 'lutsk_breakthrough') {
+      // Показываем начальную, линию на 16 июня и финальную
+      shouldShow = frontLine.type === 'initial' || frontLine.type === 'advance' || frontLine.type === 'final';
+    } else if (selectedPhase === 'kovel_strike') {
+      // Показываем начальную, на 16 июня и финальную
+      shouldShow = frontLine.type === 'initial' || frontLine.type === 'advance' || frontLine.type === 'final';
+    } else {
+      // Для остальных фаз показываем все
+      shouldShow = true;
+    }
+
+    if (!shouldShow) return null;
+
+    // Определяем цвет и стиль линии
+    let color = '#dc2626'; // красный для начальной
+    let dashArray = null;
+    
+    if (frontLine.type === 'initial') {
+      color = '#dc2626';
+      dashArray = '15, 10';
+    } else if (frontLine.type === 'advance') {
+      color = '#22c55e';
+      dashArray = null;
+    } else if (frontLine.type === 'final') {
+      color = '#16a34a';
+      dashArray = '10, 5';
+    }
 
     return (
       <Polyline
         key={frontLine.id}
         positions={frontLine.coordinates}
-        color={frontLine.type === 'initial' ? '#dc2626' : '#16a34a'}
+        color={color}
         weight={3}
         opacity={0.8}
-        dashArray={frontLine.type === 'initial' ? '15, 10' : null}
+        dashArray={dashArray}
       >
         <Popup>
-          <div className="p-2">
-            <h3 className="font-bold">{frontLine.name}</h3>
-            <p>{frontLine.date}</p>
+          <div style={{ padding: '8px', maxWidth: '300px' }}>
+            <h3 style={{ margin: '0 0 8px 0', fontSize: '16px', fontWeight: 'bold' }}>
+              {frontLine.name}
+            </h3>
+            <p style={{ margin: '4px 0', fontSize: '14px' }}>
+              <strong>Дата:</strong> {frontLine.date}
+            </p>
+            <p style={{ margin: '4px 0', fontSize: '14px' }}>
+              <strong>Длина:</strong> {frontLine.length}
+            </p>
+            <p style={{ margin: '8px 0 0 0', fontSize: '13px', lineHeight: '1.4' }}>
+              {frontLine.description}
+            </p>
           </div>
         </Popup>
       </Polyline>
@@ -175,13 +216,24 @@ const Rivers = ({ rivers, onRiverClick }) => {
 };
 
 // Компонент для отображения городов
-const CityMarkers = ({ cities }) => {
+const CityMarkers = ({ cities, selectedPhase }) => {
   const getCityIcon = (city) => {
-    const { importance, captured } = city;
+    const { importance, captured, id } = city;
     const size = importance === 'major' ? [18, 18] : importance === 'strategic' ? [14, 14] : importance === 'regional' ? [12, 12] : [10, 10];
 
-    // Цвет зависит от того, захвачен город или нет (приводим к булеву типу)
-    const isCaptured = Boolean(captured);
+    // Определяем статус захвата в зависимости от фазы операции
+    let isCaptured = Boolean(captured);
+    
+    // Специальная логика для городов, захваченных в фазе "Удар на Ковель"
+    const kovelStrikeCities = ['manevychi', 'gorodok', 'galuzia'];
+    if (kovelStrikeCities.includes(id)) {
+      if (selectedPhase === 'kovel_strike' || selectedPhase === '') {
+        isCaptured = true; // Показываем как захваченные в фазе "Удар на Ковель" и "Все ходы"
+      } else {
+        isCaptured = false; // В остальных фазах показываем как незахваченные
+      }
+    }
+
     const color = isCaptured ? '#22c55e' : '#dc2626'; // Зеленый для захваченных, красный для незахваченных
     const borderColor = isCaptured ? 'rgba(34, 197, 94, 0.8)' : 'rgba(220, 38, 38, 0.8)';
 
@@ -200,64 +252,90 @@ const CityMarkers = ({ cities }) => {
     });
   };
 
-  return cities.map((city) => (
-    <Marker
-      key={city.id}
-      position={city.coordinates}
-      icon={getCityIcon(city)}
-    >
-      <Popup>
-        <div style={{ maxWidth: '300px', padding: '8px' }}>
-          <h3 style={{
-            margin: '0 0 8px 0',
-            fontSize: '16px',
-            fontWeight: 'bold',
-            color: Boolean(city.captured) ? '#22c55e' : '#dc2626'
-          }}>
-            {city.name}
-          </h3>
+  return cities.map((city) => {
+    // Определяем статус захвата для попапа (та же логика, что и для иконки)
+    let isCaptured = Boolean(city.captured);
+    let captureDate = city.captureDate;
+    let captureArmy = '';
+    
+    const kovelStrikeCities = ['manevychi', 'gorodok', 'galuzia'];
+    if (kovelStrikeCities.includes(city.id)) {
+      if (selectedPhase === 'kovel_strike' || selectedPhase === '') {
+        isCaptured = true;
+        captureDate = '22 июня (5 июля) 1916';
+        captureArmy = '8-я и 3-я армии';
+      } else {
+        isCaptured = false;
+        captureDate = null;
+        captureArmy = '';
+      }
+    }
 
-          <div style={{ marginBottom: '8px' }}>
-            <strong>Статус:</strong>
-            <span style={{ color: Boolean(city.captured) ? '#22c55e' : '#dc2626', fontWeight: 'bold', marginLeft: '4px' }}>
-              {Boolean(city.captured) ? 'Захвачен' : 'Не захвачен'}
-            </span>
-          </div>
-
-          {city.captureDate && (
-            <div style={{ marginBottom: '8px' }}>
-              <strong>Дата захвата:</strong> {city.captureDate}
-            </div>
-          )}
-
-          <div style={{ marginBottom: '8px' }}>
-            <strong>Население:</strong> {city.population?.toLocaleString() || 'Неизвестно'}
-          </div>
-
-          {city.description && (
-            <div style={{ marginBottom: '8px' }}>
-              <strong>Описание:</strong> {city.description}
-            </div>
-          )}
-
-          {city.significance && (
-            <div style={{
-              marginTop: '8px',
-              padding: '8px',
-              backgroundColor: 'rgba(0, 0, 0, 0.05)',
-              borderRadius: '4px',
-              fontSize: '13px'
+    return (
+      <Marker
+        key={city.id}
+        position={city.coordinates}
+        icon={getCityIcon(city)}
+      >
+        <Popup>
+          <div style={{ maxWidth: '300px', padding: '8px' }}>
+            <h3 style={{
+              margin: '0 0 8px 0',
+              fontSize: '16px',
+              fontWeight: 'bold',
+              color: isCaptured ? '#22c55e' : '#dc2626'
             }}>
-              <strong>Значение:</strong> {city.significance}
+              {city.name}
+            </h3>
+
+            <div style={{ marginBottom: '8px' }}>
+              <strong>Статус:</strong>
+              <span style={{ color: isCaptured ? '#22c55e' : '#dc2626', fontWeight: 'bold', marginLeft: '4px' }}>
+                {isCaptured ? 'Захвачен' : 'Не захвачен'}
+              </span>
             </div>
-          )}
-        </div>
-      </Popup>
-      <Tooltip permanent={true} direction="top" offset={[0, -10]} className="city-tooltip">
-        <div className="text-xs font-semibold">{city.name}</div>
-      </Tooltip>
-    </Marker>
-  ));
+
+            {captureDate && (
+              <div style={{ marginBottom: '8px' }}>
+                <strong>Дата захвата:</strong> {captureDate}
+              </div>
+            )}
+
+            {captureArmy && (
+              <div style={{ marginBottom: '8px' }}>
+                <strong>Захвачен:</strong> {captureArmy}
+              </div>
+            )}
+
+            <div style={{ marginBottom: '8px' }}>
+              <strong>Население:</strong> {city.population?.toLocaleString() || 'Неизвестно'}
+            </div>
+
+            {city.description && (
+              <div style={{ marginBottom: '8px' }}>
+                <strong>Описание:</strong> {city.description}
+              </div>
+            )}
+
+            {city.significance && (
+              <div style={{
+                marginTop: '8px',
+                padding: '8px',
+                backgroundColor: 'rgba(0, 0, 0, 0.05)',
+                borderRadius: '4px',
+                fontSize: '13px'
+              }}>
+                <strong>Значение:</strong> {city.significance}
+              </div>
+            )}
+          </div>
+        </Popup>
+        <Tooltip permanent={true} direction="top" offset={[0, -10]} className="city-tooltip">
+          <div className="text-xs font-semibold">{city.name}</div>
+        </Tooltip>
+      </Marker>
+    );
+  });
 };
 
 // Компонент вступления
@@ -374,10 +452,60 @@ export default function BrusilovOffensiveMap() {
   // Фазы операции для выпадающего списка
   const operationPhases = [
     { value: '', label: 'Все ходы операции' },
-    { value: 'lutsk_breakthrough', label: '1. «Луцкий» прорыв (4-15 июня)' },
-    { value: 'kovel_offensive', label: '2. Наступление на Ковель (5-14 июля)' },
-    { value: 'july_august_offensive', label: '3. Июль-августовское наступление (28 июля – 5 сентября)' },
-    { value: 'september_battles', label: '4. Заключительные бои сентября (6-20 сентября)' }
+    { value: 'lutsk_breakthrough', label: '«Луцкий» прорыв' },
+    { value: 'kovel_strike', label: 'Удар на Ковель' }
+  ];
+
+  // Данные о движениях войск
+  const movements = [
+    {
+      id: 'attack_manevychi_kovel',
+      name: 'Атака на Маневичи',
+      army: '8-я и 3-я армии',
+      commander: 'Юго-Западный фронт',
+      strength: 'Части 8-й и 3-й армий',
+      period: '22 июня (5 июля) 1916',
+      description: 'Возобновление наступления Юго-Западного фронта. Главный удар силами 8-й и 3-й армий на Ковель.',
+      path: [
+        [51.451, 25.75], // Начальная позиция с востока от Маневичей
+        [51.292329951327766, 25.53192294204842] // Маневичи
+      ],
+      operation_phase: 'kovel_strike',
+      is_enemy: false,
+      arrow_type: 'normal'
+    },
+    {
+      id: 'attack_gorodok_kovel',
+      name: 'Атака на Городок',
+      army: '8-я и 3-я армии',
+      commander: 'Юго-Западный фронт',
+      strength: 'Части 8-й и 3-й армий',
+      period: '22 июня (5 июля) 1916',
+      description: 'Возобновление наступления Юго-Западного фронта. Главный удар силами 8-й и 3-й армий на Ковель.',
+      path: [
+        [51.370134518234714 - 0.3, 25.478750830537187 - 0.3], // Начальная позиция с востока от Городка
+        [51.370134518234714, 25.478750830537187] // Городок
+      ],
+      operation_phase: 'kovel_strike',
+      is_enemy: false,
+      arrow_type: 'normal'
+    },
+    {
+      id: 'attack_galuzia_kovel',
+      name: 'Атака на Галузию',
+      army: '8-я и 3-я армии',
+      commander: 'Юго-Западный фронт',
+      strength: 'Части 8-й и 3-й армий',
+      period: '22 июня (5 июля) 1916',
+      description: 'Возобновление наступления Юго-Западного фронта. Главный удар силами 8-й и 3-й армий на Ковель.',
+      path: [
+        [51.40224997054743 - 0.3, 25.59724009597908 - 0.3], // Начальная позиция с востока от Галузии
+        [51.40224997054743, 25.59724009597908] // Галузия
+      ],
+      operation_phase: 'kovel_strike',
+      is_enemy: false,
+      arrow_type: 'normal'
+    }
   ];
 
   // Данные об операциях
@@ -402,21 +530,24 @@ export default function BrusilovOffensiveMap() {
       • Захват ключевых городов: Луцк, Дубно
       • Начало отступления 4-й австро-венгерской армии`
     },
-    'kovel_offensive': {
-      title: 'Наступление на Ковель',
-      subtitle: '5-14 июля 1916 года',
-      content: 'Попытка развития успеха первой фазы наступления в направлении важного железнодорожного узла Ковель.'
-    },
-    'july_august_offensive': {
-      title: 'Июль-августовское наступление',
-      subtitle: '28 июля – 5 сентября 1916 года',
-      content: 'Продолжение наступательных операций с целью окончательного разгрома австро-венгерских войск.'
-    },
-    'september_battles': {
-      title: 'Заключительные бои сентября',
-      subtitle: '6-20 сентября 1916 года',
-      content: 'Завершающий этап Брусиловского наступления перед переходом к позиционной войне.'
-    }
+
+          'kovel_strike': {
+        title: 'Удар на Ковель',
+        subtitle: '22 июня (5 июля) 1916 года',
+        content: `Возобновление наступления Юго-Западного фронта. Наступление велось всеми армиями, кроме 11-й. Главный удар наносился силами 8-й и 3-й армий на Ковель.
+
+        Основные события:
+        • Прорыв германского фронта за три дня боев
+        • Беспорядочное отступление австро-германских войск
+        • Захват городов: Галузия, Маневичи, Городок
+        
+        Результаты:
+        • Успешное развитие наступления на Ковельском направлении
+        • Расширение прорыва в немецкой обороне
+        • Улучшение тактического положения русских войск`
+      },
+
+
   };
 
   // Состояния для анимаций модальных окон
@@ -580,62 +711,10 @@ export default function BrusilovOffensiveMap() {
                 {/* Отображение линий фронта */}
                 <FrontLines
                   frontLines={brusilovData.front_lines || []}
-                  showInitial={true}
-                  showFinal={false}
+                  selectedPhase={selectedPhase}
                 />
 
-                {/* Фронт на 16 июня - отображается в фазе Луцкий прорыв и Все ходы */}
-                {(selectedPhase === '' || selectedPhase === 'lutsk_breakthrough') && (
-                  <>
-                    <Polyline
-                      positions={[
-                        [51.16475098, 25.60661923],
-                        [50.95011542, 25.11223447],
-                        [50.40212190, 25.30998837],
-                        [50.06033295, 25.33196103],
-                        [49.97826396, 25.71305102]
-                      ]}
-                      color="#22c55e"
-                      weight={3}
-                      opacity={0.8}
-                    >
-                      <Popup>
-                        <div className="p-2">
-                          <h3 className="font-bold">Фронт на 16 июня 1916</h3>
-                          <p>Положение линии фронта после первых успехов Брусиловского прорыва</p>
-                        </div>
-                      </Popup>
-                    </Polyline>
-
-                    {/* Линия фронта по окончанию боев */}
-                    <Polyline
-                      positions={[
-                        [52.083, 26.066],
-                        [51.097, 24.979],
-                        [50.900, 24.091],
-                        [50.733, 24.033],
-                        [50.087, 25.112],
-                        [49.633, 25.383],
-                        [48.485, 24.789],
-                        [47.933, 25.466],
-                        [47.896, 26.101]
-                      ]}
-                      color="#16a34a"
-                      weight={3}
-                      opacity={0.8}
-                      dashArray="10, 5"
-                    >
-                      <Popup>
-                        <div className="p-2">
-                          <h3 className="font-bold">Линия фронта по окончанию боев</h3>
-                          <p>Положение линии фронта после завершения Луцкого прорыва (15 июня 1916)</p>
-                        </div>
-                      </Popup>
-                    </Polyline>
-                  </>
-                )}
-
-                {/* Стрелки 8-й армии - отображаются в фазе Луцкий прорыв и Все ходы */}
+                {/* Стрелки 8-й армии - отображаются только в фазе Луцкий прорыв и Все ходы */}
                 {(selectedPhase === '' || selectedPhase === 'lutsk_breakthrough') && (
                   <>
                     {/* Стрелка 8-й армии к Луцку */}
@@ -731,7 +810,7 @@ export default function BrusilovOffensiveMap() {
                   </>
                 )}
 
-                {/* Контрудары австро-германских войск - отображаются в фазе Луцкий прорыв и Все ходы */}
+                {/* Контрудары австро-германских войск - отображаются только в фазе Луцкий прорыв и Все ходы */}
                 {(selectedPhase === '' || selectedPhase === 'lutsk_breakthrough') && (
                   <>
                     {/* Контрудар австро-германских войск - северное направление */}
@@ -826,7 +905,7 @@ export default function BrusilovOffensiveMap() {
                   </>
                 )}
 
-                {/* Стрелки 9-й армии генерала Лечицкого - отображаются в фазе Луцкий прорыв и Все ходы */}
+                {/* Стрелки 9-й армии генерала Лечицкого - отображаются только в фазе Луцкий прорыв и Все ходы */}
                 {(selectedPhase === '' || selectedPhase === 'lutsk_breakthrough') && (
                   <>
                     {/* 9-я армия (ген. Лечицкий) - наступление на Черновцы */}
@@ -1010,8 +1089,15 @@ export default function BrusilovOffensiveMap() {
                   </>
                 )}
 
+                {/* Движения войск */}
+                <TroopMovements 
+                  movements={movements} 
+                  selectedMovement={selectedMovement} 
+                  selectedPhase={selectedPhase} 
+                />
+
                 {/* Отображение городов */}
-                <CityMarkers cities={citiesData.cities || []} />
+                <CityMarkers cities={citiesData.cities || []} selectedPhase={selectedPhase} />
 
               </MapContainer>
 
@@ -1188,7 +1274,7 @@ export default function BrusilovOffensiveMap() {
                         background: 'repeating-linear-gradient(90deg, #dc2626 0, #dc2626 8px, transparent 8px, transparent 12px)'
                       }}></div>
                     </div>
-                    <span style={{ color: 'rgba(255, 255, 255, 0.9)', lineHeight: '1.2' }}>Линия фронта на 4 июня</span>
+                    <span style={{ color: 'rgba(255, 255, 255, 0.9)', lineHeight: '1.2' }}>Фронт на 4 июня 1916</span>
                   </div>
 
                   <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minHeight: '24px' }}>
@@ -1207,8 +1293,10 @@ export default function BrusilovOffensiveMap() {
                         borderRadius: '2px'
                       }}></div>
                     </div>
-                    <span style={{ color: 'rgba(255, 255, 255, 0.9)', lineHeight: '1.2' }}>Фронт на 16 июня</span>
+                    <span style={{ color: 'rgba(255, 255, 255, 0.9)', lineHeight: '1.2' }}>Фронт на 16 июня 1916</span>
                   </div>
+
+
 
                   <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minHeight: '24px' }}>
                     <div style={{
@@ -1227,7 +1315,7 @@ export default function BrusilovOffensiveMap() {
                         background: 'repeating-linear-gradient(90deg, #16a34a 0, #16a34a 5px, transparent 5px, transparent 8px)'
                       }}></div>
                     </div>
-                    <span style={{ color: 'rgba(255, 255, 255, 0.9)', lineHeight: '1.2' }}>Фронт по окончанию боев</span>
+                    <span style={{ color: 'rgba(255, 255, 255, 0.9)', lineHeight: '1.2' }}>Финальная линия фронта</span>
                   </div>
 
                                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minHeight: '24px' }}>
