@@ -105,7 +105,8 @@ const TroopMovements = ({ movements, selectedMovement, selectedPhase }) => {
                 movement.id === 'third_kovel_battle_bubnov' || movement.id === 'third_kovel_battle_korytnica' ? 90 : 0) +
                 (movement.id === 'second_kovel_battle_velitsk_guard' ? -90 : 0) +
                 (movement.id === 'third_kovel_battle_assault_corps' ? 180 : 0) +
-                (movement.operation_phase === 'halych_offensive' ? 90 : 0)}deg);">
+                (movement.operation_phase === 'halych_offensive' ? 90 : 0) +
+                (movement.id === 'halych_offensive_german_counterattack_3' ? -90 : 0)}deg);">
               <svg width="30" height="30" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12 2 L22 12 L12 22 L12 16 L2 16 L2 8 L12 8 Z" fill="${color}"/>
               </svg>
@@ -244,10 +245,10 @@ const CityMarkers = ({ cities, selectedPhase }) => {
     let isCaptured = Boolean(captured);
 
     // Специальная логика для городов, захваченных в фазе "Удар на Ковель"
-    const kovelStrikeCities = ['manevychi', 'gorodok', 'galuzia', 'baranovichi', 'lyubeshov'];
+    const kovelStrikeCities = ['manevychi', 'gorodok', 'galuzia', 'baranovichi', 'lyubeshov', 'brody'];
     if (kovelStrikeCities.includes(id)) {
-      if (selectedPhase === 'kovel_strike' || selectedPhase === 'kovel_battles' || selectedPhase === '') {
-        isCaptured = true; // Показываем как захваченные в фазах "Удар на Ковель", "Ковельские сражения" и "Все ходы"
+      if (selectedPhase === 'kovel_strike' || selectedPhase === 'kovel_battles' || selectedPhase === 'halych_offensive' || selectedPhase === '') {
+        isCaptured = true; // Показываем как захваченные в фазах "Удар на Ковель", "Ковельские сражения", "Наступление на Галич" и "Все ходы"
       } else {
         isCaptured = false; // В остальных фазах показываем как незахваченные
       }
@@ -291,10 +292,23 @@ const CityMarkers = ({ cities, selectedPhase }) => {
 
     const kovelStrikeCities = ['manevychi', 'gorodok', 'galuzia', 'baranovichi', 'lyubeshov'];
     if (kovelStrikeCities.includes(city.id)) {
-      if (selectedPhase === 'kovel_strike' || selectedPhase === 'kovel_battles' || selectedPhase === '') {
+      if (selectedPhase === 'kovel_strike' || selectedPhase === 'kovel_battles' || selectedPhase === 'halych_offensive' || selectedPhase === '') {
         isCaptured = true;
         captureDate = '22 июня (5 июля) 1916';
         captureArmy = '8-я и 3-я армии';
+      } else {
+        isCaptured = false;
+        captureDate = null;
+        captureArmy = '';
+      }
+    }
+
+    // Специальная логика для города Броды, захваченного в ударе на Ковель
+    if (city.id === 'brody') {
+      if (selectedPhase === 'kovel_strike' || selectedPhase === 'kovel_battles' || selectedPhase === 'halych_offensive' || selectedPhase === '') {
+        isCaptured = true;
+        captureDate = '22 июня (5 июля) 1916';
+        captureArmy = '11-я армия';
       } else {
         isCaptured = false;
         captureDate = null;
@@ -937,6 +951,54 @@ export default function BrusilovOffensiveMap() {
       operation_phase: 'halych_offensive',
       is_enemy: false,
       arrow_type: 'normal'
+    },
+    {
+      id: 'halych_offensive_german_counterattack_1',
+      name: 'Контратака немецких резервов (северная)',
+      army: 'Немецкие резервы',
+      commander: 'Германские войска',
+      strength: 'Подошедшие немецкие резервы',
+      period: '26 августа (8 сентября) 1916',
+      description: 'Контратаки немецких резервов вынудили русские войска оставить захваченные плацдармы и отступить за реки.',
+      path: [
+        [49.24406579239822, 24.768694273189837],
+        [49.24933094311577, 24.696840025257433]
+      ],
+      operation_phase: 'halych_offensive',
+      is_enemy: true,
+      arrow_type: 'counterattack'
+    },
+    {
+      id: 'halych_offensive_german_counterattack_2',
+      name: 'Контратака немецких резервов (южная)',
+      army: 'Немецкие резервы',
+      commander: 'Германские войска',
+      strength: 'Подошедшие немецкие резервы',
+      period: '26 августа (8 сентября) 1916',
+      description: 'Контратаки немецких резервов вынудили русские войска оставить захваченные плацдармы и отступить за реки.',
+      path: [
+        [49.130556989926134, 24.722553386605156],
+        [49.127628038929245, 24.65903867713249]
+      ],
+      operation_phase: 'halych_offensive',
+      is_enemy: true,
+      arrow_type: 'counterattack'
+    },
+    {
+      id: 'halych_offensive_german_counterattack_3',
+      name: 'Контратака немецких резервов (центральная)',
+      army: 'Немецкие резервы',
+      commander: 'Германские войска',
+      strength: 'Подошедшие немецкие резервы',
+      period: '26 августа (8 сентября) 1916',
+      description: 'Контратаки немецких резервов вынудили русские войска оставить захваченные плацдармы и отступить за реки.',
+      path: [
+        [49.10982528687537, 24.71294034949577],
+        [49.079162454668484, 24.677234783089528]
+      ],
+      operation_phase: 'halych_offensive',
+      is_enemy: true,
+      arrow_type: 'counterattack'
     }
   ];
 
