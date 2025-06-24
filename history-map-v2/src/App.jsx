@@ -97,8 +97,10 @@ const TroopMovements = ({ movements, selectedMovement, selectedPhase }) => {
           icon={L.divIcon({
             html: `<div style="transform: rotate(${getArrowRotation(movement.path) + 
               (movement.id === '8th_army_lutsk_kovel' ? 180 : 0) + 
-              (movement.id === 'first_kovel_battle_selec' || movement.id === 'first_kovel_battle_tristen' || 
-               movement.id === 'first_kovel_battle_koshevo' || movement.id === 'first_kovel_battle_torchin' ? 90 : 0)}deg);">
+                             (movement.id === 'first_kovel_battle_selec' || movement.id === 'first_kovel_battle_tristen' || 
+                movement.id === 'first_kovel_battle_koshevo' || movement.id === 'first_kovel_battle_torchin' ||
+                movement.id === 'first_kovel_battle_brody' || movement.id === 'first_kovel_battle_halych' ||
+                movement.id === 'first_kovel_battle_monastyryska' || movement.id === 'first_kovel_battle_stanislau' ? 90 : 0)}deg);">
               <svg width="30" height="30" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12 2 L22 12 L12 22 L12 16 L2 16 L2 8 L12 8 Z" fill="${color}"/>
               </svg>
@@ -244,7 +246,7 @@ const CityMarkers = ({ cities, selectedPhase }) => {
     }
 
     // Специальная логика для городов, захваченных в Ковельских сражениях
-    const kovelBattlesCities = ['selec', 'tristen', 'koshevo', 'torchin'];
+    const kovelBattlesCities = ['selec', 'tristen', 'koshevo', 'torchin', 'halych', 'monastyryska', 'stanislau'];
     if (kovelBattlesCities.includes(id)) {
       if (selectedPhase === 'kovel_battles' || selectedPhase === '') {
         isCaptured = true; // Показываем как захваченные в фазе "Ковельские сражения" и "Все ходы"
@@ -311,6 +313,34 @@ const CityMarkers = ({ cities, selectedPhase }) => {
         isCaptured = true;
         captureDate = '15 (28) июля 1916';
         captureArmy = '8-я армия';
+      } else {
+        isCaptured = false;
+        captureDate = null;
+        captureArmy = '';
+      }
+    }
+
+    // Специальная логика для городов, захваченных 7-й армией в Ковельских сражениях
+    const kovelBattles7thArmy = ['halych', 'monastyryska'];
+    if (kovelBattles7thArmy.includes(city.id)) {
+      if (selectedPhase === 'kovel_battles' || selectedPhase === '') {
+        isCaptured = true;
+        captureDate = '15 (28) июля 1916';
+        captureArmy = '7-я армия';
+      } else {
+        isCaptured = false;
+        captureDate = null;
+        captureArmy = '';
+      }
+    }
+
+    // Специальная логика для городов, захваченных 9-й армией в Ковельских сражениях
+    const kovelBattles9thArmy = ['stanislau'];
+    if (kovelBattles9thArmy.includes(city.id)) {
+      if (selectedPhase === 'kovel_battles' || selectedPhase === '') {
+        isCaptured = true;
+        captureDate = '11 августа 1916';
+        captureArmy = '9-я армия (ген. П. А. Лечицкий)';
       } else {
         isCaptured = false;
         captureDate = null;
@@ -662,6 +692,70 @@ export default function BrusilovOffensiveMap() {
       path: [
         [50.7646866060992, 25.01389247077463],
         [50.7612026440575, 25.196883498606677]
+      ],
+      operation_phase: 'kovel_battles',
+      is_enemy: false,
+      arrow_type: 'normal'
+    },
+    {
+      id: 'first_kovel_battle_brody',
+      name: '1-е Ковельское сражение: наступление на Броды',
+      army: '11-я армия',
+      commander: '11-я армия',
+      strength: '11-я армия',
+      period: '15 (28) июля 1916',
+      description: '11-я армия наступала на Броды в ходе Первого Ковельского сражения.',
+      path: [
+        [50.081743759874854, 25.145775314819318],
+        [50.11001307631964, 25.43965959216307]
+      ],
+      operation_phase: 'kovel_battles',
+      is_enemy: false,
+      arrow_type: 'normal'
+    },
+    {
+      id: 'first_kovel_battle_halych',
+      name: '1-е Ковельское сражение: наступление на Галич',
+      army: '7-я армия',
+      commander: '7-я армия',
+      strength: '7-я армия',
+      period: '15 (28) июля 1916',
+      description: '7-я армия овладела городом Галич в ходе Первого Ковельского сражения.',
+      path: [
+        [49.12966301533356, 24.74997493664553],
+        [49.13326770457837, 25.001470456068752]
+      ],
+      operation_phase: 'kovel_battles',
+      is_enemy: false,
+      arrow_type: 'normal'
+    },
+    {
+      id: 'first_kovel_battle_monastyryska',
+      name: '1-е Ковельское сражение: наступление на Монастыриска',
+      army: '7-я армия',
+      commander: '7-я армия',
+      strength: '7-я армия',
+      period: '15 (28) июля 1916',
+      description: '7-я армия овладела городом Монастыриска в ходе Первого Ковельского сражения.',
+      path: [
+        [49.09134691118318, 25.196477780287488],
+        [49.10442280928764, 25.398351559584366]
+      ],
+      operation_phase: 'kovel_battles',
+      is_enemy: false,
+      arrow_type: 'normal'
+    },
+    {
+      id: 'first_kovel_battle_stanislau',
+      name: '1-е Ковельское сражение: наступление на Станислав',
+      army: '9-я армия',
+      commander: 'Генерал П. А. Лечицкий',
+      strength: '9-я армия',
+      period: '11 августа 1916',
+      description: '9-я армия (генерал П. А. Лечицкий) успешно заняла Станислав (Ивано-Франковск) 11 августа.',
+      path: [
+        [48.92556971762826, 24.783117184584377],
+        [48.89931978848843, 25.25552929395937]
       ],
       operation_phase: 'kovel_battles',
       is_enemy: false,

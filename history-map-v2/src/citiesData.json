@@ -184,6 +184,14 @@
       "importance": "local",
       "population": 2200,
       "captured": false
+    },
+    {
+      "id": "monastyryska",
+      "name": "Монастыриска",
+      "coordinates": [49.091751099049965,25.169610912719676],
+      "importance": "regional",
+      "population": 8500,
+      "captured": false
     }
   ]
 } 
