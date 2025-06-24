@@ -150,6 +150,9 @@ const FrontLines = ({ frontLines, selectedPhase }) => {
     } else if (selectedPhase === 'halych_offensive') {
       // Показываем все линии фронта для наступления на Галич
       shouldShow = true;
+    } else if (selectedPhase === 'fourth_kovel_battle') {
+      // Показываем все линии фронта для четвертого Ковельского сражения
+      shouldShow = true;
     } else {
       // Для остальных фаз показываем все
       shouldShow = true;
@@ -247,8 +250,8 @@ const CityMarkers = ({ cities, selectedPhase }) => {
     // Специальная логика для городов, захваченных в фазе "Удар на Ковель"
     const kovelStrikeCities = ['manevychi', 'gorodok', 'galuzia', 'baranovichi', 'lyubeshov', 'brody'];
     if (kovelStrikeCities.includes(id)) {
-      if (selectedPhase === 'kovel_strike' || selectedPhase === 'kovel_battles' || selectedPhase === 'halych_offensive' || selectedPhase === '') {
-        isCaptured = true; // Показываем как захваченные в фазах "Удар на Ковель", "Ковельские сражения", "Наступление на Галич" и "Все ходы"
+      if (selectedPhase === 'kovel_strike' || selectedPhase === 'kovel_battles' || selectedPhase === 'halych_offensive' || selectedPhase === 'fourth_kovel_battle' || selectedPhase === '') {
+        isCaptured = true; // Показываем как захваченные в фазах "Удар на Ковель", "Ковельские сражения", "Наступление на Галич", "Четвертое Ковельское Сражение" и "Все ходы"
       } else {
         isCaptured = false; // В остальных фазах показываем как незахваченные
       }
@@ -257,8 +260,18 @@ const CityMarkers = ({ cities, selectedPhase }) => {
     // Специальная логика для городов, захваченных в Ковельских сражениях
     const kovelBattlesCities = ['selec', 'tristen', 'koshevo', 'torchin', 'monastyryska', 'stanislau'];
     if (kovelBattlesCities.includes(id)) {
-      if (selectedPhase === 'kovel_battles' || selectedPhase === '') {
-        isCaptured = true; // Показываем как захваченные в фазе "Ковельские сражения" и "Все ходы"
+      if (selectedPhase === 'kovel_battles' || selectedPhase === 'fourth_kovel_battle' || selectedPhase === '') {
+        isCaptured = true; // Показываем как захваченные в фазах "Ковельские сражения", "Четвертое Ковельское Сражение" и "Все ходы"
+      } else {
+        isCaptured = false; // В остальных фазах показываем как незахваченные
+      }
+    }
+
+    // Специальная логика для городов, захваченных в Четвертом Ковельском сражении
+    const fourthKovelBattleCities = ['korytnica', 'svinyukhy'];
+    if (fourthKovelBattleCities.includes(id)) {
+      if (selectedPhase === 'fourth_kovel_battle' || selectedPhase === '') {
+        isCaptured = true; // Показываем как захваченные в фазе "Четвертое Ковельское Сражение" и "Все ходы"
       } else {
         isCaptured = false; // В остальных фазах показываем как незахваченные
       }
@@ -292,7 +305,7 @@ const CityMarkers = ({ cities, selectedPhase }) => {
 
     const kovelStrikeCities = ['manevychi', 'gorodok', 'galuzia', 'baranovichi', 'lyubeshov'];
     if (kovelStrikeCities.includes(city.id)) {
-      if (selectedPhase === 'kovel_strike' || selectedPhase === 'kovel_battles' || selectedPhase === 'halych_offensive' || selectedPhase === '') {
+      if (selectedPhase === 'kovel_strike' || selectedPhase === 'kovel_battles' || selectedPhase === 'halych_offensive' || selectedPhase === 'fourth_kovel_battle' || selectedPhase === '') {
         isCaptured = true;
         captureDate = '22 июня (5 июля) 1916';
         captureArmy = '8-я и 3-я армии';
@@ -305,7 +318,7 @@ const CityMarkers = ({ cities, selectedPhase }) => {
 
     // Специальная логика для города Броды, захваченного в ударе на Ковель
     if (city.id === 'brody') {
-      if (selectedPhase === 'kovel_strike' || selectedPhase === 'kovel_battles' || selectedPhase === 'halych_offensive' || selectedPhase === '') {
+      if (selectedPhase === 'kovel_strike' || selectedPhase === 'kovel_battles' || selectedPhase === 'halych_offensive' || selectedPhase === 'fourth_kovel_battle' || selectedPhase === '') {
         isCaptured = true;
         captureDate = '22 июня (5 июля) 1916';
         captureArmy = '11-я армия';
@@ -319,7 +332,7 @@ const CityMarkers = ({ cities, selectedPhase }) => {
     // Специальная логика для городов, захваченных Особой армией в Ковельских сражениях
     const kovelBattlesSpecialArmy = ['selec', 'tristen'];
     if (kovelBattlesSpecialArmy.includes(city.id)) {
-      if (selectedPhase === 'kovel_battles' || selectedPhase === '') {
+      if (selectedPhase === 'kovel_battles' || selectedPhase === 'fourth_kovel_battle' || selectedPhase === '') {
         isCaptured = true;
         captureDate = '15 (28) июля 1916';
         captureArmy = 'Особая армия';
@@ -333,7 +346,7 @@ const CityMarkers = ({ cities, selectedPhase }) => {
     // Специальная логика для городов, захваченных 8-й армией в Ковельских сражениях
     const kovelBattles8thArmy = ['koshevo', 'torchin'];
     if (kovelBattles8thArmy.includes(city.id)) {
-      if (selectedPhase === 'kovel_battles' || selectedPhase === '') {
+      if (selectedPhase === 'kovel_battles' || selectedPhase === 'fourth_kovel_battle' || selectedPhase === '') {
         isCaptured = true;
         captureDate = '15 (28) июля 1916';
         captureArmy = '8-я армия';
@@ -347,7 +360,7 @@ const CityMarkers = ({ cities, selectedPhase }) => {
     // Специальная логика для городов, захваченных 7-й армией в Ковельских сражениях
     const kovelBattles7thArmy = ['monastyryska'];
     if (kovelBattles7thArmy.includes(city.id)) {
-      if (selectedPhase === 'kovel_battles' || selectedPhase === '') {
+      if (selectedPhase === 'kovel_battles' || selectedPhase === 'fourth_kovel_battle' || selectedPhase === '') {
         isCaptured = true;
         captureDate = '15 (28) июля 1916';
         captureArmy = '7-я армия';
@@ -361,10 +374,35 @@ const CityMarkers = ({ cities, selectedPhase }) => {
     // Специальная логика для городов, захваченных 9-й армией в Ковельских сражениях
     const kovelBattles9thArmy = ['stanislau'];
     if (kovelBattles9thArmy.includes(city.id)) {
-      if (selectedPhase === 'kovel_battles' || selectedPhase === '') {
+      if (selectedPhase === 'kovel_battles' || selectedPhase === 'fourth_kovel_battle' || selectedPhase === '') {
         isCaptured = true;
         captureDate = '11 августа 1916';
         captureArmy = '9-я армия (ген. П. А. Лечицкий)';
+      } else {
+        isCaptured = false;
+        captureDate = null;
+        captureArmy = '';
+      }
+    }
+
+    // Специальная логика для городов, захваченных в Четвертом Ковельском сражении
+    if (city.id === 'korytnica') {
+      if (selectedPhase === 'fourth_kovel_battle' || selectedPhase === '') {
+        isCaptured = true;
+        captureDate = 'сентябрь - октябрь 1916';
+        captureArmy = '8-й армейский корпус';
+      } else {
+        isCaptured = false;
+        captureDate = null;
+        captureArmy = '';
+      }
+    }
+
+    if (city.id === 'svinyukhy') {
+      if (selectedPhase === 'fourth_kovel_battle' || selectedPhase === '') {
+        isCaptured = true;
+        captureDate = 'сентябрь - октябрь 1916';
+        captureArmy = '1-й гвардейский корпус';
       } else {
         isCaptured = false;
         captureDate = null;
@@ -557,8 +595,9 @@ export default function BrusilovOffensiveMap() {
     { value: '', label: 'Все ходы операции' },
     { value: 'lutsk_breakthrough', label: '«Луцкий» прорыв' },
     { value: 'kovel_strike', label: 'Удар на Ковель' },
-    { value: 'kovel_battles', label: '1-3 Ковельские сражения' },
-    { value: 'halych_offensive', label: 'Наступление на Галич' }
+    { value: 'kovel_battles', label: '1-3 Ковельские Сражения' },
+    { value: 'halych_offensive', label: 'Наступление на Галич' },
+    { value: 'fourth_kovel_battle', label: 'Четвертое Ковельское Сражение' }
   ];
 
   // Данные о движениях войск
@@ -999,6 +1038,88 @@ export default function BrusilovOffensiveMap() {
       operation_phase: 'halych_offensive',
       is_enemy: true,
       arrow_type: 'counterattack'
+    },
+    {
+      id: 'fourth_kovel_battle_bypass_south',
+      name: 'Обход Ковеля с юга через Владимир-Волынский',
+      army: '8-я армия',
+      commander: 'Генерал А. А. Брусилов',
+      strength: '40-й армейский, 2-й гвардейский, 1-й гвардейский и 8-й армейские корпуса',
+      period: 'сентябрь - октябрь 1916',
+      description: 'Брусилов решил попробовать атаковать в обход Ковеля с юга, через Владимир-Волынский.',
+      path: [
+        [50.73142827333148, 25.237145367085947],
+        [50.84937776085173, 24.32459348720315],
+        [51.06101988367474, 24.367165508687506],
+        [51.20876571612448, 24.64319700282814]
+      ],
+      operation_phase: 'fourth_kovel_battle',
+      is_enemy: false,
+      arrow_type: 'normal'
+    },
+    {
+      id: 'fourth_kovel_battle_shelvo_attack',
+      name: 'Наступление у Шельвова',
+      army: '8-я армия',
+      commander: 'Генерал А. А. Брусилов',
+      strength: 'Части 8-й армии',
+      period: 'сентябрь - октябрь 1916',
+      description: 'Наступление было отражено по всему фронту у Шельвова.',
+      path: [
+        [50.7129648759659, 24.766575988287045],
+        [50.711220992280566, 24.656026061529236]
+      ],
+      operation_phase: 'fourth_kovel_battle',
+      is_enemy: false,
+      arrow_type: 'short_unsuccessful'
+    },
+    {
+      id: 'fourth_kovel_battle_bubnov_attack',
+      name: 'Наступление у Бубнова',
+      army: '8-я армия',
+      commander: 'Генерал А. А. Брусилов',
+      strength: 'Части 8-й армии',
+      period: 'сентябрь - октябрь 1916',
+      description: 'Наступление было отражено по всему фронту у Бубнова.',
+      path: [
+        [50.65988224584447, 24.828483359680114],
+        [50.65704517652469, 24.731323020324638]
+      ],
+      operation_phase: 'fourth_kovel_battle',
+      is_enemy: false,
+      arrow_type: 'short_unsuccessful'
+    },
+    {
+      id: 'fourth_kovel_battle_korytnica_success',
+      name: 'Захват Корытницы 8-м армейским корпусом',
+      army: '8-й армейский корпус',
+      commander: '8-я армия',
+      strength: '8-й армейский корпус',
+      period: 'сентябрь - октябрь 1916',
+      description: '8-й армейский корпус овладел Корытницей, но скромный этот успех стоил громадных потерь — до 30 000 человек.',
+      path: [
+        [50.62641827861774, 24.816206751464815],
+        [50.61637145379073, 24.967955408691385]
+      ],
+      operation_phase: 'fourth_kovel_battle',
+      is_enemy: false,
+      arrow_type: 'normal'
+    },
+    {
+      id: 'fourth_kovel_battle_svinyukhy_success',
+      name: 'Захват Свинюх 1-м гвардейским корпусом',
+      army: '1-й гвардейский корпус',
+      commander: '8-я армия',
+      strength: '1-й гвардейский корпус',
+      period: 'сентябрь - октябрь 1916',
+      description: '1-й гвардейский корпус — Свинюхами, но скромный этот успех стоил громадных потерь. Кровопролитнейшее Четвёртое Ковельское сражение окончилось безрезультатно.',
+      path: [
+        [50.64246687887535, 24.757155237792933],
+        [50.648142615751965, 24.872855005859343]
+      ],
+      operation_phase: 'fourth_kovel_battle',
+      is_enemy: false,
+      arrow_type: 'normal'
     }
   ];
 
@@ -1077,6 +1198,27 @@ export default function BrusilovOffensiveMap() {
         • 11-я армия — на Бережаны
         • 7-я армия (усиленная 33-м и 41-м корпусами) — на Галич
         • 9-я армия — на Галич и Мармарош-Сигет`
+    },
+
+    'fourth_kovel_battle': {
+      title: 'Четвертое Ковельское Сражение',
+      subtitle: 'сентябрь - октябрь 1916 года',
+      content: `Последняя попытка захвата Ковеля в рамках Брусиловского наступления.
+
+        Ситуация на момент начала:
+        • Русские войска удерживали все города, захваченные в предыдущих операциях
+        • Фронт стабилизировался в районе Ковеля
+        • Противник укрепил оборону
+        
+        Характер операции:
+        • Завершающая фаза Брусиловского наступления
+        • Попытка окончательного прорыва к Ковелю
+        • Ограниченные наступательные действия
+        
+        Результаты:
+        • Ковель так и не был взят
+        • Сохранены все ранее захваченные территории
+        • Переход к позиционной войне`
     },
 
 

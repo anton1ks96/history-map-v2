@@ -275,6 +275,15 @@
       "population": 18000,
       "captured": false,
       "significance": "Цель 9-й армии в наступлении на Галич и Мармарош-Сигет"
+    },
+    {
+      "id": "svinyukhy",
+      "name": "Свинюхи",
+      "coordinates": [50.64560789878315,24.744419634887702],
+      "importance": "local",
+      "population": 800,
+      "captured": false,
+      "significance": "Деревня, захваченная 1-м гвардейским корпусом в Четвертом Ковельском сражении"
     }
   ]
 } 
