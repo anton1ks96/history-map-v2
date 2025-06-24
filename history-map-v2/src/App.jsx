@@ -133,6 +133,9 @@ const FrontLines = ({ frontLines, selectedPhase }) => {
     } else if (selectedPhase === 'kovel_strike') {
       // Показываем начальную, на 16 июня и финальную
       shouldShow = frontLine.type === 'initial' || frontLine.type === 'advance' || frontLine.type === 'final';
+    } else if (selectedPhase === 'kovel_battles') {
+      // Показываем все линии фронта для Ковельских сражений
+      shouldShow = true;
     } else {
       // Для остальных фаз показываем все
       shouldShow = true;
@@ -230,8 +233,8 @@ const CityMarkers = ({ cities, selectedPhase }) => {
     // Специальная логика для городов, захваченных в фазе "Удар на Ковель"
     const kovelStrikeCities = ['manevychi', 'gorodok', 'galuzia', 'baranovichi', 'lyubeshov'];
     if (kovelStrikeCities.includes(id)) {
-      if (selectedPhase === 'kovel_strike' || selectedPhase === '') {
-        isCaptured = true; // Показываем как захваченные в фазе "Удар на Ковель" и "Все ходы"
+      if (selectedPhase === 'kovel_strike' || selectedPhase === 'kovel_battles' || selectedPhase === '') {
+        isCaptured = true; // Показываем как захваченные в фазах "Удар на Ковель", "Ковельские сражения" и "Все ходы"
       } else {
         isCaptured = false; // В остальных фазах показываем как незахваченные
       }
@@ -263,7 +266,7 @@ const CityMarkers = ({ cities, selectedPhase }) => {
 
     const kovelStrikeCities = ['manevychi', 'gorodok', 'galuzia', 'baranovichi', 'lyubeshov'];
     if (kovelStrikeCities.includes(city.id)) {
-      if (selectedPhase === 'kovel_strike' || selectedPhase === '') {
+      if (selectedPhase === 'kovel_strike' || selectedPhase === 'kovel_battles' || selectedPhase === '') {
         isCaptured = true;
         captureDate = '22 июня (5 июля) 1916';
         captureArmy = '8-я и 3-я армии';
@@ -456,7 +459,8 @@ export default function BrusilovOffensiveMap() {
   const operationPhases = [
     { value: '', label: 'Все ходы операции' },
     { value: 'lutsk_breakthrough', label: '«Луцкий» прорыв' },
-    { value: 'kovel_strike', label: 'Удар на Ковель' }
+    { value: 'kovel_strike', label: 'Удар на Ковель' },
+    { value: 'kovel_battles', label: '1-3 Ковельские сражения' }
   ];
 
   // Данные о движениях войск
@@ -597,6 +601,23 @@ export default function BrusilovOffensiveMap() {
         • Успешное развитие наступления на Ковельском направлении
         • Расширение прорыва в немецкой обороне
         • Улучшение тактического положения русских войск`
+    },
+
+    'kovel_battles': {
+      title: '1-3 Ковельские сражения',
+      subtitle: 'июль - август 1916 года',
+      content: `Серия сражений за Ковель - ключевой железнодорожный узел. Русские войска предприняли три попытки захватить город.
+
+        Основные события:
+        • 1-е Ковельское сражение - июль 1916
+        • 2-е Ковельское сражение - август 1916  
+        • 3-е Ковельское сражение - август 1916
+        • Упорная оборона австро-германских войск
+        
+        Результаты:
+        • Ковель так и не был захвачен русскими войсками
+        • Значительные потери с обеих сторон
+        • Стабилизация фронта в районе Ковеля`
     },
 
 
@@ -1141,12 +1162,14 @@ export default function BrusilovOffensiveMap() {
                   </>
                 )}
 
-                {/* Движения войск */}
-                <TroopMovements
-                  movements={movements}
-                  selectedMovement={selectedMovement}
-                  selectedPhase={selectedPhase}
-                />
+                {/* Движения войск - не показываются в фазе Ковельских сражений */}
+                {selectedPhase !== 'kovel_battles' && (
+                  <TroopMovements
+                    movements={movements}
+                    selectedMovement={selectedMovement}
+                    selectedPhase={selectedPhase}
+                  />
+                )}
 
                 {/* Отображение городов */}
                 <CityMarkers cities={citiesData.cities || []} selectedPhase={selectedPhase} />
@@ -1346,6 +1369,25 @@ export default function BrusilovOffensiveMap() {
                       }}></div>
                     </div>
                     <span style={{ color: 'rgba(255, 255, 255, 0.9)', lineHeight: '1.2' }}>Фронт на 16 июня 1916</span>
+                  </div>
+
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minHeight: '24px' }}>
+                    <div style={{
+                      width: '30px',
+                      height: '24px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      flexShrink: 0
+                    }}>
+                      <div style={{
+                        width: '26px',
+                        height: '4px',
+                        backgroundColor: '#f97316',
+                        borderRadius: '2px'
+                      }}></div>
+                    </div>
+                    <span style={{ color: 'rgba(255, 255, 255, 0.9)', lineHeight: '1.2' }}>Фронт на 14 июля 1916</span>
                   </div>
 
 
