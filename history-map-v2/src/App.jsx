@@ -95,11 +95,10 @@ const TroopMovements = ({ movements, selectedMovement, selectedPhase }) => {
         <Marker
           position={movement.id === 'fourth_kovel_battle_bypass_south' || movement.id === 'fifth_kovel_battle_special_army_vladimir' ? movement.path[movement.path.length - 1] : movement.path[0]}
           icon={L.divIcon({
-            html: `<div style="transform: rotate(${
-              180 + // Глобальный поворот на 180 градусов для всех стрелок
+            html: `<div style="transform: rotate(${180 + // Глобальный поворот на 180 градусов для всех стрелок
               (movement.id === 'fourth_kovel_battle_bypass_south' || movement.id === 'fifth_kovel_battle_special_army_vladimir' ? getArrowRotationEnd(movement.path) : getArrowRotation(movement.path)) +
               (movement.id === '8th_army_lutsk_kovel' ? 180 : 0) +
-              (movement.id === 'first_kovel_battle_selec' || movement.id === 'first_kovel_battle_tristen' || 
+              (movement.id === 'first_kovel_battle_selec' || movement.id === 'first_kovel_battle_tristen' ||
                 movement.id === 'first_kovel_battle_koshevo' || movement.id === 'first_kovel_battle_torchin' ||
                 movement.id === 'first_kovel_battle_brody' || movement.id === 'first_kovel_battle_halych' ||
                 movement.id === 'first_kovel_battle_monastyryska' || movement.id === 'first_kovel_battle_stanislau' ||
@@ -112,7 +111,7 @@ const TroopMovements = ({ movements, selectedMovement, selectedPhase }) => {
               (movement.id === 'fourth_kovel_battle_korytnica_success' || movement.id === 'fourth_kovel_battle_svinyukhy_success' ? 90 : 0) +
               (movement.arrow_type === 'counterattack' ? 90 : 0) +
               (movement.id === 'army_offensive_8th_grubeshov' || movement.id === 'army_offensive_11th_lviv' ? 180 : 0)
-            }deg);">
+              }deg);">
               <svg width="30" height="30" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12 2 L22 12 L12 22 L12 16 L2 16 L2 8 L12 8 Z" fill="${color}"/>
               </svg>
@@ -726,8 +725,8 @@ export default function BrusilovOffensiveMap() {
       period: '15 (28) июля 1916',
       description: 'Особая армия одержала победу у местечка Селец в ходе Первого Ковельского сражения.',
       path: [
-        [51.11510126681912,24.61571015637205],
-        [51.10818567507992,24.926073925903303]
+        [51.11510126681912, 24.61571015637205],
+        [51.10818567507992, 24.926073925903303]
       ],
       operation_phase: 'kovel_battles',
       is_enemy: false,
@@ -3730,9 +3729,9 @@ export default function BrusilovOffensiveMap() {
                 fontFamily: 'Rubik, sans-serif',
                 textAlign: 'justify'
               }}>
-                <div 
-                  style={{ 
-                  letterSpacing: '0.3px'
+                <div
+                  style={{
+                    letterSpacing: '0.3px'
                   }}
                   dangerouslySetInnerHTML={{
                     __html: operationInfo[selectedPhase]?.content || 'Информация временно недоступна.'
