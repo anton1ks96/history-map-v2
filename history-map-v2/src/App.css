@@ -248,7 +248,7 @@
 .intro-button-container {
   opacity: 0;
   transform: translateY(30px);
-  transition: all 1.5s ease-out 1s;
+  transition: all 1.2s ease-out 0.3s;
 }
 
 .intro-button-container.show {
