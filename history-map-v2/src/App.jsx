@@ -610,6 +610,9 @@ export default function BrusilovOffensiveMap() {
   const [selectedPhase, setSelectedPhase] = useState('');
   const [showOperationInfo, setShowOperationInfo] = useState(false);
   const [isOperationInfoClosing, setIsOperationInfoClosing] = useState(false);
+  const [showGallery, setShowGallery] = useState(false);
+  const [isGalleryClosing, setIsGalleryClosing] = useState(false);
+  const [currentGalleryImage, setCurrentGalleryImage] = useState(0);
   const [showContacts, setShowContacts] = useState(false);
   const [isContactsClosing, setIsContactsClosing] = useState(false);
   
@@ -702,6 +705,71 @@ export default function BrusilovOffensiveMap() {
     localStorage.removeItem('brusilov-tour-completed');
     setCurrentTourStep(0);
     setShowTour(true);
+  };
+
+  // Данные галереи
+  const galleryImages = [
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/3/38/Aleksei_Brusilov_at_Rivne_Railway_Station_%28October_1915%29.jpg',
+      title: 'Генерал А. А. Брусилов на станции Ровно (1915)',
+      description: 'Первая мировая война. Генерал А. А. Брусилов на станции Ровно (1915)'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/7/70/RussianHighCommand.jpeg',
+      title: 'Военный совет 1 апреля 1916 года',
+      description: 'Военный совет 1 апреля 1916 года'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/1/19/01916_12cm_Minenwerfer_-_Sperrfort_Dubno.jpg',
+      title: 'Австро-венгерский миномётный расчёт',
+      description: 'Австро-венгерский миномётный расчёт на позиции'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/a/a7/01916_Maschinengewehr_M._7.12_eingebaut_in_der_Schwarmlinie_flankierend..jpg',
+      title: 'Австро-венгерские пулемётчики',
+      description: 'Австро-венгерские пулемётчики на позиции'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/d/d4/Batterie_6_F.A.97%2C_Punkt_239_südwestlich_Szelwow.jpg',
+      title: 'Немецкое полевое орудие',
+      description: 'Немецкое полевое орудие в укрытии юго-западнее Шельвова'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/4/43/Batterie_4_F.A.97_des_deutschen_Regiments_westlich_Szelwow.jpg',
+      title: 'Немецкая пушка в бункере',
+      description: 'Немецкая пушка в орудийном бункере западнее Шельвова'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/f/f5/Трофеи._Юго-Западный_фронт.png',
+      title: 'Захваченные австрийские орудия',
+      description: 'Австрийские орудия, захваченные русскими войсками'
+    }
+  ];
+
+  // Функции управления галереей
+  const openGallery = () => {
+    setShowGallery(true);
+    setCurrentGalleryImage(0);
+  };
+
+  const closeGallery = () => {
+    setIsGalleryClosing(true);
+    setTimeout(() => {
+      setShowGallery(false);
+      setIsGalleryClosing(false);
+    }, 300);
+  };
+
+  const nextGalleryImage = () => {
+    setCurrentGalleryImage((prev) => (prev + 1) % galleryImages.length);
+  };
+
+  const prevGalleryImage = () => {
+    setCurrentGalleryImage((prev) => (prev - 1 + galleryImages.length) % galleryImages.length);
+  };
+
+  const selectGalleryImage = (index) => {
+    setCurrentGalleryImage(index);
   };
 
   // Фазы операции для выпадающего списка
@@ -2731,12 +2799,14 @@ export default function BrusilovOffensiveMap() {
 
   // Полноэкранное окно не закрывается по клику, только по ESC или кнопке закрытия
 
-  // Обработчик для закрытия модальных окон клавишей Escape
+  // Обработчик для закрытия модальных окон клавишей Escape и навигация в галерее
   useEffect(() => {
     const handleEscapeKey = (event) => {
       if (event.key === 'Escape') {
         if (showTour && !isTourClosing) {
           closeTour();
+        } else if (showGallery && !isGalleryClosing) {
+          closeGallery();
         } else if (showContacts && !isContactsClosing) {
           closeContactsModal();
         } else if (showOperationInfo && !isOperationInfoClosing) {
@@ -2744,17 +2814,26 @@ export default function BrusilovOffensiveMap() {
         } else if (selectedRiver && !isRiverModalClosing) {
           closeRiverModal();
         }
+      } else if (showGallery && !isGalleryClosing) {
+        // Навигация в галерее стрелками
+        if (event.key === 'ArrowLeft') {
+          event.preventDefault();
+          prevGalleryImage();
+        } else if (event.key === 'ArrowRight') {
+          event.preventDefault();
+          nextGalleryImage();
+        }
       }
     };
 
-    if (selectedRiver || showOperationInfo || showContacts || showTour) {
+    if (selectedRiver || showOperationInfo || showContacts || showTour || showGallery) {
       document.addEventListener('keydown', handleEscapeKey);
     }
 
     return () => {
       document.removeEventListener('keydown', handleEscapeKey);
     };
-  }, [selectedRiver, isRiverModalClosing, showOperationInfo, isOperationInfoClosing, showContacts, isContactsClosing, showTour, isTourClosing]);
+  }, [selectedRiver, isRiverModalClosing, showOperationInfo, isOperationInfoClosing, showContacts, isContactsClosing, showTour, isTourClosing, showGallery, isGalleryClosing]);
 
 
 
@@ -3385,13 +3464,84 @@ export default function BrusilovOffensiveMap() {
                 ИНФОРМАЦИЯ
               </button>
 
+              {/* Кнопка галереи */}
+              <button
+                onClick={openGallery}
+                style={{
+                  position: 'absolute',
+                  top: '24px',
+                  right: '190px',
+                  background: 'linear-gradient(135deg, rgba(109, 40, 217, 0.8) 0%, rgba(147, 51, 234, 0.8) 50%, rgba(168, 85, 247, 0.8) 100%)',
+                  border: '1px solid rgba(255, 255, 255, 0.2)',
+                  borderRadius: '16px',
+                  padding: '12px 20px',
+                  cursor: 'pointer',
+                  zIndex: 1001,
+                  backdropFilter: 'blur(20px)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  boxShadow: '0 15px 35px rgba(147, 51, 234, 0.4), 0 5px 15px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)',
+                  transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+                  outline: 'none',
+                  color: '#ffffff',
+                  fontSize: '14px',
+                  fontWeight: '600',
+                  letterSpacing: '0.8px',
+                  textTransform: 'uppercase',
+                  fontFamily: 'Rubik, sans-serif',
+                  textShadow: '0 1px 2px rgba(0, 0, 0, 0.3)',
+                  gap: '8px'
+                }}
+                title="Историческая галерея"
+                onMouseEnter={(e) => {
+                  e.target.style.background = 'linear-gradient(135deg, rgba(109, 40, 217, 0.95) 0%, rgba(147, 51, 234, 0.95) 50%, rgba(168, 85, 247, 0.95) 100%)';
+                  e.target.style.transform = 'translateY(-4px) scale(1.02)';
+                  e.target.style.boxShadow = '0 25px 50px rgba(147, 51, 234, 0.6), 0 10px 25px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3)';
+                  e.target.style.letterSpacing = '1px';
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.background = 'linear-gradient(135deg, rgba(109, 40, 217, 0.8) 0%, rgba(147, 51, 234, 0.8) 50%, rgba(168, 85, 247, 0.8) 100%)';
+                  e.target.style.transform = 'translateY(0) scale(1)';
+                  e.target.style.boxShadow = '0 15px 35px rgba(147, 51, 234, 0.4), 0 5px 15px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)';
+                  e.target.style.letterSpacing = '0.8px';
+                }}
+                onMouseDown={(e) => {
+                  e.target.style.transform = 'translateY(-1px) scale(0.98)';
+                  e.target.style.boxShadow = '0 15px 30px rgba(147, 51, 234, 0.5), 0 5px 15px rgba(0, 0, 0, 0.3)';
+                }}
+                onMouseUp={(e) => {
+                  e.target.style.transform = 'translateY(-4px) scale(1.02)';
+                  e.target.style.boxShadow = '0 25px 50px rgba(147, 51, 234, 0.6), 0 10px 25px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3)';
+                }}
+              >
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  style={{
+                    filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3))'
+                  }}
+                >
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                  <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                  <path d="M21 15l-5-5L5 21l5-5"></path>
+                </svg>
+                ГАЛЕРЕЯ
+              </button>
+
               {/* Кнопка контактов */}
               <button
                 onClick={openContactsModal}
                 style={{
                   position: 'absolute',
                   top: '24px',
-                  right: '300px',
+                  right: '337px',
                   background: 'linear-gradient(135deg, rgba(220, 38, 38, 0.8) 0%, rgba(239, 68, 68, 0.8) 50%, rgba(185, 28, 28, 0.8) 100%)',
                   border: '1px solid rgba(255, 255, 255, 0.2)',
                   borderRadius: '16px',
@@ -3465,7 +3615,7 @@ export default function BrusilovOffensiveMap() {
                   style={{
                     position: 'absolute',
                     top: '24px',
-                    right: '200px',
+                    right: '499px',
                     background: 'linear-gradient(135deg, rgba(34, 197, 94, 0.8) 0%, rgba(16, 185, 129, 0.8) 50%, rgba(5, 150, 105, 0.8) 100%)',
                     border: '1px solid rgba(255, 255, 255, 0.2)',
                     borderRadius: '16px',
@@ -4748,6 +4898,374 @@ export default function BrusilovOffensiveMap() {
                 Нажмите ESC или кнопку × для закрытия
               </p>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* Модальное окно галереи */}
+      {showGallery && (
+        <div
+          className={`modal-overlay ${isGalleryClosing ? 'closing' : ''}`}
+          onClick={(e) => {
+            if (e.target === e.currentTarget) {
+              closeGallery();
+            }
+          }}
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '100vw',
+            height: '100vh',
+            backgroundColor: 'rgba(0,0,0,0.9)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 99999,
+            backdropFilter: 'blur(10px)'
+          }}
+        >
+          <div
+            className={`modal-content ${isGalleryClosing ? 'closing' : ''}`}
+            style={{
+              background: 'linear-gradient(135deg, rgba(26, 26, 46, 0.95) 0%, rgba(22, 33, 62, 0.95) 50%, rgba(15, 15, 35, 0.95) 100%)',
+              padding: '24px',
+              borderRadius: '24px',
+              maxWidth: '90vw',
+              maxHeight: '90vh',
+              width: '800px',
+              boxShadow: '0 25px 50px rgba(0, 0, 0, 0.5), 0 0 80px rgba(147, 51, 234, 0.3)',
+              border: '1px solid rgba(255, 255, 255, 0.2)',
+              backdropFilter: 'blur(20px)',
+              display: 'flex',
+              flexDirection: 'column'
+            }}
+          >
+            {/* Заголовок */}
+            <div style={{ 
+              display: 'flex', 
+              justifyContent: 'space-between', 
+              alignItems: 'center', 
+              marginBottom: '24px' 
+            }}>
+              <h2 style={{ 
+                margin: 0, 
+                fontSize: '28px', 
+                color: '#ffffff',
+                fontWeight: '700',
+                fontFamily: 'Rubik, sans-serif',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '12px'
+              }}>
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  style={{
+                    color: '#a855f7',
+                    filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3))'
+                  }}
+                >
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                  <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                  <path d="M21 15l-5-5L5 21l5-5"></path>
+                </svg>
+                Историческая галерея
+              </h2>
+                             <button
+                 onClick={closeGallery}
+                 style={{
+                   background: 'linear-gradient(135deg, rgba(220, 38, 38, 0.8) 0%, rgba(239, 68, 68, 0.8) 100%)',
+                   border: '1px solid rgba(255, 255, 255, 0.2)',
+                   borderRadius: '16px',
+                   fontSize: '20px',
+                   cursor: 'pointer',
+                   padding: '14px',
+                   width: '56px',
+                   height: '56px',
+                   color: '#ffffff',
+                   display: 'flex',
+                   alignItems: 'center',
+                   justifyContent: 'center',
+                   transition: 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+                   flexShrink: 0,
+                   outline: 'none',
+                   boxShadow: '0 8px 25px rgba(220, 38, 38, 0.3), 0 4px 12px rgba(0, 0, 0, 0.2)',
+                   backdropFilter: 'blur(15px)',
+                   textShadow: '0 1px 2px rgba(0, 0, 0, 0.3)'
+                 }}
+                 onMouseEnter={(e) => {
+                   e.target.style.background = 'linear-gradient(135deg, rgba(220, 38, 38, 0.9) 0%, rgba(239, 68, 68, 0.9) 100%)';
+                   e.target.style.transform = 'scale(1.05) translateY(-2px)';
+                   e.target.style.boxShadow = '0 12px 35px rgba(220, 38, 38, 0.4), 0 6px 16px rgba(0, 0, 0, 0.3)';
+                 }}
+                 onMouseLeave={(e) => {
+                   e.target.style.background = 'linear-gradient(135deg, rgba(220, 38, 38, 0.8) 0%, rgba(239, 68, 68, 0.8) 100%)';
+                   e.target.style.transform = 'scale(1) translateY(0px)';
+                   e.target.style.boxShadow = '0 8px 25px rgba(220, 38, 38, 0.3), 0 4px 12px rgba(0, 0, 0, 0.2)';
+                 }}
+                 title="Закрыть (ESC)"
+               >
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+              </button>
+            </div>
+
+            {/* Основное изображение */}
+            <div style={{
+              position: 'relative',
+              flex: 1,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              marginBottom: '24px',
+              background: 'rgba(0, 0, 0, 0.5)',
+              borderRadius: '16px',
+              overflow: 'hidden',
+              minHeight: '400px'
+            }}>
+              <img
+                src={galleryImages[currentGalleryImage]?.url}
+                alt={galleryImages[currentGalleryImage]?.title}
+                style={{
+                  maxWidth: '100%',
+                  maxHeight: '100%',
+                  objectFit: 'contain',
+                  borderRadius: '12px'
+                }}
+                onError={(e) => {
+                  e.target.style.display = 'none';
+                  e.target.nextElementSibling.style.display = 'flex';
+                }}
+              />
+              <div style={{
+                display: 'none',
+                alignItems: 'center',
+                justifyContent: 'center',
+                width: '100%',
+                height: '100%',
+                color: 'rgba(255, 255, 255, 0.6)',
+                fontSize: '18px',
+                fontFamily: 'Rubik, sans-serif'
+              }}>
+                Изображение недоступно
+              </div>
+
+              {/* Кнопки навигации */}
+              {galleryImages.length > 1 && (
+                <>
+                  <button
+                    onClick={prevGalleryImage}
+                    style={{
+                      position: 'absolute',
+                      left: '16px',
+                      top: '50%',
+                      transform: 'translateY(-50%)',
+                      background: 'rgba(0, 0, 0, 0.7)',
+                      border: 'none',
+                      borderRadius: '50%',
+                      width: '48px',
+                      height: '48px',
+                      color: '#ffffff',
+                      cursor: 'pointer',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      transition: 'all 0.3s ease',
+                      backdropFilter: 'blur(10px)'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.target.style.background = 'rgba(147, 51, 234, 0.8)';
+                      e.target.style.transform = 'translateY(-50%) scale(1.1)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.target.style.background = 'rgba(0, 0, 0, 0.7)';
+                      e.target.style.transform = 'translateY(-50%) scale(1)';
+                    }}
+                  >
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <polyline points="15,18 9,12 15,6"></polyline>
+                    </svg>
+                  </button>
+
+                  <button
+                    onClick={nextGalleryImage}
+                    style={{
+                      position: 'absolute',
+                      right: '16px',
+                      top: '50%',
+                      transform: 'translateY(-50%)',
+                      background: 'rgba(0, 0, 0, 0.7)',
+                      border: 'none',
+                      borderRadius: '50%',
+                      width: '48px',
+                      height: '48px',
+                      color: '#ffffff',
+                      cursor: 'pointer',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      transition: 'all 0.3s ease',
+                      backdropFilter: 'blur(10px)'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.target.style.background = 'rgba(147, 51, 234, 0.8)';
+                      e.target.style.transform = 'translateY(-50%) scale(1.1)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.target.style.background = 'rgba(0, 0, 0, 0.7)';
+                      e.target.style.transform = 'translateY(-50%) scale(1)';
+                    }}
+                  >
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <polyline points="9,18 15,12 9,6"></polyline>
+                    </svg>
+                  </button>
+                </>
+              )}
+
+              {/* Счетчик изображений */}
+              <div style={{
+                position: 'absolute',
+                top: '16px',
+                right: '16px',
+                background: 'rgba(0, 0, 0, 0.7)',
+                color: '#ffffff',
+                padding: '8px 12px',
+                borderRadius: '12px',
+                fontSize: '14px',
+                fontFamily: 'Rubik, sans-serif',
+                backdropFilter: 'blur(10px)'
+              }}>
+                {currentGalleryImage + 1} из {galleryImages.length}
+              </div>
+            </div>
+
+            {/* Информация об изображении */}
+            <div style={{
+              background: 'rgba(255, 255, 255, 0.05)',
+              padding: '20px',
+              borderRadius: '16px',
+              border: '1px solid rgba(255, 255, 255, 0.1)',
+              marginBottom: '20px'
+            }}>
+              <h3 style={{
+                margin: '0 0 8px 0',
+                fontSize: '18px',
+                color: '#ffffff',
+                fontWeight: '600',
+                fontFamily: 'Rubik, sans-serif'
+              }}>
+                {galleryImages[currentGalleryImage]?.title}
+              </h3>
+              <p style={{
+                margin: 0,
+                fontSize: '14px',
+                color: 'rgba(255, 255, 255, 0.8)',
+                fontFamily: 'Rubik, sans-serif',
+                lineHeight: '1.5'
+              }}>
+                {galleryImages[currentGalleryImage]?.description}
+              </p>
+            </div>
+
+            {/* Миниатюры */}
+            <div style={{
+              display: 'flex',
+              gap: '8px',
+              overflowX: 'auto',
+              padding: '8px 0'
+            }}>
+              {galleryImages.map((image, index) => (
+                <button
+                  key={index}
+                  onClick={() => selectGalleryImage(index)}
+                  style={{
+                    background: 'none',
+                    border: currentGalleryImage === index ? '2px solid #a855f7' : '2px solid transparent',
+                    borderRadius: '8px',
+                    padding: '4px',
+                    cursor: 'pointer',
+                    transition: 'all 0.3s ease',
+                    flexShrink: 0,
+                    opacity: currentGalleryImage === index ? 1 : 0.6
+                  }}
+                  onMouseEnter={(e) => {
+                    e.target.style.opacity = '1';
+                    if (currentGalleryImage !== index) {
+                      e.target.style.borderColor = 'rgba(168, 85, 247, 0.5)';
+                    }
+                  }}
+                  onMouseLeave={(e) => {
+                    if (currentGalleryImage !== index) {
+                      e.target.style.opacity = '0.6';
+                      e.target.style.borderColor = 'transparent';
+                    }
+                  }}
+                >
+                  <img
+                    src={image.url}
+                    alt={image.title}
+                    style={{
+                      width: '60px',
+                      height: '40px',
+                      objectFit: 'cover',
+                      borderRadius: '4px',
+                      display: 'block'
+                    }}
+                    onError={(e) => {
+                      e.target.style.display = 'none';
+                      e.target.parentElement.style.background = 'rgba(255, 255, 255, 0.1)';
+                      e.target.parentElement.innerHTML = '<div style="width: 60px; height: 40px; display: flex; align-items: center; justify-content: center; font-size: 10px; color: rgba(255,255,255,0.5);">Фото</div>';
+                    }}
+                  />
+                </button>
+              ))}
+            </div>
+
+                         {/* Нижняя панель */}
+             <div style={{
+               marginTop: '16px',
+               padding: '16px',
+               background: 'rgba(255, 255, 255, 0.03)',
+               borderRadius: '12px',
+               border: '1px solid rgba(255, 255, 255, 0.1)',
+               textAlign: 'center'
+             }}>
+               <p style={{
+                 margin: '0 0 8px 0',
+                 fontSize: '12px',
+                 color: 'rgba(255, 255, 255, 0.6)',
+                 fontFamily: 'Rubik, sans-serif'
+               }}>
+                 Используйте стрелки ← → или ESC для навигации
+               </p>
+               <p style={{
+                 margin: 0,
+                 fontSize: '10px',
+                 color: 'rgba(255, 255, 255, 0.4)',
+                 fontFamily: 'Rubik, sans-serif'
+               }}>
+                 Источник: Wikimedia Commons
+               </p>
+             </div>
           </div>
         </div>
       )}
