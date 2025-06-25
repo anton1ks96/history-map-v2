@@ -562,30 +562,45 @@ button.legend-button {
   outline: none;
 }
 
+/* Анимация для кнопки информации */
+button.operation-info-button {
+  animation: infoButtonPulse 3s ease-in-out infinite 2s;
+}
+
 button.legend-button:focus {
   outline: none;
 }
 
 @keyframes legendButtonPulse {
   0%, 100% {
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 15px 35px rgba(99, 102, 241, 0.4), 0 5px 15px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
   }
   50% {
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2), 0 0 0 6px rgba(255, 255, 255, 0.05);
+    box-shadow: 0 20px 40px rgba(99, 102, 241, 0.6), 0 8px 20px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.25);
   }
 }
 
-/* Эффекты кнопки легенды - точно как у других кнопок */
+@keyframes infoButtonPulse {
+  0%, 100% {
+    box-shadow: 0 15px 35px rgba(239, 68, 68, 0.4), 0 5px 15px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+  50% {
+    box-shadow: 0 20px 40px rgba(239, 68, 68, 0.6), 0 8px 20px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  }
+}
+
+/* Эффекты кнопки легенды - точно как у кнопки "Начать исследование" */
 button.legend-button:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.95) 0%, rgba(139, 92, 246, 0.95) 50%, rgba(168, 85, 247, 0.95) 100%) !important;
   border-color: rgba(255, 255, 255, 0.3);
-  transform: translateY(-1px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 25px 50px rgba(99, 102, 241, 0.6), 0 10px 25px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
 button.legend-button:active {
-  transform: translateY(0) scale(0.98);
+  transform: translateY(-1px) scale(0.98);
   transition: all 0.1s ease;
+  box-shadow: 0 15px 30px rgba(99, 102, 241, 0.5), 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 /* Анимация иконки в кнопке */
@@ -711,6 +726,14 @@ button:focus, select:focus, input:focus {
   .map-container.full-screen {
     margin-top: -120px; /* Меньше на планшетах */
   }
+  
+  button.operation-info-button {
+    font-size: 12px !important;
+    padding: 10px 16px !important;
+    letter-spacing: 0.6px !important;
+    top: 20px !important;
+    right: 20px !important;
+  }
 }
 
 @media (max-width: 480px) {
@@ -720,5 +743,14 @@ button:focus, select:focus, input:focus {
   
   .map-container {
     padding: 10px;
+  }
+  
+  button.operation-info-button {
+    font-size: 11px !important;
+    padding: 8px 14px !important;
+    letter-spacing: 0.5px !important;
+    top: 16px !important;
+    right: 16px !important;
+    border-radius: 12px !important;
   }
 }

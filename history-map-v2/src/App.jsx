@@ -3154,7 +3154,7 @@ export default function BrusilovOffensiveMap() {
                   position: 'absolute',
                   bottom: '24px',
                   left: '24px',
-                  background: 'rgba(26, 26, 46, 0.9)',
+                  background: 'linear-gradient(135deg, rgba(99, 102, 241, 0.8) 0%, rgba(139, 92, 246, 0.8) 50%, rgba(168, 85, 247, 0.8) 100%)',
                   border: '1px solid rgba(255, 255, 255, 0.2)',
                   borderRadius: '12px',
                   padding: '12px',
@@ -3166,7 +3166,7 @@ export default function BrusilovOffensiveMap() {
                   justifyContent: 'center',
                   width: '48px',
                   height: '48px',
-                  boxShadow: '0 8px 25px rgba(0, 0, 0, 0.2)'
+                  boxShadow: '0 15px 35px rgba(99, 102, 241, 0.4), 0 5px 15px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)'
                 }}
                 title={showLegend ? "Скрыть легенду и заголовок" : "Показать легенду и заголовок"}
               >
@@ -3205,66 +3205,52 @@ export default function BrusilovOffensiveMap() {
                 onClick={() => setShowOperationInfo(true)}
                 style={{
                   position: 'absolute',
-                  bottom: '24px',
-                  left: '80px',
-                  background: 'rgba(26, 26, 46, 0.9)',
+                  top: '24px',
+                  right: '24px',
+                  background: 'linear-gradient(135deg, rgba(239, 68, 68, 0.8) 0%, rgba(251, 146, 60, 0.8) 50%, rgba(245, 158, 11, 0.8) 100%)',
                   border: '1px solid rgba(255, 255, 255, 0.2)',
-                  borderRadius: '12px',
-                  padding: '12px',
+                  borderRadius: '16px',
+                  padding: '12px 20px',
                   cursor: 'pointer',
                   zIndex: 1001,
                   backdropFilter: 'blur(20px)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  width: '48px',
-                  height: '48px',
-                  boxShadow: '0 8px 25px rgba(0, 0, 0, 0.2)',
-                  transition: 'all 0.3s ease',
-                  outline: 'none'
+                  boxShadow: '0 15px 35px rgba(239, 68, 68, 0.4), 0 5px 15px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)',
+                  transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+                  outline: 'none',
+                  color: '#ffffff',
+                  fontSize: '14px',
+                  fontWeight: '600',
+                  letterSpacing: '0.8px',
+                  textTransform: 'uppercase',
+                  fontFamily: 'Rubik, sans-serif',
+                  textShadow: '0 1px 2px rgba(0, 0, 0, 0.3)'
                 }}
                 title="Информация об операции"
                 onMouseEnter={(e) => {
-                  if (!e.target.matches(':active')) {
-                    e.target.style.background = 'rgba(255, 255, 255, 0.1)';
-                  }
+                  e.target.style.background = 'linear-gradient(135deg, rgba(239, 68, 68, 0.95) 0%, rgba(251, 146, 60, 0.95) 50%, rgba(245, 158, 11, 0.95) 100%)';
+                  e.target.style.transform = 'translateY(-4px) scale(1.02)';
+                  e.target.style.boxShadow = '0 25px 50px rgba(239, 68, 68, 0.6), 0 10px 25px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3)';
+                  e.target.style.letterSpacing = '1px';
                 }}
                 onMouseLeave={(e) => {
-                  e.target.style.background = 'rgba(26, 26, 46, 0.9)';
+                  e.target.style.background = 'linear-gradient(135deg, rgba(239, 68, 68, 0.8) 0%, rgba(251, 146, 60, 0.8) 50%, rgba(245, 158, 11, 0.8) 100%)';
+                  e.target.style.transform = 'translateY(0) scale(1)';
+                  e.target.style.boxShadow = '0 15px 35px rgba(239, 68, 68, 0.4), 0 5px 15px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)';
+                  e.target.style.letterSpacing = '0.8px';
                 }}
                 onMouseDown={(e) => {
-                  e.target.style.background = 'rgba(255, 255, 255, 0.15)';
-                  e.target.style.transform = 'scale(0.95)';
+                  e.target.style.transform = 'translateY(-1px) scale(0.98)';
+                  e.target.style.boxShadow = '0 15px 30px rgba(239, 68, 68, 0.5), 0 5px 15px rgba(0, 0, 0, 0.3)';
                 }}
                 onMouseUp={(e) => {
-                  e.target.style.background = 'rgba(255, 255, 255, 0.1)';
-                  e.target.style.transform = 'scale(1)';
-                }}
-                onFocus={(e) => {
-                  e.target.style.boxShadow = '0 8px 25px rgba(0, 0, 0, 0.2), 0 0 0 2px rgba(255, 255, 255, 0.3)';
-                }}
-                onBlur={(e) => {
-                  e.target.style.boxShadow = '0 8px 25px rgba(0, 0, 0, 0.2)';
-                  e.target.style.background = 'rgba(26, 26, 46, 0.9)';
-                  e.target.style.transform = 'scale(1)';
+                  e.target.style.transform = 'translateY(-4px) scale(1.02)';
+                  e.target.style.boxShadow = '0 25px 50px rgba(239, 68, 68, 0.6), 0 10px 25px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3)';
                 }}
               >
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="#ffffff"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                  <polyline points="14,2 14,8 20,8"></polyline>
-                  <line x1="16" y1="13" x2="8" y2="13"></line>
-                  <line x1="16" y1="17" x2="8" y2="17"></line>
-                  <polyline points="10,9 9,9 8,9"></polyline>
-                </svg>
+                ИНФОРМАЦИЯ
               </button>
 
               {/* Легенда */}
@@ -3273,7 +3259,7 @@ export default function BrusilovOffensiveMap() {
                 style={{
                   position: 'absolute',
                   bottom: '24px',
-                  left: '136px',
+                  left: '80px',
                   background: 'rgba(26, 26, 46, 0.9)',
                   padding: '24px',
                   borderRadius: '16px',
@@ -3681,32 +3667,59 @@ export default function BrusilovOffensiveMap() {
             <button
               onClick={closeOperationInfoModal}
               style={{
-                background: 'rgba(255, 255, 255, 0.1)',
-                border: 'none',
-                borderRadius: '12px',
-                fontSize: '28px',
+                background: 'linear-gradient(135deg, rgba(220, 38, 38, 0.8) 0%, rgba(239, 68, 68, 0.8) 100%)',
+                border: '1px solid rgba(255, 255, 255, 0.2)',
+                borderRadius: '16px',
+                fontSize: '20px',
                 cursor: 'pointer',
-                padding: '12px',
-                width: '48px',
-                height: '48px',
+                padding: '14px',
+                width: '56px',
+                height: '56px',
                 color: '#ffffff',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                transition: 'all 0.3s ease',
-                flexShrink: 0
+                transition: 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+                flexShrink: 0,
+                outline: 'none',
+                boxShadow: '0 8px 25px rgba(220, 38, 38, 0.3), 0 4px 12px rgba(0, 0, 0, 0.2)',
+                backdropFilter: 'blur(15px)',
+                textShadow: '0 1px 2px rgba(0, 0, 0, 0.3)'
               }}
               onMouseEnter={(e) => {
-                e.target.style.background = 'rgba(255, 255, 255, 0.2)';
-                e.target.style.transform = 'scale(1.05)';
+                e.target.style.background = 'linear-gradient(135deg, rgba(220, 38, 38, 0.9) 0%, rgba(239, 68, 68, 0.9) 100%)';
+                e.target.style.transform = 'scale(1.05) translateY(-2px)';
+                e.target.style.boxShadow = '0 12px 35px rgba(220, 38, 38, 0.4), 0 6px 16px rgba(0, 0, 0, 0.3)';
               }}
               onMouseLeave={(e) => {
-                e.target.style.background = 'rgba(255, 255, 255, 0.1)';
-                e.target.style.transform = 'scale(1)';
+                e.target.style.background = 'linear-gradient(135deg, rgba(220, 38, 38, 0.8) 0%, rgba(239, 68, 68, 0.8) 100%)';
+                e.target.style.transform = 'scale(1) translateY(0px)';
+                e.target.style.boxShadow = '0 8px 25px rgba(220, 38, 38, 0.3), 0 4px 12px rgba(0, 0, 0, 0.2)';
+              }}
+              onMouseDown={(e) => {
+                e.target.style.transform = 'scale(0.95)';
+              }}
+              onMouseUp={(e) => {
+                e.target.style.transform = 'scale(1.05) translateY(-2px)';
               }}
               title="Закрыть (ESC)"
             >
-              ×
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                style={{
+                  filter: 'drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3))'
+                }}
+              >
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
             </button>
           </div>
 
