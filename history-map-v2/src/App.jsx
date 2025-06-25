@@ -585,7 +585,7 @@ const IntroComponent = ({ onComplete }) => {
               className="intro-start-button"
               onClick={handleStartClick}
             >
-              Начать исследование
+              <span>Начать исследование</span>
             </button>
           </div>
         </div>

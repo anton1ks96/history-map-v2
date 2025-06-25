@@ -257,21 +257,30 @@
 }
 
 .intro-start-button {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: linear-gradient(135deg, 
+    rgba(99, 102, 241, 0.8) 0%, 
+    rgba(139, 92, 246, 0.8) 50%, 
+    rgba(168, 85, 247, 0.8) 100%);
+  border: none;
   color: #ffffff;
-  font-size: 1.1rem;
-  font-weight: 500;
-  padding: 16px 32px;
-  border-radius: 12px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  padding: 18px 40px;
+  border-radius: 16px;
   cursor: pointer;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
   font-family: 'Rubik', sans-serif;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  backdrop-filter: blur(20px);
+  box-shadow: 
+    0 15px 35px rgba(99, 102, 241, 0.4),
+    0 5px 15px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
   position: relative;
   overflow: hidden;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  animation: buttonPulse 3s ease-in-out infinite;
 }
 
 .intro-start-button::before {
@@ -284,27 +293,63 @@
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(255, 255, 255, 0.2),
+    rgba(255, 255, 255, 0.4),
     transparent
   );
-  transition: left 0.6s ease;
+  transition: left 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  z-index: 1;
+}
+
+
+
+.intro-start-button span {
+  position: relative;
+  z-index: 2;
 }
 
 .intro-start-button:hover {
-  background: rgba(255, 255, 255, 0.15);
-  border-color: rgba(255, 255, 255, 0.3);
-  transform: translateY(-2px);
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(135deg, 
+    rgba(99, 102, 241, 0.95) 0%, 
+    rgba(139, 92, 246, 0.95) 50%, 
+    rgba(168, 85, 247, 0.95) 100%);
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 
+    0 25px 50px rgba(99, 102, 241, 0.6),
+    0 10px 25px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  letter-spacing: 1px;
 }
 
 .intro-start-button:hover::before {
   left: 100%;
 }
 
+
+
 .intro-start-button:active {
-  transform: translateY(0) scale(0.98);
+  transform: translateY(-1px) scale(0.98);
   transition: all 0.1s ease;
+  box-shadow: 
+    0 15px 30px rgba(99, 102, 241, 0.5),
+    0 5px 15px rgba(0, 0, 0, 0.3);
 }
+
+@keyframes buttonPulse {
+  0%, 100% {
+    box-shadow: 
+      0 15px 35px rgba(99, 102, 241, 0.4),
+      0 5px 15px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+  50% {
+    box-shadow: 
+      0 20px 40px rgba(99, 102, 241, 0.6),
+      0 8px 20px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  }
+}
+
+
 
 /* Адаптивные стили для мобильных устройств - Темная тема */
 @media (max-width: 768px) {
@@ -319,8 +364,21 @@
   }
   
   .intro-start-button {
-    font-size: 1rem;
-    padding: 14px 28px;
+    font-size: 1.1rem;
+    padding: 16px 32px;
+    letter-spacing: 0.6px;
+    box-shadow: 
+      0 12px 30px rgba(99, 102, 241, 0.4),
+      0 4px 12px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+  
+  .intro-start-button:hover {
+    transform: translateY(-3px) scale(1.01);
+    box-shadow: 
+      0 20px 40px rgba(99, 102, 241, 0.5),
+      0 8px 20px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
   }
 }
 
@@ -336,8 +394,22 @@
   }
   
   .intro-start-button {
-    font-size: 0.95rem;
-    padding: 12px 24px;
+    font-size: 1rem;
+    padding: 14px 28px;
+    letter-spacing: 0.5px;
+    border-radius: 14px;
+    box-shadow: 
+      0 10px 25px rgba(99, 102, 241, 0.4),
+      0 3px 10px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+  
+  .intro-start-button:hover {
+    transform: translateY(-2px) scale(1.01);
+    box-shadow: 
+      0 15px 30px rgba(99, 102, 241, 0.5),
+      0 6px 15px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
   }
 }
 
