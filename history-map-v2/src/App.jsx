@@ -607,6 +607,8 @@ export default function BrusilovOffensiveMap() {
   const [selectedPhase, setSelectedPhase] = useState('');
   const [showOperationInfo, setShowOperationInfo] = useState(false);
   const [isOperationInfoClosing, setIsOperationInfoClosing] = useState(false);
+  const [showContacts, setShowContacts] = useState(false);
+  const [isContactsClosing, setIsContactsClosing] = useState(false);
   
   // Состояние для туров подсказок
   const [showTour, setShowTour] = useState(false);
@@ -2697,6 +2699,26 @@ export default function BrusilovOffensiveMap() {
     }, 300); // Время анимации
   };
 
+  // Функции для управления модальным окном контактов
+  const openContactsModal = () => {
+    setShowContacts(true);
+  };
+
+  const closeContactsModal = () => {
+    setIsContactsClosing(true);
+    setTimeout(() => {
+      setShowContacts(false);
+      setIsContactsClosing(false);
+    }, 300); // Время анимации
+  };
+
+  // Обработчик для контактов overlay
+  const handleContactsOverlayClick = (e) => {
+    if (e.target === e.currentTarget) {
+      closeContactsModal();
+    }
+  };
+
   // Обработчики для закрытия модальных окон кликом по overlay
   const handleRiverOverlayClick = (e) => {
     if (e.target === e.currentTarget) {
@@ -2712,6 +2734,8 @@ export default function BrusilovOffensiveMap() {
       if (event.key === 'Escape') {
         if (showTour && !isTourClosing) {
           closeTour();
+        } else if (showContacts && !isContactsClosing) {
+          closeContactsModal();
         } else if (showOperationInfo && !isOperationInfoClosing) {
           closeOperationInfoModal();
         } else if (selectedRiver && !isRiverModalClosing) {
@@ -2720,14 +2744,14 @@ export default function BrusilovOffensiveMap() {
       }
     };
 
-    if (selectedRiver || showOperationInfo || showTour) {
+    if (selectedRiver || showOperationInfo || showContacts || showTour) {
       document.addEventListener('keydown', handleEscapeKey);
     }
 
     return () => {
       document.removeEventListener('keydown', handleEscapeKey);
     };
-  }, [selectedRiver, isRiverModalClosing, showOperationInfo, isOperationInfoClosing, showTour, isTourClosing]);
+  }, [selectedRiver, isRiverModalClosing, showOperationInfo, isOperationInfoClosing, showContacts, isContactsClosing, showTour, isTourClosing]);
 
 
 
@@ -2845,10 +2869,10 @@ export default function BrusilovOffensiveMap() {
                 maxBoundsViscosity={1.0}
                 minZoom={6}
                 maxZoom={12}
+                attributionControl={false}
               >
                 <TileLayer
                   url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
-                  attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
                 />
 
                 {/* Отображение линий фронта */}
@@ -3358,6 +3382,76 @@ export default function BrusilovOffensiveMap() {
                 ИНФОРМАЦИЯ
               </button>
 
+              {/* Кнопка контактов */}
+              <button
+                onClick={openContactsModal}
+                style={{
+                  position: 'absolute',
+                  top: '24px',
+                  right: '300px',
+                  background: 'linear-gradient(135deg, rgba(34, 197, 94, 0.8) 0%, rgba(22, 163, 74, 0.8) 50%, rgba(21, 128, 61, 0.8) 100%)',
+                  border: '1px solid rgba(255, 255, 255, 0.2)',
+                  borderRadius: '16px',
+                  padding: '12px 20px',
+                  cursor: 'pointer',
+                  zIndex: 1001,
+                  backdropFilter: 'blur(20px)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  boxShadow: '0 15px 35px rgba(34, 197, 94, 0.4), 0 5px 15px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)',
+                  transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+                  outline: 'none',
+                  color: '#ffffff',
+                  fontSize: '14px',
+                  fontWeight: '600',
+                  letterSpacing: '0.8px',
+                  textTransform: 'uppercase',
+                  fontFamily: 'Rubik, sans-serif',
+                  textShadow: '0 1px 2px rgba(0, 0, 0, 0.3)',
+                  gap: '8px'
+                }}
+                title="Контакты разработчиков"
+                onMouseEnter={(e) => {
+                  e.target.style.background = 'linear-gradient(135deg, rgba(34, 197, 94, 0.95) 0%, rgba(22, 163, 74, 0.95) 50%, rgba(21, 128, 61, 0.95) 100%)';
+                  e.target.style.transform = 'translateY(-4px) scale(1.02)';
+                  e.target.style.boxShadow = '0 25px 50px rgba(34, 197, 94, 0.6), 0 10px 25px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3)';
+                  e.target.style.letterSpacing = '1px';
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.background = 'linear-gradient(135deg, rgba(34, 197, 94, 0.8) 0%, rgba(22, 163, 74, 0.8) 50%, rgba(21, 128, 61, 0.8) 100%)';
+                  e.target.style.transform = 'translateY(0) scale(1)';
+                  e.target.style.boxShadow = '0 15px 35px rgba(34, 197, 94, 0.4), 0 5px 15px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)';
+                  e.target.style.letterSpacing = '0.8px';
+                }}
+                onMouseDown={(e) => {
+                  e.target.style.transform = 'translateY(-1px) scale(0.98)';
+                  e.target.style.boxShadow = '0 15px 30px rgba(34, 197, 94, 0.5), 0 5px 15px rgba(0, 0, 0, 0.3)';
+                }}
+                onMouseUp={(e) => {
+                  e.target.style.transform = 'translateY(-4px) scale(1.02)';
+                  e.target.style.boxShadow = '0 25px 50px rgba(34, 197, 94, 0.6), 0 10px 25px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3)';
+                }}
+              >
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  style={{
+                    filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3))'
+                  }}
+                >
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                КОНТАКТЫ
+              </button>
+
               {/* Кнопка повторного тура */}
               {localStorage.getItem('brusilov-tour-completed') && (
                 <button
@@ -3777,9 +3871,6 @@ export default function BrusilovOffensiveMap() {
                     </div>
                   </div>
                 </div>
-
-
-
 
               </div>
             </div>
@@ -4254,6 +4345,336 @@ export default function BrusilovOffensiveMap() {
               >
                 Пропустить тур
               </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Модальное окно контактов */}
+      {showContacts && (
+        <div
+          className={`modal-overlay ${isContactsClosing ? 'closing' : ''}`}
+          onClick={handleContactsOverlayClick}
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '100vw',
+            height: '100vh',
+            backgroundColor: 'rgba(0,0,0,0.7)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 99999,
+            backdropFilter: 'blur(8px)'
+          }}
+        >
+          <div
+            className={`modal-content ${isContactsClosing ? 'closing' : ''}`}
+            style={{
+              background: 'linear-gradient(135deg, rgba(26, 26, 46, 0.95) 0%, rgba(22, 33, 62, 0.95) 50%, rgba(15, 15, 35, 0.95) 100%)',
+              padding: '32px',
+              borderRadius: '24px',
+              maxWidth: '600px',
+              width: '90%',
+              maxHeight: '80vh',
+              overflow: 'auto',
+              boxShadow: '0 25px 50px rgba(0, 0, 0, 0.5), 0 0 80px rgba(34, 197, 94, 0.3)',
+              border: '1px solid rgba(255, 255, 255, 0.2)',
+              backdropFilter: 'blur(20px)'
+            }}
+          >
+            {/* Заголовок */}
+            <div style={{ 
+              display: 'flex', 
+              justifyContent: 'space-between', 
+              alignItems: 'center', 
+              marginBottom: '32px' 
+            }}>
+              <h2 style={{ 
+                margin: 0, 
+                fontSize: '28px', 
+                color: '#ffffff',
+                fontWeight: '700',
+                fontFamily: 'Rubik, sans-serif',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '12px'
+              }}>
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  style={{
+                    color: '#22c55e',
+                    filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3))'
+                  }}
+                >
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                Команда разработчиков
+              </h2>
+              <button
+                onClick={closeContactsModal}
+                style={{
+                  background: 'transparent',
+                  border: 'none',
+                  color: 'rgba(255, 255, 255, 0.6)',
+                  fontSize: '28px',
+                  cursor: 'pointer',
+                  padding: '0',
+                  width: '32px',
+                  height: '32px',
+                  borderRadius: '50%',
+                  transition: 'all 0.3s ease',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}
+                onMouseEnter={(e) => {
+                  e.target.style.background = 'rgba(255, 255, 255, 0.1)';
+                  e.target.style.color = '#ffffff';
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.background = 'transparent';
+                  e.target.style.color = 'rgba(255, 255, 255, 0.6)';
+                }}
+                title="Закрыть"
+              >
+                ×
+              </button>
+            </div>
+
+            {/* Разработчики */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+              
+              {/* Артем Джапаридзе */}
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '20px',
+                padding: '20px',
+                background: 'rgba(255, 255, 255, 0.05)',
+                borderRadius: '16px',
+                border: '1px solid rgba(255, 255, 255, 0.1)',
+                transition: 'all 0.3s ease'
+              }}>
+                <div style={{
+                  width: '80px',
+                  height: '80px',
+                  borderRadius: '50%',
+                  background: 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: '24px',
+                  fontWeight: '700',
+                  color: '#ffffff',
+                  flexShrink: 0,
+                  fontFamily: 'Rubik, sans-serif'
+                }}>
+                  АД
+                </div>
+                <div style={{ flex: 1 }}>
+                  <h3 style={{
+                    margin: '0 0 8px 0',
+                    fontSize: '20px',
+                    color: '#ffffff',
+                    fontWeight: '600',
+                    fontFamily: 'Rubik, sans-serif'
+                  }}>
+                    Артем Джапаридзе
+                  </h3>
+                  <p style={{
+                    margin: '0 0 12px 0',
+                    fontSize: '14px',
+                    color: 'rgba(255, 255, 255, 0.7)',
+                    fontFamily: 'Rubik, sans-serif'
+                  }}>
+                    Разработчик
+                  </p>
+                  <a
+                    href="#"
+                    style={{
+                      color: '#6366f1',
+                      textDecoration: 'none',
+                      fontSize: '14px',
+                      fontWeight: '500',
+                      fontFamily: 'Rubik, sans-serif',
+                      transition: 'color 0.3s ease'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.target.style.color = '#8b5cf6';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.target.style.color = '#6366f1';
+                    }}
+                  >
+                    Связаться →
+                  </a>
+                </div>
+              </div>
+
+              {/* Иван Коломацкий */}
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '20px',
+                padding: '20px',
+                background: 'rgba(255, 255, 255, 0.05)',
+                borderRadius: '16px',
+                border: '1px solid rgba(255, 255, 255, 0.1)',
+                transition: 'all 0.3s ease'
+              }}>
+                <div style={{
+                  width: '80px',
+                  height: '80px',
+                  borderRadius: '50%',
+                  background: 'linear-gradient(135deg, #22c55e 0%, #16a34a 100%)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: '24px',
+                  fontWeight: '700',
+                  color: '#ffffff',
+                  flexShrink: 0,
+                  fontFamily: 'Rubik, sans-serif'
+                }}>
+                  ИК
+                </div>
+                <div style={{ flex: 1 }}>
+                  <h3 style={{
+                    margin: '0 0 8px 0',
+                    fontSize: '20px',
+                    color: '#ffffff',
+                    fontWeight: '600',
+                    fontFamily: 'Rubik, sans-serif'
+                  }}>
+                    Иван Коломацкий
+                  </h3>
+                  <p style={{
+                    margin: '0 0 12px 0',
+                    fontSize: '14px',
+                    color: 'rgba(255, 255, 255, 0.7)',
+                    fontFamily: 'Rubik, sans-serif'
+                  }}>
+                    Разработчик
+                  </p>
+                  <a
+                    href="#"
+                    style={{
+                      color: '#22c55e',
+                      textDecoration: 'none',
+                      fontSize: '14px',
+                      fontWeight: '500',
+                      fontFamily: 'Rubik, sans-serif',
+                      transition: 'color 0.3s ease'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.target.style.color = '#16a34a';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.target.style.color = '#22c55e';
+                    }}
+                  >
+                    Связаться →
+                  </a>
+                </div>
+              </div>
+
+              {/* Илья Некрасов */}
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '20px',
+                padding: '20px',
+                background: 'rgba(255, 255, 255, 0.05)',
+                borderRadius: '16px',
+                border: '1px solid rgba(255, 255, 255, 0.1)',
+                transition: 'all 0.3s ease'
+              }}>
+                <div style={{
+                  width: '80px',
+                  height: '80px',
+                  borderRadius: '50%',
+                  background: 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: '24px',
+                  fontWeight: '700',
+                  color: '#ffffff',
+                  flexShrink: 0,
+                  fontFamily: 'Rubik, sans-serif'
+                }}>
+                  ИН
+                </div>
+                <div style={{ flex: 1 }}>
+                  <h3 style={{
+                    margin: '0 0 8px 0',
+                    fontSize: '20px',
+                    color: '#ffffff',
+                    fontWeight: '600',
+                    fontFamily: 'Rubik, sans-serif'
+                  }}>
+                    Илья Некрасов
+                  </h3>
+                  <p style={{
+                    margin: '0 0 12px 0',
+                    fontSize: '14px',
+                    color: 'rgba(255, 255, 255, 0.7)',
+                    fontFamily: 'Rubik, sans-serif'
+                  }}>
+                    Разработчик
+                  </p>
+                  <a
+                    href="#"
+                    style={{
+                      color: '#f59e0b',
+                      textDecoration: 'none',
+                      fontSize: '14px',
+                      fontWeight: '500',
+                      fontFamily: 'Rubik, sans-serif',
+                      transition: 'color 0.3s ease'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.target.style.color = '#d97706';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.target.style.color = '#f59e0b';
+                    }}
+                  >
+                    Связаться →
+                  </a>
+                </div>
+              </div>
+
+            </div>
+
+            {/* Нижняя панель */}
+            <div style={{
+              marginTop: '32px',
+              padding: '20px',
+              background: 'rgba(255, 255, 255, 0.03)',
+              borderRadius: '12px',
+              border: '1px solid rgba(255, 255, 255, 0.1)',
+              textAlign: 'center'
+            }}>
+              <p style={{
+                margin: 0,
+                fontSize: '14px',
+                color: 'rgba(255, 255, 255, 0.6)',
+                fontFamily: 'Rubik, sans-serif'
+              }}>
+                Интерактивная карта Брусиловского прорыва 1916 года<br />
+                Нажмите ESC или кнопку × для закрытия
+              </p>
             </div>
           </div>
         </div>
