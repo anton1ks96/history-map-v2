@@ -2671,7 +2671,7 @@ export default function BrusilovOffensiveMap() {
       ) : (
         <div className={`main-content ${showMainContent ? 'show' : ''}`}>
           <header style={{
-            background: 'rgba(26, 26, 46, 0.9)',
+            background: 'linear-gradient(135deg, rgba(26, 26, 46, 0.9) 0%, rgba(22, 33, 62, 0.9) 50%, rgba(15, 15, 35, 0.9) 100%)',
             backdropFilter: 'blur(20px)',
             color: '#ffffff',
             padding: '24px 32px',
@@ -2734,7 +2734,15 @@ export default function BrusilovOffensiveMap() {
             transition: 'margin-top 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
             marginTop: showHeader ? '0px' : '-130px'
           }}>
-            <div style={{ width: '100%', height: '100%', position: 'relative', borderRadius: '16px', overflow: 'hidden', boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)' }}>
+            <div style={{ 
+              width: '100%', 
+              height: '100%', 
+              position: 'relative', 
+              borderRadius: '16px', 
+              overflow: 'hidden', 
+              boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 60px rgba(236, 72, 153, 0.3), 0 0 100px rgba(168, 85, 247, 0.2)',
+              border: '1px solid rgba(236, 72, 153, 0.2)' 
+            }}>
               <MapContainer
                 center={mapCenter}
                 zoom={mapZoom}
@@ -3281,7 +3289,7 @@ export default function BrusilovOffensiveMap() {
                   letterSpacing: '0.5px',
                   fontFamily: 'Rubik, sans-serif'
                 }}>
-                  Легенда
+                  ЛЕГЕНДА
                 </h3>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', fontSize: '14px', color: 'rgba(255, 255, 255, 0.8)', fontWeight: '400' }}>
 
@@ -3689,7 +3697,7 @@ export default function BrusilovOffensiveMap() {
             left: 0,
             width: '100vw',
             height: '100vh',
-            backgroundColor: 'rgba(26, 26, 46, 0.98)',
+            background: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f0f23 100%)',
             backdropFilter: 'blur(20px)',
             zIndex: 99999,
             display: 'flex',
@@ -3704,7 +3712,7 @@ export default function BrusilovOffensiveMap() {
             alignItems: 'center',
             padding: '32px 48px',
             borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
-            background: 'rgba(26, 26, 46, 0.95)',
+            background: 'linear-gradient(135deg, rgba(26, 26, 46, 0.95) 0%, rgba(22, 33, 62, 0.95) 50%, rgba(15, 15, 35, 0.95) 100%)',
             backdropFilter: 'blur(20px)'
           }}>
             <div>
@@ -3822,7 +3830,7 @@ export default function BrusilovOffensiveMap() {
           <div style={{
             padding: '24px 48px',
             borderTop: '1px solid rgba(255, 255, 255, 0.1)',
-            background: 'rgba(26, 26, 46, 0.95)',
+            background: 'linear-gradient(135deg, rgba(26, 26, 46, 0.95) 0%, rgba(22, 33, 62, 0.95) 50%, rgba(15, 15, 35, 0.95) 100%)',
             backdropFilter: 'blur(20px)',
             display: 'flex',
             justifyContent: 'center',

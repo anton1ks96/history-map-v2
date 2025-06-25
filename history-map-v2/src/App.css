@@ -198,14 +198,6 @@
 .intro-text {
   text-align: center;
   color: white;
-  opacity: 0;
-  transform: translateY(50px);
-  transition: all 1.5s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.intro-text.show {
-  opacity: 1;
-  transform: translateY(0);
 }
 
 /* Плавное исчезновение текста при fade-out */
@@ -238,6 +230,14 @@
   text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
   filter: drop-shadow(0 2px 8px rgba(255, 255, 255, 0.1));
   text-transform: uppercase;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 1.0s cubic-bezier(0.16, 1, 0.3, 1) 0.2s;
+}
+
+.intro-text.show .intro-title {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .intro-subtitle {
@@ -248,6 +248,14 @@
   color: rgba(255, 255, 255, 0.8);
   font-family: 'Rubik', sans-serif;
   line-height: 1.6;
+  opacity: 0;
+  transform: translateY(15px);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.4s;
+}
+
+.intro-text.show .intro-subtitle {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .intro-button-container {
