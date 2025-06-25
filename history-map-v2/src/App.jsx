@@ -3669,8 +3669,8 @@ export default function BrusilovOffensiveMap() {
                     gap: '8px'
                   }}>
                     <svg
-                      width="20"
-                      height="20"
+                      width="22"
+                      height="22"
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"
@@ -3679,7 +3679,7 @@ export default function BrusilovOffensiveMap() {
                       strokeLinejoin="round"
                       style={{
                         filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3))',
-                        color: '#60a5fa'
+                        color: '#a855f7'
                       }}
                     >
                       <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
@@ -3696,25 +3696,47 @@ export default function BrusilovOffensiveMap() {
                       className="control-element"
                       data-tour="phase-selector"
                       style={{
-                        background: 'linear-gradient(135deg, rgba(40, 40, 80, 0.9) 0%, rgba(30, 30, 60, 0.9) 100%)',
-                        border: '1px solid rgba(255, 255, 255, 0.25)',
+                        background: 'linear-gradient(135deg, rgba(99, 102, 241, 0.8) 0%, rgba(139, 92, 246, 0.8) 50%, rgba(168, 85, 247, 0.8) 100%)',
+                        border: '1px solid rgba(255, 255, 255, 0.2)',
                         borderRadius: '16px',
-                        padding: '12px 50px 12px 20px',
+                        padding: '14px 50px 14px 20px',
                         color: '#ffffff',
                         fontSize: '14px',
-                        fontWeight: '500',
+                        fontWeight: '600',
                         outline: 'none',
                         letterSpacing: '0.5px',
                         fontFamily: 'Rubik, sans-serif',
                         cursor: 'pointer',
-                        backdropFilter: 'blur(25px)',
-                        boxShadow: '0 8px 25px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
-                        transition: 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+                        backdropFilter: 'blur(20px)',
+                        boxShadow: '0 15px 35px rgba(99, 102, 241, 0.4), 0 5px 15px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)',
+                        transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
                         appearance: 'none',
                         WebkitAppearance: 'none',
                         MozAppearance: 'none',
-                        minWidth: '300px',
-                        textShadow: '0 1px 2px rgba(0, 0, 0, 0.3)'
+                        minWidth: '320px',
+                        textShadow: '0 1px 2px rgba(0, 0, 0, 0.3)',
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.8px'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.background = 'linear-gradient(135deg, rgba(99, 102, 241, 0.95) 0%, rgba(139, 92, 246, 0.95) 50%, rgba(168, 85, 247, 0.95) 100%)';
+                        e.currentTarget.style.transform = 'translateY(-2px) scale(1.02)';
+                        e.currentTarget.style.boxShadow = '0 25px 50px rgba(99, 102, 241, 0.6), 0 10px 25px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3)';
+                        e.currentTarget.style.letterSpacing = '1px';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.background = 'linear-gradient(135deg, rgba(99, 102, 241, 0.8) 0%, rgba(139, 92, 246, 0.8) 50%, rgba(168, 85, 247, 0.8) 100%)';
+                        e.currentTarget.style.transform = 'translateY(0) scale(1)';
+                        e.currentTarget.style.boxShadow = '0 15px 35px rgba(99, 102, 241, 0.4), 0 5px 15px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)';
+                        e.currentTarget.style.letterSpacing = '0.8px';
+                      }}
+                      onMouseDown={(e) => {
+                        e.currentTarget.style.transform = 'translateY(-1px) scale(0.98)';
+                        e.currentTarget.style.boxShadow = '0 15px 30px rgba(99, 102, 241, 0.5), 0 5px 15px rgba(0, 0, 0, 0.3)';
+                      }}
+                      onMouseUp={(e) => {
+                        e.currentTarget.style.transform = 'translateY(-2px) scale(1.02)';
+                        e.currentTarget.style.boxShadow = '0 25px 50px rgba(99, 102, 241, 0.6), 0 10px 25px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3)';
                       }}
                     >
                       {operationPhases.map(phase => (
@@ -3731,19 +3753,24 @@ export default function BrusilovOffensiveMap() {
                       top: '50%',
                       transform: 'translateY(-50%)',
                       pointerEvents: 'none',
-                      color: 'rgba(255, 255, 255, 0.6)',
+                      color: '#ffffff',
                       zIndex: 10,
-                      transition: 'all 0.3s ease'
+                      transition: 'all 0.3s ease',
+                      filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3))',
+                      opacity: 0.9
                     }}>
                       <svg
-                        width="16"
-                        height="16"
+                        width="18"
+                        height="18"
                         viewBox="0 0 24 24"
                         fill="none"
                         stroke="currentColor"
                         strokeWidth="2.5"
                         strokeLinecap="round"
                         strokeLinejoin="round"
+                        style={{
+                          filter: 'drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3))'
+                        }}
                       >
                         <polyline points="6,9 12,15 18,9"></polyline>
                       </svg>
