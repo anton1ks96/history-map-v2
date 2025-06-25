@@ -281,6 +281,7 @@
   box-shadow: 
     0 15px 35px rgba(99, 102, 241, 0.4),
     0 5px 15px rgba(0, 0, 0, 0.3),
+    0 0 60px rgba(139, 92, 246, 0.2),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
   position: relative;
   overflow: hidden;
@@ -321,6 +322,7 @@
   box-shadow: 
     0 25px 50px rgba(99, 102, 241, 0.6),
     0 10px 25px rgba(0, 0, 0, 0.4),
+    0 0 80px rgba(139, 92, 246, 0.4),
     inset 0 1px 0 rgba(255, 255, 255, 0.3);
   letter-spacing: 1px;
 }
@@ -336,7 +338,8 @@
   transition: all 0.1s ease;
   box-shadow: 
     0 15px 30px rgba(99, 102, 241, 0.5),
-    0 5px 15px rgba(0, 0, 0, 0.3);
+    0 5px 15px rgba(0, 0, 0, 0.3),
+    0 0 70px rgba(139, 92, 246, 0.3);
 }
 
 @keyframes buttonPulse {
@@ -344,12 +347,14 @@
     box-shadow: 
       0 15px 35px rgba(99, 102, 241, 0.4),
       0 5px 15px rgba(0, 0, 0, 0.3),
+      0 0 60px rgba(139, 92, 246, 0.2),
       inset 0 1px 0 rgba(255, 255, 255, 0.2);
   }
   50% {
     box-shadow: 
       0 20px 40px rgba(99, 102, 241, 0.6),
       0 8px 20px rgba(0, 0, 0, 0.4),
+      0 0 100px rgba(139, 92, 246, 0.4),
       inset 0 1px 0 rgba(255, 255, 255, 0.25);
   }
 }
@@ -485,7 +490,16 @@ select:hover {
 
 /* Дополнительные glassmorphism эффекты */
 .intro-overlay {
-  background: rgba(0, 0, 0, 0.2) !important;
+  background: linear-gradient(
+    135deg,
+    rgba(26, 26, 46, 0.8) 0%,
+    rgba(22, 33, 62, 0.85) 20%,
+    rgba(99, 102, 241, 0.1) 40%,
+    rgba(139, 92, 246, 0.15) 60%,
+    rgba(168, 85, 247, 0.1) 80%,
+    rgba(15, 15, 35, 0.9) 100%
+  ) !important;
+  backdrop-filter: blur(8px) !important;
 }
 
 /* Современные скругления и запрет выделения */
