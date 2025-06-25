@@ -1436,17 +1436,331 @@ export default function BrusilovOffensiveMap() {
     'lutsk_breakthrough': {
       title: '«Луцкий» прорыв',
       subtitle: '4-15 июня 1916 года',
-      content: `Первая и наиболее успешная фаза Брусиловского наступления. Главный удар наносила 8-я армия генерала А.М. Каледина в направлении Луцка.
+      content: `<div style="max-width: 1200px; margin: 0 auto;">
+        <div style="background: rgba(59, 130, 246, 0.1); padding: 32px; border-radius: 16px; margin-bottom: 32px; border-left: 4px solid #3b82f6;">
+          <p style="font-size: 20px; line-height: 1.6; margin: 0; color: rgba(255, 255, 255, 0.95); font-weight: 400;">
+            Луцкий прорыв — это первая и наиболее успешная фаза <strong style="color: #60a5fa;">Брусиловского наступления</strong>. Австро-венгерским войскам командовал <strong style="color: #fbbf24;">эрцгерцог Фридрих</strong>.
+          </p>
+        </div>
 
-      Основные события:
-      • 4 июня - начало артиллерийской подготовки
-      • 7 июня - захват Луцка русскими войсками
-      • 15 июня - стабилизация фронта после первых успехов
-      
-      Результаты:
-      • Прорыв австро-венгерской обороны на глубину 60-80 км
-      • Захват ключевых городов: Луцк, Дубно
-      • Начало отступления 4-й австро-венгерской армии`
+        <h2 style="color: #ef4444; font-size: 28px; font-weight: 700; margin: 40px 0 24px 0; text-align: center; border-bottom: 2px solid rgba(239, 68, 68, 0.3); padding-bottom: 16px;">
+          💥 Артиллерийская подготовка
+        </h2>
+
+        <div style="background: rgba(220, 38, 38, 0.1); padding: 24px; border-radius: 12px; border-left: 4px solid #ef4444; margin-bottom: 32px;">
+          <p style="color: rgba(255, 255, 255, 0.9); margin: 0 0 16px 0; line-height: 1.7; font-size: 18px;">
+            Артиллерийская подготовка продолжалась с <strong style="color: #fbbf24;">3 часов ночи 22 мая (4 июня)</strong> до <strong style="color: #fbbf24;">9 часов утра 24 мая (6 июня)</strong> и привела к:
+          </p>
+          <ul style="margin: 0; padding-left: 20px; color: rgba(255, 255, 255, 0.85); line-height: 1.6;">
+            <li><strong style="color: #f87171;">Сильному разрушению первой полосы обороны</strong></li>
+            <li><strong style="color: #f87171;">Частичной нейтрализации артиллерии противника</strong></li>
+          </ul>
+        </div>
+
+        <h2 style="color: #22c55e; font-size: 28px; font-weight: 700; margin: 40px 0 24px 0; text-align: center; border-bottom: 2px solid rgba(34, 197, 94, 0.3); padding-bottom: 16px;">
+          ⚔️ Соотношение сил
+        </h2>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 40px;">
+          <div style="background: rgba(34, 197, 94, 0.1); padding: 24px; border-radius: 12px; border: 1px solid rgba(34, 197, 94, 0.2);">
+            <h3 style="color: #4ade80; margin: 0 0 16px 0; font-size: 20px; font-weight: 600; text-align: center;">
+              🇷🇺 Русские армии
+            </h3>
+            <div style="text-align: center; margin-bottom: 16px;">
+              <div style="font-size: 28px; font-weight: 700; color: #4ade80;">594 тыс.</div>
+              <div style="color: rgba(255, 255, 255, 0.7); font-size: 14px;">человек</div>
+              <div style="font-size: 24px; font-weight: 700; color: #4ade80; margin-top: 8px;">1938</div>
+              <div style="color: rgba(255, 255, 255, 0.7); font-size: 14px;">орудий</div>
+            </div>
+            <p style="color: rgba(255, 255, 255, 0.9); margin: 0; line-height: 1.6; font-size: 14px; text-align: center;">
+              8-я, 11-я, 7-я и 9-я армии
+            </p>
+          </div>
+
+          <div style="background: rgba(239, 68, 68, 0.1); padding: 24px; border-radius: 12px; border: 1px solid rgba(239, 68, 68, 0.2);">
+            <h3 style="color: #f87171; margin: 0 0 16px 0; font-size: 20px; font-weight: 600; text-align: center;">
+              🇦🇹 Австро-венгерский фронт
+            </h3>
+            <div style="text-align: center; margin-bottom: 16px;">
+              <div style="font-size: 28px; font-weight: 700; color: #ef4444;">486 тыс.</div>
+              <div style="color: rgba(255, 255, 255, 0.7); font-size: 14px;">человек</div>
+              <div style="font-size: 24px; font-weight: 700; color: #ef4444; margin-top: 8px;">1846</div>
+              <div style="color: rgba(255, 255, 255, 0.7); font-size: 14px;">орудий</div>
+            </div>
+            <p style="color: rgba(255, 255, 255, 0.9); margin: 0; line-height: 1.6; font-size: 14px; text-align: center;">
+              Под командованием эрцгерцога Фридриха
+            </p>
+          </div>
+        </div>
+
+        <h2 style="color: #8b5cf6; font-size: 28px; font-weight: 700; margin: 40px 0 24px 0; text-align: center; border-bottom: 2px solid rgba(139, 92, 246, 0.3); padding-bottom: 16px;">
+          🚀 Прорыв фронта
+        </h2>
+
+        <div style="background: rgba(139, 92, 246, 0.1); padding: 24px; border-radius: 12px; border-left: 4px solid #a855f7; margin-bottom: 32px;">
+          <p style="color: rgba(255, 255, 255, 0.9); margin: 0 0 16px 0; line-height: 1.7; font-size: 18px;">
+            Русские войска прорвали хорошо укреплённую позиционную оборону австро-венгерского фронта. Прорыв был осуществлён сразу на <strong style="color: #c084fc;">13 участках</strong> с последующим развитием в сторону флангов и в глубину.
+          </p>
+        </div>
+
+        <h2 style="color: #fbbf24; font-size: 28px; font-weight: 700; margin: 40px 0 24px 0; text-align: center; border-bottom: 2px solid rgba(251, 191, 36, 0.3); padding-bottom: 16px;">
+          🏆 Первые успехи (к полудню 24 мая)
+        </h2>
+
+        <div style="background: rgba(251, 191, 36, 0.1); padding: 24px; border-radius: 12px; border-left: 4px solid #fbbf24; margin-bottom: 32px;">
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+            <div style="text-align: center;">
+              <div style="font-size: 24px; font-weight: 700; color: #fbbf24;">900</div>
+              <div style="color: rgba(255, 255, 255, 0.8); font-size: 14px;">офицеров в плену</div>
+            </div>
+            <div style="text-align: center;">
+              <div style="font-size: 24px; font-weight: 700; color: #fbbf24;">40 тыс.</div>
+              <div style="color: rgba(255, 255, 255, 0.8); font-size: 14px;">нижних чинов в плену</div>
+            </div>
+            <div style="text-align: center;">
+              <div style="font-size: 24px; font-weight: 700; color: #fbbf24;">77</div>
+              <div style="color: rgba(255, 255, 255, 0.8); font-size: 14px;">орудий захвачено</div>
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <div style="text-align: center;">
+              <div style="font-size: 20px; font-weight: 700; color: #fbbf24;">134</div>
+              <div style="color: rgba(255, 255, 255, 0.8); font-size: 14px;">пулемёта</div>
+            </div>
+            <div style="text-align: center;">
+              <div style="font-size: 20px; font-weight: 700; color: #fbbf24;">49</div>
+              <div style="color: rgba(255, 255, 255, 0.8); font-size: 14px;">бомбомётов</div>
+            </div>
+          </div>
+        </div>
+
+        <h2 style="color: #06b6d4; font-size: 28px; font-weight: 700; margin: 40px 0 24px 0; text-align: center; border-bottom: 2px solid rgba(6, 182, 212, 0.3); padding-bottom: 16px;">
+          📈 Развитие успеха (к 27 мая)
+        </h2>
+
+        <div style="background: rgba(6, 182, 212, 0.1); padding: 24px; border-radius: 12px; border-left: 4px solid #06b6d4; margin-bottom: 32px;">
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+            <div style="text-align: center;">
+              <div style="font-size: 24px; font-weight: 700; color: #06b6d4;">1240</div>
+              <div style="color: rgba(255, 255, 255, 0.8); font-size: 14px;">офицеров в плену</div>
+            </div>
+            <div style="text-align: center;">
+              <div style="font-size: 24px; font-weight: 700; color: #06b6d4;">71 тыс.</div>
+              <div style="color: rgba(255, 255, 255, 0.8); font-size: 14px;">нижних чинов в плену</div>
+            </div>
+            <div style="text-align: center;">
+              <div style="font-size: 24px; font-weight: 700; color: #06b6d4;">94</div>
+              <div style="color: rgba(255, 255, 255, 0.8); font-size: 14px;">орудия захвачено</div>
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px;">
+            <div style="text-align: center;">
+              <div style="font-size: 20px; font-weight: 700; color: #06b6d4;">179</div>
+              <div style="color: rgba(255, 255, 255, 0.8); font-size: 14px;">пулемётов</div>
+            </div>
+            <div style="text-align: center;">
+              <div style="font-size: 20px; font-weight: 700; color: #06b6d4;">53</div>
+              <div style="color: rgba(255, 255, 255, 0.8); font-size: 14px;">бомбомёта</div>
+            </div>
+            <div style="text-align: center;">
+              <div style="font-size: 20px; font-weight: 700; color: #06b6d4;">53</div>
+              <div style="color: rgba(255, 255, 255, 0.8); font-size: 14px;">миномёта</div>
+            </div>
+          </div>
+        </div>
+
+        <h2 style="color: #22c55e; font-size: 28px; font-weight: 700; margin: 40px 0 24px 0; text-align: center; border-bottom: 2px solid rgba(34, 197, 94, 0.3); padding-bottom: 16px;">
+          🎖️ Успех 8-й армии генерала Каледина
+        </h2>
+
+        <div style="background: rgba(34, 197, 94, 0.1); padding: 24px; border-radius: 12px; border-left: 4px solid #22c55e; margin-bottom: 32px;">
+          <p style="color: rgba(255, 255, 255, 0.9); margin: 0 0 20px 0; line-height: 1.7; font-size: 18px;">
+            Наибольшего успеха на первом этапе достигла <strong style="color: #4ade80;">8-я армия генерала от кавалерии А. М. Каледина</strong>:
+          </p>
+          
+          <div style="display: grid; gap: 16px; margin-bottom: 20px;">
+            <div style="background: rgba(34, 197, 94, 0.05); padding: 16px; border-radius: 8px;">
+              <strong style="color: #4ade80;">7 июня</strong> — заняла Луцк
+            </div>
+            <div style="background: rgba(34, 197, 94, 0.05); padding: 16px; border-radius: 8px;">
+              <strong style="color: #4ade80;">К 15 июня</strong> — наголову разгромила 4-ю австро-венгерскую армию эрцгерцога Иосифа Фердинанда
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+            <div style="text-align: center;">
+              <div style="font-size: 24px; font-weight: 700; color: #4ade80;">45 тыс.</div>
+              <div style="color: rgba(255, 255, 255, 0.8); font-size: 14px;">пленных</div>
+            </div>
+            <div style="text-align: center;">
+              <div style="font-size: 24px; font-weight: 700; color: #4ade80;">66</div>
+              <div style="color: rgba(255, 255, 255, 0.8); font-size: 14px;">орудий</div>
+            </div>
+            <div style="text-align: center;">
+              <div style="font-size: 24px; font-weight: 700; color: #4ade80;">много</div>
+              <div style="color: rgba(255, 255, 255, 0.8); font-size: 14px;">других трофеев</div>
+            </div>
+          </div>
+
+          <div style="background: rgba(34, 197, 94, 0.05); padding: 16px; border-radius: 8px; margin-bottom: 16px;">
+            <p style="color: rgba(255, 255, 255, 0.9); margin: 0; line-height: 1.6;">
+              <strong style="color: #4ade80;">32-й корпус</strong>, действующий южнее Луцка, взял город <strong style="color: #4ade80;">Дубно</strong>
+            </p>
+          </div>
+
+          <div style="text-align: center; padding: 20px; background: rgba(34, 197, 94, 0.05); border-radius: 8px;">
+            <div style="font-size: 20px; font-weight: 700; color: #4ade80; margin-bottom: 8px;">Масштаб прорыва армии Каледина:</div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+              <div>
+                <div style="font-size: 28px; font-weight: 700; color: #4ade80;">80 км</div>
+                <div style="color: rgba(255, 255, 255, 0.8); font-size: 14px;">по фронту</div>
+              </div>
+              <div>
+                <div style="font-size: 28px; font-weight: 700; color: #4ade80;">65 км</div>
+                <div style="color: rgba(255, 255, 255, 0.8); font-size: 14px;">в глубину</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h2 style="color: #8b5cf6; font-size: 28px; font-weight: 700; margin: 40px 0 24px 0; text-align: center; border-bottom: 2px solid rgba(139, 92, 246, 0.3); padding-bottom: 16px;">
+          🌟 Успех 9-й армии генерала Лечицкого
+        </h2>
+
+        <div style="background: rgba(139, 92, 246, 0.1); padding: 24px; border-radius: 12px; border-left: 4px solid #a855f7;">
+          <p style="color: rgba(255, 255, 255, 0.9); margin: 0 0 20px 0; line-height: 1.7; font-size: 18px;">
+            В то время как на правом крыле фронта русские войска отражали контрудар австро-венгров, левофланговая <strong style="color: #c084fc;">9-я армия под командованием генерала П. А. Лечицкого</strong> успешно развивала наступление:
+          </p>
+          
+          <div style="display: grid; gap: 16px; margin-bottom: 20px;">
+            <div style="background: rgba(139, 92, 246, 0.05); padding: 16px; border-radius: 8px;">
+              Прорвала фронт 7-й австро-венгерской армии, <strong style="color: #c084fc;">перемолов её во встречном сражении</strong>
+            </div>
+            <div style="background: rgba(139, 92, 246, 0.05); padding: 16px; border-radius: 8px;">
+              <strong style="color: #c084fc;">К 13 июня</strong> продвинулась на 50 км, взяв почти 50 тыс. пленных
+            </div>
+            <div style="background: rgba(139, 92, 246, 0.05); padding: 16px; border-radius: 8px;">
+              <strong style="color: #c084fc;">18 июня</strong> штурмом взяла хорошо укреплённый город <strong style="color: #fbbf24;">Черновцы</strong>
+            </div>
+          </div>
+
+          <div style="background: rgba(251, 191, 36, 0.1); padding: 16px; border-radius: 8px; margin-bottom: 20px;">
+            <p style="color: rgba(255, 255, 255, 0.9); margin: 0; line-height: 1.7; font-style: italic;">
+              <strong style="color: #fbbf24;">Черновцы</strong> за свою неприступность были названы австрийцами <strong style="color: #fbbf24;">«вторым Верденом»</strong>
+            </p>
+          </div>
+
+          <p style="color: rgba(255, 255, 255, 0.9); margin: 0 0 20px 0; line-height: 1.7;">
+            Таким образом оказался взломанным <strong style="color: #c084fc;">весь южный фланг австрийского фронта</strong>. Преследуя противника и громя части, брошенные для организации новых рубежей обороны, 9-я армия вышла на оперативный простор, занимая Буковину:
+          </p>
+
+          <div style="display: grid; gap: 12px;">
+            <div style="background: rgba(139, 92, 246, 0.05); padding: 12px; border-radius: 6px;">
+              <strong style="color: #c084fc;">12-й корпус</strong> — взял город Куты (продвинувшись далеко на запад)
+            </div>
+            <div style="background: rgba(139, 92, 246, 0.05); padding: 12px; border-radius: 6px;">
+              <strong style="color: #c084fc;">3-й кавалерийский корпус</strong> — занял город Кымпулунг (ныне в Румынии)
+            </div>
+            <div style="background: rgba(139, 92, 246, 0.05); padding: 12px; border-radius: 6px;">
+              <strong style="color: #c084fc;">41-й корпус</strong> — 30 июня захватил Коломыю, выходя к Карпатам
+            </div>
+          </div>
+        </div>
+
+        <h2 style="color: #f59e0b; font-size: 28px; font-weight: 700; margin: 40px 0 24px 0; text-align: center; border-bottom: 2px solid rgba(245, 158, 11, 0.3); padding-bottom: 16px;">
+          🛡️ Другие армии
+        </h2>
+
+        <div style="background: rgba(245, 158, 11, 0.1); padding: 24px; border-radius: 12px; border-left: 4px solid #f59e0b; margin-bottom: 32px;">
+          <p style="color: rgba(255, 255, 255, 0.9); margin: 0; line-height: 1.7; font-size: 16px;">
+            <strong style="color: #fbbf24;">11-я и 7-я армии</strong> также прорвали фронт на своих участках (<em style="color: #a78bfa;">Язловецкая операция</em>), но контрударами противника их наступление было остановлено.
+          </p>
+        </div>
+
+        <h2 style="color: #ef4444; font-size: 28px; font-weight: 700; margin: 40px 0 24px 0; text-align: center; border-bottom: 2px solid rgba(239, 68, 68, 0.3); padding-bottom: 16px;">
+          🎯 Угроза Ковеля
+        </h2>
+
+        <div style="background: rgba(239, 68, 68, 0.1); padding: 24px; border-radius: 12px; border-left: 4px solid #ef4444; margin-bottom: 32px;">
+          <p style="color: rgba(255, 255, 255, 0.9); margin: 0 0 20px 0; line-height: 1.7; font-size: 18px;">
+            Угроза взятия 8-й армией <strong style="color: #f87171;">Ковеля</strong> (важнейший центр коммуникаций) заставила Центральные державы перебросить на это направление:
+          </p>
+          
+          <ul style="margin: 0; padding-left: 20px; color: rgba(255, 255, 255, 0.85); line-height: 1.8;">
+            <li><strong style="color: #f87171;">Две германские дивизии</strong> с западноевропейского театра</li>
+            <li><strong style="color: #f87171;">Две австрийские дивизии</strong> с итальянского фронта</li>
+            <li><strong style="color: #f87171;">Большое число частей</strong> с других участков Восточного фронта</li>
+          </ul>
+
+          <div style="background: rgba(239, 68, 68, 0.05); padding: 16px; border-radius: 8px; margin-top: 20px;">
+            <p style="color: rgba(255, 255, 255, 0.9); margin: 0; line-height: 1.7;">
+              <strong style="color: #f87171;">3 (16) июня</strong> — начался контрудар австро-германских войск под общим командованием <strong style="color: #fbbf24;">генерала Линзингена</strong> путем концентрического наступления в общем направлении на Луцк против 8-й армии.
+            </p>
+          </div>
+
+          <div style="background: rgba(34, 197, 94, 0.05); padding: 16px; border-radius: 8px; margin-top: 16px;">
+            <p style="color: rgba(255, 255, 255, 0.9); margin: 0; line-height: 1.7;">
+              <strong style="color: #4ade80;">Результат:</strong> Контрудар не достиг успеха. Наоборот, австро-германские войска были сами отброшены за реку Стырь, где и закрепились, отбивая русские атаки.
+            </p>
+          </div>
+        </div>
+
+        <h2 style="color: #6b7280; font-size: 28px; font-weight: 700; margin: 40px 0 24px 0; text-align: center; border-bottom: 2px solid rgba(107, 114, 128, 0.3); padding-bottom: 16px;">
+          ⏰ Проблемы координации
+        </h2>
+
+        <div style="background: rgba(107, 114, 128, 0.1); padding: 24px; border-radius: 12px; border-left: 4px solid #6b7280; margin-bottom: 32px;">
+          <p style="color: rgba(255, 255, 255, 0.9); margin: 0 0 16px 0; line-height: 1.7;">
+            В это же время <strong style="color: #9ca3af;">Западный фронт откладывал</strong> нанесение предписанного ему Ставкой главного удара:
+          </p>
+          
+          <ul style="margin: 0; padding-left: 20px; color: rgba(255, 255, 255, 0.85); line-height: 1.8;">
+            <li>С согласия генерала М. В. Алексеева генерал Эверт отложил наступление до <strong style="color: #9ca3af;">17 июня</strong></li>
+            <li>Частная атака 1-го гренадерского корпуса <strong style="color: #9ca3af;">15 июня оказалась неудачной</strong></li>
+            <li>Наступление Западного фронта было перенесено на <strong style="color: #9ca3af;">начало июля</strong></li>
+          </ul>
+        </div>
+
+        <h2 style="color: #f59e0b; font-size: 28px; font-weight: 700; margin: 40px 0 24px 0; text-align: center; border-bottom: 2px solid rgba(245, 158, 11, 0.3); padding-bottom: 16px;">
+          🤔 Стратегические разногласия
+        </h2>
+
+        <div style="background: rgba(245, 158, 11, 0.1); padding: 24px; border-radius: 12px; border-left: 4px solid #f59e0b; margin-bottom: 32px;">
+          <div style="background: rgba(239, 68, 68, 0.05); padding: 16px; border-radius: 8px; margin-bottom: 16px;">
+            <p style="color: rgba(255, 255, 255, 0.9); margin: 0; line-height: 1.7;">
+              <strong style="color: #ef4444;">9 июня</strong> — М. В. Алексеев отдал директиву о дальнейшем наступлении 8-й армии от Луцка в сторону реки Сан с целью отрезать австро-венгерские армии от германского Восточного фронта.
+            </p>
+          </div>
+
+          <div style="background: rgba(239, 68, 68, 0.05); padding: 16px; border-radius: 8px; margin-bottom: 16px;">
+            <p style="color: rgba(255, 255, 255, 0.9); margin: 0; line-height: 1.7;">
+              <strong style="color: #ef4444;">10 июня</strong> — Брусилов заявил, что <strong style="color: #f87171;">отказывается выполнять эту директиву</strong>, беспокоясь за растянутый правый фланг и опасаясь оторваться от армий Западного фронта.
+            </p>
+          </div>
+
+          <div style="background: rgba(34, 197, 94, 0.05); padding: 16px; border-radius: 8px; margin-bottom: 16px;">
+            <p style="color: rgba(255, 255, 255, 0.9); margin: 0; line-height: 1.7;">
+              Долгие переговоры завершились согласием Алексеева на предварительное занятие линии <strong style="color: #4ade80;">Ковель — Владимир-Волынский</strong>. Такая директива армиям была отдана A. A. Брусиловым <strong style="color: #4ade80;">31 мая</strong>.
+            </p>
+          </div>
+
+          <div style="background: rgba(239, 68, 68, 0.05); padding: 16px; border-radius: 8px;">
+            <p style="color: rgba(255, 255, 255, 0.9); margin: 0; line-height: 1.7;">
+              Но уже <strong style="color: #ef4444;">15 июня</strong> он приказал 8-й армии вновь прекратить атаки и лишь вечером велел продолжить наступление, но только на Ковель, а на Владимир-Волынском и Сокальском направлениях прекратить продвижение и ослабить войска.
+            </p>
+          </div>
+        </div>
+
+        <h2 style="color: #ef4444; font-size: 28px; font-weight: 700; margin: 40px 0 24px 0; text-align: center; border-bottom: 2px solid rgba(239, 68, 68, 0.3); padding-bottom: 16px;">
+          ⚠️ Потеря инициативы
+        </h2>
+
+        <div style="background: rgba(239, 68, 68, 0.1); padding: 24px; border-radius: 12px; border-left: 4px solid #ef4444;">
+          <p style="color: rgba(255, 255, 255, 0.9); margin: 0; line-height: 1.7; font-size: 18px;">
+            Отдавая 8-й армии всё новые директивы — то наступательного, то оборонительного характера, развивать удар то на Ковель, то на Львов, — <strong style="color: #f87171;">Брусилов потерял стратегическую инициативу на главном направлении своего фронта</strong>.
+          </p>
+        </div>
+      </div>`
     },
 
     'kovel_strike': {
