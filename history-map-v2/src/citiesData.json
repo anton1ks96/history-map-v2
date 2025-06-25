@@ -37,10 +37,11 @@
       "name": "Галич",
       "coordinates": [49.12684666844231,24.731693000000018],
       "importance": "regional",
-      "description": "Цель 7-й армии",
+      "description": "Захвачен 7-й армией в ходе первого Ковельского сражения",
       "population": 12000,
-      "captured": false,
-      "significance": "Древний русский город"
+      "captured": true,
+      "captureDate": "июль 1916",
+      "significance": "Древний русский город, взят в центре Юго-Западного фронта"
     },
     {
       "id": "kolomyya",
@@ -68,10 +69,11 @@
       "name": "Станислав",
       "coordinates": [48.922633, 24.709383],
       "importance": "strategic",
-      "description": "Цель 9-й армии (современный Ивано-Франковск)",
+      "description": "Захвачен 9-й армией генерала П. А. Лечицкого (современный Ивано-Франковск)",
       "population": 41000,
-      "captured": false,
-      "significance": "Важный город Галиции"
+      "captured": true,
+      "captureDate": "11 августа 1916",
+      "significance": "Важный город Галиции, взят в ходе первого Ковельского сражения"
     },
     {
       "id": "lviv",
@@ -110,8 +112,11 @@
       "name": "Броды",
       "coordinates": [50.0875, 25.1447],
       "importance": "regional",
+      "description": "Захвачены 11-й армией в ходе первого Ковельского сражения",
       "population": 15000,
-      "captured": false
+      "captured": true,
+      "captureDate": "июль 1916",
+      "significance": "11-я армия взяла Броды и вышла на подступы ко Львову"
     },
     {
       "id": "manevychi",
@@ -158,40 +163,55 @@
       "name": "Селец",
       "coordinates": [51.11264310924913,24.57768716137693],
       "importance": "local",
+      "description": "Захвачен Особой армией в ходе первого Ковельского сражения",
       "population": 1500,
-      "captured": false
+      "captured": true,
+      "captureDate": "15-28 июля 1916",
+      "significance": "Особая армия одержала победу у местечка Селец"
     },
     {
       "id": "tristen",
       "name": "Трыстень",
       "coordinates": [50.927164110407176,24.92742266180418],
       "importance": "local",
+      "description": "Захвачен Особой армией в ходе первого Ковельского сражения",
       "population": 1200,
-      "captured": false
+      "captured": true,
+      "captureDate": "15-28 июля 1916",
+      "significance": "Особая армия одержала победу у местечка Трыстень"
     },
     {
       "id": "koshevo",
       "name": "Кошево",
       "coordinates": [50.699519162075156,24.880144000000016],
       "importance": "local",
+      "description": "Захвачен 8-й армией в ходе первого Ковельского сражения",
       "population": 1800,
-      "captured": false
+      "captured": true,
+      "captureDate": "15-28 июля 1916",
+      "significance": "8-я армия одолела врага у Кошева"
     },
     {
       "id": "torchin",
       "name": "Торчин",
       "coordinates": [50.76509416378133,24.998627169311497],
       "importance": "local",
+      "description": "Захвачен 8-й армией в ходе первого Ковельского сражения",
       "population": 2200,
-      "captured": false
+      "captured": true,
+      "captureDate": "15-28 июля 1916",
+      "significance": "8-я армия взяла Торчин наряду с победой у Кошева"
     },
     {
       "id": "monastyryska",
       "name": "Монастыриска",
       "coordinates": [49.091751099049965,25.169610912719676],
       "importance": "regional",
+      "description": "Захвачена 7-й армией в ходе первого Ковельского сражения",
       "population": 8500,
-      "captured": false
+      "captured": true,
+      "captureDate": "июль 1916",
+      "significance": "Город в Галиции, взят совместно с Галичем"
     },
     {
       "id": "bolshoy_porsk",

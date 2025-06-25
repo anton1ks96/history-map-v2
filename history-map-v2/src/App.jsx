@@ -1293,21 +1293,31 @@ export default function BrusilovOffensiveMap() {
               🗺️ Прорыв и территориальные успехи
             </h3>
             <p style="color: rgba(255, 255, 255, 0.9); margin: 0 0 12px 0; line-height: 1.7;">
-              Русским войскам удалось прорвать позиционную оборону австро-венгерской армии сразу на <strong style="color: #4ade80;">13 участках</strong>.
+              Русским войскам удалось прорвать позиционную оборону австро-венгерской армии сразу на <strong style="color: #4ade80;">13 участках</strong>. Юго-Западный фронт нанёс поражение австро-венгерской армии, отбросив противника на <strong style="color: #4ade80;">80—120 км</strong>.
             </p>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0;">
               <div style="background: rgba(34, 197, 94, 0.05); padding: 12px; border-radius: 6px;">
                 <strong style="color: #4ade80;">8-я армия (ген. Каледин)</strong><br>
                 <span style="color: rgba(255, 255, 255, 0.8);">7 июня заняла Луцк</span>
               </div>
               <div style="background: rgba(34, 197, 94, 0.05); padding: 12px; border-radius: 6px;">
-                <strong style="color: #4ade80;">9-я армия</strong><br>
+                <strong style="color: #4ade80;">9-я армия (ген. Лечицкий)</strong><br>
                 <span style="color: rgba(255, 255, 255, 0.8);">18 июня взяла Черновцы</span>
               </div>
             </div>
-            <p style="color: rgba(255, 255, 255, 0.85); margin: 16px 0 0 0; font-style: italic;">
-              Продвижение: 50-120 км • Заняты: почти вся Волынь, почти вся Буковина и часть Галиции
-            </p>
+            <div style="background: rgba(34, 197, 94, 0.05); padding: 16px; border-radius: 8px; margin-bottom: 16px;">
+              <h4 style="color: #4ade80; margin: 0 0 8px 0; font-size: 16px;">Захваченные территории:</h4>
+              <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; font-size: 14px;">
+                <div><strong style="color: #4ade80;">Почти вся Волынь</strong></div>
+                <div><strong style="color: #4ade80;">Почти вся Буковина</strong></div>
+                <div><strong style="color: #4ade80;">Часть Галиции</strong></div>
+              </div>
+            </div>
+            <div style="background: rgba(251, 191, 36, 0.1); padding: 12px; border-radius: 6px;">
+              <p style="color: rgba(255, 255, 255, 0.9); margin: 0; font-size: 13px; font-style: italic;">
+                <strong style="color: #fbbf24;">Трофеи:</strong> 581 орудие, 1795 пулемётов, 448 бомбомётов и миномётов
+              </p>
+            </div>
           </div>
         </div>
 
@@ -1321,11 +1331,19 @@ export default function BrusilovOffensiveMap() {
               💀 Потери противника
             </h3>
             <div style="text-align: center; margin-bottom: 16px;">
-              <div style="font-size: 32px; font-weight: 700; color: #ef4444;">~1.5 млн</div>
-              <div style="color: rgba(255, 255, 255, 0.7); font-size: 14px;">убитыми, ранеными и пленными</div>
+              <div style="font-size: 32px; font-weight: 700; color: #ef4444;">1.5+ млн</div>
+              <div style="color: rgba(255, 255, 255, 0.7); font-size: 14px;">общие потери Австро-Венгрии и Германии</div>
+            </div>
+            <div style="background: rgba(220, 38, 38, 0.05); padding: 12px; border-radius: 6px; margin-bottom: 12px;">
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 13px;">
+                <div><strong style="color: #f87171;">Австро-Венгрия:</strong> 750+ тыс.</div>
+                <div><strong style="color: #f87171;">Германия:</strong> 148 тыс.</div>
+                <div><strong style="color: #fbbf24;">Пленными:</strong> 500+ тыс.</div>
+                <div><strong style="color: #ef4444;">Убитыми:</strong> 300 тыс.</div>
+              </div>
             </div>
             <p style="color: rgba(255, 255, 255, 0.9); margin: 0; line-height: 1.6; font-size: 14px;">
-              Переброшено с других фронтов: 31 пехотная и 3 кавалерийские дивизии (более 400 тыс. штыков и сабель)
+              Переброшено с других фронтов: <strong style="color: #fbbf24;">31 пехотная и 3 кавалерийские дивизии</strong> (более 400 тыс. штыков и сабель)
             </p>
           </div>
 
@@ -1334,11 +1352,17 @@ export default function BrusilovOffensiveMap() {
               🌍 Стратегические результаты
             </h3>
             <ul style="margin: 0; padding-left: 20px; color: rgba(255, 255, 255, 0.9); line-height: 1.6;">
-              <li>Облегчено положение союзников под Верденом</li>
-              <li>Спасена итальянская армия от разгрома</li>
-              <li>Румыния выступила на стороне Антанты</li>
-              <li><strong style="color: #4ade80;">Переход стратегической инициативы к Антанте</strong></li>
+              <li>Облегчено положение союзников в <strong style="color: #4ade80;">сражении на Сомме</strong></li>
+              <li>Спасена <strong style="color: #4ade80;">итальянская армия от разгрома</strong></li>
+              <li><strong style="color: #4ade80;">Румыния выступила на стороне Антанты</strong></li>
+              <li><strong style="color: #fbbf24;">Переход стратегической инициативы к Антанте</strong></li>
+              <li>Сломана <strong style="color: #f87171;">австрийская военная машина</strong></li>
             </ul>
+            <div style="background: rgba(34, 197, 94, 0.05); padding: 12px; border-radius: 6px; margin-top: 12px;">
+              <p style="margin: 0; font-size: 13px; font-style: italic; color: rgba(255, 255, 255, 0.8);">
+                Отныне австрийцы не смогут наступать даже в Италии без поддержки немцев
+              </p>
+            </div>
           </div>
         </div>
 
@@ -1346,9 +1370,74 @@ export default function BrusilovOffensiveMap() {
           <h3 style="color: #f87171; margin: 0 0 16px 0; font-size: 20px; font-weight: 600;">
             💔 Русские потери
           </h3>
-          <p style="color: rgba(255, 255, 255, 0.9); margin: 0; line-height: 1.7;">
-            Русские войска Юго-Западного фронта также понесли огромные потери. По различным оценкам: от <strong style="color: #fbbf24;">500 тысяч</strong> до <strong style="color: #ef4444;">1.65 миллиона человек</strong> к середине октября 1916 года. Отмечается, что русская армия <em style="color: #f87171;">"захлебнулась собственной кровью"</em>, что истощило мобилизационные резервы и подорвало боевой дух.
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+            <div style="background: rgba(239, 68, 68, 0.05); padding: 16px; border-radius: 8px;">
+              <div style="text-align: center;">
+                <div style="font-size: 24px; font-weight: 700; color: #ef4444;">500 тыс. - 1 млн</div>
+                <div style="color: rgba(255, 255, 255, 0.7); font-size: 13px;">по различным оценкам</div>
+              </div>
+            </div>
+            <div style="background: rgba(239, 68, 68, 0.05); padding: 16px; border-radius: 8px;">
+              <div style="text-align: center;">
+                <div style="font-size: 24px; font-weight: 700; color: #ef4444;">1.65 млн</div>
+                <div style="color: rgba(255, 255, 255, 0.7); font-size: 13px;">к октябрю 1916 г.</div>
+              </div>
+            </div>
+          </div>
+          
+          <div style="background: rgba(239, 68, 68, 0.05); padding: 16px; border-radius: 8px; margin-bottom: 16px;">
+            <h4 style="color: #f87171; margin: 0 0 12px 0; font-size: 16px;">Современные исследования (Нелипович):</h4>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+              <div>
+                <strong style="color: #ef4444;">Русские:</strong> 1,446,334 чел.
+              </div>
+              <div>
+                <strong style="color: #f87171;">Австро-германские:</strong> 845,956 чел.
+              </div>
+            </div>
+          </div>
+
+          <div style="background: rgba(251, 191, 36, 0.1); padding: 16px; border-radius: 8px; margin-bottom: 16px;">
+            <h4 style="color: #fbbf24; margin: 0 0 8px 0; font-size: 16px;">Французские данные (генерал Кастельно, 1917):</h4>
+            <p style="color: rgba(255, 255, 255, 0.9); margin: 0; font-size: 14px;">
+              <strong style="color: #fbbf24;">980,000 человек</strong> — официальная цифра потерь армий А. А. Брусилова
+            </p>
+          </div>
+
+          <div style="background: rgba(220, 38, 38, 0.05); padding: 16px; border-radius: 8px;">
+            <p style="color: rgba(255, 255, 255, 0.9); margin: 0; line-height: 1.6; font-style: italic;">
+              <strong style="color: #f87171;">"Ковельская бойня"</strong> (А. А. Керсновский) — потери превзошли первоначальный состав Юго-западного фронта, что истощило мобилизационные резервы и подорвало боевой дух армии.
+            </p>
+          </div>
+        </div>
+
+        <h2 style="color: #f59e0b; font-size: 28px; font-weight: 700; margin: 40px 0 24px 0; text-align: center; border-bottom: 2px solid rgba(245, 158, 11, 0.3); padding-bottom: 16px;">
+          ⚠️ Завершение операции
+        </h2>
+
+        <div style="background: rgba(245, 158, 11, 0.1); padding: 24px; border-radius: 12px; border-left: 4px solid #f59e0b; margin-bottom: 40px;">
+          <p style="color: rgba(255, 255, 255, 0.9); margin: 0 0 16px 0; line-height: 1.7; font-size: 18px;">
+            Наступательный порыв русских армий <strong style="color: #f59e0b;">выдохся</strong> ввиду следующих причин:
           </p>
+          
+          <ul style="margin: 0 0 20px 0; padding-left: 20px; color: rgba(255, 255, 255, 0.85); line-height: 1.8;">
+            <li><strong style="color: #f59e0b;">Усилившееся сопротивление</strong> австро-германских войск</li>
+            <li><strong style="color: #ef4444;">Возросшие потери</strong> и утомление личного состава</li>
+            <li><strong style="color: #f87171;">Истощение резервов</strong> и боеприпасов</li>
+          </ul>
+
+          <div style="background: rgba(245, 158, 11, 0.05); padding: 16px; border-radius: 8px; margin-bottom: 16px;">
+            <h4 style="color: #f59e0b; margin: 0 0 8px 0; font-size: 16px;">Стратегические разногласия:</h4>
+            <p style="color: rgba(255, 255, 255, 0.9); margin: 0; line-height: 1.6; font-size: 14px;">
+              Брусилов бросал войска в новые атаки, <strong style="color: #ef4444;">игнорируя предложения Ставки</strong> перенести направление южнее, в район 7-й и 9-й армий. Ставка пыталась указать на необходимость смены направления удара с ковельского <strong style="color: #4ade80;">в Лесистые Карпаты</strong>, но Брусилов «не считаясь ни с потерями, ни со складывающейся обстановкой, всякий раз принимал решение наступать на Ковель».
+            </p>
+          </div>
+
+          <div style="background: rgba(220, 38, 38, 0.1); padding: 16px; border-radius: 8px;">
+            <p style="color: rgba(255, 255, 255, 0.9); margin: 0; line-height: 1.6; font-style: italic; text-align: center;">
+              Германское командование иронически называло Брусиловский прорыв <strong style="color: #f87171;">"широкой разведкой без сосредоточения необходимого кулака"</strong>, тем не менее удар произвёл на противника ошеломляющее впечатление.
+            </p>
+          </div>
         </div>
 
         <h2 style="color: #8b5cf6; font-size: 28px; font-weight: 700; margin: 40px 0 24px 0; text-align: center; border-bottom: 2px solid rgba(139, 92, 246, 0.3); padding-bottom: 16px;">
@@ -1403,32 +1492,54 @@ export default function BrusilovOffensiveMap() {
         </div>
 
         <h2 style="color: #22c55e; font-size: 28px; font-weight: 700; margin: 40px 0 24px 0; text-align: center; border-bottom: 2px solid rgba(34, 197, 94, 0.3); padding-bottom: 16px;">
-          📊 Итоговые результаты
+          📊 Итоговые результаты операции
         </h2>
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 32px;">
           <div>
             <h3 style="color: #4ade80; margin: 0 0 16px 0; font-size: 20px; font-weight: 600;">✅ Достижения</h3>
             <ul style="margin: 0; padding-left: 20px; color: rgba(255, 255, 255, 0.9); line-height: 1.8;">
               <li>Отброшен противник на <strong style="color: #4ade80;">80—120 км</strong></li>
-              <li>Заняты почти вся Волынь, Буковина и часть Галиции</li>
+              <li>Заняты <strong style="color: #4ade80;">почти вся Волынь, почти вся Буковина и часть Галиции</strong></li>
               <li>Потери противника: <strong style="color: #f87171;">более 1.5 млн человек</strong></li>
-              <li>Переброска крупных резервов с других фронтов</li>
-              <li>Облегчение положения союзников</li>
-              <li>Выступление Румынии на стороне Антанты</li>
+              <li>Переброска <strong style="color: #fbbf24;">31 пехотной и 3 кавалерийских дивизий</strong> с других фронтов</li>
+              <li>Облегчение положения союзников в <strong style="color: #4ade80;">битве на Сомме</strong></li>
+              <li><strong style="color: #4ade80;">Выступление Румынии</strong> на стороне Антанты</li>
               <li><strong style="color: #fbbf24;">Переход стратегической инициативы к Антанте</strong></li>
+              <li>Сломана <strong style="color: #f87171;">австрийская военная машина</strong></li>
             </ul>
           </div>
 
           <div>
-            <h3 style="color: #f59e0b; margin: 0 0 16px 0; font-size: 20px; font-weight: 600;">⚠️ Нерешенные задачи</h3>
+            <h3 style="color: #f59e0b; margin: 0 0 16px 0; font-size: 20px; font-weight: 600;">⚠️ Нерешенные задачи и проблемы</h3>
             <ul style="margin: 0; padding-left: 20px; color: rgba(255, 255, 255, 0.9); line-height: 1.8;">
-              <li>Стратегический прорыв не был достигнут</li>
-              <li>Конечная цель не достигнута: <strong style="color: #f59e0b;">Ковель и Львов не взяты</strong></li>
-              <li>Огромные потери русских войск</li>
+              <li><strong style="color: #ef4444;">Стратегический прорыв не достигнут</strong></li>
+              <li>Ключевые цели не взяты: <strong style="color: #f59e0b;">Ковель и Львов</strong></li>
+              <li><strong style="color: #ef4444;">Огромные русские потери</strong> (до 1.65 млн чел.)</li>
               <li>Истощение мобилизационных резервов</li>
               <li>Подрыв боевого духа армии</li>
+              <li><strong style="color: #f87171;">"Ковельская бойня"</strong> — упорство в безнадёжных атаках</li>
             </ul>
+          </div>
+        </div>
+
+        <div style="background: rgba(59, 130, 246, 0.1); padding: 24px; border-radius: 12px; border-left: 4px solid #3b82f6;">
+          <h3 style="color: #60a5fa; margin: 0 0 16px 0; font-size: 20px; font-weight: 600; text-align: center;">
+            📈 Общий баланс операции
+          </h3>
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; text-align: center;">
+            <div style="background: rgba(34, 197, 94, 0.1); padding: 16px; border-radius: 8px;">
+              <div style="font-size: 18px; font-weight: 700; color: #4ade80; margin-bottom: 8px;">ТАКТИЧЕСКИЙ УСПЕХ</div>
+              <div style="color: rgba(255, 255, 255, 0.8); font-size: 14px;">Прорыв позиционной обороны на широком фронте</div>
+            </div>
+            <div style="background: rgba(245, 158, 11, 0.1); padding: 16px; border-radius: 8px;">
+              <div style="font-size: 18px; font-weight: 700; color: #f59e0b; margin-bottom: 8px;">ОПЕРАТИВНАЯ НЕУДАЧА</div>
+              <div style="color: rgba(255, 255, 255, 0.8); font-size: 14px;">Стратегические цели не достигнуты</div>
+            </div>
+            <div style="background: rgba(139, 92, 246, 0.1); padding: 16px; border-radius: 8px;">
+              <div style="font-size: 18px; font-weight: 700; color: #c084fc; margin-bottom: 8px;">СТРАТЕГИЧЕСКОЕ ЗНАЧЕНИЕ</div>
+              <div style="color: rgba(255, 255, 255, 0.8); font-size: 14px;">Переход инициативы к Антанте</div>
+            </div>
           </div>
         </div>
       </div>`
@@ -1766,103 +1877,709 @@ export default function BrusilovOffensiveMap() {
     'kovel_strike': {
       title: 'Удар на Ковель',
       subtitle: '22 июня (5 июля) 1916 года',
-      content: `Возобновление наступления Юго-Западного фронта. Наступление велось всеми армиями, кроме 11-й. Главный удар наносился силами 8-й и 3-й армий на Ковель.
+      content: `<div style="max-width: 1200px; margin: 0 auto;">
+        <div style="background: rgba(34, 197, 94, 0.1); padding: 32px; border-radius: 16px; margin-bottom: 32px; border-left: 4px solid #22c55e;">
+          <p style="font-size: 20px; line-height: 1.6; margin: 0; color: rgba(255, 255, 255, 0.95); font-weight: 400;">
+            Наступление Юго-Западного фронта возобновилось в назначенный срок <strong style="color: #4ade80;">22 июня (5 июля)</strong>. Оно велось всеми армиями, кроме 11-й. Главный удар наносился силами <strong style="color: #4ade80;">8-й и 3-й армий на Ковель</strong>.
+          </p>
+        </div>
 
-        Основные события:
-        • Прорыв германского фронта за три дня боев
-        • Беспорядочное отступление австро-германских войск
-        • Захват городов: Галузия, Маневичи, Городок
-        
-        Результаты:
-        • Успешное развитие наступления на Ковельском направлении
-        • Расширение прорыва в немецкой обороне
-        • Улучшение тактического положения русских войск`
+        <h2 style="color: #ef4444; font-size: 28px; font-weight: 700; margin: 40px 0 24px 0; text-align: center; border-bottom: 2px solid rgba(239, 68, 68, 0.3); padding-bottom: 16px;">
+          💥 Прорыв германского фронта
+        </h2>
+
+        <div style="background: rgba(239, 68, 68, 0.1); padding: 24px; border-radius: 12px; border-left: 4px solid #ef4444; margin-bottom: 32px;">
+          <p style="color: rgba(255, 255, 255, 0.9); margin: 0 0 20px 0; line-height: 1.7; font-size: 18px;">
+            В результате <strong style="color: #f87171;">трехдневных боев германский фронт был прорван</strong>. Австро-германские войска в беспорядке стали отступать.
+          </p>
+          
+          <div style="background: rgba(34, 197, 94, 0.1); padding: 20px; border-radius: 12px; border-left: 4px solid #22c55e;">
+            <h3 style="color: #4ade80; margin: 0 0 16px 0; font-size: 20px; font-weight: 600;">
+              🏆 Захваченные города
+            </h3>
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;">
+              <div style="background: rgba(34, 197, 94, 0.05); padding: 12px; border-radius: 8px; text-align: center;">
+                <strong style="color: #4ade80;">Галузия</strong>
+              </div>
+              <div style="background: rgba(34, 197, 94, 0.05); padding: 12px; border-radius: 8px; text-align: center;">
+                <strong style="color: #4ade80;">Маневичи</strong>
+              </div>
+              <div style="background: rgba(34, 197, 94, 0.05); padding: 12px; border-radius: 8px; text-align: center;">
+                <strong style="color: #4ade80;">Городок</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h2 style="color: #06b6d4; font-size: 28px; font-weight: 700; margin: 40px 0 24px 0; text-align: center; border-bottom: 2px solid rgba(6, 182, 212, 0.3); padding-bottom: 16px;">
+          🌊 Выход к реке Стоход
+        </h2>
+
+        <div style="background: rgba(6, 182, 212, 0.1); padding: 24px; border-radius: 12px; border-left: 4px solid #06b6d4; margin-bottom: 32px;">
+          <p style="color: rgba(255, 255, 255, 0.9); margin: 0 0 20px 0; line-height: 1.7; font-size: 18px;">
+            Войска фронта вышли в нижнем течении на <strong style="color: #06b6d4;">реку Стоход</strong>, захватив кое-где плацдармы на левом берегу.
+          </p>
+          
+          <div style="background: rgba(6, 182, 212, 0.05); padding: 16px; border-radius: 8px; margin-bottom: 16px;">
+            <p style="color: rgba(255, 255, 255, 0.9); margin: 0; line-height: 1.7;">
+              <strong style="color: #06b6d4;">К 1 (14) июля</strong> обе армии заняли линию реки от Любашева до железной дороги Ковель—Луцк, зацепившись в некоторых местах и на левом берегу Стохода.
+            </p>
+          </div>
+        </div>
+
+        <h2 style="color: #f59e0b; font-size: 28px; font-weight: 700; margin: 40px 0 24px 0; text-align: center; border-bottom: 2px solid rgba(245, 158, 11, 0.3); padding-bottom: 16px;">
+          🚧 Препятствия на Стоходе
+        </h2>
+
+        <div style="background: rgba(245, 158, 11, 0.1); padding: 24px; border-radius: 12px; border-left: 4px solid #f59e0b; margin-bottom: 32px;">
+          <p style="color: rgba(255, 255, 255, 0.9); margin: 0 0 20px 0; line-height: 1.7; font-size: 18px;">
+            Однако попытка форсировать реку Стоход на плечах отступавшего противника <strong style="color: #f59e0b;">успеха не имела</strong>:
+          </p>
+          
+          <ul style="margin: 0; padding-left: 20px; color: rgba(255, 255, 255, 0.85); line-height: 1.8;">
+            <li>Австро-германцы сумели <strong style="color: #f59e0b;">заблаговременно разрушить переправы</strong></li>
+            <li>Своими контратаками мешали русским переправиться на западный берег реки</li>
+            <li>Преодоление Стохода требовало подготовки атаки сильным артиллерийским огнем</li>
+            <li>Необходимо было сосредоточение свежих резервов</li>
+          </ul>
+
+          <div style="background: rgba(245, 158, 11, 0.05); padding: 16px; border-radius: 8px; margin-top: 20px;">
+            <p style="color: rgba(255, 255, 255, 0.9); margin: 0; line-height: 1.7;">
+              <strong style="color: #f59e0b;">Дополнительные препятствия:</strong> Значительную роль в срыве наступления правого фланга 8-й армии сыграл и характер местности (<em style="color: #a78bfa;">леса и болота</em>) в зоне прорыва.
+            </p>
+          </div>
+        </div>
+
+        <h2 style="color: #ef4444; font-size: 28px; font-weight: 700; margin: 40px 0 24px 0; text-align: center; border-bottom: 2px solid rgba(239, 68, 68, 0.3); padding-bottom: 16px;">
+          ⏸️ Остановка наступления
+        </h2>
+
+        <div style="background: rgba(239, 68, 68, 0.1); padding: 24px; border-radius: 12px; border-left: 4px solid #ef4444; margin-bottom: 32px;">
+          <p style="color: rgba(255, 255, 255, 0.9); margin: 0 0 16px 0; line-height: 1.7; font-size: 18px;">
+            Подтянув свежие войска, противник создал в этом месте сильную оборону. <strong style="color: #f87171;">Брусилов вынужден был остановить наступление на Ковель</strong>, чтобы подтянуть резервы и перегруппировать силы.
+          </p>
+          
+          <div style="background: rgba(239, 68, 68, 0.05); padding: 16px; border-radius: 8px;">
+            <p style="color: rgba(255, 255, 255, 0.9); margin: 0; line-height: 1.7; font-style: italic;">
+              Этим закончилось развитие <strong style="color: #f87171;">Луцкого прорыва</strong>, так как данная германцам передышка позволила им сгруппироваться и укрепиться на реке Стоходе, и последующие действия развиваются уже в самостоятельные операции ряда сражений на Стоходе на правом фланге Юго-западного фронта.
+            </p>
+          </div>
+        </div>
+
+        <h2 style="color: #6b7280; font-size: 28px; font-weight: 700; margin: 40px 0 24px 0; text-align: center; border-bottom: 2px solid rgba(107, 114, 128, 0.3); padding-bottom: 16px;">
+          🤝 Действия других фронтов
+        </h2>
+
+        <div style="background: rgba(107, 114, 128, 0.1); padding: 24px; border-radius: 12px; border-left: 4px solid #6b7280; margin-bottom: 32px;">
+          <h3 style="color: #9ca3af; margin: 0 0 16px 0; font-size: 20px; font-weight: 600;">
+            💔 Неудача Западного фронта
+          </h3>
+          
+          <div style="background: rgba(239, 68, 68, 0.05); padding: 16px; border-radius: 8px; margin-bottom: 20px;">
+            <p style="color: rgba(255, 255, 255, 0.9); margin: 0; line-height: 1.7;">
+              <strong style="color: #ef4444;">3 июля</strong> Западный фронт попытался перейти ударной группировкой в наступление на Барановичи, но в результате боёв 3—8 июля оно было отбито с <strong style="color: #f87171;">большими потерями для русских</strong>.
+            </p>
+          </div>
+
+          <div style="background: rgba(139, 92, 246, 0.1); padding: 20px; border-radius: 12px; border-left: 3px solid #a855f7; margin-bottom: 20px;">
+            <p style="color: rgba(255, 255, 255, 0.9); margin: 0; line-height: 1.7; font-style: italic;">
+              <strong style="color: #c084fc;">"Атака на Барановичи состоялась, но, как это нетрудно было предвидеть, войска понесли громадные потери при полной неудаче, и на этом закончилась боевая деятельность Западного фронта по содействию моему наступлению."</strong>
+            </p>
+            <p style="color: rgba(255, 255, 255, 0.7); margin: 12px 0 0 0; font-size: 14px; text-align: right;">
+              — Брусилов А. А. Мои воспоминания
+            </p>
+          </div>
+
+          <h3 style="color: #9ca3af; margin: 20px 0 16px 0; font-size: 20px; font-weight: 600;">
+            ⏳ Бездействие Северного фронта
+          </h3>
+          
+          <div style="background: rgba(107, 114, 128, 0.05); padding: 16px; border-radius: 8px;">
+            <p style="color: rgba(255, 255, 255, 0.9); margin: 0; line-height: 1.7;">
+              Северный фронт вплоть до <strong style="color: #9ca3af;">9 (22) июля</strong> наступательных действий не вёл, и германское командование начало переброску войск из районов севернее Полесья на юг, против Брусилова.
+            </p>
+          </div>
+        </div>
+
+        <h2 style="color: #8b5cf6; font-size: 28px; font-weight: 700; margin: 40px 0 24px 0; text-align: center; border-bottom: 2px solid rgba(139, 92, 246, 0.3); padding-bottom: 16px;">
+          📋 Запоздалые решения Ставки
+        </h2>
+
+        <div style="background: rgba(139, 92, 246, 0.1); padding: 24px; border-radius: 12px; border-left: 4px solid #a855f7; margin-bottom: 32px;">
+          <div style="background: rgba(239, 68, 68, 0.05); padding: 16px; border-radius: 8px; margin-bottom: 20px;">
+            <p style="color: rgba(255, 255, 255, 0.9); margin: 0; line-height: 1.7;">
+              Только через <strong style="color: #f87171;">35 дней</strong> после начала прорыва — <strong style="color: #c084fc;">26 июня (9 июля)</strong> — русская Ставка своей директивой поручила ведение главного удара Юго-Западному фронту.
+            </p>
+          </div>
+
+          <p style="color: rgba(255, 255, 255, 0.9); margin: 0 0 16px 0; line-height: 1.7;">
+            При этом предписывалось:
+          </p>
+          
+          <ul style="margin: 0; padding-left: 20px; color: rgba(255, 255, 255, 0.85); line-height: 1.8;">
+            <li><strong style="color: #c084fc;">Западному фронту</strong> — сдерживать противника</li>
+            <li><strong style="color: #c084fc;">Северному фронту</strong> — наступать</li>
+          </ul>
+        </div>
+
+        <h2 style="color: #ef4444; font-size: 28px; font-weight: 700; margin: 40px 0 24px 0; text-align: center; border-bottom: 2px solid rgba(239, 68, 68, 0.3); padding-bottom: 16px;">
+          💀 Неудачное наступление на Бауск
+        </h2>
+
+        <div style="background: rgba(239, 68, 68, 0.1); padding: 24px; border-radius: 12px; border-left: 4px solid #ef4444;">
+          <p style="color: rgba(255, 255, 255, 0.9); margin: 0 0 20px 0; line-height: 1.7; font-size: 18px;">
+            В итоге Северный фронт под командованием <strong style="color: #f87171;">генерала А. Н. Куропаткина</strong> предпринял ограниченное наступление на Бауск <strong style="color: #f87171;">9 (22) июля</strong> силами 12-й армии под командованием генерала Р. Д. Радко-Дмитриева.
+          </p>
+          
+          <div style="text-align: center; padding: 20px; background: rgba(239, 68, 68, 0.05); border-radius: 8px;">
+            <div style="font-size: 20px; font-weight: 700; color: #ef4444; margin-bottom: 8px;">Результаты наступления:</div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+              <div>
+                <div style="font-size: 24px; font-weight: 700; color: #ef4444;">6 дней</div>
+                <div style="color: rgba(255, 255, 255, 0.8); font-size: 14px;">боев без результатов</div>
+              </div>
+              <div>
+                <div style="font-size: 24px; font-weight: 700; color: #ef4444;">15 000</div>
+                <div style="color: rgba(255, 255, 255, 0.8); font-size: 14px;">потери 12-й армии</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>`
     },
 
     'kovel_battles': {
       title: '1-3 Ковельские сражения',
       subtitle: 'июль - август 1916 года',
-      content: `Серия сражений за Ковель - ключевой железнодорожный узел. Русские войска предприняли три попытки захватить город.
+      content: `<div style="max-width: 1200px; margin: 0 auto;">
+        <div style="background: rgba(139, 92, 246, 0.1); padding: 32px; border-radius: 16px; margin-bottom: 32px; border-left: 4px solid #a855f7;">
+          <p style="font-size: 20px; line-height: 1.6; margin: 0; color: rgba(255, 255, 255, 0.95); font-weight: 400;">
+            Серия сражений за <strong style="color: #c084fc;">Ковель</strong> — ключевой железнодорожный узел. В июле русская Ставка перебросила на юг стратегический резерв (гвардию и забайкальских казаков), создав <strong style="color: #c084fc;">Особую армию генерала В. М. Безобразова</strong>.
+          </p>
+        </div>
 
-        Основные события:
-        • 1-е Ковельское сражение - июль 1916
-        • 2-е Ковельское сражение - август 1916  
-        • 3-е Ковельское сражение - август 1916
-        • Упорная оборона австро-германских войск
-        
-        Результаты:
-        • Ковель так и не был захвачен русскими войсками
-        • Значительные потери с обеих сторон
-        • Стабилизация фронта в районе Ковеля`
+        <h2 style="color: #ef4444; font-size: 28px; font-weight: 700; margin: 40px 0 24px 0; text-align: center; border-bottom: 2px solid rgba(239, 68, 68, 0.3); padding-bottom: 16px;">
+          ⚔️ Первое Ковельское сражение
+        </h2>
+
+        <div style="background: rgba(239, 68, 68, 0.1); padding: 24px; border-radius: 12px; border-left: 4px solid #ef4444; margin-bottom: 32px;">
+          <h3 style="color: #f87171; margin: 0 0 16px 0; font-size: 20px; font-weight: 600;">
+            🎯 Поставленные задачи
+          </h3>
+          <ul style="margin: 0; padding-left: 20px; color: rgba(255, 255, 255, 0.85); line-height: 1.8;">
+            <li><strong style="color: #f87171;">3-я, Особая и 8-я армии</strong> — разгромить оборонявшую Ковель группировку противника и взять город</li>
+            <li><strong style="color: #f87171;">11-я армия</strong> — наступать на Броды и Львов</li>
+            <li><strong style="color: #f87171;">7-я армия</strong> — на Монастыриску</li>
+            <li><strong style="color: #f87171;">9-я армия</strong> — повернув на север, должна была атаковать Станислав (Ивано-Франковск)</li>
+          </ul>
+
+          <div style="background: rgba(239, 68, 68, 0.05); padding: 16px; border-radius: 8px; margin-top: 20px;">
+            <p style="color: rgba(255, 255, 255, 0.9); margin: 0; line-height: 1.7;">
+              В конце июля состоялось сражение у <strong style="color: #f87171;">Бурканувского леса</strong>.
+            </p>
+          </div>
+
+          <h3 style="color: #f87171; margin: 20px 0 16px 0; font-size: 20px; font-weight: 600;">
+            💥 Наступление 15 (28) июля
+          </h3>
+          
+          <p style="color: rgba(255, 255, 255, 0.9); margin: 0 0 16px 0; line-height: 1.7;">
+            <strong style="color: #f87171;">15 (28) июля</strong> Юго-Западный фронт начал новое наступление. После массированной артподготовки на прорыв пошла ударная группа (3-я, Особая и 8-я армии). Противник упорно сопротивлялся. Атаки сменялись контратаками.
+          </p>
+
+          <div style="display: grid; gap: 16px; margin-bottom: 20px;">
+            <div style="background: rgba(34, 197, 94, 0.05); padding: 16px; border-radius: 8px;">
+              <strong style="color: #4ade80;">Особая армия</strong> — одержала победу у местечек Селец и Трыстень
+            </div>
+            <div style="background: rgba(34, 197, 94, 0.05); padding: 16px; border-radius: 8px;">
+              <strong style="color: #4ade80;">8-я армия</strong> — одолела врага у Кошева и взяла Торчин
+            </div>
+          </div>
+
+          <div style="text-align: center; padding: 20px; background: rgba(34, 197, 94, 0.05); border-radius: 8px; margin-bottom: 20px;">
+            <div style="font-size: 20px; font-weight: 700; color: #4ade80; margin-bottom: 8px;">Результаты трёхдневных боёв:</div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px;">
+              <div>
+                <div style="font-size: 24px; font-weight: 700; color: #4ade80;">17 тыс.</div>
+                <div style="color: rgba(255, 255, 255, 0.8); font-size: 14px;">пленных</div>
+              </div>
+              <div>
+                <div style="font-size: 24px; font-weight: 700; color: #4ade80;">86</div>
+                <div style="color: rgba(255, 255, 255, 0.8); font-size: 14px;">орудий</div>
+              </div>
+              <div>
+                <div style="font-size: 24px; font-weight: 700; color: #4ade80;">10 км</div>
+                <div style="color: rgba(255, 255, 255, 0.8); font-size: 14px;">продвижение</div>
+              </div>
+            </div>
+          </div>
+
+          <p style="color: rgba(255, 255, 255, 0.9); margin: 0 0 16px 0; line-height: 1.7;">
+            Армии вышли к реке Стоход уже не только в нижнем, но и в верхнем её течении. Людендорф отмечал: <em style="color: #a78bfa;">"Восточный фронт переживал тяжёлые дни"</em>.
+          </p>
+
+          <div style="background: rgba(239, 68, 68, 0.05); padding: 16px; border-radius: 8px;">
+            <p style="color: rgba(255, 255, 255, 0.9); margin: 0; line-height: 1.7;">
+              <strong style="color: #f87171;">Но</strong> атаки сильно укреплённых болотистых дефиле на Стоходе закончились неудачей, прорвать оборону немцев и взять Ковель не удалось.
+            </p>
+          </div>
+        </div>
+
+        <h2 style="color: #22c55e; font-size: 28px; font-weight: 700; margin: 40px 0 24px 0; text-align: center; border-bottom: 2px solid rgba(34, 197, 94, 0.3); padding-bottom: 16px;">
+          🌟 Успехи в центре фронта
+        </h2>
+
+        <div style="background: rgba(34, 197, 94, 0.1); padding: 24px; border-radius: 12px; border-left: 4px solid #22c55e; margin-bottom: 32px;">
+          <p style="color: rgba(255, 255, 255, 0.9); margin: 0 0 20px 0; line-height: 1.7; font-size: 18px;">
+            В центре Юго-Западного фронта <strong style="color: #4ade80;">11-я и 7-я армии</strong> при поддержке 9-й армии (ударившей противнику во фланг и тыл) разгромили противостоящие им австро-германские войска и прорвали фронт.
+          </p>
+
+          <div style="background: rgba(239, 68, 68, 0.05); padding: 16px; border-radius: 8px; margin-bottom: 20px;">
+            <p style="color: rgba(255, 255, 255, 0.9); margin: 0; line-height: 1.7;">
+              Чтобы сдержать наступление русских, австро-германское командование перебрасывало в Галицию всё, что можно: были переброшены даже <strong style="color: #f87171;">две турецкие дивизии с Салоникского фронта</strong>. Но, затыкая дыры, противник вводил в бой новые соединения разрозненно, и их били по очереди.
+            </p>
+          </div>
+
+          <div style="display: grid; gap: 16px; margin-bottom: 20px;">
+            <div style="background: rgba(34, 197, 94, 0.05); padding: 16px; border-radius: 8px;">
+              <strong style="color: #4ade80;">11-я армия</strong> — взяла Броды и, преследуя противника, вышла на подступы ко Львову
+            </div>
+            <div style="background: rgba(34, 197, 94, 0.05); padding: 16px; border-radius: 8px;">
+              <strong style="color: #4ade80;">7-я армия</strong> — овладела городами Галич и Монастыриска
+            </div>
+            <div style="background: rgba(34, 197, 94, 0.05); padding: 16px; border-radius: 8px;">
+              <strong style="color: #4ade80;">9-я армия генерала П. А. Лечицкого</strong> — заняла Буковину и 11 августа взяла Станислав
+            </div>
+          </div>
+        </div>
+
+        <h2 style="color: #f59e0b; font-size: 28px; font-weight: 700; margin: 40px 0 24px 0; text-align: center; border-bottom: 2px solid rgba(245, 158, 11, 0.3); padding-bottom: 16px;">
+          🔄 Второе Ковельское сражение
+        </h2>
+
+        <div style="background: rgba(245, 158, 11, 0.1); padding: 24px; border-radius: 12px; border-left: 4px solid #f59e0b; margin-bottom: 32px;">
+          <p style="color: rgba(255, 255, 255, 0.9); margin: 0 0 20px 0; line-height: 1.7; font-size: 18px;">
+            Попытки продолжать наступление на ковельском направлении продолжались в августе. <strong style="color: #f59e0b;">26 июля (8 августа)</strong> началось Второе Ковельское сражение.
+          </p>
+
+          <div style="display: grid; gap: 16px; margin-bottom: 20px;">
+            <div style="background: rgba(239, 68, 68, 0.05); padding: 16px; border-radius: 8px;">
+              <strong style="color: #ef4444;">1-й армейский корпус</strong> — наступавший на Большой Порск, был отброшен в исходное положение сильными контратаками
+            </div>
+            <div style="background: rgba(239, 68, 68, 0.05); padding: 16px; border-radius: 8px;">
+              <strong style="color: #ef4444;">Гвардия</strong> — атаковавшая от Велицка в направлении к юго-западу от Кухарского леса, также была вынуждена отойти
+            </div>
+          </div>
+
+          <div style="background: rgba(245, 158, 11, 0.05); padding: 16px; border-radius: 8px; margin-bottom: 16px;">
+            <p style="color: rgba(255, 255, 255, 0.9); margin: 0; line-height: 1.7;">
+              <strong style="color: #f59e0b;">27 (9 августа)</strong> начала наступление 3-я армия. Успех имел один 3-й корпус. В Особой армии Гвардейская стрелковая дивизия заняла Витонеж, но была выбита оттуда огнем вражеской артиллерии.
+            </p>
+          </div>
+
+          <div style="background: rgba(245, 158, 11, 0.05); padding: 16px; border-radius: 8px; margin-bottom: 16px;">
+            <p style="color: rgba(255, 255, 255, 0.9); margin: 0; line-height: 1.7;">
+              8-я армия оба дня, 26-го и 27-го, вела безрезультатные бои у Киселина.
+            </p>
+          </div>
+
+          <div style="background: rgba(239, 68, 68, 0.05); padding: 16px; border-radius: 8px;">
+            <p style="color: rgba(255, 255, 255, 0.9); margin: 0; line-height: 1.7;">
+              Генерал Брусилов пытался оживить явно сорвавшуюся операцию, однако новое наступление 3-й армии на Любашев, а гвардии на Витонеж повлекло только новые потери. <strong style="color: #f87171;">29 июля (11 августа) атаки были прекращены</strong>.
+            </p>
+          </div>
+        </div>
+
+        <h2 style="color: #8b5cf6; font-size: 28px; font-weight: 700; margin: 40px 0 24px 0; text-align: center; border-bottom: 2px solid rgba(139, 92, 246, 0.3); padding-bottom: 16px;">
+          🔀 Третье Ковельское сражение
+        </h2>
+
+        <div style="background: rgba(139, 92, 246, 0.1); padding: 24px; border-radius: 12px; border-left: 4px solid #a855f7;">
+          <p style="color: rgba(255, 255, 255, 0.9); margin: 0 0 20px 0; line-height: 1.7; font-size: 18px;">
+            Несмотря на неудачи наступления на Ковель в июле-августе 1916 года Ставка не отказалась от продолжения операции. <strong style="color: #c084fc;">Операция была передана с Юго-Западного фронта на Западный</strong>.
+          </p>
+
+          <div style="background: rgba(139, 92, 246, 0.05); padding: 16px; border-radius: 8px; margin-bottom: 20px;">
+            <p style="color: rgba(255, 255, 255, 0.9); margin: 0; line-height: 1.7;">
+              С <strong style="color: #c084fc;">30 июля (12 августа)</strong> 3-я армия и армия Безобразова были переданы Западному фронту, которому предлагалось решительно атаковать войска противника, прикрывавшие Ковель. Юго-Западный фронт Брусилова 8-й армией должен был содействовать наступлению и атаковать в направлении на Владимир-Волынский.
+            </p>
+          </div>
+
+          <div style="background: rgba(239, 68, 68, 0.05); padding: 16px; border-radius: 8px; margin-bottom: 20px;">
+            <p style="color: rgba(255, 255, 255, 0.9); margin: 0; line-height: 1.7;">
+              Уже <strong style="color: #ef4444;">11 (24) августа</strong> командующий Западным фронтом Эверт потребовал перенести начало операции с 15 (28) августа на 23-24 (5-6 сентября), а затем дотянув с откладыванием атаки до 20 августа (2 сентября), не оказав никакого содействия Юго-Западному фронту в его начавшемся наступлении, в этот день пришел к заключению о невозможности атаковать.
+            </p>
+          </div>
+
+          <div style="background: rgba(239, 68, 68, 0.05); padding: 16px; border-radius: 8px; margin-bottom: 20px;">
+            <p style="color: rgba(255, 255, 255, 0.9); margin: 0; line-height: 1.7;">
+              <strong style="color: #f87171;">Вместо трёх армий на Ковель наступала одна 8-я армия</strong> Юго-Западного фронта.
+            </p>
+          </div>
+
+          <div style="background: rgba(139, 92, 246, 0.05); padding: 16px; border-radius: 8px;">
+            <p style="color: rgba(255, 255, 255, 0.9); margin: 0; line-height: 1.7;">
+              <strong style="color: #c084fc;">18 (31) августа</strong> ударные корпуса 8-й армии начали наступление, которым удалось на некоторых участках занять 1-2 линии неприятельских окопов, а также деревни Шельвов, Бубнов и Корытницу, но большую часть захваченного пришлось под влиянием немецких контратак уступить обратно. <strong style="color: #c084fc;">21 августа (3 сентября)</strong> генерал Каледин повторил удар, но с тем же результатом.
+            </p>
+          </div>
+        </div>
+      </div>`
     },
 
     'halych_offensive': {
       title: 'Наступление на Галич',
       subtitle: '18 (31) августа 1916 года',
-      content: `Общее наступление Юго-Западного фронта под командованием генерала А. А. Брусилова.
+      content: `<div style="max-width: 1200px; margin: 0 auto;">
+        <div style="background: rgba(34, 197, 94, 0.1); padding: 32px; border-radius: 16px; margin-bottom: 32px; border-left: 4px solid #22c55e;">
+          <p style="font-size: 20px; line-height: 1.6; margin: 0; color: rgba(255, 255, 255, 0.95); font-weight: 400;">
+            В директиве от <strong style="color: #4ade80;">29 июля (11 августа)</strong> Алексеевым указывалось Юго-Западному фронту развить успех левофланговых армий и, по возможности, разъединить австро-германские войска, действующие на фронте Броды-Кимполунг, от главной массы, сосредоточенной на Ковельском и Владимиро-Волынском направлениях.
+          </p>
+        </div>
 
-        Дата атаки:
-        • Планировалось на 16 (29) августа 1916 года
-        • По просьбе штаба 7-й армии отложено на два дня
-        • Фактически началось 18 (31) августа 1916 года
-        
-        Руководство:
-        • Командующий Юго-Западным фронтом: генерал А. А. Брусилов
-        • На Галич наступала 7-я армия под командованием генерала Щербачёва
-        
-        Участвующие армии и направления:
-        • 8-я армия — на Владимир-Волынский
-        • 11-я армия — на Бережаны
-        • 7-я армия (усиленная 33-м и 41-м корпусами) — на Галич
-        • 9-я армия — на Галич и Мармарош-Сигет`
+        <h2 style="color: #8b5cf6; font-size: 28px; font-weight: 700; margin: 40px 0 24px 0; text-align: center; border-bottom: 2px solid rgba(139, 92, 246, 0.3); padding-bottom: 16px;">
+          📋 Планирование операции
+        </h2>
+
+        <div style="background: rgba(139, 92, 246, 0.1); padding: 24px; border-radius: 12px; border-left: 4px solid #a855f7; margin-bottom: 32px;">
+          <p style="color: rgba(255, 255, 255, 0.9); margin: 0 0 20px 0; line-height: 1.7; font-size: 18px;">
+            Во исполнение этой директивы <strong style="color: #c084fc;">4 (17) августа</strong> командующий Юго-Западным фронтом генерал А. А. Брусилов приказал своим армиям наступать <strong style="color: #c084fc;">16-го (29-го) числа</strong>.
+          </p>
+
+          <h3 style="color: #c084fc; margin: 0 0 16px 0; font-size: 20px; font-weight: 600;">
+            🎯 Первоначальные задачи армий
+          </h3>
+          <ul style="margin: 0; padding-left: 20px; color: rgba(255, 255, 255, 0.85); line-height: 1.8;">
+            <li><strong style="color: #c084fc;">8-й армии</strong> — атаковать на Владимир-Волынский</li>
+            <li><strong style="color: #c084fc;">11-й армии</strong> — на Бережаны</li>
+            <li><strong style="color: #c084fc;">7-й армии</strong> — способствовать соседям</li>
+            <li><strong style="color: #c084fc;">9-й армии</strong> — наступать по двум расходящимся направлениям — на Галич и на Мармарош—Сигет</li>
+          </ul>
+
+          <div style="background: rgba(139, 92, 246, 0.05); padding: 16px; border-radius: 8px; margin-top: 20px;">
+            <p style="color: rgba(255, 255, 255, 0.9); margin: 0; line-height: 1.7;">
+              <strong style="color: #c084fc;">Изменение плана:</strong> Ввиду протеста генерала Лечицкого галичское направление было передано вместе с нацеленными на него 33-им и 41-ым корпусами в 7-ю армию.
+            </p>
+          </div>
+
+          <div style="background: rgba(245, 158, 11, 0.1); padding: 16px; border-radius: 8px; margin-top: 16px;">
+            <p style="color: rgba(255, 255, 255, 0.9); margin: 0; line-height: 1.7;">
+              Все наступление было отложено на два дня по просьбе штаба 7-й армии, производившей перегруппировку ввиду нового своего задания — наступать на Галич. <strong style="color: #f59e0b;">18 (31) августа</strong> армии Юго-Западного фронта перешли в общее наступление.
+            </p>
+          </div>
+        </div>
+
+        <h2 style="color: #22c55e; font-size: 28px; font-weight: 700; margin: 40px 0 24px 0; text-align: center; border-bottom: 2px solid rgba(34, 197, 94, 0.3); padding-bottom: 16px;">
+          ⚔️ Наступление 7-й армии генерала Щербачёва
+        </h2>
+
+        <div style="background: rgba(34, 197, 94, 0.1); padding: 24px; border-radius: 12px; border-left: 4px solid #22c55e; margin-bottom: 32px;">
+          <p style="color: rgba(255, 255, 255, 0.9); margin: 0 0 20px 0; line-height: 1.7; font-size: 18px;">
+            7-й армии генерала Щербачёва после <strong style="color: #4ade80;">пятидневных боёв</strong> удалось <strong style="color: #4ade80;">23 августа (5 сентября)</strong> силами центральных трёх корпусов прорвать оборону германской Южной армии генерала Ботмера и выйти к рекам Гнилая Липа и Нараевка.
+          </p>
+
+          <div style="text-align: center; padding: 20px; background: rgba(34, 197, 94, 0.05); border-radius: 8px; margin-bottom: 20px;">
+            <div style="font-size: 20px; font-weight: 700; color: #4ade80; margin-bottom: 8px;">Ширина прорыва:</div>
+            <div style="font-size: 28px; font-weight: 700; color: #4ade80;">10 км</div>
+          </div>
+
+          <div style="background: rgba(34, 197, 94, 0.05); padding: 16px; border-radius: 8px; margin-bottom: 20px;">
+            <p style="color: rgba(255, 255, 255, 0.9); margin: 0; line-height: 1.7;">
+              Днем <strong style="color: #4ade80;">25 августа (7 сентября)</strong> после мощной артподготовки:
+            </p>
+            <ul style="margin: 12px 0 0 20px; padding: 0; color: rgba(255, 255, 255, 0.85); line-height: 1.6;">
+              <li><strong style="color: #4ade80;">33-й корпус</strong> переправился через Гнилую Липу севернее Галича и Нараевку у Большовцев</li>
+              <li><strong style="color: #4ade80;">22-й корпус</strong> — у Скоморох</li>
+            </ul>
+          </div>
+
+          <div style="background: rgba(239, 68, 68, 0.05); padding: 16px; border-radius: 8px; margin-bottom: 20px;">
+            <p style="color: rgba(255, 255, 255, 0.9); margin: 0; line-height: 1.7;">
+              <strong style="color: #ef4444;">26 августа (8 сентября)</strong> подошедшие немецкие резервы (две дивизии) контратаками заставили русские войска оставить захваченные плацдармы и отступить за реки.
+            </p>
+          </div>
+
+          <h3 style="color: #4ade80; margin: 20px 0 16px 0; font-size: 20px; font-weight: 600;">
+            📊 Итоги операции 7-й армии
+          </h3>
+          
+          <p style="color: rgba(255, 255, 255, 0.9); margin: 0 0 16px 0; line-height: 1.7;">
+            Несмотря на то что наступление 7-й армии на Галич завершилось захватом незначительной территории, в ходе операции <strong style="color: #4ade80;">10 пехотных дивизий генерала Щербачёва разгромили 14,5 неприятельских</strong> (7 германских, 5,5 австро-венгерских, 2 турецких).
+          </p>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 16px;">
+            <div style="text-align: center; background: rgba(34, 197, 94, 0.05); padding: 12px; border-radius: 8px;">
+              <div style="font-size: 20px; font-weight: 700; color: #4ade80;">29 000</div>
+              <div style="color: rgba(255, 255, 255, 0.8); font-size: 12px;">пленных</div>
+              <div style="color: rgba(255, 255, 255, 0.7); font-size: 11px;">(8500 германцев)</div>
+            </div>
+            <div style="text-align: center; background: rgba(34, 197, 94, 0.05); padding: 12px; border-radius: 8px;">
+              <div style="font-size: 20px; font-weight: 700; color: #4ade80;">25</div>
+              <div style="color: rgba(255, 255, 255, 0.8); font-size: 12px;">орудий</div>
+            </div>
+            <div style="text-align: center; background: rgba(34, 197, 94, 0.05); padding: 12px; border-radius: 8px;">
+              <div style="font-size: 20px; font-weight: 700; color: #4ade80;">30</div>
+              <div style="color: rgba(255, 255, 255, 0.8); font-size: 12px;">миномётов</div>
+            </div>
+            <div style="text-align: center; background: rgba(34, 197, 94, 0.05); padding: 12px; border-radius: 8px;">
+              <div style="font-size: 20px; font-weight: 700; color: #4ade80;">200</div>
+              <div style="color: rgba(255, 255, 255, 0.8); font-size: 12px;">пулемётов</div>
+            </div>
+          </div>
+
+          <div style="background: rgba(34, 197, 94, 0.05); padding: 16px; border-radius: 8px; margin-top: 16px;">
+            <p style="color: rgba(255, 255, 255, 0.9); margin: 0; line-height: 1.7; text-align: center; font-style: italic;">
+              И <strong style="color: #4ade80;">огромная добыча</strong>
+            </p>
+          </div>
+        </div>
+
+        <h2 style="color: #f59e0b; font-size: 28px; font-weight: 700; margin: 40px 0 24px 0; text-align: center; border-bottom: 2px solid rgba(245, 158, 11, 0.3); padding-bottom: 16px;">
+          🛡️ Действия 11-й армии
+        </h2>
+
+        <div style="background: rgba(245, 158, 11, 0.1); padding: 24px; border-radius: 12px; border-left: 4px solid #f59e0b;">
+          <p style="color: rgba(255, 255, 255, 0.9); margin: 0 0 16px 0; line-height: 1.7; font-size: 18px;">
+            11-я армия (45-й, 5-й Сибирский, 32-й, 17-й, 7-й и вновь переданный 6-й армейский корпуса) генерала Сахарова атаковала тремя левофланговыми корпусами.
+          </p>
+
+          <div style="background: rgba(34, 197, 94, 0.05); padding: 16px; border-radius: 8px; margin-bottom: 16px;">
+            <p style="color: rgba(255, 255, 255, 0.9); margin: 0; line-height: 1.7;">
+              <strong style="color: #4ade80;">7-й армейский корпус</strong> имел тактический успех у Зборова.
+            </p>
+          </div>
+
+          <div style="background: rgba(245, 158, 11, 0.05); padding: 16px; border-radius: 8px;">
+            <p style="color: rgba(255, 255, 255, 0.9); margin: 0; line-height: 1.7;">
+              К <strong style="color: #f59e0b;">22 августа (4 сентября)</strong> наступление здесь замерло.
+            </p>
+          </div>
+        </div>
+      </div>`
     },
 
     'fourth_kovel_battle': {
       title: 'Четвертое Ковельское Сражение',
       subtitle: 'сентябрь - октябрь 1916 года',
-      content: `Последняя попытка захвата Ковеля в рамках Брусиловского наступления.
+      content: `<div style="max-width: 1200px; margin: 0 auto;">
+        <div style="background: rgba(239, 68, 68, 0.1); padding: 32px; border-radius: 16px; margin-bottom: 32px; border-left: 4px solid #ef4444;">
+          <p style="font-size: 20px; line-height: 1.6; margin: 0; color: rgba(255, 255, 255, 0.95); font-weight: 400;">
+            После трехнедельного перерыва в боях под Ковелем Алексеев решил ещё раз атаковать город. На этот раз <strong style="color: #f87171;">общее руководство операцией вновь перешло к Брусилову</strong>, который решил попробовать атаковать в обход с юга, через Владимир-Волынский.
+          </p>
+        </div>
 
-        Ситуация на момент начала:
-        • Русские войска удерживали все города, захваченные в предыдущих операциях
-        • Фронт стабилизировался в районе Ковеля
-        • Противник укрепил оборону
-        
-        Характер операции:
-        • Завершающая фаза Брусиловского наступления
-        • Попытка окончательного прорыва к Ковелю
-        • Ограниченные наступательные действия
-        
-        Результаты:
-        • Ковель так и не был взят
-        • Сохранены все ранее захваченные территории
-        • Переход к позиционной войне`
+        <h2 style="color: #8b5cf6; font-size: 28px; font-weight: 700; margin: 40px 0 24px 0; text-align: center; border-bottom: 2px solid rgba(139, 92, 246, 0.3); padding-bottom: 16px;">
+          🎯 Новая стратегия
+        </h2>
+
+        <div style="background: rgba(139, 92, 246, 0.1); padding: 24px; border-radius: 12px; border-left: 4px solid #a855f7; margin-bottom: 32px;">
+          <p style="color: rgba(255, 255, 255, 0.9); margin: 0 0 20px 0; line-height: 1.7; font-size: 18px;">
+            Для обхода Ковеля с юга <strong style="color: #c084fc;">гвардейские пехотные корпуса были переданы в 8-ю армию</strong>. Западный фронт должен был обеспечивать своим левым флангом наступление Юго-Западного фронта.
+          </p>
+
+          <h3 style="color: #c084fc; margin: 0 0 16px 0; font-size: 20px; font-weight: 600;">
+            📋 Задачи армий
+          </h3>
+          <ul style="margin: 0; padding-left: 20px; color: rgba(255, 255, 255, 0.85); line-height: 1.8;">
+            <li><strong style="color: #c084fc;">11-я и 7-я армии</strong> — наступать на Львов и Галич</li>
+            <li><strong style="color: #c084fc;">9-я армия</strong> — продолжать выполнение прежней задачи в Буковине и Лесистых Карпатах</li>
+          </ul>
+        </div>
+
+        <h2 style="color: #ef4444; font-size: 28px; font-weight: 700; margin: 40px 0 24px 0; text-align: center; border-bottom: 2px solid rgba(239, 68, 68, 0.3); padding-bottom: 16px;">
+          ⚔️ Начало наступления
+        </h2>
+
+        <div style="background: rgba(239, 68, 68, 0.1); padding: 24px; border-radius: 12px; border-left: 4px solid #ef4444; margin-bottom: 32px;">
+          <p style="color: rgba(255, 255, 255, 0.9); margin: 0 0 20px 0; line-height: 1.7; font-size: 18px;">
+            <strong style="color: #f87171;">3 (16) сентября</strong> началось это широко задуманное наступление. Генерал Каледин ударил центром — 40-ым армейским, 2-ым гвардейским, 1-ым гвардейским и 8-ым армейскими корпусами.
+          </p>
+
+          <div style="background: rgba(239, 68, 68, 0.05); padding: 16px; border-radius: 8px; margin-bottom: 20px;">
+            <p style="color: rgba(255, 255, 255, 0.9); margin: 0; line-height: 1.7;">
+              Наступление было отражено по всему фронту у <strong style="color: #f87171;">Шельвова, Бубнова и Корытницы</strong>.
+            </p>
+          </div>
+
+          <div style="background: rgba(239, 68, 68, 0.05); padding: 16px; border-radius: 8px; margin-bottom: 20px;">
+            <p style="color: rgba(255, 255, 255, 0.9); margin: 0; line-height: 1.7;">
+              <strong style="color: #f87171;">7 (20) сентября</strong> Каледин повторил атаку:
+            </p>
+            <ul style="margin: 12px 0 0 20px; padding: 0; color: rgba(255, 255, 255, 0.85); line-height: 1.6;">
+              <li><strong style="color: #f87171;">8-й армейский корпус</strong> овладел Корытницей</li>
+              <li><strong style="color: #f87171;">1-й гвардейский корпус</strong> — Свинюхами</li>
+            </ul>
+          </div>
+
+          <div style="text-align: center; padding: 20px; background: rgba(239, 68, 68, 0.05); border-radius: 8px;">
+            <div style="font-size: 20px; font-weight: 700; color: #ef4444; margin-bottom: 8px;">Цена скромного успеха:</div>
+            <div style="font-size: 28px; font-weight: 700; color: #ef4444;">до 30 000</div>
+            <div style="color: rgba(255, 255, 255, 0.8); font-size: 14px;">человек потерь</div>
+          </div>
+        </div>
+
+        <h2 style="color: #6b7280; font-size: 28px; font-weight: 700; margin: 40px 0 24px 0; text-align: center; border-bottom: 2px solid rgba(107, 114, 128, 0.3); padding-bottom: 16px;">
+          💀 Итог операции
+        </h2>
+
+        <div style="background: rgba(107, 114, 128, 0.1); padding: 24px; border-radius: 12px; border-left: 4px solid #6b7280;">
+          <p style="color: rgba(255, 255, 255, 0.9); margin: 0; line-height: 1.7; font-size: 18px; text-align: center; font-style: italic;">
+            <strong style="color: #9ca3af;">Кровопролитнейшее Четвёртое Ковельское сражение окончилось безрезультатно</strong>
+          </p>
+        </div>
+      </div>`
     },
 
     'fifth_kovel_battle': {
       title: 'Пятое Ковельское сражение',
       subtitle: '17 (30) сентября - октябрь 1916 года',
-      content: `Заключительная фаза боев за Ковель в рамках Брусиловского наступления.
+      content: `<div style="max-width: 1200px; margin: 0 auto;">
+        <div style="background: rgba(6, 182, 212, 0.1); padding: 32px; border-radius: 16px; margin-bottom: 32px; border-left: 4px solid #06b6d4;">
+          <p style="font-size: 20px; line-height: 1.6; margin: 0; color: rgba(255, 255, 255, 0.95); font-weight: 400;">
+            Неудача под Ковелем повлияла на Ставку, и генерал Алексеев под впечатлением августовской победы 7-й армии Щербачёва на «двух Липах» советовал Брусилову перенести центр тяжести на юг — в 7-ю и 9-ю армии. Но <strong style="color: #06b6d4;">Брусилов пренебрег «советами» Ставки и в пятый раз решил повторить наступление</strong>, не удавшееся четыре раза.
+          </p>
+        </div>
 
-        Дата атаки:
-        • Общее наступление всего фронта назначено на 17 (30) сентября 1916 года
-        • Атака Особой и 8-й армий началась 19 сентября (2 октября) 1916 года
-        
-        Руководство:
-        • Брусилов настаивал на продолжении операции
-        • Наступательные действия Особой армии возглавлял генерал В. И. Гурко
-        
-        Участвующие армии:
-        • Особая армия (с 39-м и 40-м корпусами 8-й армии и 4-м Сибирским корпусом)
-        • 8-я армия
-        • 11-я, 7-я и 9-я армии на других направлениях
-        
-        Направления атак:
-        • Особая армия - активная оборона линии Стохода и наступление на Владимир-Волынский
-        • Обход Ковеля с юга через Владимир-Волынский
-        
-        Результаты:
-        • Окончательный переход к позиционной войне
-        • Завершение активной фазы Брусиловского наступления`
+        <h2 style="color: #8b5cf6; font-size: 28px; font-weight: 700; margin: 40px 0 24px 0; text-align: center; border-bottom: 2px solid rgba(139, 92, 246, 0.3); padding-bottom: 16px;">
+          🔄 Новая организация сил
+        </h2>
+
+        <div style="background: rgba(139, 92, 246, 0.1); padding: 24px; border-radius: 12px; border-left: 4px solid #a855f7; margin-bottom: 32px;">
+          <p style="color: rgba(255, 255, 255, 0.9); margin: 0 0 20px 0; line-height: 1.7; font-size: 18px;">
+            <strong style="color: #c084fc;">Особой армии</strong> (командующий генерал В. И. Гурко) были переданы правофланговые 39-й и 40-й армейские корпуса 8-й армии и 4-й Сибирский корпус резерва фронта.
+          </p>
+
+          <h3 style="color: #c084fc; margin: 0 0 16px 0; font-size: 20px; font-weight: 600;">
+            🎯 Задачи армий
+          </h3>
+          <ul style="margin: 0; padding-left: 20px; color: rgba(255, 255, 255, 0.85); line-height: 1.8;">
+            <li><strong style="color: #c084fc;">Особая армия</strong> — активная оборона линии Стохода («короткими ударами») и решительное наступление на Владимир-Волынский левым флангом в обход Ковеля с юга</li>
+            <li><strong style="color: #c084fc;">8-я армия</strong> — содействовать генералу Гурко наступлением на Грубешов</li>
+            <li><strong style="color: #c084fc;">11-я армия</strong> — по-прежнему бить на Львов</li>
+            <li><strong style="color: #c084fc;">7-я армия</strong> — на Галич (усилена за счет 11-й 3-м Кавказским корпусом)</li>
+            <li><strong style="color: #c084fc;">9-я армия</strong> — на Дорна-Ватру</li>
+          </ul>
+
+          <div style="background: rgba(139, 92, 246, 0.05); padding: 16px; border-radius: 8px; margin-top: 20px;">
+            <p style="color: rgba(255, 255, 255, 0.9); margin: 0; line-height: 1.7;">
+              Общее наступление всего фронта было назначено на <strong style="color: #c084fc;">17 (30) сентября</strong>.
+            </p>
+          </div>
+        </div>
+
+        <h2 style="color: #ef4444; font-size: 28px; font-weight: 700; margin: 40px 0 24px 0; text-align: center; border-bottom: 2px solid rgba(239, 68, 68, 0.3); padding-bottom: 16px;">
+          💥 Начало атаки
+        </h2>
+
+        <div style="background: rgba(239, 68, 68, 0.1); padding: 24px; border-radius: 12px; border-left: 4px solid #ef4444; margin-bottom: 32px;">
+          <p style="color: rgba(255, 255, 255, 0.9); margin: 0 0 20px 0; line-height: 1.7; font-size: 18px;">
+            <strong style="color: #f87171;">19 сентября (2 октября)</strong> после внушительной артиллерийской подготовки, на которую энергично отвечал и противник, Особая и 8-я армии начали атаку.
+          </p>
+
+          <div style="text-align: center; padding: 20px; background: rgba(239, 68, 68, 0.05); border-radius: 8px; margin-bottom: 20px;">
+            <div style="font-size: 20px; font-weight: 700; color: #ef4444; margin-bottom: 8px;">Соотношение сил:</div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+              <div>
+                <div style="font-size: 24px; font-weight: 700; color: #ef4444;">14</div>
+                <div style="color: rgba(255, 255, 255, 0.8); font-size: 14px;">русских дивизий</div>
+              </div>
+              <div>
+                <div style="font-size: 24px; font-weight: 700; color: #ef4444;">12</div>
+                <div style="color: rgba(255, 255, 255, 0.8); font-size: 14px;">неприятельских дивизий</div>
+              </div>
+            </div>
+          </div>
+
+          <div style="background: rgba(239, 68, 68, 0.05); padding: 16px; border-radius: 8px; margin-bottom: 20px;">
+            <p style="color: rgba(255, 255, 255, 0.9); margin: 0; line-height: 1.7;">
+              Противник: германская группа Бекмана, 6-й германский корпус Марвица и IV австро-венгерская армия, занимавших оборудованные по-крепостному позиции и располагавших <strong style="color: #f87171;">вдвое сильнейшей артиллерией</strong>.
+            </p>
+          </div>
+        </div>
+
+        <h2 style="color: #22c55e; font-size: 28px; font-weight: 700; margin: 40px 0 24px 0; text-align: center; border-bottom: 2px solid rgba(34, 197, 94, 0.3); padding-bottom: 16px;">
+          ⚔️ Ход сражения
+        </h2>
+
+        <div style="background: rgba(34, 197, 94, 0.1); padding: 24px; border-radius: 12px; border-left: 4px solid #22c55e; margin-bottom: 32px;">
+          <h3 style="color: #4ade80; margin: 0 0 16px 0; font-size: 20px; font-weight: 600;">
+            🌟 Особая армия
+          </h3>
+          
+          <p style="color: rgba(255, 255, 255, 0.9); margin: 0 0 16px 0; line-height: 1.7;">
+            Особая армия атаковала левым крылом, развернув <strong style="color: #4ade80;">39-й, 25-й, 34-й и 40-й армейские корпуса</strong>.
+          </p>
+
+          <div style="background: rgba(239, 68, 68, 0.05); padding: 16px; border-radius: 8px; margin-bottom: 20px;">
+            <p style="color: rgba(255, 255, 255, 0.9); margin: 0; line-height: 1.7;">
+              На второй день наступления в Особой армии почувствовался <strong style="color: #f87171;">недостаток тяжелых снарядов</strong>, и при их неподвозе Гурко грозил 22 сентября (5 октября) операцию даже при успехе приостановить.
+            </p>
+          </div>
+
+          <div style="background: rgba(34, 197, 94, 0.05); padding: 16px; border-radius: 8px; margin-bottom: 20px;">
+            <p style="color: rgba(255, 255, 255, 0.9); margin: 0; line-height: 1.7;">
+              Слабость технических средств не могла возместиться доблестью войск. Решительный Гурко продолжал непрерывно наносить удары, пока <strong style="color: #4ade80;">22 сентября (5 октября) не истощил своих войск</strong>.
+            </p>
+          </div>
+
+          <h3 style="color: #4ade80; margin: 20px 0 16px 0; font-size: 20px; font-weight: 600;">
+            🛡️ 8-я армия
+          </h3>
+
+          <p style="color: rgba(255, 255, 255, 0.9); margin: 0 0 16px 0; line-height: 1.7;">
+            8-я армия нанесла удар тремя правофланговыми корпусами — <strong style="color: #4ade80;">1-м гвардейским, 2-м гвардейским и 8-м армейским</strong>.
+          </p>
+
+          <div style="background: rgba(239, 68, 68, 0.05); padding: 16px; border-radius: 8px; margin-bottom: 16px;">
+            <p style="color: rgba(255, 255, 255, 0.9); margin: 0; line-height: 1.7;">
+              Большинство атак были отражены противником ружейным, пулемётным и заградительным артиллерийским огнем, а также контратаками. Атака Квадратного леса закончилась неудачей.
+            </p>
+          </div>
+
+          <div style="background: rgba(34, 197, 94, 0.05); padding: 16px; border-radius: 8px;">
+            <p style="color: rgba(255, 255, 255, 0.9); margin: 0; line-height: 1.7;">
+              Только <strong style="color: #4ade80;">преображенцы</strong> удержали за собой высоту в двух верстах севернее Корытницы и закрепились на ней.
+            </p>
+          </div>
+        </div>
+
+        <h2 style="color: #f59e0b; font-size: 28px; font-weight: 700; margin: 40px 0 24px 0; text-align: center; border-bottom: 2px solid rgba(245, 158, 11, 0.3); padding-bottom: 16px;">
+          ⏸️ Завершение операции
+        </h2>
+
+        <div style="background: rgba(245, 158, 11, 0.1); padding: 24px; border-radius: 12px; border-left: 4px solid #f59e0b; margin-bottom: 32px;">
+          <p style="color: rgba(255, 255, 255, 0.9); margin: 0 0 20px 0; line-height: 1.7; font-size: 18px;">
+            К <strong style="color: #f59e0b;">22 сентября (5 октября)</strong> войска на фронтах обеих армий выдохлись и атаки постепенно заглохли.
+          </p>
+
+          <div style="background: rgba(139, 92, 246, 0.05); padding: 16px; border-radius: 8px; margin-bottom: 20px;">
+            <p style="color: rgba(255, 255, 255, 0.9); margin: 0; line-height: 1.7;">
+              Несмотря на видимую неудачу, <strong style="color: #c084fc;">Брусилов настаивал на продолжении операции</strong>, ожидая от неё успеха.
+            </p>
+          </div>
+
+          <div style="background: rgba(239, 68, 68, 0.05); padding: 16px; border-radius: 8px; margin-bottom: 20px;">
+            <p style="color: rgba(255, 255, 255, 0.9); margin: 0; line-height: 1.7;">
+              <strong style="color: #f87171;">Алексеев этому уже не верил</strong>, а усложнявшаяся обстановка в Румынии влекла все его внимание на юг, и потому для него было весьма важно поскорее прекратить Ковельскую операцию, невольно отвлекающую силы в другую сторону.
+            </p>
+          </div>
+
+          <div style="background: rgba(107, 114, 128, 0.1); padding: 16px; border-radius: 8px;">
+            <p style="color: rgba(255, 255, 255, 0.9); margin: 0; line-height: 1.7;">
+              <strong style="color: #9ca3af;">Верховный Главнокомандующий (Николай II)</strong> решительно воспротивился дальнейшему развитию операции Особой и 8-й армий, находя, что она пообещает наименьший успех при громадных потерях.
+            </p>
+          </div>
+        </div>
+
+        <h2 style="color: #6b7280; font-size: 28px; font-weight: 700; margin: 40px 0 24px 0; text-align: center; border-bottom: 2px solid rgba(107, 114, 128, 0.3); padding-bottom: 16px;">
+          🏁 Конец Брусиловского наступления
+        </h2>
+
+        <div style="background: rgba(107, 114, 128, 0.1); padding: 24px; border-radius: 12px; border-left: 4px solid #6b7280;">
+          <p style="color: rgba(255, 255, 255, 0.9); margin: 0; line-height: 1.7; font-size: 18px; text-align: center; font-style: italic;">
+            Таким образом завершилась <strong style="color: #9ca3af;">активная фаза Брусиловского наступления</strong> — одной из самых значительных операций Первой мировой войны.
+          </p>
+        </div>
+      </div>`
     },
 
 
