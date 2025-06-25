@@ -743,6 +743,36 @@ export default function BrusilovOffensiveMap() {
       url: 'https://upload.wikimedia.org/wikipedia/commons/f/f5/Трофеи._Юго-Западный_фронт.png',
       title: 'Захваченные австрийские орудия',
       description: 'Австрийские орудия, захваченные русскими войсками'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Niva_magazine%2C_1916%2C_No_30._img_011.jpg/2880px-Niva_magazine%2C_1916%2C_No_30._img_011.jpg',
+      title: 'Взятый австрийский окоп',
+      description: 'Захваченные русскими войсками австрийские укрепления'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/9/92/01916_Maschinen_Gewehr_Abteilung_3.4_in_der_Waldstellung_beim_Infanterieregiment_4.jpg',
+      title: 'Австрийские пулеметчики на позиции',
+      description: 'Пулеметное отделение 3.4 австро-венгерского пехотного полка №4 в лесных позициях'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/f/fc/01916_Zarzece_am_Stochod.jpg',
+      title: 'Австрийские позиции вдоль Стохода',
+      description: 'Австро-венгерские оборонительные позиции у местечка Зажече на реке Стоход'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Ignacy_Paweł_Fudakowski_-_Rosyjski_12_Dywizjon_Artylerii_Moździerzy_na_Wołyniu_%2894-95-7%29.jpg/2880px-Ignacy_Paweł_Fudakowski_-_Rosyjski_12_Dywizjon_Artylerii_Moździerzy_na_Wołyniu_%2894-95-7%29.jpg',
+      title: 'Российская артиллерия в действии',
+      description: 'Русский 12-й дивизион минометной артиллерии на Волыни'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/4/4f/Turkish_troops_in_Galicia_repel_a_Russian_attack_at_Zolota_Lipa_on_August_17%2C_1916.png',
+      title: 'Турки отражают атаку русских в боях на Золотой Липе',
+      description: 'Турецкие войска в Галиции отражают русскую атаку на реке Золотая Липа 17 августа 1916 года'
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Batterie_3_L.F.A.B.11_westlich_Szelwow2.jpg/960px-Batterie_3_L.F.A.B.11_westlich_Szelwow2.jpg',
+      title: 'Немецкая тяжелая полевая гаубица «15-cm-sFH 93» в укрытии к западу от Шельвова',
+      description: 'Батарея №3 немецкого тяжелого полевого артиллерийского батальона №11 западнее Шельвова'
     }
   ];
 
@@ -5199,25 +5229,13 @@ export default function BrusilovOffensiveMap() {
                   onClick={() => selectGalleryImage(index)}
                   style={{
                     background: 'none',
-                    border: currentGalleryImage === index ? '2px solid #a855f7' : '2px solid transparent',
+                    border: '2px solid transparent',
                     borderRadius: '8px',
                     padding: '4px',
                     cursor: 'pointer',
                     transition: 'all 0.3s ease',
                     flexShrink: 0,
                     opacity: currentGalleryImage === index ? 1 : 0.6
-                  }}
-                  onMouseEnter={(e) => {
-                    e.target.style.opacity = '1';
-                    if (currentGalleryImage !== index) {
-                      e.target.style.borderColor = 'rgba(168, 85, 247, 0.5)';
-                    }
-                  }}
-                  onMouseLeave={(e) => {
-                    if (currentGalleryImage !== index) {
-                      e.target.style.opacity = '0.6';
-                      e.target.style.borderColor = 'transparent';
-                    }
                   }}
                 >
                   <img
