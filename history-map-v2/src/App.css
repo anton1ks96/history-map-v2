@@ -177,6 +177,11 @@
   opacity: 1;
 }
 
+.intro-video.blur {
+  filter: blur(8px);
+  transition: filter 1s ease-in-out;
+}
+
 .intro-overlay {
   position: absolute;
   top: 0;
@@ -708,17 +713,49 @@ button:focus, select:focus, input:focus {
   outline: none;
 }
 
-/* Стили для элементов управления в панели - как кнопка легенды */
+/* Анимация для панели управления */
+.map-container > div > div > div:last-child {
+  animation: controlPanelSlideIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1.5s both;
+}
+
+.map-container > div > div > div:last-child:hover {
+  transform: translateX(-50%) translateY(-5px);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), 0 12px 30px rgba(0, 0, 0, 0.4);
+}
+
+@keyframes controlPanelSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(30px) scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+}
+
+/* Стили для элементов управления в панели */
 .control-element:hover {
-  background: rgba(40, 40, 60, 0.9) !important;
-  border-color: rgba(255, 255, 255, 0.3) !important;
-  transform: translateY(-1px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+  background: linear-gradient(135deg, rgba(50, 50, 100, 0.95) 0%, rgba(40, 40, 80, 0.95) 100%) !important;
+  border-color: rgba(255, 255, 255, 0.35) !important;
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+}
+
+/* Анимация стрелки при hover на select */
+.control-element:hover + div {
+  transform: translateY(-50%) translateY(-2px) scale(1.02) !important;
+  color: rgba(255, 255, 255, 0.8) !important;
 }
 
 .control-element:active {
   transform: translateY(0) scale(0.98);
   transition: all 0.1s ease;
+}
+
+/* Анимация стрелки при active на select */
+.control-element:active + div {
+  transform: translateY(-50%) translateY(0px) scale(0.98) !important;
 }
 
 /* Мобильные стили для анимации заголовка и карты */
@@ -733,6 +770,18 @@ button:focus, select:focus, input:focus {
     letter-spacing: 0.6px !important;
     top: 20px !important;
     right: 20px !important;
+  }
+  
+  /* Панель управления на планшетах */
+  .map-container > div > div > div:last-child {
+    padding: 18px 24px !important;
+    border-radius: 24px !important;
+    gap: 18px !important;
+  }
+  
+  .control-element {
+    min-width: 280px !important;
+    font-size: 13px !important;
   }
 }
 
@@ -752,5 +801,20 @@ button:focus, select:focus, input:focus {
     top: 16px !important;
     right: 16px !important;
     border-radius: 12px !important;
+  }
+  
+  /* Панель управления на мобильных */
+  .map-container > div > div > div:last-child {
+    padding: 16px 20px !important;
+    border-radius: 20px !important;
+    flex-direction: column !important;
+    gap: 16px !important;
+    max-width: calc(100vw - 32px) !important;
+  }
+  
+  .control-element {
+    min-width: 250px !important;
+    font-size: 13px !important;
+    padding: 10px 40px 10px 16px !important;
   }
 }
