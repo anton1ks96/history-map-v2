@@ -6,6 +6,9 @@ import './App.css';
 import brusilovData from './brusilovData.json';
 import citiesData from './citiesData.json';
 import NewVideo from './assets/NewVideo.mp4';
+import ArtemPhoto from './assets/photo_2024-10-17_16-45-07.jpg';
+import IvanPhoto from './assets/photo_2025-04-21_00-29-51.jpg';
+import IlyaPhoto from './assets/photo_2025-05-20_23-52-26.jpg';
 
 
 // Фикс для иконок Leaflet в React
@@ -3389,7 +3392,7 @@ export default function BrusilovOffensiveMap() {
                   position: 'absolute',
                   top: '24px',
                   right: '300px',
-                  background: 'linear-gradient(135deg, rgba(34, 197, 94, 0.8) 0%, rgba(22, 163, 74, 0.8) 50%, rgba(21, 128, 61, 0.8) 100%)',
+                  background: 'linear-gradient(135deg, rgba(220, 38, 38, 0.8) 0%, rgba(239, 68, 68, 0.8) 50%, rgba(185, 28, 28, 0.8) 100%)',
                   border: '1px solid rgba(255, 255, 255, 0.2)',
                   borderRadius: '16px',
                   padding: '12px 20px',
@@ -3399,7 +3402,7 @@ export default function BrusilovOffensiveMap() {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  boxShadow: '0 15px 35px rgba(34, 197, 94, 0.4), 0 5px 15px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)',
+                  boxShadow: '0 15px 35px rgba(220, 38, 38, 0.4), 0 5px 15px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)',
                   transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
                   outline: 'none',
                   color: '#ffffff',
@@ -3413,24 +3416,24 @@ export default function BrusilovOffensiveMap() {
                 }}
                 title="Контакты разработчиков"
                 onMouseEnter={(e) => {
-                  e.target.style.background = 'linear-gradient(135deg, rgba(34, 197, 94, 0.95) 0%, rgba(22, 163, 74, 0.95) 50%, rgba(21, 128, 61, 0.95) 100%)';
+                  e.target.style.background = 'linear-gradient(135deg, rgba(220, 38, 38, 0.95) 0%, rgba(239, 68, 68, 0.95) 50%, rgba(185, 28, 28, 0.95) 100%)';
                   e.target.style.transform = 'translateY(-4px) scale(1.02)';
-                  e.target.style.boxShadow = '0 25px 50px rgba(34, 197, 94, 0.6), 0 10px 25px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3)';
+                  e.target.style.boxShadow = '0 25px 50px rgba(220, 38, 38, 0.6), 0 10px 25px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3)';
                   e.target.style.letterSpacing = '1px';
                 }}
                 onMouseLeave={(e) => {
-                  e.target.style.background = 'linear-gradient(135deg, rgba(34, 197, 94, 0.8) 0%, rgba(22, 163, 74, 0.8) 50%, rgba(21, 128, 61, 0.8) 100%)';
+                  e.target.style.background = 'linear-gradient(135deg, rgba(220, 38, 38, 0.8) 0%, rgba(239, 68, 68, 0.8) 50%, rgba(185, 28, 28, 0.8) 100%)';
                   e.target.style.transform = 'translateY(0) scale(1)';
-                  e.target.style.boxShadow = '0 15px 35px rgba(34, 197, 94, 0.4), 0 5px 15px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)';
+                  e.target.style.boxShadow = '0 15px 35px rgba(220, 38, 38, 0.4), 0 5px 15px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)';
                   e.target.style.letterSpacing = '0.8px';
                 }}
                 onMouseDown={(e) => {
                   e.target.style.transform = 'translateY(-1px) scale(0.98)';
-                  e.target.style.boxShadow = '0 15px 30px rgba(34, 197, 94, 0.5), 0 5px 15px rgba(0, 0, 0, 0.3)';
+                  e.target.style.boxShadow = '0 15px 30px rgba(220, 38, 38, 0.5), 0 5px 15px rgba(0, 0, 0, 0.3)';
                 }}
                 onMouseUp={(e) => {
                   e.target.style.transform = 'translateY(-4px) scale(1.02)';
-                  e.target.style.boxShadow = '0 25px 50px rgba(34, 197, 94, 0.6), 0 10px 25px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3)';
+                  e.target.style.boxShadow = '0 25px 50px rgba(220, 38, 38, 0.6), 0 10px 25px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3)';
                 }}
               >
                 <svg
@@ -3519,7 +3522,7 @@ export default function BrusilovOffensiveMap() {
                   position: 'absolute',
                   bottom: '24px',
                   left: '80px',
-                  background: 'rgba(26, 26, 46, 0.9)',
+                  background: 'linear-gradient(135deg, rgba(26, 26, 46, 0.9) 0%, rgba(22, 33, 62, 0.9) 50%, rgba(15, 15, 35, 0.9) 100%)',
                   padding: '24px',
                   borderRadius: '16px',
                   boxShadow: '0 16px 40px rgba(0, 0, 0, 0.3)',
@@ -4379,7 +4382,7 @@ export default function BrusilovOffensiveMap() {
               width: '90%',
               maxHeight: '80vh',
               overflow: 'auto',
-              boxShadow: '0 25px 50px rgba(0, 0, 0, 0.5), 0 0 80px rgba(34, 197, 94, 0.3)',
+              boxShadow: '0 25px 50px rgba(0, 0, 0, 0.5), 0 0 80px rgba(99, 102, 241, 0.3)',
               border: '1px solid rgba(255, 255, 255, 0.2)',
               backdropFilter: 'blur(20px)'
             }}
@@ -4423,31 +4426,59 @@ export default function BrusilovOffensiveMap() {
               <button
                 onClick={closeContactsModal}
                 style={{
-                  background: 'transparent',
-                  border: 'none',
-                  color: 'rgba(255, 255, 255, 0.6)',
-                  fontSize: '28px',
+                  background: 'linear-gradient(135deg, rgba(220, 38, 38, 0.8) 0%, rgba(239, 68, 68, 0.8) 100%)',
+                  border: '1px solid rgba(255, 255, 255, 0.2)',
+                  borderRadius: '16px',
+                  fontSize: '20px',
                   cursor: 'pointer',
-                  padding: '0',
-                  width: '32px',
-                  height: '32px',
-                  borderRadius: '50%',
-                  transition: 'all 0.3s ease',
+                  padding: '14px',
+                  width: '56px',
+                  height: '56px',
+                  color: '#ffffff',
                   display: 'flex',
                   alignItems: 'center',
-                  justifyContent: 'center'
+                  justifyContent: 'center',
+                  transition: 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+                  flexShrink: 0,
+                  outline: 'none',
+                  boxShadow: '0 8px 25px rgba(220, 38, 38, 0.3), 0 4px 12px rgba(0, 0, 0, 0.2)',
+                  backdropFilter: 'blur(15px)',
+                  textShadow: '0 1px 2px rgba(0, 0, 0, 0.3)'
                 }}
                 onMouseEnter={(e) => {
-                  e.target.style.background = 'rgba(255, 255, 255, 0.1)';
-                  e.target.style.color = '#ffffff';
+                  e.target.style.background = 'linear-gradient(135deg, rgba(220, 38, 38, 0.9) 0%, rgba(239, 68, 68, 0.9) 100%)';
+                  e.target.style.transform = 'scale(1.05) translateY(-2px)';
+                  e.target.style.boxShadow = '0 12px 35px rgba(220, 38, 38, 0.4), 0 6px 16px rgba(0, 0, 0, 0.3)';
                 }}
                 onMouseLeave={(e) => {
-                  e.target.style.background = 'transparent';
-                  e.target.style.color = 'rgba(255, 255, 255, 0.6)';
+                  e.target.style.background = 'linear-gradient(135deg, rgba(220, 38, 38, 0.8) 0%, rgba(239, 68, 68, 0.8) 100%)';
+                  e.target.style.transform = 'scale(1) translateY(0px)';
+                  e.target.style.boxShadow = '0 8px 25px rgba(220, 38, 38, 0.3), 0 4px 12px rgba(0, 0, 0, 0.2)';
                 }}
-                title="Закрыть"
+                onMouseDown={(e) => {
+                  e.target.style.transform = 'scale(0.95)';
+                }}
+                onMouseUp={(e) => {
+                  e.target.style.transform = 'scale(1.05) translateY(-2px)';
+                }}
+                title="Закрыть (ESC)"
               >
-                ×
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  style={{
+                    filter: 'drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3))'
+                  }}
+                >
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
               </button>
             </div>
 
@@ -4465,12 +4496,31 @@ export default function BrusilovOffensiveMap() {
                 border: '1px solid rgba(255, 255, 255, 0.1)',
                 transition: 'all 0.3s ease'
               }}>
+                <img
+                  src={ArtemPhoto}
+                  alt="Артем Джапаридзе"
+                  style={{
+                    width: '80px',
+                    height: '80px',
+                    borderRadius: '50%',
+                    objectFit: 'cover',
+                    border: '3px solid #6366f1',
+                    flexShrink: 0,
+                    transition: 'all 0.3s ease',
+                    boxShadow: '0 4px 15px rgba(99, 102, 241, 0.3)'
+                  }}
+                  onError={(e) => {
+                    // Фолбэк на инициалы если изображение не загрузится
+                    e.target.style.display = 'none';
+                    e.target.nextElementSibling.style.display = 'flex';
+                  }}
+                />
                 <div style={{
                   width: '80px',
                   height: '80px',
                   borderRadius: '50%',
                   background: 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)',
-                  display: 'flex',
+                  display: 'none',
                   alignItems: 'center',
                   justifyContent: 'center',
                   fontSize: '24px',
@@ -4500,7 +4550,8 @@ export default function BrusilovOffensiveMap() {
                     Разработчик
                   </p>
                   <a
-                    href="#"
+                    href="https://t.me/airsss993"
+                    target="_blank"
                     style={{
                       color: '#6366f1',
                       textDecoration: 'none',
@@ -4532,12 +4583,31 @@ export default function BrusilovOffensiveMap() {
                 border: '1px solid rgba(255, 255, 255, 0.1)',
                 transition: 'all 0.3s ease'
               }}>
+                <img
+                  src={IvanPhoto}
+                  alt="Иван Коломацкий"
+                  style={{
+                    width: '80px',
+                    height: '80px',
+                    borderRadius: '50%',
+                    objectFit: 'cover',
+                    border: '3px solid #22c55e',
+                    flexShrink: 0,
+                    transition: 'all 0.3s ease',
+                    boxShadow: '0 4px 15px rgba(34, 197, 94, 0.3)'
+                  }}
+                  onError={(e) => {
+                    // Фолбэк на инициалы если изображение не загрузится
+                    e.target.style.display = 'none';
+                    e.target.nextElementSibling.style.display = 'flex';
+                  }}
+                />
                 <div style={{
                   width: '80px',
                   height: '80px',
                   borderRadius: '50%',
                   background: 'linear-gradient(135deg, #22c55e 0%, #16a34a 100%)',
-                  display: 'flex',
+                  display: 'none',
                   alignItems: 'center',
                   justifyContent: 'center',
                   fontSize: '24px',
@@ -4567,7 +4637,8 @@ export default function BrusilovOffensiveMap() {
                     Разработчик
                   </p>
                   <a
-                    href="#"
+                    href="https://t.me/IKolomatskii"
+                    target="_blank"
                     style={{
                       color: '#22c55e',
                       textDecoration: 'none',
@@ -4599,12 +4670,31 @@ export default function BrusilovOffensiveMap() {
                 border: '1px solid rgba(255, 255, 255, 0.1)',
                 transition: 'all 0.3s ease'
               }}>
+                <img
+                  src={IlyaPhoto}
+                  alt="Илья Некрасов"
+                  style={{
+                    width: '80px',
+                    height: '80px',
+                    borderRadius: '50%',
+                    objectFit: 'cover',
+                    border: '3px solid #f59e0b',
+                    flexShrink: 0,
+                    transition: 'all 0.3s ease',
+                    boxShadow: '0 4px 15px rgba(245, 158, 11, 0.3)'
+                  }}
+                  onError={(e) => {
+                    // Фолбэк на инициалы если изображение не загрузится
+                    e.target.style.display = 'none';
+                    e.target.nextElementSibling.style.display = 'flex';
+                  }}
+                />
                 <div style={{
                   width: '80px',
                   height: '80px',
                   borderRadius: '50%',
                   background: 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)',
-                  display: 'flex',
+                  display: 'none',
                   alignItems: 'center',
                   justifyContent: 'center',
                   fontSize: '24px',
@@ -4634,7 +4724,8 @@ export default function BrusilovOffensiveMap() {
                     Разработчик
                   </p>
                   <a
-                    href="#"
+                    href="https://t.me/NKSV_ILYA"
+                    target="_blank"
                     style={{
                       color: '#f59e0b',
                       textDecoration: 'none',
