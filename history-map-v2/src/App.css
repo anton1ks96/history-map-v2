@@ -589,10 +589,7 @@ button.legend-button {
   outline: none;
 }
 
-/* Анимация для кнопки информации */
-button.operation-info-button {
-  animation: infoButtonPulse 3s ease-in-out infinite 2s;
-}
+/* Анимация для кнопки информации удалена */
 
 button.legend-button:focus {
   outline: none;
@@ -607,14 +604,7 @@ button.legend-button:focus {
   }
 }
 
-@keyframes infoButtonPulse {
-  0%, 100% {
-    box-shadow: 0 15px 35px rgba(239, 68, 68, 0.4), 0 5px 15px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  }
-  50% {
-    box-shadow: 0 20px 40px rgba(239, 68, 68, 0.6), 0 8px 20px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.25);
-  }
-}
+
 
 /* Эффекты кнопки легенды - точно как у кнопки "Начать исследование" */
 button.legend-button:hover {

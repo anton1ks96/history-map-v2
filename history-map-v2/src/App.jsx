@@ -3476,7 +3476,7 @@ export default function BrusilovOffensiveMap() {
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    boxShadow: '0 8px 25px rgba(34, 197, 94, 0.3), 0 4px 12px rgba(0, 0, 0, 0.2)',
+                    boxShadow: '0 15px 35px rgba(34, 197, 94, 0.4), 0 5px 15px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)',
                     transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
                     outline: 'none',
                     color: '#ffffff',
@@ -3487,12 +3487,22 @@ export default function BrusilovOffensiveMap() {
                     textShadow: '0 1px 2px rgba(0, 0, 0, 0.3)'
                   }}
                   onMouseEnter={(e) => {
-                    e.target.style.transform = 'translateY(-2px) scale(1.02)';
-                    e.target.style.boxShadow = '0 12px 35px rgba(34, 197, 94, 0.4), 0 6px 16px rgba(0, 0, 0, 0.3)';
+                    e.target.style.transform = 'translateY(-4px) scale(1.02)';
+                    e.target.style.boxShadow = '0 25px 50px rgba(34, 197, 94, 0.6), 0 10px 25px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3)';
+                    e.target.style.letterSpacing = '1px';
                   }}
                   onMouseLeave={(e) => {
                     e.target.style.transform = 'translateY(0) scale(1)';
-                    e.target.style.boxShadow = '0 8px 25px rgba(34, 197, 94, 0.3), 0 4px 12px rgba(0, 0, 0, 0.2)';
+                    e.target.style.boxShadow = '0 15px 35px rgba(34, 197, 94, 0.4), 0 5px 15px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)';
+                    e.target.style.letterSpacing = '0.5px';
+                  }}
+                  onMouseDown={(e) => {
+                    e.target.style.transform = 'translateY(-1px) scale(0.98)';
+                    e.target.style.boxShadow = '0 15px 30px rgba(34, 197, 94, 0.5), 0 5px 15px rgba(0, 0, 0, 0.3)';
+                  }}
+                  onMouseUp={(e) => {
+                    e.target.style.transform = 'translateY(-4px) scale(1.02)';
+                    e.target.style.boxShadow = '0 25px 50px rgba(34, 197, 94, 0.6), 0 10px 25px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3)';
                   }}
                   title="Повторить вводный тур"
                 >
