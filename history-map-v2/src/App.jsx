@@ -607,6 +607,97 @@ export default function BrusilovOffensiveMap() {
   const [selectedPhase, setSelectedPhase] = useState('');
   const [showOperationInfo, setShowOperationInfo] = useState(false);
   const [isOperationInfoClosing, setIsOperationInfoClosing] = useState(false);
+  
+  // Состояние для туров подсказок
+  const [showTour, setShowTour] = useState(false);
+  const [currentTourStep, setCurrentTourStep] = useState(0);
+  const [isTourClosing, setIsTourClosing] = useState(false);
+
+  // Проверка первого посещения
+  useEffect(() => {
+    const hasVisited = localStorage.getItem('brusilov-tour-completed');
+    if (!hasVisited && showMainContent && !showIntro) {
+      setTimeout(() => {
+        setShowTour(true);
+      }, 1000); // Показать тур через секунду после загрузки
+    }
+  }, [showMainContent, showIntro]);
+
+  // Данные для тура
+  const tourSteps = [
+    {
+      target: '.intro-start-button, .operation-info-button',
+      title: '👋 Добро пожаловать!',
+      content: 'Это интерактивная карта Брусиловского прорыва 1916 года. Давайте познакомимся с основными возможностями!',
+      position: 'center'
+    },
+    {
+      target: '[data-tour="phase-selector"]',
+      title: '📅 Выбор фазы операции',
+      content: 'Здесь вы можете выбрать конкретную фазу операции для изучения. Попробуйте переключить между разными этапами!',
+      position: 'top'
+    },
+    {
+      target: '[data-tour="legend-button"]',
+      title: '📖 Легенда и заголовок',
+      content: 'Эта кнопка скрывает/показывает легенду карты и заголовок. Полезно для полноэкранного просмотра.',
+      position: 'right'
+    },
+    {
+      target: '[data-tour="info-button"]',
+      title: '📚 Подробная информация',
+      content: 'Кнопка открывает детальную информацию о выбранной фазе операции с историческими фактами.',
+      position: 'left'
+    },
+    {
+      target: '.leaflet-container',
+      title: '🗺️ Интерактивная карта',
+      content: 'Кликайте по городам, стрелкам и линиям фронта для получения подробной информации. Используйте колесо мыши для масштабирования.',
+      position: 'center'
+    },
+    {
+      target: '.legend',
+      title: '🎯 Легенда',
+      content: 'Здесь показаны все условные обозначения карты. Легенда поможет вам понять, что означают разные элементы.',
+      position: 'right'
+    }
+  ];
+
+  // Функции управления туром
+  const nextTourStep = () => {
+    if (currentTourStep < tourSteps.length - 1) {
+      setCurrentTourStep(currentTourStep + 1);
+    } else {
+      closeTour();
+    }
+  };
+
+  const prevTourStep = () => {
+    if (currentTourStep > 0) {
+      setCurrentTourStep(currentTourStep - 1);
+    }
+  };
+
+  const closeTour = () => {
+    setIsTourClosing(true);
+    setTimeout(() => {
+      setShowTour(false);
+      setIsTourClosing(false);
+      setCurrentTourStep(0);
+      localStorage.setItem('brusilov-tour-completed', 'true');
+    }, 300);
+  };
+
+  const skipTour = () => {
+    closeTour();
+  };
+
+  // Функция для разработки - сброс тура (можно убрать в продакшене)
+  const resetTour = () => {
+    localStorage.removeItem('brusilov-tour-completed');
+    setCurrentTourStep(0);
+    setShowTour(true);
+  };
 
   // Фазы операции для выпадающего списка
   const operationPhases = [
@@ -2619,7 +2710,9 @@ export default function BrusilovOffensiveMap() {
   useEffect(() => {
     const handleEscapeKey = (event) => {
       if (event.key === 'Escape') {
-        if (showOperationInfo && !isOperationInfoClosing) {
+        if (showTour && !isTourClosing) {
+          closeTour();
+        } else if (showOperationInfo && !isOperationInfoClosing) {
           closeOperationInfoModal();
         } else if (selectedRiver && !isRiverModalClosing) {
           closeRiverModal();
@@ -2627,14 +2720,14 @@ export default function BrusilovOffensiveMap() {
       }
     };
 
-    if (selectedRiver || showOperationInfo) {
+    if (selectedRiver || showOperationInfo || showTour) {
       document.addEventListener('keydown', handleEscapeKey);
     }
 
     return () => {
       document.removeEventListener('keydown', handleEscapeKey);
     };
-  }, [selectedRiver, isRiverModalClosing, showOperationInfo, isOperationInfoClosing]);
+  }, [selectedRiver, isRiverModalClosing, showOperationInfo, isOperationInfoClosing, showTour, isTourClosing]);
 
 
 
@@ -3156,6 +3249,7 @@ export default function BrusilovOffensiveMap() {
               {/* Кнопка управления легендой */}
               <button
                 className="legend-button"
+                data-tour="legend-button"
                 onClick={() => {
                   setShowLegend(!showLegend);
                   setShowHeader(!showHeader);
@@ -3212,6 +3306,7 @@ export default function BrusilovOffensiveMap() {
               {/* Кнопка информации об операции */}
               <button
                 className="operation-info-button"
+                data-tour="info-button"
                 onClick={() => setShowOperationInfo(true)}
                 style={{
                   position: 'absolute',
@@ -3262,6 +3357,66 @@ export default function BrusilovOffensiveMap() {
               >
                 ИНФОРМАЦИЯ
               </button>
+
+              {/* Кнопка повторного тура */}
+              {localStorage.getItem('brusilov-tour-completed') && (
+                <button
+                  onClick={() => {
+                    setCurrentTourStep(0);
+                    setShowTour(true);
+                  }}
+                  style={{
+                    position: 'absolute',
+                    top: '24px',
+                    right: '200px',
+                    background: 'linear-gradient(135deg, rgba(34, 197, 94, 0.8) 0%, rgba(16, 185, 129, 0.8) 50%, rgba(5, 150, 105, 0.8) 100%)',
+                    border: '1px solid rgba(255, 255, 255, 0.2)',
+                    borderRadius: '16px',
+                    padding: '12px 16px',
+                    cursor: 'pointer',
+                    zIndex: 1001,
+                    backdropFilter: 'blur(20px)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    boxShadow: '0 8px 25px rgba(34, 197, 94, 0.3), 0 4px 12px rgba(0, 0, 0, 0.2)',
+                    transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+                    outline: 'none',
+                    color: '#ffffff',
+                    fontSize: '13px',
+                    fontWeight: '600',
+                    letterSpacing: '0.5px',
+                    fontFamily: 'Rubik, sans-serif',
+                    textShadow: '0 1px 2px rgba(0, 0, 0, 0.3)'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.target.style.transform = 'translateY(-2px) scale(1.02)';
+                    e.target.style.boxShadow = '0 12px 35px rgba(34, 197, 94, 0.4), 0 6px 16px rgba(0, 0, 0, 0.3)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.transform = 'translateY(0) scale(1)';
+                    e.target.style.boxShadow = '0 8px 25px rgba(34, 197, 94, 0.3), 0 4px 12px rgba(0, 0, 0, 0.2)';
+                  }}
+                  title="Повторить вводный тур"
+                >
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    style={{ marginRight: '6px' }}
+                  >
+                    <path d="M21 12a9 9 0 11-6.219-8.56"/>
+                    <path d="M9 12l2 2 4-4"/>
+                    <path d="M15 3l3 3-3 3"/>
+                  </svg>
+                  ТУР
+                </button>
+              )}
 
               {/* Легенда */}
               <div
@@ -3539,6 +3694,7 @@ export default function BrusilovOffensiveMap() {
                       value={selectedPhase}
                       onChange={(e) => setSelectedPhase(e.target.value)}
                       className="control-element"
+                      data-tour="phase-selector"
                       style={{
                         background: 'linear-gradient(135deg, rgba(40, 40, 80, 0.9) 0%, rgba(30, 30, 60, 0.9) 100%)',
                         border: '1px solid rgba(255, 255, 255, 0.25)',
@@ -3848,6 +4004,233 @@ export default function BrusilovOffensiveMap() {
         </div>
       )}
 
+      {/* Тур для новых пользователей */}
+      {showTour && (
+        <div
+          className={`tour-overlay ${isTourClosing ? 'closing' : ''}`}
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '100vw',
+            height: '100vh',
+            background: 'rgba(0, 0, 0, 0.7)',
+            backdropFilter: 'blur(8px)',
+            zIndex: 999999,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            animation: isTourClosing ? 'overlayFadeOut 0.3s ease-out forwards' : 'overlayFadeIn 0.3s ease-out forwards'
+          }}
+        >
+          <div
+            className={`tour-card ${isTourClosing ? 'closing' : ''}`}
+            style={{
+              background: 'linear-gradient(135deg, rgba(26, 26, 46, 0.95) 0%, rgba(22, 33, 62, 0.95) 50%, rgba(15, 15, 35, 0.95) 100%)',
+              borderRadius: '24px',
+              padding: '32px',
+              maxWidth: '500px',
+              width: '90%',
+              boxShadow: '0 25px 50px rgba(0, 0, 0, 0.5), 0 0 80px rgba(99, 102, 241, 0.3)',
+              border: '1px solid rgba(255, 255, 255, 0.2)',
+              backdropFilter: 'blur(20px)',
+              animation: isTourClosing ? 'modalFadeOut 0.3s ease-out forwards' : 'modalFadeIn 0.3s ease-out forwards',
+              position: 'relative'
+            }}
+          >
+            {/* Заголовок */}
+            <div style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'flex-start',
+              marginBottom: '24px'
+            }}>
+              <h2 style={{
+                margin: 0,
+                fontSize: '24px',
+                color: '#ffffff',
+                fontWeight: '700',
+                fontFamily: 'Rubik, sans-serif',
+                lineHeight: '1.3'
+              }}>
+                {tourSteps[currentTourStep]?.title}
+              </h2>
+              <button
+                onClick={skipTour}
+                style={{
+                  background: 'transparent',
+                  border: 'none',
+                  color: 'rgba(255, 255, 255, 0.6)',
+                  fontSize: '28px',
+                  cursor: 'pointer',
+                  padding: '0',
+                  width: '32px',
+                  height: '32px',
+                  borderRadius: '50%',
+                  transition: 'all 0.3s ease',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}
+                onMouseEnter={(e) => {
+                  e.target.style.background = 'rgba(255, 255, 255, 0.1)';
+                  e.target.style.color = '#ffffff';
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.background = 'transparent';
+                  e.target.style.color = 'rgba(255, 255, 255, 0.6)';
+                }}
+                title="Пропустить тур"
+              >
+                ×
+              </button>
+            </div>
+
+            {/* Контент */}
+            <p style={{
+              margin: '0 0 32px 0',
+              fontSize: '16px',
+              color: 'rgba(255, 255, 255, 0.9)',
+              lineHeight: '1.6',
+              fontFamily: 'Rubik, sans-serif'
+            }}>
+              {tourSteps[currentTourStep]?.content}
+            </p>
+
+            {/* Прогресс */}
+            <div style={{
+              display: 'flex',
+              justifyContent: 'center',
+              gap: '8px',
+              marginBottom: '24px'
+            }}>
+              {tourSteps.map((_, index) => (
+                <div
+                  key={index}
+                  style={{
+                    width: '8px',
+                    height: '8px',
+                    borderRadius: '50%',
+                    background: index === currentTourStep 
+                      ? 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)'
+                      : 'rgba(255, 255, 255, 0.3)',
+                    transition: 'all 0.3s ease'
+                  }}
+                />
+              ))}
+            </div>
+
+            {/* Кнопки навигации */}
+            <div style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              gap: '16px'
+            }}>
+              {/* Кнопка "Назад" */}
+              <button
+                onClick={prevTourStep}
+                disabled={currentTourStep === 0}
+                style={{
+                  background: currentTourStep === 0 
+                    ? 'rgba(255, 255, 255, 0.1)' 
+                    : 'linear-gradient(135deg, rgba(75, 85, 99, 0.8) 0%, rgba(55, 65, 81, 0.8) 100%)',
+                  border: '1px solid rgba(255, 255, 255, 0.2)',
+                  borderRadius: '12px',
+                  padding: '12px 20px',
+                  color: currentTourStep === 0 ? 'rgba(255, 255, 255, 0.5)' : '#ffffff',
+                  fontSize: '14px',
+                  fontWeight: '600',
+                  cursor: currentTourStep === 0 ? 'not-allowed' : 'pointer',
+                  transition: 'all 0.3s ease',
+                  fontFamily: 'Rubik, sans-serif',
+                  backdropFilter: 'blur(10px)'
+                }}
+                onMouseEnter={(e) => {
+                  if (currentTourStep > 0) {
+                    e.target.style.transform = 'translateY(-2px)';
+                    e.target.style.boxShadow = '0 8px 25px rgba(0, 0, 0, 0.3)';
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.transform = 'translateY(0)';
+                  e.target.style.boxShadow = 'none';
+                }}
+              >
+                ← Назад
+              </button>
+
+              {/* Шаг */}
+              <span style={{
+                color: 'rgba(255, 255, 255, 0.7)',
+                fontSize: '14px',
+                fontFamily: 'Rubik, sans-serif'
+              }}>
+                {currentTourStep + 1} из {tourSteps.length}
+              </span>
+
+              {/* Кнопка "Далее/Завершить" */}
+              <button
+                onClick={nextTourStep}
+                style={{
+                  background: 'linear-gradient(135deg, rgba(99, 102, 241, 0.8) 0%, rgba(139, 92, 246, 0.8) 50%, rgba(168, 85, 247, 0.8) 100%)',
+                  border: '1px solid rgba(255, 255, 255, 0.2)',
+                  borderRadius: '12px',
+                  padding: '12px 20px',
+                  color: '#ffffff',
+                  fontSize: '14px',
+                  fontWeight: '600',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease',
+                  fontFamily: 'Rubik, sans-serif',
+                  backdropFilter: 'blur(10px)',
+                  boxShadow: '0 4px 15px rgba(99, 102, 241, 0.4)'
+                }}
+                onMouseEnter={(e) => {
+                  e.target.style.transform = 'translateY(-2px)';
+                  e.target.style.boxShadow = '0 8px 25px rgba(99, 102, 241, 0.6)';
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.transform = 'translateY(0)';
+                  e.target.style.boxShadow = '0 4px 15px rgba(99, 102, 241, 0.4)';
+                }}
+              >
+                {currentTourStep === tourSteps.length - 1 ? 'Завершить' : 'Далее →'}
+              </button>
+            </div>
+
+            {/* Кнопка "Пропустить" внизу */}
+            <div style={{
+              display: 'flex',
+              justifyContent: 'center',
+              marginTop: '16px'
+            }}>
+              <button
+                onClick={skipTour}
+                style={{
+                  background: 'transparent',
+                  border: 'none',
+                  color: 'rgba(255, 255, 255, 0.6)',
+                  fontSize: '13px',
+                  cursor: 'pointer',
+                  padding: '8px',
+                  transition: 'color 0.3s ease',
+                  fontFamily: 'Rubik, sans-serif',
+                  textDecoration: 'underline'
+                }}
+                onMouseEnter={(e) => {
+                  e.target.style.color = '#ffffff';
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.color = 'rgba(255, 255, 255, 0.6)';
+                }}
+              >
+                Пропустить тур
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
     </div>
   );
