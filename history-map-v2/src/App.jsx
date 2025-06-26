@@ -613,6 +613,10 @@ export default function BrusilovOffensiveMap() {
   const [showGallery, setShowGallery] = useState(false);
   const [isGalleryClosing, setIsGalleryClosing] = useState(false);
   const [currentGalleryImage, setCurrentGalleryImage] = useState(0);
+  
+  // Состояние для исторической карты
+  const [showHistoricalMap, setShowHistoricalMap] = useState(false);
+  const [isHistoricalMapClosing, setIsHistoricalMapClosing] = useState(false);
   const [showContacts, setShowContacts] = useState(false);
   const [isContactsClosing, setIsContactsClosing] = useState(false);
   
@@ -806,6 +810,26 @@ export default function BrusilovOffensiveMap() {
 
   const selectGalleryImage = (index) => {
     setCurrentGalleryImage(index);
+  };
+
+  // Функции управления исторической картой
+  const openHistoricalMap = () => {
+    setShowHistoricalMap(true);
+  };
+
+  const openHistoricalMapInNewTab = () => {
+    window.open(
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Zayonchkovsky_map47_%28part_A%29.png/1920px-Zayonchkovsky_map47_%28part_A%29.png',
+      '_blank'
+    );
+  };
+
+  const closeHistoricalMap = () => {
+    setIsHistoricalMapClosing(true);
+    setTimeout(() => {
+      setShowHistoricalMap(false);
+      setIsHistoricalMapClosing(false);
+    }, 300);
   };
 
   // Фазы операции для выпадающего списка
@@ -2843,6 +2867,8 @@ export default function BrusilovOffensiveMap() {
           closeTour();
         } else if (showGallery && !isGalleryClosing) {
           closeGallery();
+        } else if (showHistoricalMap && !isHistoricalMapClosing) {
+          closeHistoricalMap();
         } else if (showContacts && !isContactsClosing) {
           closeContactsModal();
         } else if (showOperationInfo && !isOperationInfoClosing) {
@@ -2862,14 +2888,14 @@ export default function BrusilovOffensiveMap() {
       }
     };
 
-    if (selectedRiver || showOperationInfo || showContacts || showTour || showGallery) {
+    if (selectedRiver || showOperationInfo || showContacts || showTour || showGallery || showHistoricalMap) {
       document.addEventListener('keydown', handleEscapeKey);
     }
 
     return () => {
       document.removeEventListener('keydown', handleEscapeKey);
     };
-  }, [selectedRiver, isRiverModalClosing, showOperationInfo, isOperationInfoClosing, showContacts, isContactsClosing, showTour, isTourClosing, showGallery, isGalleryClosing]);
+  }, [selectedRiver, isRiverModalClosing, showOperationInfo, isOperationInfoClosing, showContacts, isContactsClosing, showTour, isTourClosing, showGallery, isGalleryClosing, showHistoricalMap, isHistoricalMapClosing]);
 
 
 
@@ -2990,7 +3016,7 @@ export default function BrusilovOffensiveMap() {
                 attributionControl={false}
               >
                 <TileLayer
-                  url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
+                  url="https://{s}.basemaps.cartocdn.com/nolabels/{z}/{x}/{y}{r}.png"
                 />
 
                 {/* Отображение линий фронта */}
@@ -3442,6 +3468,54 @@ export default function BrusilovOffensiveMap() {
                       <line x1="12" y1="9" x2="12" y2="15" />
                     </>
                   )}
+                </svg>
+              </button>
+
+              {/* Кнопка исторической карты */}
+              <button
+                onClick={openHistoricalMap}
+                style={{
+                  position: 'absolute',
+                  bottom: '84px',
+                  left: '24px',
+                  background: 'linear-gradient(135deg, rgba(245, 158, 11, 0.8) 0%, rgba(251, 146, 60, 0.8) 50%, rgba(249, 115, 22, 0.8) 100%)',
+                  border: '1px solid rgba(255, 255, 255, 0.2)',
+                  borderRadius: '12px',
+                  padding: '12px',
+                  cursor: 'pointer',
+                  zIndex: 1001,
+                  backdropFilter: 'blur(20px)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  width: '48px',
+                  height: '48px',
+                  boxShadow: '0 15px 35px rgba(245, 158, 11, 0.4), 0 5px 15px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)',
+                  transition: 'all 0.3s ease'
+                }}
+                title="Историческая карта Брусиловского прорыва"
+                onMouseEnter={(e) => {
+                  e.target.style.transform = 'translateY(-2px) scale(1.05)';
+                  e.target.style.boxShadow = '0 20px 40px rgba(245, 158, 11, 0.5), 0 8px 20px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3)';
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.transform = 'translateY(0) scale(1)';
+                  e.target.style.boxShadow = '0 15px 35px rgba(245, 158, 11, 0.4), 0 5px 15px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)';
+                }}
+              >
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#ffffff"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M1 6v16l7-4 8 4 7-4V2l-7 4-8-4-7 4z"/>
+                  <path d="M8 2v16"/>
+                  <path d="M16 6v16"/>
                 </svg>
               </button>
 
@@ -5291,6 +5365,233 @@ export default function BrusilovOffensiveMap() {
                  Источник: Wikimedia Commons
                </p>
              </div>
+          </div>
+        </div>
+      )}
+
+      {/* Модальное окно исторической карты */}
+      {showHistoricalMap && (
+        <div
+          className={`modal-overlay ${isHistoricalMapClosing ? 'closing' : ''}`}
+          onClick={(e) => {
+            if (e.target === e.currentTarget) {
+              closeHistoricalMap();
+            }
+          }}
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '100vw',
+            height: '100vh',
+            backgroundColor: 'rgba(0,0,0,0.95)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 99999,
+            backdropFilter: 'blur(10px)'
+          }}
+        >
+                     <div
+             className={`modal-content ${isHistoricalMapClosing ? 'closing' : ''}`}
+             style={{
+               background: 'linear-gradient(135deg, rgba(26, 26, 46, 0.95) 0%, rgba(22, 33, 62, 0.95) 50%, rgba(15, 15, 35, 0.95) 100%)',
+               padding: '0',
+               borderRadius: '24px',
+               maxWidth: '90vw',
+               maxHeight: '95vh',
+               width: '700px',
+               height: '90vh',
+               boxShadow: '0 25px 50px rgba(0, 0, 0, 0.5), 0 0 80px rgba(245, 158, 11, 0.3)',
+               border: '1px solid rgba(255, 255, 255, 0.2)',
+               backdropFilter: 'blur(20px)',
+               display: 'flex',
+               flexDirection: 'column'
+             }}
+           >
+            {/* Заголовок */}
+            <div style={{ 
+              display: 'flex', 
+              justifyContent: 'space-between', 
+              alignItems: 'center', 
+              padding: '20px 24px',
+              borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+              flexShrink: 0
+            }}>
+              <h2 style={{ 
+                margin: 0, 
+                fontSize: '24px', 
+                color: '#ffffff',
+                fontWeight: '700',
+                fontFamily: 'Rubik, sans-serif',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '12px'
+              }}>
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  style={{
+                    color: '#f59e0b',
+                    filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3))'
+                  }}
+                >
+                  <path d="M1 6v16l7-4 8 4 7-4V2l-7 4-8-4-7 4z"/>
+                  <path d="M8 2v16"/>
+                  <path d="M16 6v16"/>
+                </svg>
+                Историческая карта
+              </h2>
+              <button
+                onClick={closeHistoricalMap}
+                style={{
+                  background: 'linear-gradient(135deg, rgba(220, 38, 38, 0.8) 0%, rgba(239, 68, 68, 0.8) 100%)',
+                  border: '1px solid rgba(255, 255, 255, 0.2)',
+                  borderRadius: '12px',
+                  fontSize: '18px',
+                  cursor: 'pointer',
+                  padding: '10px',
+                  width: '40px',
+                  height: '40px',
+                  color: '#ffffff',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  transition: 'all 0.3s ease',
+                  flexShrink: 0,
+                  outline: 'none'
+                }}
+                title="Закрыть (ESC)"
+              >
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+              </button>
+            </div>
+
+            {/* Историческая карта */}
+            <div style={{
+              position: 'relative',
+              flex: 1,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              background: 'rgba(0, 0, 0, 0.3)',
+              overflow: 'hidden'
+            }}>
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Zayonchkovsky_map47_%28part_A%29.png/1920px-Zayonchkovsky_map47_%28part_A%29.png"
+                alt="Историческая карта Брусиловского прорыва"
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'contain',
+                  cursor: 'pointer'
+                }}
+                onClick={openHistoricalMapInNewTab}
+                title="Нажмите для открытия в новой вкладке"
+                onError={(e) => {
+                  e.target.style.display = 'none';
+                  e.target.nextElementSibling.style.display = 'flex';
+                }}
+              />
+              <div style={{
+                display: 'none',
+                alignItems: 'center',
+                justifyContent: 'center',
+                width: '100%',
+                height: '100%',
+                color: 'rgba(255, 255, 255, 0.6)',
+                fontSize: '18px',
+                fontFamily: 'Rubik, sans-serif',
+                flexDirection: 'column',
+                gap: '16px'
+              }}>
+                <svg
+                  width="48"
+                  height="48"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M1 6v16l7-4 8 4 7-4V2l-7 4-8-4-7 4z"/>
+                  <path d="M8 2v16"/>
+                  <path d="M16 6v16"/>
+                </svg>
+                Карта недоступна
+              </div>
+            </div>
+
+            {/* Информация о карте */}
+            <div style={{
+              background: 'rgba(255, 255, 255, 0.05)',
+              padding: '16px 24px',
+              borderTop: '1px solid rgba(255, 255, 255, 0.1)',
+              flexShrink: 0,
+              maxHeight: '150px',
+              overflowY: 'auto'
+            }}>
+              <h3 style={{
+                margin: '0 0 8px 0',
+                fontSize: '16px',
+                color: '#ffffff',
+                fontWeight: '600',
+                fontFamily: 'Rubik, sans-serif'
+              }}>
+                Брусиловский прорыв (1916)
+              </h3>
+              <p style={{
+                margin: '0 0 12px 0',
+                fontSize: '13px',
+                color: 'rgba(255, 255, 255, 0.8)',
+                fontFamily: 'Rubik, sans-serif',
+                lineHeight: '1.4'
+              }}>
+                Оригинальная историческая карта наступательной операции Юго-Западного фронта под командованием генерала А. А. Брусилова, проводившейся с 4 июня по сентябрь 1916 года во время Первой мировой войны.
+              </p>
+              <div style={{
+                display: 'flex',
+                flexWrap: 'wrap',
+                gap: '12px',
+                fontSize: '11px',
+                color: 'rgba(255, 255, 255, 0.6)',
+                fontFamily: 'Rubik, sans-serif',
+                marginBottom: '8px'
+              }}>
+                <span>📅 4 июня — сентябрь 1916</span>
+                <span>📍 Юго-Западный фронт</span>
+                <span>🔗 Источник: Wikimedia Commons</span>
+              </div>
+              <p style={{
+                margin: '0',
+                fontSize: '10px',
+                color: 'rgba(255, 255, 255, 0.5)',
+                fontFamily: 'Rubik, sans-serif',
+                textAlign: 'center',
+                fontStyle: 'italic'
+              }}>
+                💡 Нажмите на карту для открытия в новой вкладке
+              </p>
+            </div>
           </div>
         </div>
       )}
