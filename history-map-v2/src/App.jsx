@@ -277,7 +277,7 @@ const CityMarkers = ({ cities, selectedPhase }) => {
     }
 
     // Специальная логика для городов, захваченных в Ковельских сражениях
-    const kovelBattlesCities = ['selec', 'tristen', 'koshevo', 'torchin', 'monastyryska', 'stanislau'];
+    const kovelBattlesCities = ['selec', 'tristen', 'koshevo', 'torchin', 'monastyryska', 'stanislau', 'halych'];
     if (kovelBattlesCities.includes(id)) {
       if (selectedPhase === 'kovel_battles' || selectedPhase === 'fourth_kovel_battle' || selectedPhase === 'fifth_kovel_battle' || selectedPhase === '') {
         isCaptured = true; // Показываем как захваченные в фазах "Ковельские сражения", "Четвертое Ковельское Сражение", "Пятое Ковельское сражение" и "Все ходы"
@@ -377,11 +377,11 @@ const CityMarkers = ({ cities, selectedPhase }) => {
     }
 
     // Специальная логика для городов, захваченных 7-й армией в Ковельских сражениях
-    const kovelBattles7thArmy = ['monastyryska'];
+    const kovelBattles7thArmy = ['monastyryska', 'halych'];
     if (kovelBattles7thArmy.includes(city.id)) {
       if (selectedPhase === 'kovel_battles' || selectedPhase === 'fourth_kovel_battle' || selectedPhase === 'fifth_kovel_battle' || selectedPhase === '') {
         isCaptured = true;
-        captureDate = '15 (28) июля 1916';
+        captureDate = city.id === 'halych' ? 'июль 1916' : '15 (28) июля 1916';
         captureArmy = '7-я армия';
       } else {
         isCaptured = false;
@@ -655,6 +655,12 @@ export default function BrusilovOffensiveMap() {
       target: '[data-tour="info-button"]',
       title: '📚 Подробная информация',
       content: 'Кнопка открывает детальную информацию о выбранной фазе операции с историческими фактами.',
+      position: 'left'
+    },
+    {
+      target: '[data-tour="gallery-button"]',
+      title: '🖼️ Историческая галерея',
+      content: 'В галерее собраны уникальные исторические фотографии и документы времен Брусиловского наступления 1916 года.',
       position: 'left'
     },
     {
@@ -3497,6 +3503,7 @@ export default function BrusilovOffensiveMap() {
               {/* Кнопка галереи */}
               <button
                 onClick={openGallery}
+                data-tour="gallery-button"
                 style={{
                   position: 'absolute',
                   top: '24px',
