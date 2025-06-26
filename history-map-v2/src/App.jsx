@@ -678,6 +678,12 @@ export default function BrusilovOffensiveMap() {
       title: '🎯 Легенда',
       content: 'Здесь показаны все условные обозначения карты. Легенда поможет вам понять, что означают разные элементы.',
       position: 'right'
+    },
+    {
+      target: '.leaflet-container',
+      title: '⚠️ ДИСКЛЕЙМЕР',
+      content: '⚠️ ВНИМАНИЕ! ДАННАЯ КАРТА ЯВЛЯЕТСЯ СОВРЕМЕННОЙ КАРТОГРАФИЧЕСКОЙ ОСНОВОЙ И НЕ ЯВЛЯЕТСЯ АУТЕНТИЧНОЙ КАРТОЙ 1916 ГОДА. НА КАРТЕ ОТОБРАЖЕНЫ НАПРАВЛЕНИЯ АТАК, ДВИЖЕНИЯ ВОЙСК И РАСПОЛОЖЕНИЕ ГОРОДОВ НА МОМЕНТ ПРОВЕДЕНИЯ БРУСИЛОВСКОГО НАСТУПЛЕНИЯ В 1916 ГОДУ.',
+      position: 'center'
     }
   ];
 
@@ -4412,10 +4418,12 @@ export default function BrusilovOffensiveMap() {
               <h2 style={{
                 margin: 0,
                 fontSize: '24px',
-                color: '#ffffff',
+                color: tourSteps[currentTourStep]?.title?.includes('ДИСКЛЕЙМЕР') ? '#ff4444' : '#ffffff',
                 fontWeight: '700',
                 fontFamily: 'Rubik, sans-serif',
-                lineHeight: '1.3'
+                lineHeight: '1.3',
+                textTransform: tourSteps[currentTourStep]?.title?.includes('ДИСКЛЕЙМЕР') ? 'uppercase' : 'none',
+                textShadow: tourSteps[currentTourStep]?.title?.includes('ДИСКЛЕЙМЕР') ? '0 0 10px rgba(255, 68, 68, 0.8), 0 0 20px rgba(255, 68, 68, 0.6)' : 'none'
               }}>
                 {tourSteps[currentTourStep]?.title}
               </h2>
@@ -4454,9 +4462,16 @@ export default function BrusilovOffensiveMap() {
             <p style={{
               margin: '0 0 32px 0',
               fontSize: '16px',
-              color: 'rgba(255, 255, 255, 0.9)',
+              color: tourSteps[currentTourStep]?.title?.includes('ДИСКЛЕЙМЕР') ? '#ffffff' : 'rgba(255, 255, 255, 0.9)',
               lineHeight: '1.6',
-              fontFamily: 'Rubik, sans-serif'
+              fontFamily: 'Rubik, sans-serif',
+              textTransform: tourSteps[currentTourStep]?.title?.includes('ДИСКЛЕЙМЕР') ? 'uppercase' : 'none',
+              fontWeight: tourSteps[currentTourStep]?.title?.includes('ДИСКЛЕЙМЕР') ? '700' : 'normal',
+              textShadow: 'none',
+              background: tourSteps[currentTourStep]?.title?.includes('ДИСКЛЕЙМЕР') ? 'rgba(255, 68, 68, 0.1)' : 'transparent',
+              padding: tourSteps[currentTourStep]?.title?.includes('ДИСКЛЕЙМЕР') ? '16px' : '0',
+              borderRadius: tourSteps[currentTourStep]?.title?.includes('ДИСКЛЕЙМЕР') ? '8px' : '0',
+              border: tourSteps[currentTourStep]?.title?.includes('ДИСКЛЕЙМЕР') ? '2px solid rgba(255, 68, 68, 0.5)' : 'none'
             }}>
               {tourSteps[currentTourStep]?.content}
             </p>
